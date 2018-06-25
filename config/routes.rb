@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  root 'users#index'
+  resources :budgets, only: [:new, :create, :index]
+  root 'payments#index'
   resources :users
   resources :properties
   resources :property_categories

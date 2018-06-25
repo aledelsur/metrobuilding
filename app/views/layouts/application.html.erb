@@ -18,16 +18,34 @@
          </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
           <ul class="nav navbar-nav">
+            <li> <%= link_to 'Pagos Pendientes', payments_path %> </li>
+            <li> <%= link_to 'Presupuestos de obra', budgets_path %> </li>
             <li> <%= link_to 'Propietarios', users_path %> </li>
             <li> <%= link_to 'Propiedades', properties_path %> </li>
-            <li> <%= link_to 'Pagos', payments_path %> </li>
           </ul>
         </div>
       </div>
     </nav>
     <div class="container">
-          <%= yield %>
+      <%= yield %>
     </div>
 
+    <div class='footer'></div>
+
+    <script type='text/javascript'>
+
+    $('.datatable').DataTable({
+      // ajax: ...,
+      // autoWidth: false,
+      // pagingType: 'full_numbers',
+      // processing: true,
+      // serverSide: true,
+
+      // Optional, if you want full pagination controls.
+      // Check dataTables documentation to learn more about available options.
+      // http://datatables.net/reference/option/pagingType
+    });
+
+    </script>
   </body>
 </html>

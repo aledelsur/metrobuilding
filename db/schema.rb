@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_18_183148) do
+ActiveRecord::Schema.define(version: 2018_06_25_015842) do
+
+  create_table "budgets", force: :cascade do |t|
+    t.float "value"
+    t.float "taxable_percentage"
+    t.datetime "due_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "payments", force: :cascade do |t|
     t.float "value"
@@ -19,6 +27,7 @@ ActiveRecord::Schema.define(version: 2018_06_18_183148) do
     t.datetime "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "budget_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -26,6 +35,10 @@ ActiveRecord::Schema.define(version: 2018_06_18_183148) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "section"
+    t.string "apartment"
+    t.string "floor"
+    t.string "rooms"
   end
 
   create_table "property_categories", force: :cascade do |t|

@@ -1,22 +1,27 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Propiedades</h1>
-
-<table class="table table-bordered">
+<h3><%= @properties.count %> propiedades</h3>
+<table class="table table-bordered datatable">
   <thead>
     <tr>
       <th>Categoría</th>
       <th>Propietario</th>
-      <!-- <th colspan="3"></th> -->
+      <th>Porcentaje</th>
+      <th>Departamento</th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @properties.each do |property| %>
       <tr>
-        <td><%= property.property_category_id %></td>
-        <td><%= property.user_id %></td>
-        <td><%= link_to 'Ver', property %></td>
+        <td><%= property.property_category.name %></td>
+        <td><%= property.user.first_name %> <%= property.user.last_name %></td>
+        <td><%= property.property_category.percentage %>%</td>
+        <td><%= property.floor.gsub('0', 'PB') %> <%= property.apartment %> - Bloque: <%= property.section %></td>
+        <!-- <td><%# link_to 'Ver', property %></td> -->
         <td><%= link_to 'Editar', edit_property_path(property) %></td>
         <td><%= link_to 'Eliminar', property, method: :delete, data: { confirm: 'Estás seguro?' } %></td>
       </tr>

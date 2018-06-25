@@ -1,0 +1,73 @@
+apartment,percentage,rooms,piso 0,piso 1,piso 2,SECTION
+A,0.72%,3,Castiñeira,"Gomez, Fernando","Scotto Lavina, Liliana",1
+B,0.51%,2,Castiñeira,"Corti, Gustavo","Tolosa, Cristian",1
+C,0.51%,2,"Sabelli, Marcelo","Rico, Daniel","Simonetti, Marcelo",1
+D,0.51%,2,Maria Elena (JC),Castiñeira,"Simonetti, Marcelo",1
+E,0.51%,2,"Scotto Lavina, Liliana",Castiñeira,"Torres, Fernando",1
+F,0.72%,3,"Montoto, Guillermo","Ayuso, Adrian","Torres, Fernando",1
+G,0.68%,3,"Rudolf, Hugo","Vazquez, Sandra (Lucchesi)","Gallo, Fernando",1
+H,0.48%,2,"Pace, Dario","Volpe, Daniel","Ibarburen, Martin",1
+I,0.48%,2,Castiñeira,"Scoles, Cesar","Martin, Hugo",1
+J,0.48%,2,"Venturi, Julieta","Cercamondi, Enzo",Castiñeira,1
+K,0.48%,2,"Venturi, Julieta","Inverso, Diego",Castiñeira,1
+L,0.68%,3,"De Faria, Cesar",Ivan Calulares,"Clavagueara, Nicolas",1
+A,0.72%,3,"Torres, Fernando","Russo, Julian","Panza, Claudio Omar (Ledesma)",2
+B,0.51%,2,"Torres, Fernando","Montoto, Manuel",Montoto (FLAVIA),2
+C,0.51%,2,Castiñeira,"Sanchez, Marcelo","Montoto, Belen",2
+D,0.51%,2,"Cercamondi, Enzo","Pessina, Maria Fernanda",Castiñeira,2
+E,0.51%,2,"Cercamondi, Enzo","Pessina, Jorge/Pessina, Maria Fernanda/ Pessina, Mercedes/Pessina, Claudio/ Pessina, Javier",Castiñeira,2
+F,0.72%,3,"Pessina, Jorge ",Castiñeira,"Ibarburen, Martin",2
+G,0.68%,3,"Villarreal, Luis","Smith, Sebastian","Gallo, Fernando",2
+H,0.48%,2,"De sarro, Ethel",Castiñeira,"Ferraro, Virginia Paula (Gallo)",2
+I,0.48%,2,"De sarro, Ethel",Castiñeira,"Ferraro, Virginia Paula (Gallo)",2
+J,0.48%,2,"Scotto Lavina, Diego","Simonetti, Sergio","Alonso, Eduardo",2
+K,0.48%,2,"Scotto Lavina, Diego","Marchetti, Sergio","Alonso, Eduardo",2
+L,0.68%,3,"Schiro, Ruben",Papá Ivan,Castiñeira,2
+A,0.72%,3,"Quaglerini, Miriam","Ferrando, Tati","Martin, Hugo",3
+B,0.51%,2,"Quaglerini, Miriam","Corti, Gustavo","Labala, Jorge",3
+C,0.51%,2,"Lausse, Ezequiel","Rudolf, Hugo",Grillo (Leo),3
+D,0.51%,2,Castiñeira,"Domnanovich, Leo",Grillo (Leo),3
+E,0.51%,2,Castiñeira,Ivan celulares,"Do Nacimiento, Jose Luis",3
+F,0.72%,3,"Rudolf, Analia","Reyes, Marcelo",Grillo (Leo),3
+G,0.68%,3,"Russo, Vicente","Ochuzzi, Valeria",Castiñeira,3
+H,0.48%,2,"De Faria, Cesar","Natale, Matias","Do Nacimiento, Jose Luis",3
+I,0.48%,2,"Duplex, Diego","Obiedo, Juan manuel",Castiñeira,3
+J,0.48%,2,"De Faria, Cesar",Castiñeira,"Battafarano, Julieta",3
+K,0.48%,2,"Martin, Hugo",Castiñeira,"Domnanovich, Leo",3
+L,0.68%,3,"Dozo, Fernando","Burati, Jose","Sarago, Ricardo",3
+A,0.72%,3,"MONSERRAT, Pablo",LILIANA CORO,Solis (Castiñeyra),4
+B,0.51%,2,"MONSERRAT, Pablo",VENDIDO JC,HORCRISA,4
+C,0.51%,2," Pessina, Javier",VENDIDO JC,HORCRISA,4
+D,0.51%,2,Castiñeira,"Pessina, Jorge/ Pessina, Mercedes/ Pessina, Javier","Frattini, Fernando",4
+E,0.51%,2,Castiñeira,"Cercamondi, Enzo","Boucinha, Daiana",4
+F,0.72%,3,"Sanchez, Marcelo","Palagano, Pino","Simonetti, Sergio",4
+G,0.68%,3,"Mizrahi, Mariano","Izzo, Liliana",Castiñeira,4
+H,0.48%,2,Biga,"Kalfaian, Omar","Comas, Fernando",4
+I,0.48%,2,"Rocha Lidner, Jaqueline","Nogadys, Gabriel","Metra, Alejandro",4
+J,0.48%,2,"Labala, Jorge",Castiñeira,Castiñeira,4
+K,0.48%,2,Gula,Castiñeira,"Simonetti, Marcelo",4
+L,0.68%,3,"Cabado, Claudia","Jauragui, Gaston","Benetti, Victorio",4
+A,0.72%,3,"Nicola, Sergio","Diaz, Ruben","Palagano, Marcelo",5
+B,0.51%,2,"Ferrando, Tati","Torres, Fernando","Diaz, Ruben",5
+C,0.51%,2,Castiñeira,"Torres, Fernando","Diaz, Ruben",5
+D,0.51%,2,"Poliak, Claudio","Torres, Fernando","Scotto Lavina, Liliana",5
+E,0.51%,2,"Poliak, Claudio","Torres, Fernando",Castiñeira,5
+F,0.72%,3,"Kalfaian, Omar",Castiñeira,"Perez, Benjamin (TINCHO)",5
+G,0.68%,3,"Sanchez, Sandra (Lucchesi)","Minissale, Lucas","Romano, Roxana (JC)",5
+H,0.48%,2,"Quinteros, Gustavo",Castiñeira,"Palagano, Pino",5
+I,0.48%,2,Castiñeira,Castiñeira,"Palagano, Pino",5
+J,0.48%,2,"Coccaro, Melina","Martino, Gustavo (Cruzados)","Zacheo, Alejandro ",5
+K,0.48%,2,"Rocha Lidner, Jaqueline",SUEGRO JONI,"Rodriguez, Daniela Carolina",5
+L,0.68%,3,"Martin, Silvia",Emiliano (JC),Castiñeira,5
+A,0.72%,3,Castiñeira,"Fajardo, German","Domenichini, Marcos",6
+B,0.51%,2,Castiñeira,"Nicola, Sergio","Domenichini, Marcos",6
+C,0.51%,2,"Silva, Federico","Perez, Benjamin","Silva, Federico",6
+D,0.51%,2,"Rodriguez, Daniela Carolina",Castiñeira,"Abiusso, Ruben",6
+E,0.51%,2,"Rodriguez, Daniela Carolina",Castiñeira,"Carossa, Adriano",6
+F,0.72%,3,"Ongania, Juan Carlos",Gula,"Gomez, Marcelo",6
+G,0.68%,3,"Obiedo, Victor",Wassaul,"Improvola, Gustavo",6
+H,0.48%,2,"Obiedo, Victor","Cercamondi, Enzo","Diaz, Ruben",6
+I,0.48%,2,Castiñeira,VENDIDO JC,"Raspant, Cristian",6
+J,0.48%,2,"Inverso, Diego",VENDIDO JC,Castiñeira,6
+K,0.48%,2,"Olguin, Mirta",VENDIDO JC,Castiñeira,6
+L,0.68%,3,"Ansaldo, Juan Carlos","Gastaldi, Lucas","Gallo, Fernando",6

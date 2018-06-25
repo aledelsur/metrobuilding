@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Presupuestos de obra</h1>
+
+<table class='table table-bordered datatable'>
+  <thead>
+    <tr>
+      <th>Monto</th>
+      <th>Porcentaje en blanco</th>
+      <th>Fecha de creación</th>
+      <th>Vencimiento</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @budgets.each do |budget| %>
+      <tr>
+        <td>$ <%= budget.value.round %></td>
+        <td><%= budget.taxable_percentage %></td>
+        <td><%= budget.created_at.to_s(:db) %></td>
+        <td><%= budget.due_date.to_s(:db) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Budget', new_budget_path %>
