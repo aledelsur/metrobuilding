@@ -18,10 +18,10 @@
          </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
           <ul class="nav navbar-nav">
-            <li> <%= link_to 'Pagos Pendientes', payments_path %> </li>
-            <li> <%= link_to 'Presupuestos de obra', budgets_path %> </li>
-            <li> <%= link_to 'Propietarios', users_path %> </li>
-            <li> <%= link_to 'Propiedades', properties_path %> </li>
+            <li class="<%= 'active' if params['controller'] == 'payments' %>"> <%= link_to 'Pagos Pendientes', payments_path %> </li>
+            <li class="<%= 'active' if params['controller'] == 'budgets'%>"> <%= link_to 'Presupuestos de obra', budgets_path %> </li>
+            <li class="<%= 'active' if params['controller'] == 'users'%>"> <%= link_to 'Propietarios', users_path %> </li>
+            <li class="<%= 'active' if params['controller'] == 'properties'%>"> <%= link_to 'Propiedades', properties_path %> </li>
           </ul>
         </div>
       </div>

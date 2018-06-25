@@ -1,5 +1,5 @@
 class Budget < ApplicationRecord
-
+  has_many :payments, dependent: :destroy
   after_create :create_payments
 
   private
