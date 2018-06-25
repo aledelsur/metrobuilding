@@ -28,7 +28,7 @@ class Admin::PropertyCategoriesController < AdminController
 
     respond_to do |format|
       if @property_category.save
-        format.html { redirect_to @property_category, notice: 'Property category was successfully created.' }
+        format.html { redirect_to [:admin, @property_category], notice: 'Property category was successfully created.' }
         format.json { render :show, status: :created, location: @property_category }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Admin::PropertyCategoriesController < AdminController
   def update
     respond_to do |format|
       if @property_category.update(property_category_params)
-        format.html { redirect_to @property_category, notice: 'Property category was successfully updated.' }
+        format.html { redirect_to [:admin, @property_category], notice: 'Property category was successfully updated.' }
         format.json { render :show, status: :ok, location: @property_category }
       else
         format.html { render :edit }
