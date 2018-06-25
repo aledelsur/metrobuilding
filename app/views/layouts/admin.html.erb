@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PaymentTracker</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-inverse">
+
+      <div class="container-fluid">
+        <div class="navbar-header"> <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-6" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+           <a href="#" class="navbar-brand">Ayres de Canning</a>
+         </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+          <ul class="nav navbar-nav">
+            <li class="<%= 'active' if params['controller'] == 'admin/payments' %>"> <%= link_to 'Pagos Pendientes', admin_payments_path %> </li>
+            <li class="<%= 'active' if params['controller'] == 'admin/budgets'%>"> <%= link_to 'Presupuestos de obra', admin_budgets_path %> </li>
+            <li class="<%= 'active' if params['controller'] == 'admin/users'%>"> <%= link_to 'Propietarios', admin_users_path %> </li>
+            <li class="<%= 'active' if params['controller'] == 'admin/properties'%>"> <%= link_to 'Propiedades', admin_properties_path %> </li>
+            <li class="<%= 'active' if params['controller'] == 'admin/property_categories'%>"> <%= link_to 'Categoria de propiedades', admin_property_categories_path %> </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <%= yield %>
+    </div>
+
+    <div class='footer'></div>
+
+    <script type='text/javascript'>
+
+    $('.datatable').DataTable({
+      // ajax: ...,
+      // autoWidth: false,
+      // pagingType: 'full_numbers',
+      // processing: true,
+      // serverSide: true,
+
+      // Optional, if you want full pagination controls.
+      // Check dataTables documentation to learn more about available options.
+      // http://datatables.net/reference/option/pagingType
+    });
+
+    </script>
+  </body>
+</html>

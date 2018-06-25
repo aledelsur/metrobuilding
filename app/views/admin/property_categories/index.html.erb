@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Categoria de Propiedades</h1>
+
+<table class='table table-bordered datatable'>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Porcentaje</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @property_categories.each do |property_category| %>
+      <tr>
+        <td><%= property_category.name %></td>
+        <td><%= property_category.percentage %></td>
+        <td><%= link_to 'Editar', edit_admin_property_category_path(property_category) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%# link_to 'Nueva categoria de propiedad', new_admin_property_category_path %>
