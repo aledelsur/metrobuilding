@@ -56,7 +56,7 @@ class Admin::PropertyCategoriesController < AdminController
   def destroy
     @property_category.destroy
     respond_to do |format|
-      format.html { redirect_to property_categories_url, notice: 'Property category was successfully destroyed.' }
+      format.html { redirect_to admin_property_categories_path, notice: 'Property category was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

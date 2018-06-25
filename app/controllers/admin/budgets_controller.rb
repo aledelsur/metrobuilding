@@ -28,7 +28,7 @@ class Admin::BudgetsController < AdminController
 
     respond_to do |format|
       if @budget.save
-        format.html { redirect_to budgets_path, notice: 'Budget was successfully created.' }
+        format.html { redirect_to admin_budgets_path, notice: 'Budget was successfully created.' }
       else
         format.html { render :new }
       end
