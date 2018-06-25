@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
   devise_for :users, skip: :registration
 
+  get '/admin', to: 'admin/payments#index'
   namespace :admin do
-    get '/', to: 'admin/payments#index'
     resources :budgets, only: [:new, :create, :index]
     resources :users
     resources :properties
