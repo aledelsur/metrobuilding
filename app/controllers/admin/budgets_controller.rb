@@ -49,15 +49,15 @@ class Admin::BudgetsController < AdminController
   #   end
   # end
   #
-  # # DELETE /budgets/1
-  # # DELETE /budgets/1.json
-  # def destroy
-  #   @budget.destroy
-  #   respond_to do |format|
-  #     format.html { redirect_to budgets_url, notice: 'Budget was successfully destroyed.' }
-  #     format.json { head :no_content }
-  #   end
-  # end
+  # DELETE /budgets/1
+  # DELETE /budgets/1.json
+  def destroy
+    @budget.destroy
+    respond_to do |format|
+      format.html { redirect_to admin_budgets_url, notice: 'Budget was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
