@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Propietario</th>
+      <th>Teléfonos</th>
       <th>Monto</th>
       <th></th>
     </tr>
@@ -14,10 +15,11 @@
   <tbody>
     <% @payments.each do |payment| %>
       <tr>
-        <td><%= payment.user.first_name %> <%= payment.user.last_name %></td>
+        <td><%= payment.user&.first_name %> <%= payment.user&.last_name %></td>
+        <td><%= payment.user&.mobile_number %> <%= payment.user&.phone_number %> </td>
         <td>$<%= payment.value.round %></td>
         <td><%= link_to 'Marcar como Pagado', '#' %>
-            <%# link_to 'Editar', edit_admin_payment_path(payment) %>
+            | <%= link_to 'Eliminar', [:admin, payment], method: :delete, data: { confirm: 'Estás seguro?' } %>
         </td>
       </tr>
     <% end %>
