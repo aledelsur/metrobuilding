@@ -1,0 +1,39 @@
+<%= form_with(model: [:admin, receipt], local: true) do |form| %>
+  <% if receipt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(receipt.errors.count, "error") %> prohibited this receipt from being saved:</h2>
+
+      <ul>
+      <% receipt.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <%= form.hidden_field :payment_id %>
+
+  <div class="form-group">
+    <%= form.label :name, 'Señor/Señora' %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :value, 'Monto' %>
+    <%= form.number_field :value, value: form.object.value.present? ? form.object.value : form.object.payment.value.round(0), class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :month, 'Mes de aporte fiduciario' %>
+    <%= form.text_field :month, value: form.object.month.present? ? form.object.month : l(Date.today, format: '%B'), class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :year, 'Año de aporte fiduciario' %>
+    <%= form.text_field :year, value: form.object.year.present? ? form.object.year : Date.today.year,  class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

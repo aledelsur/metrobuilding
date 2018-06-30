@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_25_194624) do
+ActiveRecord::Schema.define(version: 2018_06_29_214042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,12 +25,10 @@ ActiveRecord::Schema.define(version: 2018_06_25_194624) do
 
   create_table "payments", force: :cascade do |t|
     t.float "value"
-    t.integer "state", default: 1
     t.integer "user_id"
-    t.datetime "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "budget_id"
+    t.integer "property_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -49,6 +47,16 @@ ActiveRecord::Schema.define(version: 2018_06_25_194624) do
     t.float "percentage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "receipts", force: :cascade do |t|
+    t.integer "value"
+    t.string "month"
+    t.string "year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "payment_id"
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|

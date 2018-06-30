@@ -20,7 +20,7 @@
         <td><%= property.property_category.name %></td>
         <td><%= property.user&.first_name %> <%= property.user&.last_name %></td>
         <td><%= property.property_category.percentage %>%</td>
-        <td><%= property.floor.gsub('0', 'PB') %> <%= property.apartment %> - Bloque: <%= property.section %></td>
+        <td><%= property.name %></td>
         <!-- <td><%# link_to 'Ver', [:admin, property] %></td> -->
         <td><%= link_to 'Editar', edit_admin_property_path(property) %></td>
         <td><%= link_to 'Eliminar', [:admin, property], method: :delete, data: { confirm: 'Estás seguro?' } %></td>

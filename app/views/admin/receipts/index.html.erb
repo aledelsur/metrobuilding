@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Recibos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Monto</th>
+      <th>Valor</th>
+      <th>Nota</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @receipts.each do |receipt| %>
+      <tr>
+        <td><%= receipt.value %></td>
+        <td><%= receipt.user_id %></td>
+        <td><%= receipt.note %></td>
+        <td><%= link_to 'Edit', edit_admin_receipt_path(receipt) %></td>
+        <td><%= link_to 'Destroy', [:admin, receipt], method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo Recibo', new_admin_receipt_path %>

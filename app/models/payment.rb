@@ -1,8 +1,16 @@
 class Payment < ApplicationRecord
-  enum state: { pending: 1, paid: 2, expired: 3 }
-
   belongs_to :user
-  belongs_to :budget
+  belongs_to :property
+
+  has_many :receipts
 
   validates :value, numericality: true
+
+  attr_accessor :receipt_amount
+
+  private
+
+  def create_receipt
+    'Create Receipt Here'
+  end
 end

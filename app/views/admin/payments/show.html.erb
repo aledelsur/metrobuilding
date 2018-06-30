@@ -6,14 +6,14 @@
 </p>
 
 <p>
-  <strong>State:</strong>
-  <%= @payment.state %>
+  <strong>Due date:</strong>
+  <%= @payment.user.name %>
 </p>
 
 <p>
-  <strong>Due date:</strong>
-  <%= @payment.due_date %>
+  <strong>Deuda del propietario</strong>
+  <%= @payment.user.debt %>
 </p>
 
-<%= link_to 'Edit', edit_admin_payment_path(@payment) %> |
-<%= link_to 'Back', admin_payments_path %>
+<%= link_to 'Editar', edit_admin_payment_path(@payment) %> |
+<%= link_to 'Atras', admin_payments_path %>

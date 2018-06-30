@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :receipts
+  end
   root 'site/home#index'
 
 
   devise_for :users, skip: :registration
 
-  get '/admin', to: 'admin/payments#index'
+  get '/admin', to: 'admin/users#index'
   namespace :admin do
     resources :budgets, only: [:new, :create, :index, :destroy]
     resources :users

@@ -4,7 +4,7 @@ class Admin::PaymentsController < AdminController
   # GET /payments
   # GET /payments.json
   def index
-    @payments = Payment.pending.all
+    @payments = Payment.all
   end
 
   # GET /payments/1
@@ -14,7 +14,9 @@ class Admin::PaymentsController < AdminController
 
   # GET /payments/new
   def new
-    @payment = Payment.new
+    @user = User.find(params[:user_id])
+    @payment = @user.payments.new
+    @properties = @user.properties
   end
 
   # GET /payments/1/edit
@@ -31,6 +33,8 @@ class Admin::PaymentsController < AdminController
         format.html { redirect_to [:admin, @payment], notice: 'Payment was successfully created.' }
         format.json { render :show, status: :created, location: @payment }
       else
+        @user = @payment.user
+        @properties = @user.properties
         format.html { render :new }
         format.json { render json: @payment.errors, status: :unprocessable_entity }
       end
@@ -69,6 +73,6 @@ class Admin::PaymentsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
-      params.require(:payment).permit(:value, :state, :due_date)
+      params.require(:payment).permit(:value, :property_id, :user_id)
     end
 end

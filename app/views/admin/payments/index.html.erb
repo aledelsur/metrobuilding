@@ -1,13 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Pagos Pendientes</h1>
-<h3> <%= @payments.count %> pagos pendientes</h3>
+<h1>Pagos Realizados</h1>
 <table class="table table-bordered datatable">
   <thead>
     <tr>
       <th>Propietario</th>
       <th>Teléfonos</th>
       <th>Monto</th>
+      <th>Fecha</th>
+      <th>Propiedad</th>
       <th></th>
     </tr>
   </thead>
@@ -17,9 +18,12 @@
       <tr>
         <td><%= payment.user&.first_name %> <%= payment.user&.last_name %></td>
         <td><%= payment.user&.mobile_number %> <%= payment.user&.phone_number %> </td>
-        <td>$<%= payment.value.round %></td>
-        <td><%= link_to 'Marcar como Pagado', '#' %>
-            | <%= link_to 'Eliminar', [:admin, payment], method: :delete, data: { confirm: 'Estás seguro?' } %>
+        <td>$<%= payment.value %></td>
+        <td><%= payment.created_at.to_s(:db) %></td>
+        <td><%= payment.property.name %></td>
+        <td>
+          <%= link_to 'Generar Recibo', new_admin_receipt_path(payment_id: payment.id), class: 'btn btn-default' %>
+          <%= link_to 'Eliminar', [:admin, payment], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %>
         </td>
       </tr>
     <% end %>
