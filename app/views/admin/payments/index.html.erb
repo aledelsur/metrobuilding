@@ -16,11 +16,11 @@
   <tbody>
     <% @payments.each do |payment| %>
       <tr>
-        <td><%= payment.user&.first_name %> <%= payment.user&.last_name %></td>
-        <td><%= payment.user&.mobile_number %> <%= payment.user&.phone_number %> </td>
+        <td><%= payment.user&.name %></td>
+        <td><%= payment.user&.phones %> </td>
         <td>$<%= payment.value %></td>
         <td><%= payment.created_at.to_s(:db) %></td>
-        <td><%= payment.property.name %></td>
+        <td><%= payment.property&.name %></td>
         <td>
           <%= link_to 'Generar Recibo', new_admin_receipt_path(payment_id: payment.id), class: 'btn btn-default' %>
           <%= link_to 'Eliminar', [:admin, payment], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %>
