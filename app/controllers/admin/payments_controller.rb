@@ -26,6 +26,7 @@ class Admin::PaymentsController < AdminController
   # POST /payments
   # POST /payments.json
   def create
+    byebug
     @payment = Payment.new(payment_params)
 
     respond_to do |format|
@@ -73,6 +74,7 @@ class Admin::PaymentsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
-      params.require(:payment).permit(:value, :property_id, :user_id)
+      params[:payment][:property_ids] = params[:payment][:property_ids].reject { |p| p.empty? }
+      params.require(:payment).permit(:value, :user_id, property_ids: [])
     end
 end

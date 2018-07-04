@@ -2,6 +2,9 @@ class Property < ApplicationRecord
   belongs_to :user
   belongs_to :property_category
 
+  has_many :payment_properties
+  has_many :payments, through: :payment_properties
+
   delegate :percentage, to: :property_category
 
   def name
