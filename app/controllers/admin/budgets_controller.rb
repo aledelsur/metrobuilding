@@ -67,6 +67,6 @@ class Admin::BudgetsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def budget_params
-      params.require(:budget).permit(:value, :taxable_percentage, :due_date)
+      params.require(:budget).permit(:value, :due_date, :dollar_against_peso_value)
     end
 end
