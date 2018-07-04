@@ -13,9 +13,15 @@ class Payment < ApplicationRecord
 
   accepts_nested_attributes_for :properties
 
+  before_save :set_dollar_value
+
   attr_accessor :receipt_amount
 
   private
+
+  def set_dollar_value
+    self.dollar_value = value / dollar_against_peso_value
+  end
 
   def create_receipt
     'Create Receipt Here'
