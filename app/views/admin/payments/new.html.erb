@@ -1,5 +1,5 @@
 <h1>Nuevo Pago</h1>
-
+<em>Deuda actual del propietario: <%= @payment.user.debt.round %> (pesos)</em>
 <%= render 'form', payment: @payment %>
 
 <br>

@@ -9,7 +9,8 @@
       <th>Monto</th>
       <th>Fecha</th>
       <th>Propiedades</th>
-      <th></th>
+      <th>Crear nuevo recibo de pago</th>
+      <th>Eliminar pago junto a todos sus recibos</th>
     </tr>
   </thead>
 
@@ -21,10 +22,8 @@
         <td>$<%= payment.value %></td>
         <td><%= payment.created_at.to_s(:db) %></td>
         <td><%= payment.properties.map(&:name).join(', ') %></td>
-        <td>
-          <%= link_to 'Generar Recibo', new_admin_receipt_path(payment_id: payment.id), class: 'btn btn-default' %>
-          <%= link_to 'Eliminar', [:admin, payment], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %>
-        </td>
+        <td><%= link_to 'Generar Recibo', new_admin_receipt_path(payment_id: payment.id), class: 'btn btn-info' %></td>
+        <td><%= link_to 'Eliminar', [:admin, payment], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>

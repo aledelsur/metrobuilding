@@ -17,9 +17,9 @@
     <%= form.text_field :value, class: 'form-control' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :taxable_percentage, 'Porcentaje en blanco' %>
-    <%= form.text_field :taxable_percentage, class: 'form-control' %>
+  <div class="form-inline">
+    <%= form.label :dollar_against_peso_value, 'Valor del dolar' %>
+    <%= form.number_field :dollar_against_peso_value, {}, { class: "form-control" }  %>
   </div>
 
   <div class="form-inline">

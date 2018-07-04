@@ -1,0 +1,29 @@
+<h1>Pagos</h1>
+
+<p>
+  <em>Total pagado al día de la fecha: <b>$<%= @payments.sum(&:value).round %> (pesos) </b> </em>
+</p>
+
+<p>
+  <em>Monto adeudado al día de la fecha: <b>$<%= current_user.debt.round %> (pesos)</b> </em>
+</p>
+
+<table class="table table-bordered datatable">
+  <thead>
+    <tr>
+      <th>Fecha de pago</th>
+      <th>Monto en pesos</th>
+      <th>Monto en dolares</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @payments.each do |payment| %>
+      <tr>
+        <td><%= payment.created_at.to_s(:db) %></td>
+        <td>$<%= payment.value.round %></td>
+        <td>US$<%#= payment.dollar_value %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

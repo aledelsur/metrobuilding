@@ -1,4 +1,6 @@
 class Payment < ApplicationRecord
+  enum payment_type: [:deposit, :cash, :check]
+
   belongs_to :user
 
   has_many :payment_properties
@@ -7,6 +9,7 @@ class Payment < ApplicationRecord
   has_many :receipts
 
   validates :value, numericality: true
+  validates :dollar_against_peso_value, numericality: true
 
   accepts_nested_attributes_for :properties
 

@@ -9,22 +9,18 @@
       <th>Nombre</th>
       <th>Propiedades</th>
       <th>Fecha</th>
-      <th>Ver/Imprimir Recibo</th>
-      <th>Modificar datos de recibo</th>
-      <th>Eliminar recibo</th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @receipts.each do |receipt| %>
       <tr>
-        <td><%= receipt.value %></td>
+        <td>$<%= receipt.value %></td>
         <td><%= receipt.name %></td>
         <td><%= property_list(receipt.payment&.properties) %> </td>
         <td><%= receipt.created_at.to_s(:db) %></td>
-        <td><%= link_to 'Ver', [:admin, receipt], class: 'btn btn-info' %></td>
-        <td><%= link_to 'Edit', edit_admin_receipt_path(receipt), class: 'btn btn-info' %></td>
-        <td><%= link_to 'Eliminar', [:admin, receipt], method: :delete, data: { confirm: 'Estas seguro?' }, class: 'btn btn-danger' %></td>
+        <td><%= link_to 'Ver', [:site, receipt], class: 'btn btn-info' %></td>
       </tr>
     <% end %>
   </tbody>

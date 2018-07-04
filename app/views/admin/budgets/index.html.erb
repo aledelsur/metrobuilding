@@ -20,7 +20,7 @@
         <td><%= budget.taxable_percentage %></td>
         <td><%= budget.created_at.to_s(:db) %></td>
         <td><%= budget.due_date.to_s(:db) %></td>
-        <td><%= link_to 'Eliminar', [:admin, budget], method: :delete, data: { confirm: 'Estás seguro?' } %>
+        <td><%= link_to 'Eliminar', [:admin, budget], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %>
       </tr>
     <% end %>
   </tbody>

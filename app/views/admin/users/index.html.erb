@@ -5,26 +5,28 @@
 <table class='table table-bordered datatable'>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Nombre</th>
       <th>Deuda</th>
       <th>Teléfonos</th>
       <th>Cantidad de propiedades</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th><em>Registrar nuevo pago</em></th>
+      <th><em>Modificar datos de propietario</em></th>
+      <th><em>Eliminar usuario del sistema y todos sus datos</em></th>
     </tr>
   </thead>
 
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td><%= user.id %></td>
         <td><%= user.name %></td>
         <td>$<%= user.debt.round(0) %></td>
         <td><%= user.phones %></td>
         <td><%= user.properties.size %></td>
-        <td><%= link_to 'Nuevo Pago', new_admin_payment_path(user_id: user.id) %></td>
-        <td><%= link_to 'Editar', edit_admin_user_path(user) %></td>
-        <td><%= link_to 'Eliminar', [:admin, user], method: :delete, data: { confirm: 'Estás seguro?' } %></td>
+        <td><%= link_to 'Nuevo Pago', new_admin_payment_path(user_id: user.id), class: 'btn btn-info' %></td>
+        <td><%= link_to 'Editar', edit_admin_user_path(user), class: 'btn btn-info' %></td>
+        <td><%= link_to 'Eliminar', [:admin, user], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>

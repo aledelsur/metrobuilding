@@ -12,16 +12,16 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :property_category_id %>
+    <%= form.label :property_category_id, 'ID de la categoria de la propiedad' %>
     <%= form.number_field :property_category_id, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :user_id %>
+    <%= form.label :user_id, 'ID del propietario' %>
     <%= form.number_field :user_id, class: 'form-control' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Actualizar propiedad', class: 'btn btn-info' %>
   </div>
 <% end %>

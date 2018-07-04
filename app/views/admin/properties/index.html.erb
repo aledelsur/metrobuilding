@@ -8,8 +8,7 @@
       <th>Propietario</th>
       <th>Porcentaje</th>
       <th>Departamento</th>
-      <th></th>
-      <th></th>
+      <th>Modificar datos de propiedad</th>
     </tr>
   </thead>
 
@@ -21,8 +20,8 @@
         <td><%= property.property_category.percentage %>%</td>
         <td><%= property.name %></td>
         <!-- <td><%# link_to 'Ver', [:admin, property] %></td> -->
-        <td><%= link_to 'Editar', edit_admin_property_path(property) %></td>
-        <td><%= link_to 'Eliminar', [:admin, property], method: :delete, data: { confirm: 'Estás seguro?' } %></td>
+        <td><%= link_to 'Editar', edit_admin_property_path(property), class: 'btn btn-info' %></td>
+        <!-- <td><%# link_to 'Eliminar Propiedad', [:admin, property], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %></td> -->
       </tr>
     <% end %>
   </tbody>

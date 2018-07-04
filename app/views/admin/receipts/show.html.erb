@@ -1,50 +1,7 @@
-<div class='receipt' id='receipt'>
-  <table class='table'>
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col"> <b> <%= @receipt.id.to_s.rjust(5, '0') %> </b> </th>
-        <th scope="col"> <%= image_tag 'logo.png', class: 'right' %> </th>
-      </tr>
-    </thead>
+<%= render partial: 'shared/receipts/show' %>
 
-    <tr>
-      <td colspan='2'>
-        <p>
-        En la localidad de Monte Grande, partido de Esteban echeverría, a los
-        <b><%= @receipt.created_at.day %> </b> días del mes de <b><%= l(@receipt.created_at, format: '%B') %> </b>
-        del año <b><%= @receipt.created_at.year %></b>, recibí del Sr./ Sra. <%= @receipt.name %>
-        la cantidad de <%= @receipt.value %> pesos, en concepto de aporte fiduciario del mes de
-        <%= @receipt.month %> del año <%= @receipt.year %> por la construcción del emprendimiento
-        Ayres de Canning, fideicomiso al costo por <%= simple_pluralize(@receipt&.payment&.properties&.count, 'la unidad', 'las unidades') %>
-        <b><%= property_list(@receipt&.payment&.properties) %></b>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>
-        <%= image_tag 'firma.png', class: 'right' %>
-      </td>
-    </tr>
-  </table>
-</div>
-
-<%= link_to 'Imprimir', '#', onclick: "printDiv('receipt')", class: 'btn btn-info' %>
 <br>
 <br>
 <%= link_to 'Editar', edit_admin_receipt_path(@receipt), class: 'btn btn-default' %>
 <%= link_to 'Atras', admin_receipts_path, class: 'btn btn-default' %>
 
-
-<script>
-function printDiv(divName) {
-     var printContents = document.getElementById(divName).innerHTML;
-     var originalContents = document.body.innerHTML;
-
-     document.body.innerHTML = printContents;
-
-     window.print();
-
-     document.body.innerHTML = originalContents;
-}
-</script>
