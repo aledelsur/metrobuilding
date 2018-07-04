@@ -11,6 +11,10 @@ class Property < ApplicationRecord
     "#{floor_name}#{apartment} - BLOQUE#{section}"
   end
 
+  def formal_name
+    "#{floor_name} #{apartment} del bloque #{section}"
+  end
+
   def floor_name
     case floor
     when '0'

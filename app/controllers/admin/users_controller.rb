@@ -4,7 +4,7 @@ class Admin::UsersController < AdminController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.includes(:properties).all
   end
 
   # GET /users/1

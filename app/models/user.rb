@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
   has_many :properties
   has_many :payments
+  has_many :receipts, through: :payments
 
   # validates :first_name, presence: true
   # validates :last_name, presence: true

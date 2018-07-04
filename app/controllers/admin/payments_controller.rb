@@ -26,7 +26,6 @@ class Admin::PaymentsController < AdminController
   # POST /payments
   # POST /payments.json
   def create
-    byebug
     @payment = Payment.new(payment_params)
 
     respond_to do |format|

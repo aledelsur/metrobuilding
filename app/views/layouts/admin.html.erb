@@ -19,6 +19,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
           <ul class="nav navbar-nav">
             <li class="<%= 'active' if params['controller'] == 'admin/users'%>"> <%= link_to 'Propietarios', admin_users_path %> </li>
+            <li class="<%= 'active' if params['controller'] == 'admin/receipts'%>"> <%= link_to 'Recibos', admin_receipts_path %> </li>
             <li class="<%= 'active' if params['controller'] == 'admin/payments' %>"> <%= link_to 'Pagos Realizados', admin_payments_path %> </li>
             <li class="<%= 'active' if params['controller'] == 'admin/budgets'%>"> <%= link_to 'Presupuestos de obra', admin_budgets_path %> </li>
             <li class="<%= 'active' if params['controller'] == 'admin/properties'%>"> <%= link_to 'Propiedades', admin_properties_path %> </li>

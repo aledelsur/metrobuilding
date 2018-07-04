@@ -4,7 +4,6 @@
     <tr>
       <th>Fecha de emision</th>
       <th>Monto</th>
-      <th>Estado</th>
       <th>Fecha limite para el pago</th>
       <th></th>
     </tr>
@@ -15,7 +14,6 @@
       <tr>
         <td><%= payment.created_at.to_s(:db) %></td>
         <td>$<%= payment.value.round %></td>
-        <td><%= payment.state %></td>
         <td><%= payment.due_date.to_s(:db) %></td>
       </tr>
     <% end %>

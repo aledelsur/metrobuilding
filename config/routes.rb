@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :receipts
   end
+
   root 'site/home#index'
+  namespace :site do
+    resources :receipts, only: [:index, :show]
+  end
 
 
   devise_for :users, skip: :registration
