@@ -9,7 +9,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="<%= 'login-page' unless current_user %>">
     <% if current_user %>
       <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -20,7 +20,7 @@
             <ul class="nav navbar-nav">
               <li class="<%= 'active' if params['controller'] == 'site/payments'%>"> <%= link_to 'Pagos Realizados', site_payments_path%> </li>
               <li class="<%= 'active' if params['controller'] == 'site/receipts'%>"> <%= link_to 'Recibos', site_receipts_path %> </li>
-              <li> <%# link_to 'Datos de Obra', '#' %> </li>
+              <li> <%= link_to 'Salir', destroy_user_session_path, method: :delete %> </li>
             </ul>
           </div>
         </div>
@@ -31,22 +31,18 @@
       <%= yield %>
     </div>
 
-    <div class='footer'></div>
-
     <script type='text/javascript'>
+      $('.datatable').DataTable({
+        // ajax: ...,
+        // autoWidth: false,
+        // pagingType: 'full_numbers',
+        // processing: true,
+        // serverSide: true,
 
-    $('.datatable').DataTable({
-      // ajax: ...,
-      // autoWidth: false,
-      // pagingType: 'full_numbers',
-      // processing: true,
-      // serverSide: true,
-
-      // Optional, if you want full pagination controls.
-      // Check dataTables documentation to learn more about available options.
-      // http://datatables.net/reference/option/pagingType
-    });
-
+        // Optional, if you want full pagination controls.
+        // Check dataTables documentation to learn more about available options.
+        // http://datatables.net/reference/option/pagingType
+      });
     </script>
   </body>
 </html>

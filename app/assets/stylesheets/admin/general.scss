@@ -1,3 +1,22 @@
 .right {
   float: right;
 }
+
+.login-page {
+  background-color: #2E2E35;
+  width: 100%;
+  height: 100%;
+
+  .login-container {
+    background: white;
+    border: 1px solid;
+    padding: 15px;
+    width: 50%;
+    margin: auto;
+    margin-top: 100px;
+
+    .logo {
+      text-align: center;
+    }
+  }
+}
