@@ -102,7 +102,7 @@ Rails.application.configure do
     domain:               'ayres-de-canning.herokuapp.com',
     user_name:            'ayresdecanning@gmail.com',
     password:             'emipilicata',
-    authentication:       :plain,
+    authentication:       :login,
     enable_starttls_auto: true
   }
 end
