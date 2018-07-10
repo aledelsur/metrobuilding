@@ -18,7 +18,7 @@
         <td>$<%= property.payments.sum(&:value).round %></td>
         <td>US$<%= property.payments.sum(&:dollar_value).round(2) %></td>
         <th>$<%= property.debt %></th>
-        <td><%= link_to 'Ver', [:site, property] %></td>
+        <td><%= link_to 'Ver Detalle', [:site, property] %></td>
       </tr>
     <% end %>
   </tbody>

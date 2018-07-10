@@ -1,4 +1,4 @@
-<table class="table table-bordered">
+<table class="table">
   <thead>
     <tr>
       <th>Bloque</th>
@@ -17,5 +17,28 @@
     </tr>
   </tbody>
 </table>
+
+<h1>Pagos realizados para <%= @property.formal_name %></h1>
+
+<table class="table datatable">
+  <thead>
+    <tr>
+      <th>Fecha de pago</th>
+      <th>Monto en pesos</th>
+      <th>Monto en dolares</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @payments.each do |payment| %>
+      <tr>
+        <td><%= payment.created_at.to_s(:db) %></td>
+        <td>$<%= payment.value.round.round %></td>
+        <td>US$<%= payment.dollar_value.round(2) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 
 <%= link_to 'Atras', site_properties_path, class: 'btn btn-default' %>

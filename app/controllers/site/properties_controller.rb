@@ -6,6 +6,7 @@ class Site::PropertiesController < SiteController
   end
 
   def show
+    @payments = @property.payments
   end
 
   private
