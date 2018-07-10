@@ -1,7 +1,7 @@
 <div class='login-container'>
   <div class='logo'> <%= image_tag 'logo.png'%> </div>
 
-    <h2>Forgot your password?</h2>
+    <h2>Crear contraseña</h2>
 
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
       <%= devise_error_messages! %>
@@ -12,7 +12,7 @@
       </div>
 
       <div class="actions">
-        <%= f.submit 'Enviarme instrucciones para el crear contraseña', class: 'btn, btn-info' %>
+        <%= f.submit 'Enviarme instrucciones para crear contraseña', class: 'btn, btn-info' %>
       </div>
     <% end %>
 
