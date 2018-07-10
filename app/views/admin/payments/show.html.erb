@@ -12,7 +12,7 @@
 
 <p>
   <strong>Deuda del propietario</strong>
-  <%= @payment.user.debt %>
+  <%= @payment.user.debt.round %>
 </p>
 
 <%= link_to 'Editar', edit_admin_payment_path(@payment) %> |
