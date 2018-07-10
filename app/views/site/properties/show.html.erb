@@ -1,0 +1,21 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Bloque</th>
+      <th>Departamento</th>
+      <th>Piso</th>
+      <th>Ambientes</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= @property.section %></td>
+      <td><%= @property.apartment %></td>
+      <td><%= @property.floor %></td>
+      <th><%= @property.rooms %></th>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to 'Atras', site_properties_path, class: 'btn btn-default' %>

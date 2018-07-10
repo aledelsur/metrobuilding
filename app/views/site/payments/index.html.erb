@@ -1,6 +1,28 @@
-<h1>Resumen de Cuenta</h1>
+<h1>Pagos</h1>
 
-<table class="table table-bordered">
+<table class="table table-bordered datatable">
+  <thead>
+    <tr>
+      <th>Fecha de pago</th>
+      <th>Monto en pesos</th>
+      <th>Monto en dolares</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @payments.each do |payment| %>
+      <tr>
+        <td><%= payment.created_at.to_s(:db) %></td>
+        <td>$<%= payment.value.round.round %></td>
+        <td>US$<%= payment.dollar_value.round(2) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h1>Resumen</h1>
+
+<table class="table">
   <thead>
   <tr>
     <th>
@@ -26,26 +48,4 @@
       <b>$<%= current_user.debt.round %> (pesos)</b>
     </td>
   </tr>
-</table>
-
-<h1>Pagos</h1>
-
-<table class="table table-bordered datatable">
-  <thead>
-    <tr>
-      <th>Fecha de pago</th>
-      <th>Monto en pesos</th>
-      <th>Monto en dolares</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @payments.each do |payment| %>
-      <tr>
-        <td><%= payment.created_at.to_s(:db) %></td>
-        <td>$<%= payment.value.round.round %></td>
-        <td>US$<%= payment.dollar_value.round(2) %></td>
-      </tr>
-    <% end %>
-  </tbody>
 </table>

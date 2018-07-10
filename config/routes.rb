@@ -4,10 +4,11 @@ Rails.application.routes.draw do
     resources :receipts
   end
 
-  root 'site/payments#index'
+  root 'site/properties#index'
   namespace :site do
     resources :payments, only: [:index]
     resources :receipts, only: [:index, :show]
+    resources :properties, only: [:index, :show]
   end
 
 

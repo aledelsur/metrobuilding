@@ -1,0 +1,2 @@
+module Site::PropertiesHelper
+end

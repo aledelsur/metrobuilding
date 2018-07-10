@@ -18,8 +18,10 @@
            </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
             <ul class="nav navbar-nav">
+              <li class="<%= 'active' if params['controller'] == 'site/properties'%>"> <%= link_to 'Propiedades', site_properties_path %> </li>
               <li class="<%= 'active' if params['controller'] == 'site/payments'%>"> <%= link_to 'Pagos Realizados', site_payments_path%> </li>
               <li class="<%= 'active' if params['controller'] == 'site/receipts'%>"> <%= link_to 'Recibos', site_receipts_path %> </li>
+
               <li> <%= link_to 'Salir', destroy_user_session_path, method: :delete %> </li>
             </ul>
           </div>

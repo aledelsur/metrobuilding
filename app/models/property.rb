@@ -25,4 +25,14 @@ class Property < ApplicationRecord
       '2do'
     end
   end
+
+  def debt
+    budgets = Budget.all
+    total_to_pay = 0
+    budgets.each do |budget|
+      total_to_pay += budget.value * (percentage / 100)
+    end
+    total_paid = payments.sum(&:value)
+    total_to_pay - total_paid
+  end
 end
