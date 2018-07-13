@@ -2,7 +2,12 @@
   <table class='table'>
     <thead class="thead-dark">
       <tr>
-        <th scope="col"> <b> <%= @receipt.id.to_s.rjust(5, '0') %> </b> </th>
+        <th scope="col">
+          <div><b>CUIT: 30-71609332-4</b></div>
+          <div><b>FIDEICOMISO INMOBILIARIO AL COSTO AYRES DE CANNING</b></div>
+          <div><b>Dardo Rocha 164, Monte Grande, 1842, Buenos Aires</b></div>
+          <div><b>Recibo número <%= @receipt.id.to_s.rjust(5, '0') %></b></div>
+        </th>
         <th scope="col"> <%= image_tag 'logo.png', class: 'right' %> </th>
       </tr>
     </thead>
