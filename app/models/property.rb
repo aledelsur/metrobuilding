@@ -33,16 +33,16 @@ class Property < ApplicationRecord
   end
 
   def debt
-    budget_debt - total_paid(:peso)
+    budget_debt - total_paid(:pesos)
   end
 
   def total_paid(currency)
     payments = self.payments.includes(:properties)
     payments.sum do |payment|
       if currency == :peso
-        payment.value * (budget_debt / payment.value)
+        payment.value
       elsif currency == :dollar
-        payment.dollar_value * (budget_debt / payment.value)
+        payment.dollar_value
       end
     end.round
   end
