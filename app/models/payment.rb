@@ -19,6 +19,11 @@ class Payment < ApplicationRecord
 
   private
 
+  def split_value(budget)
+    self.value = (value * (budget / value))
+    save
+  end
+
   def set_dollar_value
     self.dollar_value = value / dollar_against_peso_value
   end
