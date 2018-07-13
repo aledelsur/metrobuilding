@@ -33,7 +33,7 @@ class Property < ApplicationRecord
   end
 
   def debt
-    budget_debt - total_paid(:pesos)
+    budget_debt - total_paid(:peso)
   end
 
   def total_paid(currency)
