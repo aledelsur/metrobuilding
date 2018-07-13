@@ -26,13 +26,24 @@ class Property < ApplicationRecord
     end
   end
 
-  def debt
-    budgets = Budget.all
-    total_to_pay = 0
-    budgets.each do |budget|
-      total_to_pay += budget.value * (percentage / 100)
+  def budget_debt
+    Budget.all.sum do |budget|
+      budget.value * (percentage / 100)
     end
-    total_paid = payments.sum(&:value)
-    total_to_pay - total_paid
+  end
+
+  def debt
+    budget_debt - total_paid(:peso)
+  end
+
+  def total_paid(currency)
+    payments = self.payments.includes(:properties)
+    payments.sum do |payment|
+      if currency == :peso
+        payment.value * (budget_debt / payment.value)
+      elsif currency == :dollar
+        payment.dollar_value * (budget_debt / payment.value)
+      end
+    end.round
   end
 end

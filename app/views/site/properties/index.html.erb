@@ -15,8 +15,8 @@
     <% @properties.each do |property| %>
       <tr>
         <td><%= property.name %></td>
-        <td>$<%= property.payments.sum(&:value).round %></td>
-        <td>US$<%= property.payments.sum(&:dollar_value).round(2) %></td>
+        <td>$<%= property.total_paid(:peso) %></td>
+        <td>US$<%= property.total_paid(:dollar) %></td>
         <th>$<%= property.debt.round %></th>
         <td><%= link_to 'Ver Detalle', [:site, property] %></td>
       </tr>

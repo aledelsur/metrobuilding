@@ -22,8 +22,4 @@ class Payment < ApplicationRecord
   def set_dollar_value
     self.dollar_value = value / dollar_against_peso_value
   end
-
-  def create_receipt
-    'Create Receipt Here'
-  end
 end
