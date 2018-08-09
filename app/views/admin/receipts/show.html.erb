@@ -3,5 +3,10 @@
 <br>
 <br>
 <%= link_to 'Editar', edit_admin_receipt_path(@receipt), class: 'btn btn-default' %>
-<%= link_to 'Atras', admin_receipts_path, class: 'btn btn-default' %>
+
+<% if @receipt.payment.nil? %>
+  <%= link_to 'Atras', admin_receipts_path, class: 'btn btn-default' %>
+<% else %>
+  <%= link_to 'Atras', admin_receipts_path(payments: true), class: 'btn btn-default' %>
+<% end %>
 

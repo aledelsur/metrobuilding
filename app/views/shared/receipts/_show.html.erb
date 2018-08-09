@@ -20,8 +20,13 @@
         del año <b><%= @receipt.created_at.year %></b>, recibí del Sr./ Sra. <%= @receipt.name %>
         la cantidad de <%= @receipt.value %> pesos, en concepto de aporte fiduciario del mes de
         <%= @receipt.month %> del año <%= @receipt.year %> por la construcción del emprendimiento
-        Ayres de Canning, fideicomiso al costo por <%= simple_pluralize(@receipt&.payment&.properties&.count, 'la unidad', 'las unidades') %>
-        <b><%= property_list(@receipt&.payment&.properties) %></b>
+        Ayres de Canning, fideicomiso al costo por
+        <% if @receipt.concept.present? %>
+          <%= @receipt.concept %>
+        <% else %>
+          <%= simple_pluralize(@receipt&.payment&.properties&.count, 'la unidad', 'las unidades') %>
+          <b><%= property_list(@receipt&.payment&.properties) %></b>
+        <% end %>
         </p>
       </td>
     </tr>

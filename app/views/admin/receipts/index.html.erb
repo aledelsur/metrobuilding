@@ -9,6 +9,10 @@
       <th>Nombre</th>
       <th>Propiedades</th>
       <th>Fecha</th>
+      <th>Mes de aporte fiduciario</th>
+      <% if params[:payments].nil? %>
+        <th>Concepto</th>
+      <% end %>
       <th>Ver/Imprimir Recibo</th>
       <th>Modificar datos de recibo</th>
       <th>Eliminar recibo</th>
@@ -22,6 +26,10 @@
         <td><%= receipt.name %></td>
         <td><%= property_list(receipt.payment&.properties) %> </td>
         <td><%= receipt.created_at.to_s(:db) %></td>
+        <td><%= receipt.month.capitalize %></td>
+        <% if params[:payments].nil? %>
+          <td><%= receipt.concept %></td>
+        <% end %>
         <td><%= link_to 'Ver', [:admin, receipt], class: 'btn btn-info' %></td>
         <td><%= link_to 'Edit', edit_admin_receipt_path(receipt), class: 'btn btn-info' %></td>
         <td><%= link_to 'Eliminar', [:admin, receipt], method: :delete, data: { confirm: 'Estas seguro?' }, class: 'btn btn-danger' %></td>
@@ -32,4 +40,11 @@
 
 <br>
 
-<%= link_to 'Nuevo Recibo', new_admin_receipt_path, class: 'btn btn-info' %>
+<% if params[:payments].nil? %>
+  <%= link_to 'Nuevo Recibo de locales', new_admin_receipt_path, class: 'btn btn-info' %>
+<% else %>
+  <b> Para crear recibos de pagos por propiedades, lo debe hacer desde la <%= link_to 'solapa de pagos', admin_payments_path %>.</b>
+
+  <br>
+  <br>
+<% end %>

@@ -4,7 +4,11 @@ class Admin::ReceiptsController < AdminController
   # GET /admin/receipts
   # GET /admin/receipts.json
   def index
-    @receipts = Receipt.all
+    if params[:payments]
+      @receipts = Receipt.where.not(payment_id: nil).all
+    else
+      @receipts = Receipt.where(payment_id: nil).all
+    end
   end
 
   # GET /admin/receipts/1
@@ -14,8 +18,12 @@ class Admin::ReceiptsController < AdminController
 
   # GET /admin/receipts/new
   def new
-    @payment = Payment.find(params[:payment_id])
-    @receipt = @payment.receipts.new
+    if params[:payment_id].present?
+      @payment = Payment.find(params[:payment_id])
+      @receipt = @payment.receipts.new
+    else
+      @receipt = Receipt.new
+    end
   end
 
   # GET /admin/receipts/1/edit
@@ -70,6 +78,6 @@ class Admin::ReceiptsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def receipt_params
-      params.require(:receipt).permit(:value, :payment_id, :name, :month, :year)
+      params.require(:receipt).permit(:value, :payment_id, :name, :month, :year, :concept)
     end
 end

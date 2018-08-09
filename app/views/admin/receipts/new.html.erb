@@ -3,4 +3,9 @@
 <%= render 'form', receipt: @receipt %>
 
 <br>
-<%= link_to 'Atras', admin_payments_path, class: 'btn btn-default' %>
+
+<% if @receipt.payment.nil? %>
+  <%= link_to 'Atras', admin_receipts_path, class: 'btn btn-default' %>
+<% else %>
+  <%= link_to 'Atras', admin_receipts_path(payments: true), class: 'btn btn-default' %>
+<% end %>

@@ -11,7 +11,8 @@
     </div>
   <% end %>
 
- <%= form.hidden_field :payment_id %>
+
+  <%= form.hidden_field :payment_id %>
 
   <div class="form-group">
     <%= form.label :name, 'Señor/Señora' %>
@@ -20,7 +21,7 @@
 
   <div class="form-group">
     <%= form.label :value, 'Monto' %>
-    <%= form.number_field :value, value: form.object.value.present? ? form.object.value : form.object.payment.value.round(0), class: 'form-control' %>
+    <%= form.number_field :value, value: form.object.value.present? ? form.object.value : form.object&.payment&.value&.round(0), class: 'form-control' %>
   </div>
 
   <div class="form-group">
@@ -32,6 +33,13 @@
     <%= form.label :year, 'Año de aporte fiduciario' %>
     <%= form.text_field :year, value: form.object.year.present? ? form.object.year : Date.today.year,  class: 'form-control' %>
   </div>
+
+  <% unless form.object&.payment&.present? %>
+    <div class="form-group">
+      <%= form.label 'Concepto' %>
+      <%= form.text_field :concept,  class: 'form-control' %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= form.submit 'Crear Recibo', class: 'btn btn-info' %>
