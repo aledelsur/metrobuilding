@@ -1,13 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Property category:</strong>
+  <strong>ID de la categoria de la propiedad:</strong>
   <%= @property.property_category_id %>
 </p>
 
 <p>
-  <strong>User:</strong>
+  <strong>ID del propietario:</strong>
   <%= @property.user_id %>
+</p>
+
+
+<p>
+  <strong>Nº de cochera:</strong>
+  <%= @property.garage %>
 </p>
 
 <%= link_to 'Edit', edit_admin_property_path(@property) %> |
