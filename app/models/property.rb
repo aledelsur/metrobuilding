@@ -5,6 +5,8 @@ class Property < ApplicationRecord
   has_many :payment_properties
   has_many :payments, through: :payment_properties
 
+  after_update :transfer_payments
+
   delegate :percentage, to: :property_category
 
   def name
@@ -45,5 +47,11 @@ class Property < ApplicationRecord
         payment.dollar_value
       end
     end.round
+  end
+
+  def transfer_payments
+    return unless saved_change_to_user_id?
+    payments = Payment.includes(:payment_properties).where(payment_properties: { property_id: id })
+    payments.update_all(user_id: self.user_id)
   end
 end
