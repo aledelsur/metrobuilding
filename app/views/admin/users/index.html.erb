@@ -21,7 +21,7 @@
       <tr>
         <td><%= user.id %></td>
         <td><%= user.name %></td>
-        <td>$<%= user.debt.round(0) %></td>
+        <td>$<%= user.debt(@budget).round(0) %></td>
         <td><%= user.phones %></td>
         <td><%= property_list(user.properties) %></td>
         <td><%= link_to 'Nuevo Pago', new_admin_payment_path(user_id: user.id), class: 'btn btn-info' %></td>

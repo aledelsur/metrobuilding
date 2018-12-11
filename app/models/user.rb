@@ -24,8 +24,8 @@ class User < ApplicationRecord
     "#{phone_number} \n #{mobile_number}"
   end
 
-  def debt
-    budgets = Budget.all
+  def debt(budgets = nil)
+    budgets = Budget.all if budgets.nil?
     total_paid = payments.sum { |p| p.value.present? ? p.value : 0 }
     total_to_pay = 0
     budgets.each do |budget|
