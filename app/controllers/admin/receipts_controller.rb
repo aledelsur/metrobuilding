@@ -5,10 +5,11 @@ class Admin::ReceiptsController < AdminController
   # GET /admin/receipts.json
   def index
     if params[:payments]
-      @receipts = Receipt.where.not(payment_id: nil).all
+      @receipts = Receipt.where.not(payment_id: nil)
     else
-      @receipts = Receipt.where(payment_id: nil).all
+      @receipts = Receipt.where(payment_id: nil)
     end
+    @receipts = @receipts.includes(payment: [:properties])
   end
 
   # GET /admin/receipts/1
