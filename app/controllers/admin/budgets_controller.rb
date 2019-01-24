@@ -4,7 +4,7 @@ class Admin::BudgetsController < AdminController
   # GET /budgets
   # GET /budgets.json
   def index
-    @budgets = Budget.all
+    @budgets = Budget.all.order('id desc')
   end
 
   # # GET /budgets/1
