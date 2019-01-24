@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_28_211016) do
+ActiveRecord::Schema.define(version: 2019_01_24_151136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2018_11_28_211016) do
     t.float "dollar_against_peso_value"
     t.integer "payment_type", default: 0
     t.integer "property_category_id"
+    t.integer "debt"
   end
 
   create_table "payment_properties", force: :cascade do |t|

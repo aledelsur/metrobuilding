@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Monto</th>
+      <th>Resta saldar</th>
       <th>Porcentaje en blanco</th>
       <th>Fecha de creación</th>
       <th>Vencimiento</th>
@@ -16,7 +17,8 @@
   <tbody>
     <% @budgets.each do |budget| %>
       <tr>
-        <td>$ <%= budget.value.round %></td>
+        <td>$<%= budget.value.round %></td>
+        <td>$<%= budget.debt %></td>
         <td><%= budget.taxable_percentage %></td>
         <td><%= budget.created_at.to_s(:db) %></td>
         <td><%= budget.due_date.to_s(:db) %></td>

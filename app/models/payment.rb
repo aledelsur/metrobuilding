@@ -19,6 +19,10 @@ class Payment < ApplicationRecord
 
   attr_accessor :receipt_amount
 
+  after_create  :recalculate_budget_debt
+  after_destroy :recalculate_budget_debt
+
+
   private
 
   def split_value(budget)
@@ -28,5 +32,15 @@ class Payment < ApplicationRecord
 
   def set_dollar_value
     self.dollar_value = value / dollar_against_peso_value
+  end
+
+  def recalculate_budget_debt
+    budgets = Budget.where('debt > ?', 0).all
+    budgets.each do |budget|
+      users_debt = User.sum { |u| u.debt([budget]) }
+      budget.debt = users_debt
+      budget.debt = 0 if users_debt < 0
+      budget.save
+    end
   end
 end

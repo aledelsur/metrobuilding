@@ -5,8 +5,8 @@
 <table class='table table-bordered datatable'>
   <thead class='thead-dark'>
     <tr>
-      <th>Monto</th>
       <th>Nombre</th>
+      <th>Monto</th>
       <th>Propiedades</th>
       <th>Fecha</th>
       <th>Mes de aporte fiduciario</th>
@@ -22,8 +22,9 @@
   <tbody>
     <% @receipts.each do |receipt| %>
       <tr>
-        <td><%= receipt.value %></td>
+
         <td><%= receipt.name %></td>
+        <td><%= receipt.value %></td>
         <td><%= property_list(receipt.payment&.properties) %> </td>
         <td><%= receipt.created_at.to_s(:db) %></td>
         <td><%= receipt.month.capitalize %></td>
