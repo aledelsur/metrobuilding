@@ -2,12 +2,18 @@ class AddDebtToBudget < ActiveRecord::Migration[5.2]
   def change
     add_column :budgets, :debt, :integer
 
-    budgets = Budget.all
+    budgets = Budget.all.order('id asc')
+
+    users_paid = User.sum { |u| u.paid_in_total }
 
     budgets.each do |budget|
-      users_debt = User.sum { |u| u.debt([budget]) }
-      budget.debt = users_debt
-      budget.debt = 0 if users_debt < 0
+      budget.debt = budget.value
+
+      budget.debt = budget.debt - users_paid
+      if budget.debt < 0
+        budget.debt = 0
+        users_paid = users_paid - budget.value
+      end
       budget.save
     end
   end

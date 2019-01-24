@@ -26,12 +26,15 @@ class User < ApplicationRecord
 
   def debt(budgets = nil)
     budgets = Budget.all if budgets.nil?
-    total_paid = payments.sum { |p| p.value.present? ? p.value : 0 }
     total_to_pay = 0
     budgets.each do |budget|
       total_percentage = properties.sum { |property| property.percentage }
       total_to_pay += budget.value * (total_percentage / 100)
     end
-    total_to_pay - total_paid
+    total_to_pay - paid_in_total
+  end
+
+  def paid_in_total
+    payments.sum { |p| p.value.present? ? p.value : 0 }
   end
 end

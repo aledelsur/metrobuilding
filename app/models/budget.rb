@@ -8,6 +8,7 @@ class Budget < ApplicationRecord
 
   def initialize_debt
     self.debt = value
+    save
   end
 end
 
