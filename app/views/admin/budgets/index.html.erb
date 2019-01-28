@@ -5,6 +5,7 @@
 <table class='table table-bordered datatable'>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Monto</th>
       <th>Resta saldar</th>
       <th>Porcentaje en blanco</th>
@@ -17,6 +18,7 @@
   <tbody>
     <% @budgets.each do |budget| %>
       <tr>
+        <td>$<%= budget.id %></td>
         <td>$<%= budget.value.round %></td>
         <td>$<%= budget.debt %></td>
         <td><%= budget.taxable_percentage %></td>
