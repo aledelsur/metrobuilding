@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :payments
   has_many :receipts, through: :payments
 
+  after_update :recalculate_budget_debt
+
   # validates :first_name, presence: true
   # validates :last_name, presence: true
   # validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
@@ -36,5 +38,12 @@ class User < ApplicationRecord
 
   def paid_in_total
     payments.sum { |p| p.value.present? ? p.value : 0 }
+  end
+
+  def recalculate_budget_debt
+    if saved_change_to_current_debt?
+      budget = Budget.last
+      budget.recalculate_debt
+    end
   end
 end

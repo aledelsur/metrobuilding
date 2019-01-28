@@ -22,7 +22,6 @@ class Payment < ApplicationRecord
   after_create  :recalculate_budget_debt
   after_destroy :recalculate_budget_debt
 
-
   private
 
   def split_value(budget)
@@ -35,19 +34,7 @@ class Payment < ApplicationRecord
   end
 
   def recalculate_budget_debt
-    budgets = Budget.all.order('id asc')
-
-    users_paid = User.sum { |u| u.paid_in_total }
-
-    budgets.each do |budget|
-      budget.debt = budget.value
-
-      budget.debt = budget.debt - users_paid
-      if budget.debt < 0
-        budget.debt = 0
-        users_paid = users_paid - budget.value
-      end
-      budget.save
-    end
+    user.current_debt = user.debt
+    user.save
   end
 end

@@ -4,10 +4,11 @@ class Budget < ApplicationRecord
   validates :value, numericality: true
   validates :dollar_against_peso_value, numericality: true
 
-  after_create :initialize_debt
+  after_create :recalculate_debt
 
-  def initialize_debt
-    self.debt = value
+  def recalculate_debt
+    current_debts = User.where('current_debt > ?', 0).pluck(:current_debt)
+    self.debt = current_debts.sum
     save
   end
 end
