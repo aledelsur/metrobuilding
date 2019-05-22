@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_28_014129) do
+ActiveRecord::Schema.define(version: 2019_05_22_174329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,8 +22,6 @@ ActiveRecord::Schema.define(version: 2019_01_28_014129) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "dollar_against_peso_value"
-    t.integer "payment_type", default: 0
-    t.integer "property_category_id"
     t.integer "debt"
   end
 
@@ -62,8 +60,6 @@ ActiveRecord::Schema.define(version: 2019_01_28_014129) do
     t.float "percentage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "payment_type", default: 0
-    t.float "fixed_price"
   end
 
   create_table "receipts", force: :cascade do |t|
@@ -99,6 +95,7 @@ ActiveRecord::Schema.define(version: 2019_01_28_014129) do
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
     t.integer "current_debt"
+    t.text "notes"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
