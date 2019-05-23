@@ -10,6 +10,11 @@ class Admin::ReceiptsController < AdminController
       @receipts = Receipt.where(payment_id: nil)
     end
     @receipts = @receipts.includes(payment: [:properties])
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @receipts.to_csv, filename: "Recibos-#{Date.today}.csv" }
+    end
   end
 
   # GET /admin/receipts/1

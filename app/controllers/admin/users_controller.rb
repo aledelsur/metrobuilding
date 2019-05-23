@@ -6,6 +6,11 @@ class Admin::UsersController < AdminController
   def index
     @budget = Budget.all
     @users = User.includes(:payments, properties: [:property_category])
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @users.to_csv, filename: "users-#{Date.today}.csv" }
+    end
   end
 
   # GET /users/1
