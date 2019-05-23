@@ -1,0 +1,15 @@
+.bg-color{
+  background: #fff;
+  height: -webkit-fill-available;
+}
+#myVideo {
+  position: fixed;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+@media only screen and (max-width: 768px) {
+  #myVideo{
+    display: none;
+  }
+}
