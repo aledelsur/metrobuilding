@@ -17,7 +17,7 @@ class Receipt < ApplicationRecord
   end
 
   def formatted_created_at_date
-    created_at.to_s(:db)
+    created_at.to_s(:db).strftime("%d/%m/%Y")
   end
 
   def receipt_month
