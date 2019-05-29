@@ -13,7 +13,7 @@ class Admin::ReceiptsController < AdminController
 
     respond_to do |format|
       format.html
-      format.csv { send_data @receipts.to_csv, filename: "Recibos-#{Date.today}.csv" }
+      format.xlsx
     end
   end
 

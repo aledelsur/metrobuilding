@@ -1,0 +1,10 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "pagos-#{Date.today}") do |sheet|
+  # this is the head row of your spreadsheet
+  sheet.add_row %w(Nombre Monto Fecha Mes)
+
+  # each user is a row on your spreadsheet
+  @receipts.each do |receipt|
+    sheet.add_row [receipt.name, receipt.value, receipt.formatted_created_at_date, receipt.receipt_month]
+  end
+end
