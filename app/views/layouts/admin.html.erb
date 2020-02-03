@@ -31,6 +31,10 @@
            <li class="<%= 'active' if params['controller'] == 'admin/receipts' && !params['payments'].present?%>">
             <%= link_to 'Recibos de locales', admin_receipts_path %>
            </li>
+
+           <li class="<%= 'active' if params['controller'] == 'admin/debts'%>">
+            <%= link_to 'Deudas especiales', admin_debts_path %>
+           </li>
           </ul>
         </div>
       </div>

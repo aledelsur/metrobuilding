@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/admin', to: 'admin/users#index'
   namespace :admin do
     resources :budgets, only: [:new, :create, :index, :destroy]
+    resources :debts
     resources :users
     resources :properties
     resources :property_categories

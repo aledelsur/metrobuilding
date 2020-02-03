@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_22_174329) do
+ActiveRecord::Schema.define(version: 2020_01_27_235659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,11 +25,21 @@ ActiveRecord::Schema.define(version: 2019_05_22_174329) do
     t.integer "debt"
   end
 
+  create_table "debts", force: :cascade do |t|
+    t.text "description"
+    t.integer "amount"
+    t.datetime "due_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "payment_properties", force: :cascade do |t|
     t.integer "payment_id"
     t.integer "property_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["payment_id"], name: "index_payment_properties_on_payment_id"
+    t.index ["property_id"], name: "index_payment_properties_on_property_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -41,6 +51,7 @@ ActiveRecord::Schema.define(version: 2019_05_22_174329) do
     t.float "dollar_value"
     t.integer "payment_type"
     t.string "check_number"
+    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -71,6 +82,15 @@ ActiveRecord::Schema.define(version: 2019_05_22_174329) do
     t.integer "payment_id"
     t.string "name"
     t.string "concept"
+  end
+
+  create_table "user_debts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "debt_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["debt_id"], name: "index_user_debts_on_debt_id"
+    t.index ["user_id"], name: "index_user_debts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

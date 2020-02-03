@@ -6,6 +6,9 @@ class User < ApplicationRecord
   has_many :payments
   has_many :receipts, through: :payments
 
+  has_many :user_debts
+  has_many :debts, through: :user_debts
+
   after_update :recalculate_budget_debt
 
   # validates :first_name, presence: true

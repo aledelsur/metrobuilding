@@ -1,0 +1,56 @@
+<% if debt.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(debt.errors.count, "error") %> prohibited this debt from being saved:</h2>
+
+    <ul>
+    <% debt.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<br />
+<br />
+
+<div class="form-group">
+  <label> Seleccione propietarios a los cuales aplica la deuda </label>
+  <%= form.hidden_field :user_ids, value: @user_ids %>
+  <table class='table table-bordered datatable'>
+    <thead>
+      <tr>
+        <th>Seleccionar</th>
+        <th>Nombre</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each.with_index do |user, index| %>
+        <tr>
+          <td><%= check_box :user_id, '', { id: "user_debt_#{index}", class: 'form-control js-user-check', data: { user_id: user.id }, checked: (@user_ids&.split(',').include?(user.id.to_s) ? true : false) }%></td>
+          <td><%= user.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
+
+
+ <div class="form-group">
+  <%= form.label :description, 'Descripcion' %>
+  <em>Representa el motivo de la deuda. Por ejemplo: Pago de cochera</em>
+  <%= form.text_field :description, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+ <%= form.label :amount, 'Monto' %>
+ <em>La deuda debe ser un numero entero (No decimal)</em>
+ <%= form.text_field :amount, class: 'form-control' %>
+</div>
+
+ <!-- <div class="form-group">
+  <%#= form.label :due_date, 'Vencimiento de pago' %>
+  <%#= form.datetime_field :due_date, class: 'form-control' %>
+</div> -->
+
+
