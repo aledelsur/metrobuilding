@@ -6,7 +6,8 @@
     <tr>
       <th>Descripcion</th>
       <th>Monto</th>
-      <th></th>
+      <th>Moneda</th>
+      <th>Propiedades</th>
       <th></th>
     </tr>
   </thead>
@@ -16,8 +17,8 @@
       <tr>
         <td><%= debt.description %></td>
         <td>$<%= debt.amount %> </td>
-
-        <td><%# link_to 'Editar', edit_admin_debt_path(debt), class: 'btn btn-info' %></td>
+        <td> <%= debt.currency.capitalize %> </td>
+        <td><%= debt.properties.map(&:name).join(' / ') %></td>
         <td><%= link_to 'Eliminar', [:admin, debt], method: :delete, data: { confirm: 'Estas seguro?' }, class: 'btn btn-danger' %></td>
       </tr>
     <% end %>

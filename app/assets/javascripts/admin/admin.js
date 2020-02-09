@@ -11,13 +11,12 @@ $(document).ready(function(){
     theme: "bootstrap"
   });
 
-  $(document).on('change', '.js-user-check', function() {
+  $(document).on('change', '.js-property-check', function() {
     // We need to conver user_ids to an array first
     // so we can know if an id is already there
-    var ids = $('#debt_user_ids').val().split(',');
+    var ids = $('#debt_property_ids').val().split(',');
     ids.filter(String);
-    var newId = $(this).data('user-id').toString();
-    alert("The new id is: " + newId);
+    var newId = $(this).data('property-id').toString();
     if(this.checked){
       if(!ids.includes(newId)){
         ids.push(newId);
@@ -25,9 +24,7 @@ $(document).ready(function(){
     } else {
       ids[ids.indexOf(newId)] = '';
       ids = ids.filter(String);
-      alert(ids);
     }
-    alert(ids.join(','))
-    $('#debt_user_ids').val(ids.join(','));
+    $('#debt_property_ids').val(ids.join(','));
   })
 });

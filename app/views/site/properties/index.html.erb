@@ -6,7 +6,9 @@
       <th>Propiedad</th>
       <th>Total pagado en pesos</th>
       <th>Total pagado en dolares</th>
-      <th>Adeuda</th>
+      <th>Deuda de cuotas (pesos)</th>
+      <th>Deudas especiales (dólares)</th>
+      <th>Deudas especiales (pesos)</th>
       <th></th>
     </tr>
   </thead>
@@ -18,6 +20,8 @@
         <td>$<%= property.total_paid(:peso) %></td>
         <td>US$<%= property.total_paid(:dollar) %></td>
         <th>$<%= property.debt.round %></th>
+        <th>USD <%= property.special_debt(:dolares).round %></th>
+        <th>$<%= property.special_debt(:pesos).round %></th>
         <td><%= link_to 'Ver Detalle', [:site, property] %></td>
       </tr>
     <% end %>

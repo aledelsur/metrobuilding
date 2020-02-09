@@ -3,6 +3,7 @@ class Site::PropertiesController < SiteController
 
   def index
     @properties = current_user.properties
+    @debts = current_user.debts
   end
 
   def show

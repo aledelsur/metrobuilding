@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_27_235659) do
+ActiveRecord::Schema.define(version: 2020_02_09_160827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2020_01_27_235659) do
   create_table "debts", force: :cascade do |t|
     t.text "description"
     t.integer "amount"
+    t.integer "currency"
     t.datetime "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -73,6 +74,15 @@ ActiveRecord::Schema.define(version: 2020_01_27_235659) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "property_debts", force: :cascade do |t|
+    t.integer "property_id"
+    t.integer "debt_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["debt_id"], name: "index_property_debts_on_debt_id"
+    t.index ["property_id"], name: "index_property_debts_on_property_id"
+  end
+
   create_table "receipts", force: :cascade do |t|
     t.integer "value"
     t.string "month"
@@ -82,15 +92,6 @@ ActiveRecord::Schema.define(version: 2020_01_27_235659) do
     t.integer "payment_id"
     t.string "name"
     t.string "concept"
-  end
-
-  create_table "user_debts", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "debt_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["debt_id"], name: "index_user_debts_on_debt_id"
-    t.index ["user_id"], name: "index_user_debts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

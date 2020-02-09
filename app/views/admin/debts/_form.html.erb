@@ -15,7 +15,7 @@
 
 <div class="form-group">
   <label> Seleccione propietarios a los cuales aplica la deuda </label>
-  <%= form.hidden_field :user_ids, value: @user_ids %>
+  <%= form.hidden_field :property_ids, value: @property_ids %>
   <table class='table table-bordered datatable'>
     <thead>
       <tr>
@@ -24,10 +24,10 @@
       </tr>
     </thead>
     <tbody>
-      <% @users.each.with_index do |user, index| %>
+      <% @properties.each.with_index do |property, index| %>
         <tr>
-          <td><%= check_box :user_id, '', { id: "user_debt_#{index}", class: 'form-control js-user-check', data: { user_id: user.id }, checked: (@user_ids&.split(',').include?(user.id.to_s) ? true : false) }%></td>
-          <td><%= user.name %></td>
+          <td><%= check_box :property_id, '', { id: "property_debt_#{index}", class: 'form-control js-property-check', data: { property_id: property.id }, checked: (@property_ids&.split(',')&.include?(property.id.to_s) ? true : false) }%></td>
+          <td><%= property.name %></td>
         </tr>
       <% end %>
     </tbody>
@@ -40,6 +40,12 @@
   <%= form.label :description, 'Descripcion' %>
   <em>Representa el motivo de la deuda. Por ejemplo: Pago de cochera</em>
   <%= form.text_field :description, class: 'form-control' %>
+ </div>
+
+ <div class="form-group">
+  <%= form.label :currency, 'Tipo de moneda' %>
+  <em>Pesos o Dolares</em>
+  <%= form.select :currency, ['pesos', 'dolares'], class: 'form-control' %>
 </div>
 
 <div class="form-group">

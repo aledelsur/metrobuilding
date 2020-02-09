@@ -5,6 +5,9 @@ class Property < ApplicationRecord
   has_many :payment_properties
   has_many :payments, through: :payment_properties
 
+  has_many :property_debts
+  has_many :debts, through: :property_debts
+
   after_update :transfer_payments
 
   delegate :percentage, to: :property_category
@@ -36,6 +39,10 @@ class Property < ApplicationRecord
 
   def debt
     budget_debt - total_paid(:peso)
+  end
+
+  def special_debt(currency)
+    debts.where(currency: currency).map(&:amount).sum
   end
 
   def total_paid(currency)

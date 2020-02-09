@@ -15,13 +15,13 @@ class Admin::DebtsController < AdminController
   # GET /debts/new
   def new
     @debt = Debt.new
-    @users = User.all
+    @properties = Property.all
   end
 
   def edit
     @debt = Debt.find(params[:id])
-    @user_ids = @debt.users.pluck(:id).join(',')
-    @users = User.all
+    @property_ids = @debt.properties.pluck(:id).join(',')
+    @properties = Property.all
   end
 
   # # GET /debts/1/edit
@@ -38,7 +38,7 @@ class Admin::DebtsController < AdminController
         format.html { redirect_to admin_debts_path, notice: 'Debt was successfully created.' }
       else
         @debt = Debt.new
-        @users = User.all
+        @properties = Property.all
         format.html { render :new }
       end
     end
@@ -53,8 +53,8 @@ class Admin::DebtsController < AdminController
         format.json { render :index, status: :ok, location: @debt }
       else
         @debt = Debt.new
-        @user_ids = @debt.users.pluck(:id).join(',')
-        @users = User.all
+        @property_ids = @debt.properties.pluck(:id).join(',')
+        @properties = Property.all
         format.html { render :edit }
         format.json { render json: @debt.errors, status: :unprocessable_entity }
       end
@@ -79,6 +79,6 @@ class Admin::DebtsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def debt_params
-      params.require(:debt).permit(:description, :amount, :user_ids)
+      params.require(:debt).permit(:description, :amount, :property_ids, :currency)
     end
 end
