@@ -19,7 +19,7 @@
     <% @payments.each do |payment| %>
       <tr>
         <td><%= payment.user&.name %></td>
-        <td><%= payment.payment_type.humanize %></td>
+        <td><%= payment&.payment_type&.humanize %></td>
         <td><%= payment.user&.phones %> </td>
         <td>$<%= payment.value %></td>
         <td><%= payment.created_at.to_s(:db) %></td>
