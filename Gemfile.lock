@@ -44,6 +44,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    airbrake (10.0.1)
+      airbrake-ruby (~> 4.13)
     airbrake-ruby (4.13.1)
       rbtree3 (~> 0.5)
     annotate (3.0.3)
@@ -237,7 +239,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  airbrake-ruby
+  airbrake
   annotate
   axlsx (~> 2.0)
   axlsx_rails
