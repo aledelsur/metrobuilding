@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: receipts
+#
+#  id         :bigint           not null, primary key
+#  concept    :string
+#  month      :string
+#  name       :string
+#  value      :integer
+#  year       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  payment_id :integer
+#
+
 class Receipt < ApplicationRecord
   belongs_to :payment, optional: true
 

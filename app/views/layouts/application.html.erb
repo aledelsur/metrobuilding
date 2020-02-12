@@ -19,7 +19,11 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
             <ul class="nav navbar-nav">
               <li class="<%= 'active' if params['controller'] == 'site/properties'%>"> <%= link_to 'Propiedades', site_properties_path %> </li>
-              <li class="<%= 'active' if params['controller'] == 'site/payments'%>"> <%= link_to 'Pagos Realizados', site_payments_path%> </li>
+              <li class="<%= 'active' if params['controller'] == 'site/payments' && params[:payment_type] == 'cuota'%>"> <%= link_to 'Pagos de cuota Realizados', site_payments_path(payment_type: 'cuota')%> </li>
+              <li class="<%= 'active' if params['controller'] == 'site/payments' && params[:payment_type] == 'deuda_pesos'%>"> <%= link_to 'Pagos de deudas especiales en pesos', site_payments_path(payment_type: 'deuda_pesos')%> </li>
+
+              <li class="<%= 'active' if params['controller'] == 'site/payments' && params[:payment_type] == 'deuda_dolares'%>"> <%= link_to 'Pagos de deudas especiales en dolares', site_payments_path(payment_type: 'deuda_dolares')%> </li>
+
               <li class="<%= 'active' if params['controller'] == 'site/receipts'%>"> <%= link_to 'Recibos', site_receipts_path %> </li>
 
               <li> <%= link_to 'Salir', destroy_user_session_path, method: :delete %> </li>

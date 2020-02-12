@@ -5,7 +5,7 @@ class Admin::UsersController < AdminController
   # GET /users.json
   def index
     @budget = Budget.all
-    @users = User.includes(:payments, properties: [:property_category])
+    @users = User.includes(:payments, properties: [:property_category, :debts])
 
     respond_to do |format|
       format.html

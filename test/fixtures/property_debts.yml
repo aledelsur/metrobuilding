@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: property_debts
+#
+#  id          :bigint           not null, primary key
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  debt_id     :integer
+#  property_id :integer
+#
+# Indexes
+#
+#  index_property_debts_on_debt_id      (debt_id)
+#  index_property_debts_on_property_id  (property_id)
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 # This model initially had no columns defined. If you add columns to the

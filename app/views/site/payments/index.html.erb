@@ -1,10 +1,12 @@
-<h1>Pagos</h1>
+<h1>Pagos realizados (<%= params[:payment_type].humanize.downcase %>)</h1>
 
 <table class="table table-bordered datatable">
   <thead>
     <tr>
       <th>Fecha de pago</th>
-      <th>Monto en pesos</th>
+      <% unless params[:payment_type] == 'deuda_dolares' %>
+        <th>Monto en pesos</th>
+      <% end %>
       <th>Monto en dolares</th>
     </tr>
   </thead>
@@ -13,39 +15,47 @@
     <% @payments.each do |payment| %>
       <tr>
         <td><%= payment.created_at.to_s(:db) %></td>
-        <td>$<%= payment.value.round.round %></td>
-        <td>US$<%= payment.dollar_value.round(2) %></td>
+        <% if params[:payment_type] == 'deuda_dolares' %>
+          <td>USD<%= payment.value.round.round %></td>
+        <% else  %>
+          <td>$<%= payment.value.round.round %></td>
+          <td>USD<%= payment.dollar_value.round(2) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<h1>Resumen</h1>
 
-<table class="table">
-  <thead>
-  <tr>
-    <th>
-      <em>Total pagado en pesos al día de la fecha</em>
-    </th>
-    <th>
-      <em>Total pagado en dolares al día de la fecha</em>
-    </th>
+<% if params[:payment_type] == 'cuota' %>
 
-    <th>
-      <em>Monto adeudado al día de la fecha </em>
-    </th>
-  </tr>
+  <h1>Resumen</h1>
 
-  <tr>
-    <td>
-      <b>$<%= @payments.sum(&:value).round %> (pesos)</b>
-    </td>
-    <td>
-      <b>US$<%= @payments.sum(&:dollar_value).round(2) %> (dólares) </b>
-    </td>
-    <td>
-      <b>$<%= current_user.debt.round %> (pesos)</b>
-    </td>
-  </tr>
-</table>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>
+        <em>Total pagado en pesos al día de la fecha</em>
+      </th>
+      <th>
+        <em>Total pagado en dolares al día de la fecha</em>
+      </th>
+
+      <th>
+        <em>Monto adeudado al día de la fecha </em>
+      </th>
+    </tr>
+
+    <tr>
+      <td>
+        <b>$<%= @payments.sum(&:value).round %> (pesos)</b>
+      </td>
+      <td>
+        <b>US$<%= @payments.sum(&:dollar_value).round(2) %> (dólares) </b>
+      </td>
+      <td>
+        <b>$<%= current_user.debt.round %> (pesos)</b>
+      </td>
+    </tr>
+  </table>
+<% end %>

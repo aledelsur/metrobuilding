@@ -1,5 +1,21 @@
 <h1>Nuevo Pago de <%= @payment.user.name %></h1>
-<em>Deuda actual del propietario: <%= @payment.user&.debt&.round %> (pesos)</em>
+
+<% if params[:payment_type] == 'cuota' %>
+
+  <h3 class='red-info'>
+    Deuda actual <b>de cuotas</b> del propietario: <%= @payment.user&.debt&.round %> (pesos)
+  </h3>
+
+<% elsif params[:payment_type] == 'deuda_dolares' %>
+  <h3 class='red-info'>
+    Deuda actual <b>especial en dólares</b> del propietario: <%= @payment.user&.special_debt(:dolares)&.round %> (dólares)
+  </h3>
+<% elsif params[:payment_type] == 'deuda_pesos' %>
+  <h3 class='red-info'>
+    Deuda actual <b>especial en pesos</b> del propietario: <%= @payment.user&.special_debt(:pesos)&.round %> (pesos)
+  </h3>
+<% end %>
+
 <%= render 'form', payment: @payment %>
 
 <br>

@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: debts
+#
+#  id          :bigint           not null, primary key
+#  amount      :integer
+#  currency    :integer
+#  description :text
+#  due_date    :datetime
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 class Debt < ApplicationRecord
   has_many :property_debts
   has_many :properties, through: :property_debts

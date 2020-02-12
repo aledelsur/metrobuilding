@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: properties
+#
+#  id                   :bigint           not null, primary key
+#  apartment            :string
+#  floor                :string
+#  garage               :string
+#  rooms                :string
+#  section              :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  property_category_id :integer
+#  user_id              :integer
+#
+
 class Property < ApplicationRecord
   belongs_to :user
   belongs_to :property_category
@@ -42,11 +58,13 @@ class Property < ApplicationRecord
   end
 
   def special_debt(currency)
-    debts.where(currency: currency).map(&:amount).sum
+    payment_type = (currency == :pesos ? "deuda_pesos" : "deuda_dolares")
+    initial_amount = debts.select { |debt| debt.currency.to_sym == currency.to_sym }.map(&:amount).sum
+    initial_amount - self.payments.where(payment_type: payment_type).map(&:value).sum.round
   end
 
   def total_paid(currency)
-    payments = self.payments.includes(:properties)
+    payments = self.payments.cuota.includes(:properties)
     payments.sum do |payment|
       if currency == :peso
         payment.value

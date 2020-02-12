@@ -2,8 +2,7 @@ class Site::PropertiesController < SiteController
   before_action :set_property, only: [:show]
 
   def index
-    @properties = current_user.properties
-    @debts = current_user.debts
+    @properties = current_user.properties.includes(:property_category, :debts)
   end
 
   def show

@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: payments
+#
+#  id                        :bigint           not null, primary key
+#  check_number              :string
+#  dollar_against_peso_value :float
+#  dollar_value              :float
+#  payment_type              :integer
+#  value                     :float
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#  user_id                   :integer
+#
+# Indexes
+#
+#  index_payments_on_user_id  (user_id)
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:

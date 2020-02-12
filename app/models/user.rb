@@ -1,3 +1,37 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :bigint           not null, primary key
+#  address_1              :string
+#  address_2              :string
+#  cuit                   :string
+#  current_debt           :integer
+#  current_sign_in_at     :datetime
+#  current_sign_in_ip     :inet
+#  dni                    :string
+#  email                  :string
+#  encrypted_password     :string           default(""), not null
+#  first_name             :string
+#  last_name              :string
+#  last_sign_in_at        :datetime
+#  last_sign_in_ip        :inet
+#  mobile_number          :string
+#  notes                  :text
+#  phone_number           :string
+#  remember_created_at    :datetime
+#  reset_password_sent_at :datetime
+#  reset_password_token   :string
+#  sign_in_count          :integer          default(0), not null
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#
+# Indexes
+#
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -6,8 +40,7 @@ class User < ApplicationRecord
   has_many :payments
   has_many :receipts, through: :payments
 
-  has_many :user_debts
-  has_many :debts, through: :user_debts
+  has_many :debts, through: :properties
 
   after_update :recalculate_budget_debt
 
@@ -39,8 +72,14 @@ class User < ApplicationRecord
     total_to_pay - paid_in_total
   end
 
+  def special_debt(currency)
+    payment_type = (currency == :pesos ? "deuda_pesos" : "deuda_dolares")
+    initial_amount = debts.select { |debt| debt.currency.to_sym == currency.to_sym }.map(&:amount).sum
+    initial_amount - self.payments.where(payment_type: payment_type).map(&:value).sum.round
+  end
+
   def paid_in_total
-    payments.sum { |p| p.value.present? ? p.value : 0 }
+    payments.cuota.sum { |p| p.value.present? ? p.value : 0 }
   end
 
   def recalculate_budget_debt

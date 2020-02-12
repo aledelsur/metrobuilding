@@ -74,6 +74,6 @@ class Admin::PaymentsController < AdminController
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
       params[:payment][:property_ids] = [params[:payment][:property_ids]]
-      params.require(:payment).permit(:value, :user_id, :dollar_against_peso_value, property_ids: [])
+      params.require(:payment).permit(:value, :user_id, :payment_type, :dollar_against_peso_value, property_ids: [])
     end
 end

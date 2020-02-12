@@ -18,7 +18,9 @@
   </tbody>
 </table>
 
-<h1>Pagos realizados para <%= @property.formal_name %></h1>
+<br>
+<br>
+<h3>Pagos de cuotas realizados para <%= @property.formal_name %></h3>
 
 <table class="table datatable">
   <thead>
@@ -30,11 +32,57 @@
   </thead>
 
   <tbody>
-    <% @payments.each do |payment| %>
+    <% @payments.cuota.each do |payment| %>
       <tr>
         <td><%= payment.created_at.to_s(:db) %></td>
         <td>$<%= payment.value.round.round %></td>
         <td>US$<%= payment.dollar_value.round(2) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<br>
+<h3>Pagos de deudas especiales en pesos realizados para <%= @property.formal_name %></h3>
+
+<table class="table datatable">
+  <thead>
+    <tr>
+      <th>Fecha de pago</th>
+      <th>Monto en pesos</th>
+      <th>Monto en dolares</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @payments.deuda_pesos.each do |payment| %>
+      <tr>
+        <td><%= payment.created_at.to_s(:db) %></td>
+        <td>$<%= payment.value.round.round %></td>
+        <td>US$<%= payment.dollar_value.round(2) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<br>
+<h3>Pagos de deudas especiales en dolares realizados para <%= @property.formal_name %></h3>
+
+<table class="table datatable">
+  <thead>
+    <tr>
+      <th>Fecha de pago</th>
+      <th>Monto en dolares</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @payments.deuda_dolares.each do |payment| %>
+      <tr>
+        <td><%= payment.created_at.to_s(:db) %></td>
+        <td>USD<%= payment.value.round.round %></td>
       </tr>
     <% end %>
   </tbody>
