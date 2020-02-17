@@ -27,4 +27,8 @@ $(document).ready(function(){
     }
     $('#debt_property_ids').val(ids.join(','));
   })
+
+  $(document).on('change', '#js-select-all', function(){
+    $('input[type="checkbox"]').prop('checked', $(this).prop('checked'))
+  })
 });
