@@ -20,14 +20,14 @@
     <thead>
       <tr>
         <th>Seleccionar</th>
-        <th>Nombre</th>
+        <th>Propiedades</th>
       </tr>
     </thead>
     <tbody>
       <% @properties.each.with_index do |property, index| %>
         <tr>
           <td><%= check_box :property_id, '', { id: "property_debt_#{index}", class: 'form-control js-property-check', data: { property_id: property.id }, checked: (@property_ids&.split(',')&.include?(property.id.to_s) ? true : false) }%></td>
-          <td><%= property.name %></td>
+          <td><%= property.name + " - " + property.user.name  %></td>
         </tr>
       <% end %>
     </tbody>
@@ -58,5 +58,3 @@
   <%#= form.label :due_date, 'Vencimiento de pago' %>
   <%#= form.datetime_field :due_date, class: 'form-control' %>
 </div> -->
-
-
