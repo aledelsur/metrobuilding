@@ -31,7 +31,7 @@
       <% @properties.each.with_index do |property, index| %>
         <tr>
           <td><%= check_box :property_id, '', { id: "property_debt_#{index}", class: 'form-control js-property-check', data: { property_id: property.id }, checked: (@property_ids&.split(',')&.include?(property.id.to_s) ? true : false) }%></td>
-          <td><%= property.name + " - " + property.user.name %></td>
+          <td><%= property&.name + " - " + property&.user&.name %></td>
         </tr>
       <% end %>
     </tbody>
