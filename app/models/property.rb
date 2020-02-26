@@ -74,6 +74,15 @@ class Property < ApplicationRecord
     end.round
   end
 
+  def total_paid_for_special_debts(currency)
+    payments = self.payments
+    payments = payments.deuda_pesos if currency == :peso
+    payments = payments.deuda_dolares if currency == :dollar
+    payments = payments.includes(:properties)
+    payments.sum(&:value).round
+  end
+
+
   def transfer_payments
     return unless saved_change_to_user_id?
     payments = Payment.includes(:payment_properties).where(payment_properties: { property_id: id })

@@ -17,8 +17,8 @@
     <% @properties.each do |property| %>
       <tr>
         <td><%= property.name %></td>
-        <td>$<%= property.total_paid(:peso) %></td>
-        <td>US$<%= property.total_paid(:dollar) %></td>
+        <td>$<%= property.total_paid(:peso) + property.total_paid_for_special_debts(:peso)%></td>
+        <td>US$<%= property.total_paid(:dollar) + property.total_paid_for_special_debts(:dollar) %></td>
         <th>$<%= property.debt.round %></th>
         <th>USD <%= property.special_debt(:dolares).round %></th>
         <th>$<%= property.special_debt(:pesos).round %></th>
