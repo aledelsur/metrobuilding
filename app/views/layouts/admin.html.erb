@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ayres de Canning (Admin)</title>
+    <title>Metrobuilding (Admin)</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -23,9 +23,8 @@
             <li class="<%= 'active' if params['controller'] == 'admin/users'%>"> <%= link_to 'Propietarios', admin_users_path %> </li>
             <li class="<%= 'active' if params['controller'] == 'admin/budgets'%>"> <%= link_to 'Presupuestos de obra', admin_budgets_path %> </li>
             <li class="<%= 'active' if params['controller'] == 'admin/properties'%>"> <%= link_to 'Propiedades', admin_properties_path %> </li>
-            <li class="<%= 'active' if params['controller'] == 'admin/property_categories'%>"> <%= link_to 'Categoria de propiedades', admin_property_categories_path %>
-            </li>
-            <li> <%= link_to 'Circulares', "#" %></li>
+            <li class="<%= 'active' if params['controller'] == 'admin/property_categories'%>"> <%= link_to 'Categoria de propiedades', admin_property_categories_path %> </li>
+            <li class="<%= 'active' if params['controller'] == 'admin/newsletters'%>"> <%= link_to 'Circulares', admin_newsletters_path %> </li>
           </ul>
         </div>
       </div>
