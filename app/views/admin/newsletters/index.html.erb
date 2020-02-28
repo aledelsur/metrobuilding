@@ -1,3 +1,30 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Circulares</h1>
+<table class="table table-bordered datatable">
+  <thead>
+    <tr>
+      <th>Nº</th>
+      <th>Titulo</th>
+      <th>Fecha de creación</th>
+      <th>Editar Circular</th>
+      <th>Eliminar Circular</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @newsletters.each do |newsletter| %>
+      <tr>
+        <td><%= newsletter.id %></td>
+        <td><%= newsletter.title %></td>
+        <td><%= newsletter.created_at.strftime("%d-%m-%Y a las %H:%M hs.") %></td>
+        <td><%= link_to 'Editar', edit_admin_newsletter_path(newsletter), class: 'btn btn-info' %></td>
+        <td><%= link_to 'Eliminar', [:admin, newsletter], method: :delete, data: { confirm: 'Estás seguro que deseas eliminar esta circular?' }, class: 'btn btn-danger' %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nueva Circular', new_admin_newsletter_path, class: 'btn btn-info' %>

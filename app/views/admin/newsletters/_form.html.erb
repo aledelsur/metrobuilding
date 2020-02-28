@@ -1,0 +1,11 @@
+<%= form_with(model: [:admin, newsletter], local: true) do |form| %>
+
+  <div class="form-group">
+    <%= form.label :title,'Titulo' %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

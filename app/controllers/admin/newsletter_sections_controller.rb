@@ -1,2 +1,2 @@
-class Admin::NewsletterSectionsController < ApplicationController
+class Admin::NewsletterSectionsController < AdminController
 end
