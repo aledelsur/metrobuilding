@@ -10,7 +10,12 @@
 
   <%= newsletter_form.fields_for :newsletter_sections do |sections_form| %>
     <div class="panel panel-default">
-      <div class="panel-heading" style='font-weight: bold;'>Sección <%= sections_form.options[:child_index] + 1 %></div>
+      <div class="panel-heading">
+        Sección <%= sections_form.options[:child_index] + 1 %>
+        <% if sections_form.object.persisted? %>
+          <span class="remove-section"><%= link_to 'Eliminar', admin_newsletter_remove_section_path(newsletter_id: @newsletter.id, id: sections_form.object.id), method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %></span>
+        <% end %>
+      </div>
       <div class="panel-body">
         <div class="form-group">
           <%= sections_form.label :title, 'Titulo de la sección' %>

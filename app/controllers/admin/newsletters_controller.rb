@@ -20,9 +20,9 @@ class Admin::NewslettersController < AdminController
 
   def create
     @newsletter = Newsletter.new(newsletter_params)
-
     respond_to do |format|
       if @newsletter.save
+        @newsletter.images.attach(params[:newsletter][:images])
         format.html { redirect_to edit_admin_newsletter_path(@newsletter) }
       else
         format.html { render :new }
@@ -47,6 +47,12 @@ class Admin::NewslettersController < AdminController
       @newsletter.destroy
     end
     redirect_to admin_newsletters_path, notice: 'Circular eliminada correctamente.'
+  end
+
+  def remove_section
+    @newsletter = Newsletter.find(params[:newsletter_id])
+    @newsletter.newsletter_sections.find(params[:id]).destroy
+    redirect_to edit_admin_newsletter_path(@newsletter)
   end
 
   private

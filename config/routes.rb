@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     resources :properties
     resources :property_categories
     resources :payments
-    resources :newsletters
+    resources :newsletters do
+      delete '/newsletter_section/:id', to: 'newsletters#remove_section', as: 'remove_section'
+    end
   end
 end
