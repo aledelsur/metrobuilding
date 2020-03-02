@@ -23,6 +23,5 @@ Rails.application.routes.draw do
     resources :property_categories
     resources :payments
     resources :newsletters
-    resources :newsletter_sections
   end
 end

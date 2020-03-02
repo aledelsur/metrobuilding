@@ -10,10 +10,12 @@ class Admin::NewslettersController < AdminController
 
   def new
     @newsletter = Newsletter.new
+    @newsletter.newsletter_sections.build
   end
 
   def edit
     @newsletter = Newsletter.find(params[:id])
+    @newsletter.newsletter_sections.build
   end
 
   def create
@@ -21,7 +23,7 @@ class Admin::NewslettersController < AdminController
 
     respond_to do |format|
       if @newsletter.save
-        format.html { redirect_to admin_newsletters_path, notice: 'Circular creada correctamente.' }
+        format.html { redirect_to edit_admin_newsletter_path(@newsletter) }
       else
         format.html { render :new }
       end
@@ -31,15 +33,12 @@ class Admin::NewslettersController < AdminController
   def update
     respond_to do |format|
       if @newsletter.update(newsletter_params)
-        format.html { redirect_to admin_newsletters_path, notice: 'Circular actualizada correctamente.' }
-        format.json { render :index, status: :ok, location: @debt }
+        format.html { redirect_to edit_admin_newsletter_path(@newsletter) }
       else
         @newsletter = Newsletter.new
         format.html { render :edit }
-        format.json { render json: @newsletter.errors, status: :unprocessable_entity }
       end
     end
-
   end
 
   def destroy
@@ -51,13 +50,14 @@ class Admin::NewslettersController < AdminController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_newsletter
-      @newsletter = Newsletter.find(params[:id])
-    end
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def newsletter_params
-      params.require(:newsletter).permit(:id, :title, :created_at)
-    end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_newsletter
+    @newsletter = Newsletter.find(params[:id])
+  end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def newsletter_params
+    params.require(:newsletter).permit(:title, newsletter_sections_attributes: [:id, :title, :description])
+  end
 
 end

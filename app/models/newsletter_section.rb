@@ -13,5 +13,5 @@
 
 class NewsletterSection < ApplicationRecord
   belongs_to :newsletter
-  has_many :images
+  has_many_attached :images
 end
