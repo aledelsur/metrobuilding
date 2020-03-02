@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :payments, only: [:index]
     resources :receipts, only: [:index, :show]
     resources :properties, only: [:index, :show]
+    resources :newsletters
   end
 
 
