@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'acts_as_list'
 gem 'annotate'
 gem 'airbrake'
 gem 'ckeditor'
@@ -45,6 +46,7 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
 gem 'rails-i18n', '~> 5.1'
 gem 'jquery-datatables-rails', '~> 3.4.0'
+gem 'jquery-ui-rails'
 gem 'devise'
 gem 'devise-i18n'
 gem 'zip-zip'

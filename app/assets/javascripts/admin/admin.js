@@ -31,4 +31,19 @@ $(document).ready(function(){
   $(document).on('change', '#js-select-all', function(){
     $('input[type="checkbox"]').prop('checked', $(this).prop('checked'))
   })
+
+  $(document).on('click', '.newsletter-section .panel-heading', function(){
+    var section = $(this).parent();
+    section.find('.panel-body').toggle('collapse');
+  });
+
+  $("#newsletter_sections").sortable({
+    update: function(e, ui){
+      Rails.ajax({
+        url: $(this).data('url'),
+        type: 'PATCH',
+        data: $(this).sortable('serialize'),
+      });
+    }    
+  });
 });

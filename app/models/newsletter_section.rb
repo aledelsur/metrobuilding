@@ -14,4 +14,10 @@
 class NewsletterSection < ApplicationRecord
   belongs_to :newsletter
   has_many_attached :images
+
+  default_scope { order(position: :asc) }
+
+  validates :title,
+            :description,
+            presence: true
 end

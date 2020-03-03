@@ -59,6 +59,15 @@ class Admin::NewslettersController < AdminController
     redirect_to edit_admin_newsletter_path(@newsletter)
   end
 
+  def sort_sections
+    newsletter = Newsletter.find(params[:newsletter_id])
+    params[:newsletter_section].each_with_index do |id, index|
+      newsletter.newsletter_sections.where(id: id).update_all(position: index + 1)
+    end
+
+    head :ok
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
