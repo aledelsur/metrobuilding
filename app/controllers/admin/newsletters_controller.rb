@@ -20,24 +20,28 @@ class Admin::NewslettersController < AdminController
 
   def create
     @newsletter = Newsletter.new(newsletter_params)
-    respond_to do |format|
-      if @newsletter.save
-        @newsletter.images.attach(params[:newsletter][:images])
-        format.html { redirect_to edit_admin_newsletter_path(@newsletter) }
+    if @newsletter.save
+      # @newsletter.images.attach(params[:newsletter][:images])
+      if params[:finish].present?
+        redirect_to admin_newsletters_path
       else
-        format.html { render :new }
+        redirect_to edit_admin_newsletter_path(@newsletter)
       end
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @newsletter.update(newsletter_params)
-        format.html { redirect_to edit_admin_newsletter_path(@newsletter) }
+    if @newsletter.update(newsletter_params)
+      if params[:finish].present?
+        redirect_to admin_newsletters_path
       else
-        @newsletter = Newsletter.new
-        format.html { render :edit }
+        redirect_to edit_admin_newsletter_path(@newsletter)
       end
+    else
+      @newsletter = Newsletter.new
+      render :edit
     end
   end
 
