@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :newsletters do
       delete '/newsletter_section/:id', to: 'newsletters#remove_section', as: 'remove_section'
       patch '/newsletter_sections/sort_sections', to: 'newsletters#sort_sections', as: 'sort_sections'
+      get '/send_newsletter', to: 'newsletters#send_newsletter', as:'send_newsletter'
     end
   end
 end

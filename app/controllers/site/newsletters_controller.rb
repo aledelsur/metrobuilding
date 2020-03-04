@@ -3,5 +3,6 @@ class Site::NewslettersController < ApplicationController
 
   def show
     @newsletter = Newsletter.find(params[:id])
+    @user = User.find(params[:user])
   end
 end

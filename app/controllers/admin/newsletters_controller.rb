@@ -71,6 +71,17 @@ class Admin::NewslettersController < AdminController
     head :ok
   end
 
+  def send_newsletter
+    @newsletter = Newsletter.find(params[:newsletter_id])
+    @users = User.all
+    @users.each do |user|
+      # Sends email to investor with a link to the newsletter.
+      InvestorMailer.send_newsletter(@newsletter, user).deliver
+    end
+    @newsletter.update_attribute(:sent, true)
+    redirect_to admin_newsletters_path, notice: 'Circular enviada correctamente.'
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

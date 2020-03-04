@@ -1,6 +1,6 @@
     <h1>Estimado <%= @user.first_name %>,<h1>
 
-    <p>Ya se encuentra disponible la nueva Circular. Para verla haga click aquí: http://localhost:3000/circular.<br>
+    <p>Ya se encuentra disponible la nueva Circular. Para verla haga click aquí: <%= link_to 'Ver Circular', site_newsletter_url(@newsletter.id, user: @user.id), target: :blank %>.</p>
 
-    <br>Saludos,<br>
-    Metrobuilding.</p>
+    Saludos,<br>
+    Metrobuilding.
