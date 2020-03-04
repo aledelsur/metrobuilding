@@ -28,7 +28,7 @@ class Admin::NewslettersController < AdminController
       if params[:finish].present?
         redirect_to admin_newsletters_path
       else
-        redirect_to edit_admin_newsletter_path(@newsletter)
+        redirect_to edit_admin_newsletter_path(@newsletter, new_section: true) # redirect to edit view and build blank section
       end
     else
       render :new
