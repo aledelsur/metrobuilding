@@ -12,6 +12,7 @@
   <% end %>
 
   <%= form.hidden_field :user_id %>
+  <%= form.hidden_field :property_id, value: property.id %>
   <%= form.hidden_field :payment_type, value: params[:payment_type] %>
 
   <div class="form-group">
@@ -24,13 +25,6 @@
     <%= form.label :dollar_against_peso_value, 'Valor del dolar' %>
     <em>Ejemplo (31.50)</em>
     <%= form.number_field :dollar_against_peso_value, step: 0.01, class: 'form-control' %>
-  </div>
-
-
-  <div class="checkbox-list">
-
-    <%= form.collection_radio_buttons(:property_ids, @properties, :id, :name, html: { class: 'form-control' } ) %>
-
   </div>
 <br>
   <p>

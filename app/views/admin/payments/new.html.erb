@@ -16,7 +16,19 @@
   </h3>
 <% end %>
 
-<%= render 'form', payment: @payment %>
+
+<% @properties.each do |property| %>
+  <div class='col-xs-12'><div class='separator'></div></div>
+  <div class='col-xs-6'>
+    <h3> <%= property.name %> </h3>
+  </div>
+  <div class='col-xs-6'>
+    <%= render 'form', payment: @payment, property: property %>
+  </div>
+  <div class='col-xs-12'>
+    <div class='separator'></div>
+  </div>
+<% end %>
 
 <br>
 <%= link_to 'Atrás', admin_payments_path, class: 'btn btn-default' %>
