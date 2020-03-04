@@ -15,7 +15,10 @@ class Admin::NewslettersController < AdminController
 
   def edit
     @newsletter = Newsletter.find(params[:id])
-    @newsletter.newsletter_sections.build
+
+    if params[:new_section].present?
+      @newsletter.newsletter_sections.build
+    end
   end
 
   def create
@@ -25,7 +28,7 @@ class Admin::NewslettersController < AdminController
       if params[:finish].present?
         redirect_to admin_newsletters_path
       else
-        redirect_to edit_admin_newsletter_path(@newsletter)
+        redirect_to edit_admin_newsletter_path(@newsletter, new_section: true) # redirect to edit view and build blank section
       end
     else
       render :new
@@ -35,9 +38,9 @@ class Admin::NewslettersController < AdminController
   def update
     if @newsletter.update(newsletter_params)
       if params[:finish].present?
-        redirect_to admin_newsletters_path
+        redirect_to admin_newsletters_path # redirect to index view
       else
-        redirect_to edit_admin_newsletter_path(@newsletter)
+        redirect_to edit_admin_newsletter_path(@newsletter, new_section: true) # redirect to edit view and build blank section
       end
     else
       @newsletter = Newsletter.new
