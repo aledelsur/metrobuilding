@@ -16,7 +16,7 @@
           <span><%= sections_form.object.title.present? ? " - #{sections_form.object.title}" : ""%></span>
           <% if sections_form.object.persisted? %>
             <span class="remove-section"><%= link_to 'Eliminar', admin_newsletter_remove_section_path(newsletter_id: @newsletter, id: sections_form.object.id), method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %></span>
-          <% else %>
+          <% elsif newsletter_form.object.persisted? %>
             <span class="remove-section"><%= link_to 'Eliminar', edit_admin_newsletter_path(@newsletter), data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %></span>
           <% end %>
         </div>
