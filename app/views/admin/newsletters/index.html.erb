@@ -19,9 +19,9 @@
         <td><%= newsletter.id %></td>
         <td><%= link_to newsletter.title, admin_newsletter_path(newsletter), target: "_blank" %></td>
         <td><%= newsletter.created_at.strftime("%d-%m-%Y a las %H:%M hs.") %></td>
-        <td><%= link_to 'Editar', edit_admin_newsletter_path(newsletter), class: 'btn btn-info' %></td>
-        <td><%= link_to 'Eliminar', [:admin, newsletter], method: :delete, data: { confirm: 'Estás seguro que deseas eliminar esta circular?' }, class: 'btn btn-danger' %> </td>
-        <td><%= link_to 'Enviar Circular', site_newsletter_path(newsletter),target: "_blank", class:'btn btn-success' %></td>
+        <td class="text-center"><%= link_to 'Editar', edit_admin_newsletter_path(newsletter), class: 'btn btn-info' %></td>
+        <td class="text-center"><%= link_to 'Eliminar', [:admin, newsletter], method: :delete, data: { confirm: 'Estás seguro que deseas eliminar esta circular?' }, class: 'btn btn-danger' %> </td>
+        <td class="text-center"><%= link_to 'Enviar Circular', site_newsletter_path(newsletter),target: "_blank", class:'btn btn-success' %></td>
       </tr>
     <% end %>
   </tbody>
