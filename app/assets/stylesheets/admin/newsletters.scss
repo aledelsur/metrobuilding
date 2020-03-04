@@ -12,3 +12,19 @@
 .btn{
   display: inline;
 }
+.table.newsletters {
+  thead {
+    tr {
+      th {
+        text-align: center;
+      }
+    }
+  }
+  tbody {
+    tr {
+      td {
+        text-align: center;
+      }
+    }
+  }
+}
