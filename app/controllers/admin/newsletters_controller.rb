@@ -25,8 +25,10 @@ class Admin::NewslettersController < AdminController
     @newsletter = Newsletter.new(newsletter_params)
     if @newsletter.save
       # @newsletter.images.attach(params[:newsletter][:images])
-      if params[:finish].present?
-        redirect_to admin_newsletters_path
+      if params[:save].present?
+        redirect_to admin_newsletters_path # redirect to index view
+      elsif params[:preview].present?
+        redirect_to admin_newsletter_path(@newsletter) # redirect to preview
       else
         redirect_to edit_admin_newsletter_path(@newsletter, new_section: true) # redirect to edit view and build blank section
       end
@@ -37,8 +39,10 @@ class Admin::NewslettersController < AdminController
 
   def update
     if @newsletter.update(newsletter_params)
-      if params[:finish].present?
+      if params[:save].present?
         redirect_to admin_newsletters_path # redirect to index view
+      elsif params[:preview].present?
+        redirect_to admin_newsletter_path(@newsletter) # redirect to preview
       else
         redirect_to edit_admin_newsletter_path(@newsletter, new_section: true) # redirect to edit view and build blank section
       end

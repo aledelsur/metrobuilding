@@ -28,3 +28,17 @@
     }
   }
 }
+#newsletter_form {
+  .form-actions {
+    float: right;
+  }
+}
+table.newsletters {
+  tbody {
+    tr {
+      td.title {
+        text-align: left;
+      }
+    }
+  }
+}

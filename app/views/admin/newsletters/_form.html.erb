@@ -1,4 +1,4 @@
-<%= form_with model: [:admin, @newsletter] do |newsletter_form| %>
+<%= form_with model: [:admin, @newsletter], html: { id: 'newsletter_form' } do |newsletter_form| %>
   </br>
   </br>
   <div class="form-group">
@@ -39,8 +39,16 @@
       </div>
     <% end %>
   </div>
+  <div class="btn-group">
+    <%= newsletter_form.submit 'Agregar nueva sección', class: 'btn btn-primary mb-2' %>
+  </div>
+  <div class="form-actions">
+    <div class="btn-group actions" role="group">
+      <%= newsletter_form.submit 'Vista previa', name: 'preview', class: 'btn btn-info mb-2' %>
+    </div>
+    <div class="btn-group actions" role="group">
+      <%= newsletter_form.submit 'Guardar', name: 'save', class: 'btn btn-success mb-2' %>
+    </div>
+  </div>
 
-  <%= newsletter_form.submit 'Agregar nueva sección', class: 'btn btn-primary mb-2' %>
-  <%= newsletter_form.submit 'Vista previa', name: 'finish', class: 'btn btn-o mb-2', style: 'float: right;' %>
-  <%= newsletter_form.submit 'Guardar', name: 'finish', class: 'btn btn-success mb-2', style: 'float: right;' %>
 <% end %>
