@@ -3,6 +3,7 @@
 # Table name: newsletters
 #
 #  id         :bigint           not null, primary key
+#  sent       :boolean          default("false")
 #  title      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
