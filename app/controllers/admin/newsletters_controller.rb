@@ -23,6 +23,8 @@ class Admin::NewslettersController < AdminController
 
   def create
     @newsletter = Newsletter.new(newsletter_params)
+
+    
     if @newsletter.save
       # @newsletter.images.attach(params[:newsletter][:images])
       if params[:save].present?
@@ -33,6 +35,7 @@ class Admin::NewslettersController < AdminController
         redirect_to edit_admin_newsletter_path(@newsletter, new_section: true) # redirect to edit view and build blank section
       end
     else
+
       render :new
     end
   end

@@ -1,9 +1,13 @@
-<%= form_with model: [:admin, @newsletter], html: { id: 'newsletter_form' } do |newsletter_form| %>
+<%= form_with model: [:admin, @newsletter], local: true, html: { id: 'newsletter_form' } do |newsletter_form| %>
   </br>
   </br>
   <div class="form-group">
     <%= newsletter_form.label :title, 'TÍTULO DE LA CIRCULAR' %>
     <%= newsletter_form.text_field :title, class: 'form-control' %>
+
+    <% if @newsletter.errors.messages[:title].present? %>
+      <div>El título es obligatorio</div>
+    <% end %>
   </div>
   </br>
   </br>
@@ -23,12 +27,12 @@
         <div class="panel-body">
           <div class="form-group">
             <%= sections_form.label :title, 'Titulo de la sección' %>
-            <%= sections_form.text_field :title, class: 'form-control', required: true %>
+            <%= sections_form.text_field :title, class: 'form-control' %>
           </div>
 
           <div class="form-group">
             <%= sections_form.label :description, 'Descripción de la sección' %>
-            <%= sections_form.cktext_area :description, required: true %>
+            <%= sections_form.cktext_area :description %>
           </div>
 
           <div class="form-group">
