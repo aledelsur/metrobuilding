@@ -46,4 +46,8 @@ $(document).ready(function(){
       });
     }    
   });
+
+  $(document).on('change', '#image-input', function(){
+    $('form').submit();
+  });
 });

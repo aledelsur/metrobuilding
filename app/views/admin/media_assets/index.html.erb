@@ -1,0 +1,28 @@
+<h1>Galería de imágenes</h1>
+
+<% if @media_assets.empty? %>
+  <div class='no-images'>No hay imágenes en la galería.</div>
+<% else %>
+  <div class='all-images'>
+    <% @media_assets.in_groups(3).each do |assets| %>
+      <% assets.compact.each do |asset| %>
+        <div class='one-image'>
+          <%= image_tag(asset.image) %>
+          <%= link_to 'Eliminar', admin_media_asset_path(asset), data: { confirm: 'Estás seguro?' }, method: :delete, class: 'remove-image' %>
+        </div>
+      <% end %>    
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_with model: [:admin, @media_asset], local: true do |form| %>
+
+  <div class="image-upload">
+     <label for="image-input">
+       <span class="glyphicon glyphicon-camera"></span>
+       <span class='select-image'>Agregar imágen</span>
+     </label>
+
+     <%= form.file_field :image, id: 'image-input' %>
+  </div>
+<% end %>

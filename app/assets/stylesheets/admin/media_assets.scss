@@ -1,0 +1,32 @@
+.all-images {
+  margin-bottom: 2%;
+  .one-image {
+    width: 30%;
+    img {
+      width: 100%;
+    }
+    .remove-image {
+      color: red;
+      float: right;
+      text-decoration: underline;
+    }
+  }
+}
+.no-images {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+.image-upload > input
+{
+   display: none;
+}
+.image-upload > label{
+  cursor:pointer;
+}
+.image-upload {
+  margin-bottom: 2%;
+
+  span.select-image {
+    text-decoration: underline;
+  }
+}
