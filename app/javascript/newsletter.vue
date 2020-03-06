@@ -18,15 +18,9 @@
       <br>
 
       <div id="newsletter_sections" data-url="" class="ui-sortable" v-for="section in sections">
-
         <newsletter-section :section="section"></newsletter-section>
-
-        <button class="btn" v-on:click="addSection()">Agregar Seccion</button>
       </div>
-
-      <div class="btn-group">
-        <input type="submit" name="commit" value="Agregar nueva sección" class="btn btn-primary mb-2" data-disable-with="Agregar nueva sección">
-      </div>
+      <button class="btn btn-primary" v-on:click="addSection()">Agregar Seccion</button>
 
       <div class="form-actions">
         <div class="btn-group actions" role="group">
@@ -67,7 +61,7 @@ export default {
   },
   methods: {
     addSection () {
-      axios.post('/admin/newsletters/' + this.$root.newsletterId + '/newsletetter_sections')
+      axios.post('/admin/newsletters/' + this.$root.newsletterId + '/newsletter_sections')
       .then(response => {
         console.log(response)
         newSection = {
