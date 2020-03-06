@@ -35,7 +35,7 @@
 
           <div class="form-group">
             <%= sections_form.label :description, 'Descripción de la sección' %>
-            <%= sections_form.cktext_area :description %>
+            <%= sections_form.cktext_area :description, :ckeditor => {:toolbar => 'full'} %>
             <% if sections_form.object.errors.messages[:description].present? %>
               <div class= "red-info">La Descripción es obligatoria</div>
             <% end %>
