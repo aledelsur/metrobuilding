@@ -17,6 +17,7 @@ class NewsletterSection < ApplicationRecord
 
   default_scope { order(position: :asc) }
 
-  validates :title,
-            presence: true
+   validates :title,
+             :description,
+             presence: true
 end

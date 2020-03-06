@@ -6,7 +6,7 @@
     <%= newsletter_form.text_field :title, class: 'form-control' %>
 
     <% if @newsletter.errors.messages[:title].present? %>
-      <div>El título es obligatorio</div>
+      <div class= "red-info">El título es obligatorio</div>
     <% end %>
   </div>
   </br>
@@ -28,11 +28,17 @@
           <div class="form-group">
             <%= sections_form.label :title, 'Titulo de la sección' %>
             <%= sections_form.text_field :title, class: 'form-control' %>
+            <% if sections_form.object.errors.messages[:title].present? %>
+              <div class= "red-info">El título es obligatorio</div>
+            <% end %>
           </div>
 
           <div class="form-group">
             <%= sections_form.label :description, 'Descripción de la sección' %>
-            <%= sections_form.cktext_area :description %>
+            <%= sections_form.cktext_area :description, :ckeditor => {:toolbar => 'full'} %>
+            <% if sections_form.object.errors.messages[:description].present? %>
+              <div class= "red-info">La Descripción es obligatoria</div>
+            <% end %>
           </div>
 
           <div class="form-group">
