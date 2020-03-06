@@ -9,9 +9,14 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag Ckeditor.cdn_url %>
 
+    <%= yield(:head) %>
+
   </head>
 
-  <body>
+  <body <% if content_for?(:body_attributes) %>
+            <%= yield(:body_attributes) %>
+        <% end %>
+  >
     <nav class="navbar navbar-default navbar-inverse" style="height:106px">
 
       <div class="container-fluid">

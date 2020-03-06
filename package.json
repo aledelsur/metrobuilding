@@ -1,5 +1,17 @@
 {
-  "name": "payment_tracker",
-  "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^17.0.0",
+    "@ckeditor/ckeditor5-vue": "^1.0.1",
+    "@rails/webpacker": "4.2.2",
+    "axios": "^0.19.2",
+    "tiptap": "^1.26.6",
+    "tiptap-extensions": "^1.28.6",
+    "vue": "^2.6.11",
+    "vue-ckeditor2": "^2.1.5",
+    "vue-loader": "^15.9.0",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.10.3"
+  }
 }

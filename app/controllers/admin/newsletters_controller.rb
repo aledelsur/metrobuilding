@@ -6,19 +6,21 @@ class Admin::NewslettersController < AdminController
   end
 
   def show
+    render json: @newsletter, :include => [:newsletter_sections]
   end
 
   def new
-    @newsletter = Newsletter.new
-    @newsletter.newsletter_sections.build
+    @newsletter = Newsletter.create(title: "Circular #{Newsletter.count + 1}")
+    @newsletter.newsletter_sections.create(title: "Sección 1", description: "Escriba la descripción aquí")
+    redirect_to edit_admin_newsletter_path(@newsletter), turbolinks: false
   end
 
   def edit
     @newsletter = Newsletter.find(params[:id])
 
-    if params[:new_section].present?
-      @newsletter.newsletter_sections.build
-    end
+    # if params[:new_section].present?
+    #   @newsletter.newsletter_sections.build
+    # end
   end
 
   def create
@@ -90,7 +92,7 @@ class Admin::NewslettersController < AdminController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_newsletter
-    @newsletter = Newsletter.find(params[:id])
+    @newsletter = Newsletter.includes(:newsletter_sections).find(params[:id])
   end
   # Never trust parameters from the scary internet, only allow the white list through.
   def newsletter_params
