@@ -57,7 +57,9 @@ export default {
   },
   components: { NewsletterSection },
   mounted: function() {
-    axios.get('/admin/newsletters/' + this.$root.newsletterId)
+    axios({ method: 'get',
+            url: '/admin/newsletters/' + this.$root.newsletterId + '.json'
+          })
     .then(response => {
       console.log(response.data)
       this.title = response.data.title
