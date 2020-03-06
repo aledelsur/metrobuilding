@@ -1,2 +1,7 @@
-<h1>Editar Circular</h1>
-<%= render 'form', newsletter: @newsletter %>
+<%= content_for :head do %>
+  <%= javascript_pack_tag 'newsletter-app' %>
+<% end %>
+
+<div id="newsletter-app" newsletter_id="<%=@newsletter.id%>">
+
+</div>

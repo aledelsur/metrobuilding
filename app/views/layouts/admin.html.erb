@@ -9,9 +9,14 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag Ckeditor.cdn_url %>
 
+    <%= yield(:head) %>
+
   </head>
 
-  <body>
+  <body <% if content_for?(:body_attributes) %>
+            <%= yield(:body_attributes) %>
+        <% end %>
+  >
     <nav class="navbar navbar-default navbar-inverse" style="height:106px">
 
       <div class="container-fluid">
@@ -27,6 +32,7 @@
             <li class="<%= 'active' if params['controller'] == 'admin/properties'%>"> <%= link_to 'Propiedades', admin_properties_path %> </li>
             <li class="<%= 'active' if params['controller'] == 'admin/property_categories'%>"> <%= link_to 'Categoria de propiedades', admin_property_categories_path %> </li>
             <li class="<%= 'active' if params['controller'] == 'admin/newsletters'%>"> <%= link_to 'Circulares', admin_newsletters_path %> </li>
+            <li class="<%= 'active' if params['controller'] == 'admin/media_assets'%>"> <%= link_to 'Galería de imágenes', admin_media_assets_path %> </li>
           </ul>
         </div>
       </div>
