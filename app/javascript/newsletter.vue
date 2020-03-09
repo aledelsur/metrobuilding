@@ -17,9 +17,12 @@
       <br>
       <br>
 
-      <div id="newsletter_sections" data-url="" class="ui-sortable" v-for="section in sections">
-        <newsletter-section :section="section"></newsletter-section>
-      </div>
+      <draggable v-model="sections" group="sections" @start="drag=true" @end="onDrop" ghost-class="ghost">
+          <div v-for="section in sections" :key="section.id">
+            <newsletter-section :section="section"></newsletter-section>
+          </div>
+      </draggable>
+
       <button class="btn btn-primary" v-on:click="addSection()">Agregar Sección</button>
 
       <div class="form-actions">
@@ -34,12 +37,15 @@
 
     </form>
 
+    <notifications group="alerts" position="bottom left"/>
+
   </div>
 </template>
 
 <script>
 import NewsletterSection from './newsletter-section.vue'
 import axios from 'axios';
+import draggable from 'vuedraggable'
 
 export default {
   data: function () {
@@ -49,7 +55,7 @@ export default {
       sections: []
     }
   },
-  components: { NewsletterSection },
+  components: { NewsletterSection, draggable },
   mounted: function() {
     axios({ method: 'get',
             url: '/admin/newsletters/' + this.$root.newsletterId + '.json'
@@ -71,12 +77,29 @@ export default {
         console.log('Sections: ');
         console.log(this.sections);
       })
-      return true;
+    },
+    onDrop() {
+      this.drag = false;
+      var newsletterIds = this.sections.map(function(section) { return section.id })
+      console.log(newsletterIds)
+      axios.put('/admin/newsletters/' + this.$root.newsletterId + '/sort_sections', {
+        newsletter_section_ids: newsletterIds
+      }).then(response => {
+        this.$notify({
+          group: 'alerts',
+          type: 'success',
+          title: 'Circular guardada',
+          text: 'Posicionamiento cambiado correctamente'
+        });
+      })
     }
+
   }
 }
 </script>
 
 <style scoped>
-
+  .ghost {
+    visibility: hidden;
+  }
 </style>

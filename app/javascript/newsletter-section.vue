@@ -1,38 +1,44 @@
 <template>
-  <div class="panel panel-default newsletter-section ui-sortable-handle" data-id="" id="new_newsletter_section">
-    <div class="panel-heading">
-      Sección {{ position }} - {{ title }}
-      <span></span>
-    </div>
-    <div class="panel-body">
-      <div class="form-group">
-        <label for="newsletter_newsletter_sections_attributes_0_title"> Tītulo de la sección </label>
-        <input class="form-control" type="text" v-model="title">
-      </div>
+  <div>
 
-      <div class="form-group">
-        <label for="newsletter_newsletter_sections_attributes_0_description">Descripción de la sección</label>
+      <div class="panel panel-default newsletter-section">
+        <div class="panel-heading grabbable" @click='visible = !visible'>
+          {{ title }}
+          <span></span>
+        </div>
+        <b-collapse v-model="visible" class="mt-2">
+          <b-card>
+            <div class="panel-body">
+            <div class="form-group">
+              <label for="newsletter_newsletter_sections_attributes_0_title"> Tītulo de la sección </label>
+              <input class="form-control" type="text" v-model="title">
+            </div>
 
-        <vue-ckeditor
-        v-model="description"
-        :config="config" />
+            <div class="form-group">
+              <label for="newsletter_newsletter_sections_attributes_0_description">Descripción de la sección</label>
 
-      </div>
+              <vue-ckeditor
+              v-model="description"
+              :config="config" />
 
-      <div class="form-group">
-        <b-button id="show-btn" @click="showModal">Open Modal</b-button>
+            </div>
 
-        <b-modal ref="my-modal" hide-footer title="Using Component Methods">
-          <div class="d-block text-center">
-            <h3> Welcome to section  {{ id }}</h3>
+            <div class="form-group">
+              <b-button id="show-btn" @click="showModal">Open Modal</b-button>
+
+              <b-modal ref="my-modal" hide-footer title="Using Component Methods">
+                <div class="d-block text-center">
+                  <h3> Welcome to section  {{ id }}</h3>
+                </div>
+              </b-modal>
+
+              <!-- <label class="custom-file-label">Agregar imágenes</label> -->
+
+            </div>
           </div>
-        </b-modal>
-
-        <!-- <label class="custom-file-label">Agregar imágenes</label> -->
-
+          </b-card>
+        </b-collapse>
       </div>
-
-    </div>
   </div>
 </template>
 
@@ -56,6 +62,7 @@ export default {
       title: null,
       description: '<p>Rich-text editor content.</p>',
       mediaAssets: [],
+      visible: false,
       config: {
         toolbar: [
           // { name: 'document', items: [ '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates' ] },
@@ -88,7 +95,7 @@ export default {
       var id = ('section-' + this.id);
       console.log('The id is')
       console.log(id)
-      
+
       return id;
     },
     showModal(){

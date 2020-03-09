@@ -14,13 +14,16 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(BootstrapVue)
 
+import Notifications from 'vue-notification'
+Vue.use(Notifications)
+
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     render: h => h(Newsletter),
     data: {
       newsletterId: null
     },
-    components: { Newsletter, BootstrapVue },
+    components: { Newsletter, BootstrapVue, Notifications },
     beforeMount: function () {
       this.newsletterId = this.$el.attributes['newsletter_id'].value;
     }

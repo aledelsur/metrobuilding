@@ -1,5 +1,6 @@
 class Admin::NewslettersController < AdminController
   before_action :set_newsletter, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
   layout 'admin_newsletter'
 
   def index
@@ -9,7 +10,7 @@ class Admin::NewslettersController < AdminController
   def show
     respond_to do |format|
       format.json  { render json: @newsletter, :include => [:newsletter_sections] }
-      format.html 
+      format.html
     end
 
   end
@@ -75,7 +76,7 @@ class Admin::NewslettersController < AdminController
 
   def sort_sections
     newsletter = Newsletter.find(params[:newsletter_id])
-    params[:newsletter_section].each_with_index do |id, index|
+    params[:newsletter_section_ids].each_with_index do |id, index|
       newsletter.newsletter_sections.where(id: id).update_all(position: index + 1)
     end
 
