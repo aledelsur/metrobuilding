@@ -20,15 +20,30 @@
       </div>
 
       <div class="form-group">
-        <label class="custom-file-label">Agregar imágenes</label>
-        <input multiple="multiple" type="file" name="newsletter[newsletter_sections_attributes][0][images][]" id="newsletter_newsletter_sections_attributes_0_images">
+        <b-button id="show-btn" @click="showModal">Open Modal</b-button>
+
+        <b-modal ref="my-modal" hide-footer title="Using Component Methods">
+          <div class="d-block text-center">
+            <h3> Welcome to section  {{ id }}</h3>
+          </div>
+        </b-modal>
+
+        <!-- <label class="custom-file-label">Agregar imágenes</label> -->
+
       </div>
+
     </div>
   </div>
 </template>
 
 <script>
 import VueCkeditor from 'vue-ckeditor2';
+// Vue.use(IconsPlugin)
+// import './custom.scss'
+// import { ModalPlugin } from 'bootstrap-vue'
+// Vue.use(ModalPlugin)
+// import MediaAssetLibrary from './media-asset-library.vue'
+import Vue from 'vue'
 
 export default {
   props: ['section'],
@@ -36,9 +51,11 @@ export default {
   components: {VueCkeditor},
   data: function () {
     return {
+      id: 0,
       position: 1,
       title: null,
       description: '<p>Rich-text editor content.</p>',
+      mediaAssets: [],
       config: {
         toolbar: [
           // { name: 'document', items: [ '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates' ] },
@@ -61,15 +78,28 @@ export default {
     }
   },
   mounted: function() {
+    this.id = this.section.id
     this.title = this.section.title
     this.description = this.section.description
     this.position = this.section.position
   },
   methods:  {
-
+    modalId(){
+      var id = ('section-' + this.id);
+      console.log('The id is')
+      console.log(id)
+      
+      return id;
+    },
+    showModal(){
+      this.$refs['my-modal'].show();
+    }
   }
 }
 </script>
 
 <style>
+.fade {
+  opacity: 1;
+}
 </style>

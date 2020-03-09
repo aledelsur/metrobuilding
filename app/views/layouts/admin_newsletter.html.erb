@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Metrobuilding (Admin)</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'newsletter.js', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag Ckeditor.cdn_url %>
+
+    <%= yield(:head) %>
+
+  </head>
+
+  <body <% if content_for?(:body_attributes) %>
+            <%= yield(:body_attributes) %>
+        <% end %>
+  >
+    <nav class="navbar navbar-default navbar-inverse" style="height:106px">
+
+      <div class="container-fluid">
+        <div class="navbar-header"> <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-6" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+           <a href="#" class="navbar-brand">
+             <%= image_tag "https://www.metrobuilding.com.ar/wp-content/uploads/2018/07/logo-1.png", style:'width: 90px' %>
+           </a>
+         </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6" style="position: relative;top: 30px;text-transform: uppercase;">
+          <ul class="nav navbar-nav">
+            <li class="<%= 'active' if params['controller'] == 'admin/users'%>"> <%= link_to 'Propietarios', admin_users_path %> </li>
+            <li class="<%= 'active' if params['controller'] == 'admin/budgets'%>"> <%= link_to 'Presupuestos de obra', admin_budgets_path %> </li>
+            <li class="<%= 'active' if params['controller'] == 'admin/properties'%>"> <%= link_to 'Propiedades', admin_properties_path %> </li>
+            <li class="<%= 'active' if params['controller'] == 'admin/property_categories'%>"> <%= link_to 'Categoria de propiedades', admin_property_categories_path %> </li>
+            <li class="<%= 'active' if params['controller'] == 'admin/newsletters'%>"> <%= link_to 'Circulares', admin_newsletters_path %> </li>
+            <li class="<%= 'active' if params['controller'] == 'admin/media_assets'%>"> <%= link_to 'Galería de imágenes', admin_media_assets_path %> </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
+
+    <div class='footer'></div>
+
+    <script type='text/javascript'>
+
+    $('.datatable').DataTable({
+      // ajax: ...,
+      // autoWidth: false,
+      // pagingType: 'full_numbers',
+      // processing: true,
+      // serverSide: true,
+
+      // Optional, if you want full pagination controls.
+      // Check dataTables documentation to learn more about available options.
+      // http://datatables.net/reference/option/pagingType
+    });
+
+    </script>
+  </body>
+</html>

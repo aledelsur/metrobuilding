@@ -1,5 +1,6 @@
 class Admin::NewslettersController < AdminController
   before_action :set_newsletter, only: [:show, :edit, :update, :destroy]
+  layout 'admin_newsletter'
 
   def index
     @newsletters = Newsletter.all

@@ -20,7 +20,7 @@
       <div id="newsletter_sections" data-url="" class="ui-sortable" v-for="section in sections">
         <newsletter-section :section="section"></newsletter-section>
       </div>
-      <button class="btn btn-primary" v-on:click="addSection()">Agregar Seccion</button>
+      <button class="btn btn-primary" v-on:click="addSection()">Agregar Sección</button>
 
       <div class="form-actions">
         <div class="btn-group actions" role="group">
@@ -62,17 +62,16 @@ export default {
     })
   },
   methods: {
-    addSection () {
+    addSection() {
       axios.post('/admin/newsletters/' + this.$root.newsletterId + '/newsletter_sections')
       .then(response => {
-        console.log(response)
-        newSection = {
-          title: response.data.title,
-          description: response.data.description,
-          position: response.data.position
-        }
-        this.sections = this.sections + newSection
+        console.log('Response from new section: ');
+        console.log(response);
+        this.sections.push(response.data);
+        console.log('Sections: ');
+        console.log(this.sections);
       })
+      return true;
     }
   }
 }

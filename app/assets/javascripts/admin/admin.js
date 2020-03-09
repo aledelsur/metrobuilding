@@ -32,20 +32,20 @@ $(document).ready(function(){
     $('input[type="checkbox"]').prop('checked', $(this).prop('checked'))
   })
 
-  $(document).on('click', '.newsletter-section .panel-heading', function(){
-    var section = $(this).parent();
-    section.find('.panel-body').toggle('collapse');
-  });
+  // $(document).on('click', '.newsletter-section .panel-heading', function(){
+  //   var section = $(this).parent();
+  //   section.find('.panel-body').toggle('collapse');
+  // });
 
-  $("#newsletter_sections").sortable({
-    update: function(e, ui){
-      Rails.ajax({
-        url: $(this).data('url'),
-        type: 'PATCH',
-        data: $(this).sortable('serialize'),
-      });
-    }    
-  });
+  // $("#newsletter_sections").sortable({
+  //   update: function(e, ui){
+  //     Rails.ajax({
+  //       url: $(this).data('url'),
+  //       type: 'PATCH',
+  //       data: $(this).sortable('serialize'),
+  //     });
+  //   }    
+  // });
 
   $(document).on('change', '#image-input', function(){
     $('form').submit();

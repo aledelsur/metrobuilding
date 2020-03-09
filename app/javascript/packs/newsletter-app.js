@@ -7,6 +7,12 @@
 
 import Vue from 'vue'
 import Newsletter from '../newsletter.vue'
+import { BootstrapVue } from 'bootstrap-vue'
+
+// import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.use(BootstrapVue)
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
@@ -14,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     data: {
       newsletterId: null
     },
-    components: { Newsletter },
+    components: { Newsletter, BootstrapVue },
     beforeMount: function () {
       this.newsletterId = this.$el.attributes['newsletter_id'].value;
     }

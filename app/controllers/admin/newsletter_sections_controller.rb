@@ -3,7 +3,8 @@ class Admin::NewsletterSectionsController < AdminController
   skip_before_action :verify_authenticity_token
 
   def create
-    newsletter_section = @newsletter.newsletter_sections.create(title: "Sección 2", description: "Escriba la descripción aquí")
+    section_number = @newsletter.newsletter_sections.size + 1
+    newsletter_section = @newsletter.newsletter_sections.create(title: "Sección #{section_number}", description: "Escriba la descripción aquí")
     render json: newsletter_section
   end
 
