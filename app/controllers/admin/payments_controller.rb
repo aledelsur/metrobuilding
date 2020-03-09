@@ -31,12 +31,14 @@ class Admin::PaymentsController < AdminController
     respond_to do |format|
       if @payment.save
         format.html { redirect_to [:admin, @payment], notice: 'Payment was successfully created.' }
-        format.json { render :show, status: :created, location: @payment }
+        format.json
+        format.js
       else
         @user = @payment.user
         @properties = @user.properties
         format.html { render :new }
-        format.json { render json: @payment.errors, status: :unprocessable_entity }
+        format.json
+        format.js
       end
     end
   end

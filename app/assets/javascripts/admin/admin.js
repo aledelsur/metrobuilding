@@ -40,4 +40,15 @@ $(document).ready(function(){
       }
     })
   })
+
+  $(document).on('submit', '.js-new-payment-form', function(){
+    $.ajax({
+        method: 'POST',
+        url: '/admin/payments',
+        data: $(this).serializeArray(),
+        dataType: 'script'
+    });
+
+    return false;
+  })
 });

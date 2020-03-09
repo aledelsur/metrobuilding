@@ -1,6 +1,6 @@
 <h1>Editing Payment</h1>
 
-<%= render 'form', payment: @payment %>
+<%= render 'form', payment: @payment, form_class: 'js-edit-payment-form', property: @payment.property %>
 
 <%= link_to 'Show', [:admin, @payment] %> |
 <%= link_to 'Back', admin_payments_path %>

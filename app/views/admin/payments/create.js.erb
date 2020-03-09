@@ -1,0 +1,2 @@
+$("#info-cuota").html("<%= render 'info_cuota', locals: { payment: @payment } %>")
+$("#form_for_propery_<%= @payment.properties.first.id.to_s %>").html("Pago creado para la propiedad <%= @payment.properties.first.name.to_s %>")

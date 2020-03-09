@@ -2,8 +2,8 @@
 
 <% if params[:payment_type] == 'cuota' %>
 
-  <h3 class='red-info'>
-    Deuda actual <b>de cuotas</b> del propietario: <%= @payment.user&.debt&.round %> (pesos)
+  <h3 class='red-info' id="info-cuota">
+    <%= render partial: 'info_cuota', locales: { payment: @payment } %>
   </h3>
 
 <% elsif params[:payment_type] == 'deuda_dolares' %>
@@ -23,7 +23,7 @@
     <h3> <%= property.name %> </h3>
   </div>
   <div class='col-xs-6'>
-    <%= render 'form', payment: @payment, property: property %>
+    <%= render 'regular_payment_form', payment: @payment, property: property, form_class: 'js-new-payment-form' %>
   </div>
   <div class='col-xs-12'>
     <div class='separator'></div>
@@ -31,4 +31,8 @@
 <% end %>
 
 <br>
-<%= link_to 'Atrás', admin_payments_path, class: 'btn btn-default' %>
+<br>
+<br>
+<br>
+
+<%= link_to 'Finalizar', admin_payments_path, class: 'btn btn-default' %>
