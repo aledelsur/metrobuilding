@@ -3,7 +3,7 @@
 <% if params[:payment_type] == 'cuota' %>
 
   <h3 class='red-info' id="info-cuota">
-    <%= render partial: 'info_cuota', locales: { payment: @payment } %>
+    <%= render partial: 'info_cuota', locals: { payment: @payment } %>
   </h3>
 
 <% elsif params[:payment_type] == 'deuda_dolares' %>
@@ -18,7 +18,6 @@
 
 
 <% @properties.each do |property| %>
-  <div class='col-xs-12'><div class='separator'></div></div>
   <div class='col-xs-6'>
     <h3> <%= property.name %> </h3>
   </div>

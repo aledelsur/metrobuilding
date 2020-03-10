@@ -1,1 +1,3 @@
-Deuda actual <b>de cuotas</b> del propietario: <%= payment.user&.debt&.round %> (pesos)
+<input type='hidden' id="js-initial-debt" value="<%= payment.user&.debt&.round %>"/>
+Deuda actual <b>de cuotas</b> del propietario: <span class="js-cuota-amount"><%= payment.user&.debt&.round %></span> (pesos)
+<br />

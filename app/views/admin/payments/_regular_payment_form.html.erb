@@ -11,20 +11,27 @@
     </div>
   <% end %>
 
+  <br />
+
+  <div id="error_explanation" class="js-errors-for-<%=property.id%>" style="font-size: 14px">
+
+  </div>
+  <br />
+
   <%= form.hidden_field :user_id %>
   <%= form.hidden_field :property_ids, value: [property.id] %>
   <%= form.hidden_field :payment_type, value: params[:payment_type] %>
 
   <div class="form-group">
     <%= form.label :value,'Monto' %>
-    <%= form.text_field :value, class: 'form-control' %>
+    <%= form.number_field :value, class: 'form-control js-amount' %>
   </div>
 
 
   <div class="form-group">
     <%= form.label :dollar_against_peso_value, 'Valor del dolar' %>
     <em>Ejemplo (31.50)</em>
-    <%= form.number_field :dollar_against_peso_value, step: 0.01, class: 'form-control' %>
+    <%= form.number_field :dollar_against_peso_value, step: 0.01, class: 'form-control js-dolla-value' %>
   </div>
 <br>
   <p>
@@ -34,6 +41,6 @@
   </p>
 
   <div class="actions">
-    <%= form.submit 'Crear Pago', class: 'btn btn-info' %>
+    <%= form.submit 'Guardar Pago', class: 'btn btn-info' %>
   </div>
 <% end %>

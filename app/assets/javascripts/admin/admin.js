@@ -26,6 +26,25 @@ $(document).ready(function(){
     theme: "bootstrap"
   });
 
+  $(document).on('keyup', '.js-amount', function() {
+    var total = 0;
+    $('.js-amount').each(function() {
+      if($(this).val()){
+        total = total + parseInt($(this).val());
+      }
+    });
+
+    $('.js-cuota-amount').html(parseInt($('#js-initial-debt').val()) - total);
+  })
+
+  $(document).on('keyup', '.js-dolla-value', function() {
+    var value = $(this).val();
+
+    $('.js-dolla-value').each(function() {
+      $(this).val(value);
+    })
+  })
+
   $(document).on('change', '.js-property-check', function() {
     // We need to conver user_ids to an array first
     // so we can know if an id is already there
@@ -51,4 +70,6 @@ $(document).ready(function(){
 
     return false;
   })
+
+  $('.btn').attr('disabled', false);
 });

@@ -1,2 +1,10 @@
-$("#info-cuota").html("<%= render 'info_cuota', locals: { payment: @payment } %>")
-$("#form_for_propery_<%= @payment.properties.first.id.to_s %>").html("Pago creado para la propiedad <%= @payment.properties.first.name.to_s %>")
+<% if @payment.errors.empty? %>
+  $("#info-cuota").html("<%= j render(partial: 'info_cuota', locals: { payment: @payment }) %>");
+  $("#form_for_propery_<%= @payment.properties.first.id.to_s %>").html("<h3>Pago guardado para la propiedad <%= @payment.properties.first.name.to_s %> ($<%= @payment.value.round.to_i %>)</h3>");
+  $(".js-errors-for-<%=@payment&.properties&.first&.id%>").html("");
+<% else %>
+  $(".js-errors-for-<%=@payment&.properties&.first&.id%>").html("<%= @payment.errors.full_messages.join(', ') %>");
+<% end %>
+
+
+$('.btn').attr('disabled', false);
