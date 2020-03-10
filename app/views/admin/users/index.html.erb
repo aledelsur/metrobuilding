@@ -28,7 +28,8 @@
         <td>$<%= user.special_debt(:pesos) %></td>
         <td><%= user.phones %></td>
         <td><%= property_list(user.properties) %></td>
-        <td><%= link_to 'Nuevo Pago Cuota', new_admin_payment_path(user_id: user.id, payment_type: 'cuota'), class: 'btn btn-info btn-pago' %>
+        <td>
+            <%= link_to 'Nuevo Pago Cuota', new_admin_payment_path(user_id: user.id, payment_type: 'cuota'), class: 'btn btn-info btn-pago' %>
             <%= link_to 'Nuevo Pago Deuda USD', new_admin_payment_path(user_id: user.id, payment_type: 'deuda_dolares'), class: 'btn btn-info btn-pago' %>
             <%= link_to 'Nuevo Pago Deuda Pesos', new_admin_payment_path(user_id: user.id, payment_type: 'deuda_pesos'), class: 'btn btn-info btn-pago' %> </td>
         <td><%= link_to 'Editar', edit_admin_user_path(user), class: 'btn btn-info' %></td>

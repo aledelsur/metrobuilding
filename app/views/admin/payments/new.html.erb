@@ -6,28 +6,36 @@
     <%= render partial: 'info_cuota', locals: { payment: @payment } %>
   </h3>
 
+  <% @properties.each do |property| %>
+    <div class='col-xs-6'>
+      <h3> <%= property.name %> </h3>
+    </div>
+    <div class='col-xs-6'>
+      <%= render 'regular_payment_form', payment: @payment, property: property, form_class: 'js-new-payment-form' %>
+    </div>
+    <div class='col-xs-12'>
+      <div class='separator'></div>
+    </div>
+  <% end %>
+
+
 <% elsif params[:payment_type] == 'deuda_dolares' %>
   <h3 class='red-info'>
     Deuda actual <b>especial en dólares</b> del propietario: <%= @payment.user&.special_debt(:dolares)&.round %> (dólares)
   </h3>
+
+  <%= render 'form', payment: @payment, form_class: 'js-edit-payment-form', property: @payment.properties.first %>
+
 <% elsif params[:payment_type] == 'deuda_pesos' %>
   <h3 class='red-info'>
     Deuda actual <b>especial en pesos</b> del propietario: <%= @payment.user&.special_debt(:pesos)&.round %> (pesos)
   </h3>
+
+  <%= render 'form', payment: @payment, form_class: 'js-edit-payment-form', property: @payment.properties.first %>
 <% end %>
 
 
-<% @properties.each do |property| %>
-  <div class='col-xs-6'>
-    <h3> <%= property.name %> </h3>
-  </div>
-  <div class='col-xs-6'>
-    <%= render 'regular_payment_form', payment: @payment, property: property, form_class: 'js-new-payment-form' %>
-  </div>
-  <div class='col-xs-12'>
-    <div class='separator'></div>
-  </div>
-<% end %>
+
 
 <br>
 <br>
