@@ -10,7 +10,7 @@ class Admin::NewslettersController < AdminController
   def show
     respond_to do |format|
       format.json  { render json: @newsletter, :include => [:newsletter_sections] }
-      format.html
+      format.html { render :show, layout: 'newsletter_show' }
     end
 
   end

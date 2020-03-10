@@ -27,6 +27,43 @@
     }
   }
 }
+.admin-newsletter-view {
+      background-color: #f0f2ea;
+  .logo-img{
+    width: 230px;
+  }
+  .cover-image{
+    max-width: 50%;
+  }
+  .title-newsletter{
+    font-size: 70px;
+    color: #262626;
+  }
+  .dividing-bar{
+    height: 15px;
+    border-radius: .25rem;
+  }
+  .title-sections, .dividing-bar{
+    background-color: #657EBE;
+    color: white;
+  }
+  .title-sections {
+    border: 1px solid #6C6D70;
+    border-radius: .25rem;
+    text-transform: uppercase;
+  }
+  .footer-newsletter{
+    height: 52px;
+    background-color: #262626;
+    border-top: 1px solid #000;
+    color: white;
+  }
+  .footer-newsletter p {
+    padding-top: 12px;
+  }
+}
+
+
 .grabbable {
     cursor: move; /* fallback if grab cursor is unsupported */
     cursor: grab;
