@@ -1,0 +1,2 @@
+class MediaAssetsNewsletterSection < ApplicationRecord
+end

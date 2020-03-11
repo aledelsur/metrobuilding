@@ -1,14 +1,13 @@
 <template>
   <div>
-
-      <div class="panel panel-default newsletter-section">
-        <div class="panel-heading grabbable" @click='visible = !visible'>
-          {{ title }}
-          <span></span>
-        </div>
-        <b-collapse v-model="visible" class="mt-2">
-          <b-card>
-            <div class="panel-body">
+    <div class="panel panel-default newsletter-section">
+      <div class="panel-heading grabbable" @click='visible = !visible'>
+        {{ title }}
+        <span></span>
+      </div>
+      <b-collapse v-model="visible" class="mt-2">
+        <b-card>
+          <div class="panel-body">
             <div class="form-group">
               <label for="newsletter_newsletter_sections_attributes_0_title"> Tītulo de la sección </label>
               <input class="form-control" type="text" v-model="title">
@@ -21,47 +20,34 @@
               v-model="description"
               :config="config" />
 
-            </div>
-
-            <div class="form-group">
-              <b-button id="show-btn" @click="showModal">Open Modal</b-button>
-
-              <b-modal ref="my-modal" hide-footer title="Using Component Methods">
-                <div class="d-block text-center">
-                  <h3> Welcome to section  {{ id }}</h3>
-                </div>
-              </b-modal>
-
-              <!-- <label class="custom-file-label">Agregar imágenes</label> -->
-
+              <media-asset-library :section="section"></media-asset-library>
             </div>
           </div>
-          </b-card>
-        </b-collapse>
-      </div>
+        </b-card>
+      </b-collapse>
+    </div>
   </div>
 </template>
 
 <script>
 import VueCkeditor from 'vue-ckeditor2';
 // Vue.use(IconsPlugin)
-// import './custom.scss'
-// import { ModalPlugin } from 'bootstrap-vue'
-// Vue.use(ModalPlugin)
-// import MediaAssetLibrary from './media-asset-library.vue'
+import { ModalPlugin } from 'bootstrap-vue'
+Vue.use(ModalPlugin)
+import MediaAssetLibrary from './media-asset-library.vue'
+import axios from 'axios';
 import Vue from 'vue'
 
 export default {
   props: ['section'],
   name: 'newsletter-section',
-  components: {VueCkeditor},
+  components: {VueCkeditor, ModalPlugin, MediaAssetLibrary},
   data: function () {
     return {
       id: 0,
       position: 1,
       title: null,
       description: '<p>Rich-text editor content.</p>',
-      mediaAssets: [],
       visible: false,
       config: {
         toolbar: [
@@ -91,22 +77,20 @@ export default {
     this.position = this.section.position
   },
   methods:  {
-    modalId(){
-      var id = ('section-' + this.id);
-      console.log('The id is')
-      console.log(id)
 
-      return id;
-    },
-    showModal(){
-      this.$refs['my-modal'].show();
-    }
   }
 }
 </script>
 
 <style>
-.fade {
-  opacity: 1;
-}
+  .fade {
+    opacity: 1;
+  }
+  .modal-dialog {
+    margin-top: 10%;
+  }
+  .modal-dialog .modal-title {
+    font-size: 25px;
+    text-align: center;
+  }
 </style>

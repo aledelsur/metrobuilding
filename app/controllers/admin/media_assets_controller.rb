@@ -4,6 +4,11 @@ class Admin::MediaAssetsController < AdminController
   def index
     @media_assets = MediaAsset.all
     @media_asset = MediaAsset.new
+
+    respond_to do |format|
+      format.json { render json: @media_assets, each_serializer: ::Admin::MediaAssetSerializer, scope: { section_id: params[:newsletter_section_id] } }
+      format.html
+    end
   end
 
   def create

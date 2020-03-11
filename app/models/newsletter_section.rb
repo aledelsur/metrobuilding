@@ -13,7 +13,7 @@
 
 class NewsletterSection < ApplicationRecord
   belongs_to :newsletter
-  has_many :media_assets
+  has_and_belongs_to_many :media_assets
 
   default_scope { order(position: :asc) }
 

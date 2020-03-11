@@ -12,7 +12,6 @@
       <div class="form-group">
         <label for="newsletter_title"> TÍTULO DE LA CIRCULAR </label>
         <input class="form-control" type="text" name="newsletter[title]" :value="title" id="newsletter_title">
-
       </div>
       <br>
       <br>

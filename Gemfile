@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.1'
 
 gem 'acts_as_list'
+gem 'active_model_serializers'
 gem 'annotate'
 gem 'airbrake'
 gem 'ckeditor', '~> 4.2', '>= 4.2.4'

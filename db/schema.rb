@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_06_155936) do
+ActiveRecord::Schema.define(version: 2020_03_10_182318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,13 @@ ActiveRecord::Schema.define(version: 2020_03_06_155936) do
   create_table "media_assets", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "media_assets_newsletter_sections", force: :cascade do |t|
+    t.bigint "media_asset_id"
+    t.bigint "newsletter_section_id"
+    t.index ["media_asset_id"], name: "index_media_assets_newsletter_sections_on_media_asset_id"
+    t.index ["newsletter_section_id"], name: "index_media_assets_newsletter_sections_on_newsletter_section_id"
   end
 
   create_table "newsletter_sections", force: :cascade do |t|
