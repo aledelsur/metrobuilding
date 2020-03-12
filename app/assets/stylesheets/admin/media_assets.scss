@@ -2,13 +2,13 @@
   margin-bottom: 2%;
   .one-image {
     width: 30%;
+    margin: 5px;
     img {
       width: 100%;
     }
     .remove-image {
-      color: red;
+      margin: 5px;
       float: right;
-      text-decoration: underline;
     }
   }
 }

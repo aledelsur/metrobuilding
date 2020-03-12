@@ -31,9 +31,13 @@
       background-color: #f0f2ea;
   .logo-img{
     width: 230px;
+    display: block;
+    margin: auto;
   }
   .cover-image{
     max-width: 50%;
+    margin: 15px auto 15px auto;
+    display: block;
   }
   .title-newsletter{
     font-size: 70px;
@@ -51,6 +55,8 @@
     border: 1px solid #6C6D70;
     border-radius: .25rem;
     text-transform: uppercase;
+    margin-bottom: inherit;
+    margin-top: 40px;
   }
   .footer-newsletter{
     height: 52px;

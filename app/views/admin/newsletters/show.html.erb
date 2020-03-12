@@ -29,8 +29,8 @@
     </div>
   </div>
     <!-- Cover Image -->
-    <div class="container text-center img-responsive">
-      <%= image_tag "metrobuilding-portada-photo.jpg", class:"cover-image" %>
+    <div class="container">
+      <%= image_tag "metrobuilding-portada-photo.jpg", class:"cover-image img-rounded center-block img-responsive" %>
     </div>
     <!-- Newsletter Sections -->
     <div class="container-fluid">
@@ -40,6 +40,9 @@
           <%= newsletter_section.title %>
         </div>
           <%= newsletter_section.description.html_safe %>
+          <% newsletter_section.media_assets.each do |media_asset| %>
+            <%= image_tag media_asset.image, class:"img-responsive cover-image img-rounded" %>
+          <% end %>
         <% end %>
       </div>
       <br>

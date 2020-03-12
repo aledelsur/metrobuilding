@@ -22,7 +22,7 @@
           </div>
       </draggable>
 
-      <button class="btn btn-primary" v-on:click="addSection()">Agregar Sección</button>
+      <a class="btn btn-primary" v-on:click="addSection()">Agregar Sección</a>
 
       <div class="form-actions">
         <div class="btn-group actions" role="group">
@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     addSection() {
-      axios.post('/admin/newsletters/' + this.$root.newsletterId + '/newsletter_sections')
+      axios.post('/admin/newsletters/' + this.$root.newsletterId + '/newsletter_sections.json')
       .then(response => {
         console.log('Response from new section: ');
         console.log(response);
