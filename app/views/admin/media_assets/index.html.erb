@@ -20,7 +20,7 @@
       <% @media_assets.in_groups(3).each do |assets| %>
         <% assets.compact.each do |asset| %>
           <div class='one-image img-thumbnail'>
-            <%= image_tag(asset.image) %>
+            <%= image_tag(asset.thumbnail) %>
             <%= link_to 'Eliminar', admin_media_asset_path(asset), data: { confirm: 'Estás seguro?' }, method: :delete, class: 'btn btn-danger remove-image' %>
           </div>
         <% end %>
