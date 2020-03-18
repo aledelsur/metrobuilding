@@ -2,7 +2,7 @@
   <div>
     <b-button id="show-btn " variant="success" v-on:click="showMediaAssets">Agregar imágenes</b-button>
 
-    <b-modal ref="my-modal" hide-footer title="Galería de imágenes">
+    <b-modal ref="my-modal" hide-footer title="Imágenes">
       <div v-for="asset in mediaAssets">
         <div class='single-image text-center col-md-6'>
           <b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded"></b-img>
