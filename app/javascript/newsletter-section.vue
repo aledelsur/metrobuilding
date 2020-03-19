@@ -3,7 +3,7 @@
     <div class="panel panel-default newsletter-section">
       <div class="panel-heading grabbable" @click='visible = !visible'>
         {{ title }}
-        <button class="btn btn-danger pull-right" v-on:click="removeSection">Eliminar</button>
+        <a class="btn btn-danger pull-right" v-on:click="removeSection">Eliminar</a>
       </div>
       <b-collapse v-model="visible" class="mt-2">
         <b-card>
@@ -30,12 +30,12 @@
 </template>
 
 <script>
+import axios from 'axios';
 import VueCkeditor from 'vue-ckeditor2';
 // Vue.use(IconsPlugin)
 import { ModalPlugin } from 'bootstrap-vue'
 Vue.use(ModalPlugin)
 import MediaAssetLibrary from './media-asset-library.vue'
-import axios from 'axios';
 import Vue from 'vue'
 
 export default {
@@ -79,9 +79,11 @@ export default {
   methods:  {
     removeSection() {
       axios({ method: 'delete',
-              url:'/admin/newsletters' + this.section.newsletter_id + '/newsletter_sections/' + this.id + ".json" })
+              url:'/admin/newsletters/' + this.section.newsletter_id + '/newsletter_sections/' + this.id })
       .then(response => {
-        this.$root.sections = response.data;
+        console.log("SECTIONS AFTER REMOVAL: ")
+        console.log(response)
+        this.$parent.sections = response.data;
       })
     },
 
