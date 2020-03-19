@@ -68,12 +68,6 @@ class Admin::NewslettersController < AdminController
     redirect_to admin_newsletters_path, notice: 'Circular eliminada correctamente.'
   end
 
-  def remove_section
-    @newsletter = Newsletter.find(params[:newsletter_id])
-    @newsletter.newsletter_sections.find(params[:id]).destroy
-    redirect_to edit_admin_newsletter_path(@newsletter)
-  end
-
   def sort_sections
     newsletter = Newsletter.find(params[:newsletter_id])
     params[:newsletter_section_ids].each_with_index do |id, index|

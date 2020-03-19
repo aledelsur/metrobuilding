@@ -3,7 +3,7 @@
     <div class="panel panel-default newsletter-section">
       <div class="panel-heading grabbable" @click='visible = !visible'>
         {{ title }}
-        <span></span>
+        <button class="btn btn-danger pull-right" v-on:click="removeSection">Eliminar</button>
       </div>
       <b-collapse v-model="visible" class="mt-2">
         <b-card>
@@ -77,6 +77,13 @@ export default {
     this.position = this.section.position
   },
   methods:  {
+    removeSection() {
+      axios({ method: 'delete',
+              url:'/admin/newsletters' + this.section.newsletter_id + '/newsletter_sections/' + this.id + ".json" })
+      .then(response => {
+        this.$root.sections = response.data;
+      })
+    },
 
   }
 }

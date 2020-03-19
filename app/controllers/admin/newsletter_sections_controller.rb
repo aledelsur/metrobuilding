@@ -24,6 +24,13 @@ class Admin::NewsletterSectionsController < AdminController
     render json: MediaAsset.all, each_serializer: ::Admin::MediaAssetSerializer, scope: { section_id: params[:newsletter_section_id] }
   end
 
+  def destroy
+    @newsletter = Newsletter.find(params[:newsletter_id])
+    @newsletter.newsletter_sections.find(params[:id]).destroy
+
+    render json: @newsletter.newsletter_sections
+  end
+
   private
 
   def set_newsletter

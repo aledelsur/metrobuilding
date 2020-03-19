@@ -34,7 +34,6 @@ Rails.application.routes.draw do
         put 'add_media_asset', to: 'newsletter_sections#add_media_asset'
         delete 'remove_media_asset', to: 'newsletter_sections#remove_media_asset'
       end
-      delete '/newsletter_section/:id', to: 'newsletters#remove_section', as: 'remove_section'
       put '/sort_sections', to: 'newsletters#sort_sections', as: 'sort_sections'
       get '/send_newsletter', to: 'newsletters#send_newsletter', as:'send_newsletter'
     end
