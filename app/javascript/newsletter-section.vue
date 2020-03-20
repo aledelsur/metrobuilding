@@ -81,9 +81,7 @@ export default {
       axios({ method: 'delete',
               url:'/admin/newsletters/' + this.section.newsletter_id + '/newsletter_sections/' + this.id })
       .then(response => {
-        console.log("SECTIONS AFTER REMOVAL: ")
-        console.log(response)
-        this.$parent.sections = response.data;
+        this.$parent.$parent.sections = response.data;
       })
     },
 
