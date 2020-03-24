@@ -58,6 +58,10 @@ class User < ApplicationRecord
     "#{last_name}, #{first_name}"
   end
 
+  def friendly_name
+    "#{first_name} #{last_name}"
+  end
+
   def phones
     "#{phone_number} \n #{mobile_number}"
   end
