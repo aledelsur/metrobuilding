@@ -8,6 +8,8 @@ class Admin::NewslettersController < AdminController
   end
 
   def show
+    @user = User.find(params[:id])
+    @budgets = Budget.where('due_date > ?', DateTime.now).all
     respond_to do |format|
       format.json  { render json: @newsletter, :include => [:newsletter_sections] }
       format.html { render :show, layout: 'newsletter_show' }
