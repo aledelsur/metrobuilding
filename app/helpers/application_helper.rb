@@ -26,4 +26,12 @@ module ApplicationHelper
     "#{output}."
   end
 
+  def replace_variables(text)
+    variables = {
+                  "{{TOTAL_A_PAGAR_ESTE_PERIODO}}" => "$#{@user.debt(@budgets).to_i}",
+                  "{{NOMBRE_INVERSOR}}" => @user.friendly_name
+                }
+
+    variables.each { |key, value| text.gsub(key, value) }
+  end
 end

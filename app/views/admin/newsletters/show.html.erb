@@ -32,21 +32,15 @@
     <div class="container">
       <%= image_tag "metrobuilding-portada-photo.jpg", class:"cover-image img-rounded center-block img-responsive" %>
     </div>
-    <!-- Custom Variables -->
-    <div class="container">
-      <%= "Hola {{NOMBRE_INVERSOR}}".gsub("{{NOMBRE_INVERSOR}}", @user.friendly_name) %>
-    </div>
-    <div class="container">
-      <%= "Su total a pagar por este período es de: {{TOTAL_A_PAGAR_ESTE_PERIODO}}".gsub("{{TOTAL_A_PAGAR_ESTE_PERIODO}}", "$#{@user.debt(@budgets).to_i}") %>
-    </div>
+
     <!-- Newsletter Sections -->
     <div class="container-fluid">
       <div class="container">
         <% @newsletter.newsletter_sections.each do |newsletter_section| %>
         <div class="title-sections text-center">
-          <%= newsletter_section.title %>
+          <%= replace_variables(newsletter_section.title) %>
         </div>
-          <%= newsletter_section.description.html_safe %>
+          <%= replace_variables(newsletter_section.description.html_safe) %>
           <% newsletter_section.media_assets.each do |media_asset| %>
             <%= image_tag media_asset.image, class:"img-responsive cover-image img-rounded" %>
           <% end %>
