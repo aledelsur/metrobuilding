@@ -3,7 +3,7 @@
     <div class="panel panel-default newsletter-section">
       <div class="panel-heading grabbable" @click='visible = !visible'>
         {{ title }}
-        <a class="btn btn-danger pull-right" v-on:click="removeSection">Eliminar</a>
+        <a class="btn btn-danger remove-section pull-right" data-confirm="Estás seguro que deseas eliminar esta sección?" v-on:click="removeSection">Eliminar</a>
       </div>
       <b-collapse v-model="visible" class="mt-2">
         <b-card>
@@ -92,9 +92,6 @@ export default {
 <style>
   .fade {
     opacity: 1;
-  }
-  .modal-dialog {
-    margin-top: 10%;
   }
   .modal-dialog .modal-title {
     font-size: 25px;

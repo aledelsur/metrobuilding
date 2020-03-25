@@ -32,6 +32,7 @@ module ApplicationHelper
                   "{{NOMBRE_INVERSOR}}" => @user.friendly_name
                 }
 
-    variables.each { |key, value| text.gsub(key, value) }
+    variables.each { |key, value| text.gsub!(key, value) }
+    raw(text)
   end
 end

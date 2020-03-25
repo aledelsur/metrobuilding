@@ -40,7 +40,7 @@
         <div class="title-sections text-center">
           <%= replace_variables(newsletter_section.title) %>
         </div>
-          <%= replace_variables(newsletter_section.description.html_safe) %>
+          <%= replace_variables(newsletter_section.description) %>
           <% newsletter_section.media_assets.each do |media_asset| %>
             <%= image_tag media_asset.image, class:"img-responsive cover-image img-rounded" %>
           <% end %>

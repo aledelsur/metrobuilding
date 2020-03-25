@@ -4,10 +4,10 @@
 
     <b-modal ref="my-modal" hide-footer title="Imágenes">
       <div v-for="asset in mediaAssets">
-        <div class='single-image text-center col-md-6'>
+        <div class='single-image text-center col-md-4'>
           <b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded"></b-img>
-          <button class="btn btn-primary add_button" v-on:click="addAssetToSection(asset.id)" v-if="!asset.is_added">Agregar</button>
-          <button class="btn btn-danger delete_button" v-on:click="removeAssetFromSection(asset.id)" v-else>Eliminar</button>
+          <button class="btn btn-primary add-button" v-on:click="addAssetToSection(asset.id)" v-if="!asset.is_added">Agregar</button>
+          <button class="btn btn-danger delete-button" v-on:click="removeAssetFromSection(asset.id)" v-else>Eliminar</button>
         </div>
       </div>
     </b-modal>
@@ -62,19 +62,20 @@ export default {
 
 <style>
   .modal-body{
-    height: 300px;
+    height: 85%;
     overflow-y: auto;
   }
   .modal-dialog {
-    margin-top: 20%;
-    overflow-y: initial !important
+    margin-top: 25%;
+    overflow-y: initial !important;
+    width: 85%;
   }
   .modal-dialog img {
     width: 200px;
     height: 200px;
     margin: 5px;
   }
-  .add_button .delete_button{
+  .add-button, .delete-button{
     display: block;
     margin-left: auto;
     margin-right: auto;
