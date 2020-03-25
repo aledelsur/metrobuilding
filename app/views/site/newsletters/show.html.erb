@@ -32,12 +32,7 @@
     <div class="container">
       <%= image_tag "metrobuilding-portada-photo.jpg", class:"cover-image img-rounded center-block img-responsive" %>
     </div>
-    <div class="container">
-      <%= "Hola {{NOMBRE_INVERSOR}}".gsub("{{NOMBRE_INVERSOR}}", @user.first_name) %>
-    </div>
-    <div class="container">
-      <%= "Su total a pagar por este período es de: {{TOTAL_A_PAGAR_ESTE_PERIODO}}".gsub("{{TOTAL_A_PAGAR_ESTE_PERIODO}}", @user.current_debt.to_s) %>
-    </div>
+
     <!-- Newsletter Sections -->
     <div class="container-fluid">
       <div class="container">
