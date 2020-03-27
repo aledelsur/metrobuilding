@@ -18,7 +18,7 @@ class Admin::MediaAssetsController < AdminController
 
   def destroy
     @media_asset = MediaAsset.find(params[:id])
-    
+
     if @media_asset.present?
       @media_asset.destroy
     end

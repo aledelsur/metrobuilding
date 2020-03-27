@@ -1,6 +1,7 @@
 <div class="container">
   <h1>Galería de imágenes</h1>
   <br>
+  <div class="alert alert-info" role="alert">Información: Al eliminar las imágenes que contengan la etiqueta: <span class="label label-info">Imagen utilizada en circular</span>, las mismas serán eliminadas de sus respectivas circulares.</div>
   <%= form_with model: [:admin, @media_asset], local: true do |form| %>
 
     <div class="image-upload">
@@ -17,13 +18,14 @@
     <div class='no-images'>No hay imágenes en la galería.</div>
   <% else %>
     <div class='all-images'>
-      <% @media_assets.in_groups(3).each do |assets| %>
-        <% assets.compact.each do |asset| %>
+      <% @media_assets.each do |asset| %>
           <div class='one-image img-thumbnail'>
             <%= image_tag(asset.thumbnail) %>
+      <% if (asset.newsletter_sections).present? %>
+        <span class="label label-info">Imagen utilizada en circular</span>
+      <% end %>
             <%= link_to 'Eliminar', admin_media_asset_path(asset), data: { confirm: 'Estás seguro?' }, method: :delete, class: 'btn btn-danger remove-image' %>
           </div>
-        <% end %>
       <% end %>
     </div>
   <% end %>
