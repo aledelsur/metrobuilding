@@ -1,42 +1,53 @@
 <template>
-  <div id="app" class='container'>
+  <div id="app" class="container-fluid">
+
     <h1>Nueva Circular</h1>
 
-    <form id="newsletter_form" enctype="multipart/form-data" action="/admin/newsletters" accept-charset="UTF-8" method="post">
+    <div class="row wrapper">
+      <div class='col-xs-10 main'>
+        <form id="newsletter_form" enctype="multipart/form-data" action="/admin/newsletters" accept-charset="UTF-8" method="post">
 
 
-      <!-- <input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="iNgPk+X9Wfgf/ej7PVM+9P749aAK9XKJyDqENG2ucOPLiKjJCrl0VEOaQJcHAX8gde1oP7Y9ds1V/FsQLJJKZw==">
-       -->
-      <br>
-      <br>
-      <div class="form-group">
-        <label for="newsletter_title"> TÍTULO DE LA CIRCULAR </label>
-        <input class="form-control" type="text" name="newsletter[title]" :value="title" id="newsletter_title">
-      </div>
-      <br>
-      <br>
-
-      <draggable v-model="sections" group="sections" @start="drag=true" @end="onDrop" ghost-class="ghost">
-          <div v-for="section in sections" :key="section.id">
-            <newsletter-section :section="section"></newsletter-section>
+          <!-- <input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="iNgPk+X9Wfgf/ej7PVM+9P749aAK9XKJyDqENG2ucOPLiKjJCrl0VEOaQJcHAX8gde1oP7Y9ds1V/FsQLJJKZw==">
+           -->
+          <br>
+          <br>
+          <div class="form-group">
+            <label for="newsletter_title"> TÍTULO DE LA CIRCULAR </label>
+            <input class="form-control" type="text" name="newsletter[title]" :value="title" id="newsletter_title">
           </div>
-      </draggable>
+          <br>
+          <br>
 
-      <a class="btn btn-primary" v-on:click="addSection()">Agregar Sección</a>
+          <draggable v-model="sections" group="sections" @start="drag=true" @end="onDrop" ghost-class="ghost">
+              <div v-for="section in sections" :key="section.id">
+                <newsletter-section :section="section"></newsletter-section>
+              </div>
+          </draggable>
 
-      <div class="form-actions">
-        <div class="btn-group actions" role="group">
-          <input type="submit" name="preview" value="Vista previa" class="btn btn-info mb-2" data-disable-with="Vista previa">
-        </div>
+          <a class="btn btn-primary" v-on:click="addSection()">Agregar Sección</a>
 
-        <div class="btn-group actions" role="group">
-          <input type="submit" name="save" value="Guardar" class="btn btn-success mb-2" data-disable-with="Guardar">
-        </div>
+          <div class="form-actions">
+            <div class="btn-group actions" role="group">
+              <input type="submit" name="preview" value="Vista previa" class="btn btn-info mb-2" data-disable-with="Vista previa">
+            </div>
+
+            <div class="btn-group actions" role="group">
+              <input type="submit" name="save" value="Guardar" class="btn btn-success mb-2" data-disable-with="Guardar">
+            </div>
+          </div>
+
+        </form>
+
+        <notifications group="alerts" position="bottom left"/>
+
       </div>
 
-    </form>
+      <div class='col-xs-2 sidebar'>
+        Sidebar!
+      </div>
 
-    <notifications group="alerts" position="bottom left"/>
+    </div>
 
   </div>
 </template>
@@ -98,7 +109,33 @@ export default {
 </script>
 
 <style scoped>
+
+  .wrapper {
+      display: flex;
+      justify-content: space-between;
+  }
+
+  .main,
+  .sidebar {
+      padding: 15px;
+      background-color: #fff;
+  }
+
+  .main {
+      min-height: 150vh;
+  }
+
+  .sidebar {
+      height: 25vh;
+  }
+
   .ghost {
     visibility: hidden;
+  }
+
+  .sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
   }
 </style>
