@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="show-btn">
     <b-button id="show-btn " variant="success" v-on:click="showMediaAssets">Agregar imágenes</b-button>
 
     <b-modal ref="my-modal" hide-footer title="Imágenes">
@@ -79,5 +79,8 @@ export default {
     display: block;
     margin-left: auto;
     margin-right: auto;
+  }
+  .show-btn{
+    margin-top: 10px;
   }
 </style>

@@ -20,7 +20,7 @@
         <td><%= property.property_category.percentage %>%</td>
         <td><%= property.name %></td>
         <!-- <td><%# link_to 'Ver', [:admin, property] %></td> -->
-        <td><%= link_to 'Editar', edit_admin_property_path(property), class: 'btn btn-info' %></td>
+        <td class="text-center"><%= link_to 'Editar', edit_admin_property_path(property), class: 'btn btn-info' %></td>
         <!-- <td><%# link_to 'Eliminar Propiedad', [:admin, property], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %></td> -->
       </tr>
     <% end %>

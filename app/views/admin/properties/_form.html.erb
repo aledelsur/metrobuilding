@@ -13,11 +13,13 @@
 
   <div class="form-group">
     <%= form.label :property_category_id, 'Categoria de la propiedad' %>
+    <br>
     <%= form.select :property_category_id, PropertyCategory.all.map { |c| [c.name, c.id] }, {}, class: 'select2' %>
   </div>
 
   <div class="form-group">
     <%= form.label :user_id, 'Nombre del propietario' %>
+    <br>
     <%= form.select :user_id, User.all.map { |u| [u.name, u.id]}, {}, class: 'select2' %>
   </div>
 

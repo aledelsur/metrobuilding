@@ -18,7 +18,7 @@
         <td>$<%= budget.value.round %></td>
         <td><%= budget.created_at.to_s(:db) %></td>
         <td><%= budget.due_date.to_s(:db) %></td>
-        <td><%= link_to 'Eliminar', [:admin, budget], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %>
+        <td class="text-center"><%= link_to 'Eliminar', [:admin, budget], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %>
       </tr>
     <% end %>
   </tbody>
