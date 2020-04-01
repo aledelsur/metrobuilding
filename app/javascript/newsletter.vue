@@ -44,7 +44,7 @@
       </div>
 
       <div class='col-xs-2 sidebar'>
-        <h5 class="text-center">Variables Personalizadas</h5>
+        <h6 class="text-center">Variables Personalizadas</h6>
       </div>
 
     </div>
@@ -128,10 +128,11 @@ export default {
   .sidebar {
       height: 25vh;
       color: #fff;
-      background-color: #5bc0de;
-      border: 1px solid #46b8da;
+      background-color: #222;
+      border: 1px solid #090909;
       border-radius: 4px;
       margin-right: 15px;
+      text-transform: uppercase;
   }
 
   .ghost {
