@@ -45,6 +45,13 @@
 
       <div class='col-xs-2 sidebar'>
         <h6 class="text-center">Variables Personalizadas</h6>
+        <div class="text-center">
+          <button type="button" class="btn btn-default">Default</button>
+          <br>
+          <br>
+          <button type="button" class="btn btn-default">Default2</button>
+        </div>
+
       </div>
 
     </div>
