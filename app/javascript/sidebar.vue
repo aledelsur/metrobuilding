@@ -15,15 +15,21 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
   data: function() {
     return {
-      variables: [
-                    ['Total a Pagar', '{{TOTAL_A_PAGAR}}'],
-                    ['Nombre del Inversor', '{{NOMBRE_INVERSOR}}']
-                 ]
+      variables: []
     }
+  },
+  mounted: function(){
+    axios({ method: 'get',
+            url: '/admin/newsletter_variables.json'
+          })
+    .then(response => {
+      this.variables = response.data
+    })
   },
   methods: {
     copyToClipboard(value) {

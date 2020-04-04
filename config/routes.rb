@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :property_categories
     resources :payments
     resources :media_assets, only: [:index, :create, :destroy]
+    resources :newsletter_variables, only: [:index]
     resources :newsletters do
       resources :newsletter_sections do
         put 'add_media_asset', to: 'newsletter_sections#add_media_asset'
