@@ -4,7 +4,7 @@
     <h1>Nueva Circular</h1>
 
     <div class="row wrapper">
-      <div class='col-xs-10 main'>
+      <div class='col-xs-12 col-sm-12 col-md-10 main'>
         <form id="newsletter_form" enctype="multipart/form-data" action="/admin/newsletters" accept-charset="UTF-8" method="post">
 
 
@@ -43,16 +43,7 @@
 
       </div>
 
-      <div class='col-xs-2 sidebar'>
-        <h6 class="text-center">Variables Personalizadas</h6>
-        <div class="text-center">
-          <button type="button" class="btn btn-default">Default</button>
-          <br>
-          <br>
-          <button type="button" class="btn btn-default">Default2</button>
-        </div>
-
-      </div>
+      <sidebar></sidebar>
 
     </div>
 
@@ -61,6 +52,7 @@
 
 <script>
 import NewsletterSection from './newsletter-section.vue'
+import Sidebar from './sidebar.vue'
 import axios from 'axios';
 import draggable from 'vuedraggable'
 
@@ -72,7 +64,7 @@ export default {
       sections: []
     }
   },
-  components: { NewsletterSection, draggable },
+  components: { NewsletterSection, draggable, Sidebar},
   mounted: function() {
     axios({ method: 'get',
             url: '/admin/newsletters/' + this.$root.newsletterId + '.json'
@@ -122,33 +114,11 @@ export default {
       justify-content: space-between;
   }
 
-  .main,
-  .sidebar {
-      padding: 15px;
-      background-color: #fff;
-  }
-
-  .main {
+  .main{
       min-height: 150vh;
-  }
-
-  .sidebar {
-      height: 25vh;
-      color: #fff;
-      background-color: #222;
-      border: 1px solid #090909;
-      border-radius: 4px;
-      margin-right: 15px;
-      text-transform: uppercase;
   }
 
   .ghost {
     visibility: hidden;
-  }
-
-  .sidebar {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
   }
 </style>
