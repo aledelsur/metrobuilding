@@ -1,6 +1,7 @@
 $(document).ready(function(){
   $(document).on('click', 'button, a', function(){
-    $(this).attr('disabled', true);
+    if(!$(this).data('disable') == false)
+      $(this).attr('disabled', true);
   })
 
   $(document).on('submit', 'form', function(){
@@ -44,7 +45,7 @@ $(document).ready(function(){
   //       type: 'PATCH',
   //       data: $(this).sortable('serialize'),
   //     });
-  //   }    
+  //   }
   // });
 
   $(document).on('change', '#image-input', function(){
