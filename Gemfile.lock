@@ -120,6 +120,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.6)
+    configatron (4.5.1)
     connection_pool (2.2.2)
     crass (1.0.6)
     devise (4.7.1)
@@ -303,6 +304,7 @@ DEPENDENCIES
   chromedriver-helper
   ckeditor (~> 4.2, >= 4.2.4)
   coffee-rails (~> 4.2)
+  configatron
   devise
   devise-i18n
   jbuilder (~> 2.5)
