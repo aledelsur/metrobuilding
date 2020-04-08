@@ -58,6 +58,7 @@ gem 'rubyzip'
 gem 'axlsx', '~> 2.0'
 gem 'axlsx_rails'
 gem 'webpacker', '~> 4.x'
+gem 'faraday'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

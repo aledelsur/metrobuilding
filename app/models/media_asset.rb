@@ -12,7 +12,7 @@ class MediaAsset < ApplicationRecord
   has_one_attached :image
 
   def thumbnail
-    return image.variant(resize: '300x300!')
+    return image.variant(resize: '120x120!')
   end
 
 end

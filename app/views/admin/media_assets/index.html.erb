@@ -1,9 +1,10 @@
-<div class="container">
+<div class="container image-gallery">
   <h1>Galería de imágenes</h1>
   <br>
-  <div class="alert alert-info" role="alert">Información: Al eliminar las imágenes que contengan la etiqueta: <span class="label label-info">Imagen utilizada en circular</span>, las mismas serán eliminadas de sus respectivas circulares.</div>
+  <div class="alert alert-info" role="alert"><b>IMPORTANTE:</b> Al eliminar las imágenes que contengan la etiqueta <span class="label label-info">Imagen utilizada en circular</span>, las mismas serán eliminadas de sus respectivas circulares.
+  </div>
+  
   <%= form_with model: [:admin, @media_asset], local: true do |form| %>
-
     <div class="image-upload">
        <label for="image-input">
          <span class="glyphicon glyphicon-camera"></span>
@@ -17,16 +18,29 @@
   <% if @media_assets.empty? %>
     <div class='no-images'>No hay imágenes en la galería.</div>
   <% else %>
-    <div class='all-images'>
-      <% @media_assets.each do |asset| %>
-          <div class='one-image img-thumbnail'>
-            <%= image_tag(asset.thumbnail) %>
-      <% if (asset.newsletter_sections).present? %>
-        <span class="label label-info">Imagen utilizada en circular</span>
-      <% end %>
-            <%= link_to 'Eliminar', admin_media_asset_path(asset), data: { confirm: 'Estás seguro?' }, method: :delete, class: 'btn btn-danger remove-image' %>
-          </div>
-      <% end %>
-    </div>
+
+    <table class='table table-bordered datatable'>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Nombre de la imagen</th>
+          <th>¿Está siendo utilizada?</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @media_assets.each do |asset| %>
+          <tr>
+            <td><%= image_tag(asset.thumbnail) %></td>
+            <td><u><%= asset.image.filename %></u></td>
+            <td><%= used_in_newsletter?(asset) %></td>
+            <td><%= link_to 'Eliminar', admin_media_asset_path(asset), data: { confirm: 'Estás seguro?' }, method: :delete, class: 'btn btn-danger remove-image' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
   <% end %>
+
 </div>

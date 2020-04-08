@@ -1,15 +1,36 @@
 <template>
   <div class="show-btn">
-    <b-button id="show-btn " variant="success" v-on:click="showMediaAssets">Agregar imágenes</b-button>
+    <b-button id="show-btn " variant="success" v-on:click="showMediaAssets">Administrar imágenes</b-button>
 
     <b-modal ref="my-modal" hide-footer title="Imágenes">
-      <div v-for="asset in mediaAssets">
         <div class='single-image text-center col-md-4'>
-          <b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded"></b-img>
+
+          <table class='table table-bordered datatable'>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Nombre de la imagen</th>
+                <th>¿Está siendo utilizada?</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                  <td>ale</td>
+                  <td><u>jandro</u></td>
+                  <td>fausto</td>
+                  <td>lucas</td>
+                </tr>
+            </tbody>
+          </table>
+
+
+
+<!--           <b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded"></b-img>
           <button class="btn btn-primary add-button" v-on:click="addAssetToSection(asset.id)" v-if="!asset.is_added">Agregar</button>
-          <button class="btn btn-danger delete-button" v-on:click="removeAssetFromSection(asset.id)" v-else>Eliminar</button>
+          <button class="btn btn-danger delete-button" v-on:click="removeAssetFromSection(asset.id)" v-else>Eliminar</button> -->
         </div>
-      </div>
     </b-modal>
   </div>
 </template>
