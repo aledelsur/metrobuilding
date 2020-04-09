@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :newsletter_variables, only: [:index]
     resources :newsletters do
       resources :newsletter_sections do
+        get 'media_assets', to: 'newsletter_sections#media_assets'
         put 'add_media_asset', to: 'newsletter_sections#add_media_asset'
         delete 'remove_media_asset', to: 'newsletter_sections#remove_media_asset'
       end

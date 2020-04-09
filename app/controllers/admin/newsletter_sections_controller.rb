@@ -8,6 +8,12 @@ class Admin::NewsletterSectionsController < AdminController
     render json: newsletter_section
   end
 
+  def media_assets
+    newsletter_section = NewsletterSection.find(params[:newsletter_section_id])
+
+    render json: newsletter_section.media_assets, each_serializer: ::Admin::MediaAssetWithinSectionSerializer
+  end
+
   def add_media_asset
     asset = MediaAsset.find(params[:id])
     newsletter_section = @newsletter.newsletter_sections.find(params[:newsletter_section_id])

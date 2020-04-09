@@ -45,6 +45,7 @@ export default {
               params: { id: assetId }})
       .then(response => {
         this.mediaAssets = response.data
+        this.reloadMediaAssets();
       })
     },
 
@@ -54,6 +55,15 @@ export default {
               params: { id: assetId }})
       .then(response => {
         this.mediaAssets = response.data
+        this.reloadMediaAssets();
+      })
+    },
+
+    reloadMediaAssets() {
+      axios({ method: 'get',
+              url: '/admin/newsletters/' + this.section.newsletter_id + '/newsletter_sections/' + this.section.id + '/media_assets' })
+      .then(response => {
+        this.$parent.$parent.sectionAssets = response.data
       })
     }
   }

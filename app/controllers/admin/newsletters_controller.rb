@@ -11,7 +11,7 @@ class Admin::NewslettersController < AdminController
     @user = User.first
     @budgets = Budget.where('due_date > ?', DateTime.now).all
     respond_to do |format|
-      format.json  { render json: @newsletter, :include => [:newsletter_sections] }
+      format.json { render json: @newsletter }
       format.html { render :show, layout: 'newsletter_show' }
     end
 

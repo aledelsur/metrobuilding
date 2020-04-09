@@ -20,6 +20,12 @@
               v-model="description"
               :config="config" />
 
+              <div class="section-assets" style="overflow: hidden;">
+                <div v-for="asset in sectionAssets" style="float: left; width: 200px;">
+                  <b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded" style="width: 200px;"></b-img>
+                </div>
+              </div>
+
               <media-asset-library :section="section"></media-asset-library>
             </div>
           </div>
@@ -48,6 +54,7 @@ export default {
       position: 1,
       title: null,
       description: '<p>Rich-text editor content.</p>',
+      sectionAssets: [],
       visible: false,
       config: {
         toolbar: [
@@ -75,6 +82,7 @@ export default {
     this.title = this.section.title
     this.description = this.section.description
     this.position = this.section.position
+    this.sectionAssets = this.section.media_assets
   },
   methods:  {
     removeSection() {
