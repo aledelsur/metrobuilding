@@ -9,7 +9,8 @@ Rails.application.routes.draw do
     resources :receipts
   end
 
-  root 'site/properties#index'
+  #root 'site/properties#index'
+  root 'admin/users#index'
   namespace :site do
     resources :payments, only: [:index]
     resources :receipts, only: [:index, :show]
