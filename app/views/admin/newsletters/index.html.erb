@@ -11,9 +11,9 @@
     <tr>
       <th>Titulo</th>
       <th>Fecha de creación</th>
+      <th>Estado</th>
       <th>Editar Circular</th>
       <th>Eliminar Circular</th>
-      <th>Estado</th>
     </tr>
   </thead>
 
@@ -22,13 +22,13 @@
       <tr>
         <td class="title"><%= link_to newsletter.title, admin_newsletter_path(newsletter), target: "_blank" %></td>
         <td><%= newsletter.created_at.strftime("%d-%m-%Y a las %H:%M hs.") %></td>
-        <td><%= link_to 'Editar', edit_admin_newsletter_path(newsletter), class: 'btn btn-info' %></td>
-        <td><%= link_to 'Eliminar', [:admin, newsletter], method: :delete, data: { confirm: 'Estás seguro que deseas eliminar esta circular?' }, class: 'btn btn-danger' %> </td>
         <% if newsletter.sent == false %>
-          <td><%= link_to 'Enviar circular', admin_newsletter_send_newsletter_path(newsletter), class:'btn btn-success' %></td>
+          <td><%= link_to 'Enviar circular', admin_newsletter_send_newsletter_path(newsletter), class: 'btn btn-default' %></td>
         <% else %>
           <td>Enviada</td>
         <% end %>
+        <td><%= link_to 'Editar', edit_admin_newsletter_path(newsletter), class: 'btn btn-default' %></td>
+        <td><%= link_to 'Eliminar', [:admin, newsletter], method: :delete, data: { confirm: 'Estás seguro que deseas eliminar esta circular?' }, class: 'btn btn-danger' %> </td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +36,4 @@
 
 <br>
 
-<%= link_to 'Nueva Circular', new_admin_newsletter_path, class: 'btn btn-info' %>
+<%= link_to 'Nueva Circular', new_admin_newsletter_path, class: 'btn btn-primary' %>
