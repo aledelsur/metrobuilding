@@ -33,32 +33,29 @@ $(document).ready(function(){
     $('input[type="checkbox"]').prop('checked', $(this).prop('checked'))
   })
 
-  $('.datatable').DataTable({
-    // ajax: ...,
-    // autoWidth: false,
-    // pagingType: 'full_numbers',
-    // processing: true,
-    // serverSide: true,
-
-    // Optional, if you want full pagination controls.
-    // Check dataTables documentation to learn more about available options.
-    // http://datatables.net/reference/option/pagingType
+  $('.datatable.users').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": [4,5] }
+    ]
   });
 
-  // $(document).on('click', '.newsletter-section .panel-heading', function(){
-  //   var section = $(this).parent();
-  //   section.find('.panel-body').toggle('collapse');
-  // });
+  $('.datatable.budgets').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": 3 }
+    ]
+  });
 
-  // $("#newsletter_sections").sortable({
-  //   update: function(e, ui){
-  //     Rails.ajax({
-  //       url: $(this).data('url'),
-  //       type: 'PATCH',
-  //       data: $(this).sortable('serialize'),
-  //     });
-  //   }
-  // });
+  $('.datatable.properties').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": 4 }
+    ]
+  });
+
+  $('.datatable.newsletters').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": [2,3,4] }
+    ]
+  });
 
   $(document).on('change', '#image-input', function(){
     $('form').submit();
