@@ -43,6 +43,13 @@ export default {
       dummy.select()
       document.execCommand("copy")
       document.body.removeChild(dummy)
+
+      this.$notify({
+        group: 'alerts',
+        type: 'info',
+        title: 'Copiar',
+        text: 'Variable copiada al portapapeles'
+      });
     }
   }
 }

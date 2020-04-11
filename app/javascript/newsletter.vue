@@ -39,7 +39,7 @@
 
         </form>
 
-        <notifications group="alerts" position="bottom left"/>
+        <notifications group="alerts" position="top left"/>
 
       </div>
 
@@ -85,6 +85,21 @@ export default {
         this.sections.push(response.data);
         console.log('Sections: ');
         console.log(this.sections);
+        this.$notify({
+          group: 'alerts',
+          type: 'success',
+          title: 'Nueva sección',
+          text: 'Sección agregada correctamente'
+        });
+      })
+      .catch(error => {
+        console.log(error);
+        this.$notify({
+          group: 'alerts',
+          type: 'error',
+          title: 'Nueva sección',
+          text: 'Ocurrió un error y la sección no pudo ser agregada'
+        });
       })
     },
     onDrop() {
