@@ -22,7 +22,7 @@
         <th>$<%= property.debt.round %></th>
         <th>USD <%= property.special_debt(:dolares).round %></th>
         <th>$<%= property.special_debt(:pesos).round %></th>
-        <td><%= link_to 'Ver Detalle', [:site, property] %></td>
+        <td><%= link_to 'Ver Detalle', [:site, property], class: 'btn btn-default' %></td>
       </tr>
     <% end %>
   </tbody>
