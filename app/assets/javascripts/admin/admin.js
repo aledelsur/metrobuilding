@@ -98,6 +98,15 @@ $(document).ready(function(){
     ]
   });
 
+  $('.datatable.newsletters').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": [2,3,4] }
+    ]
+  });
+
+  $('.datatable').DataTable({
+  });
+
   $(document).on('change', '#image-input', function(){
     $('form').submit();
   });
