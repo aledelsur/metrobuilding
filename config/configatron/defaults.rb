@@ -5,3 +5,7 @@
 #   configatron.emails.sales_reciept.subject = 'Thanks for your order'
 #
 #   configatron.file.storage = :s3
+
+
+configatron.features.newsletters = (ENV['NEWSLETTERS'] == 'true' || !ENV['NEWSLETTERS'].present?)
+configatron.features.payments = (ENV['PAYMENTS'] == 'true' || !ENV['NEWSLETTERS'].present?)
