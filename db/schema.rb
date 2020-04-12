@@ -143,6 +143,15 @@ ActiveRecord::Schema.define(version: 2020_03_10_182318) do
     t.string "concept"
   end
 
+  create_table "user_debts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "debt_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["debt_id"], name: "index_user_debts_on_debt_id"
+    t.index ["user_id"], name: "index_user_debts_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
