@@ -8,4 +8,5 @@
 
 
 configatron.features.newsletters = (ENV['NEWSLETTERS'] == 'true' || !ENV['NEWSLETTERS'].present?)
-configatron.features.payments = (ENV['PAYMENTS'] == 'true' || !ENV['NEWSLETTERS'].present?)
+configatron.features.payments = (ENV['PAYMENTS'] == 'true' || !ENV['PAYMENTS'].present?)
+configatron.features.client_portal = (ENV['PORTAL'] == 'true' || !ENV['PORTAL'].present?)

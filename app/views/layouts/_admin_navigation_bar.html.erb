@@ -9,11 +9,33 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
       <ul class="nav navbar-nav navbar-left">
         <li class="<%= 'active' if params['controller'] == 'admin/users'%>"> <%= link_to 'Propietarios', admin_users_path %> </li>
+
+        <% if configatron.features.payments %>
+          <li class="<%= 'active' if params['controller'] == 'admin/payments' %>"> <%= link_to 'Pagos', admin_payments_path %> </li>
+        <% end %>
+
         <li class="<%= 'active' if params['controller'] == 'admin/budgets'%>"> <%= link_to 'Presupuestos', admin_budgets_path %> </li>
         <li class="<%= 'active' if params['controller'] == 'admin/properties'%>"> <%= link_to 'Propiedades', admin_properties_path %> </li>
         <li class="<%= 'active' if params['controller'] == 'admin/property_categories'%>"> <%= link_to 'Categorias', admin_property_categories_path %> </li>
-        <li class="<%= 'active' if params['controller'] == 'admin/newsletters'%>"> <%= link_to 'Circulares', admin_newsletters_path %> </li>
-        <li class="<%= 'active' if params['controller'] == 'admin/media_assets'%>"> <%= link_to 'Galería de imágenes', admin_media_assets_path %> </li>
+
+        <% if configatron.features.newsletters %>
+          <li class="<%= 'active' if params['controller'] == 'admin/newsletters'%>"> <%= link_to 'Circulares', admin_newsletters_path %> </li>
+          <li class="<%= 'active' if params['controller'] == 'admin/media_assets'%>"> <%= link_to 'Galería de imágenes', admin_media_assets_path %> </li>
+        <% end %>
+
+        <% if configatron.features.payments %>
+          <li class="<%= 'active' if params['controller'] == 'admin/receipts' && params['payments'].present?%>">
+          <%= link_to 'Recibos de pagos', admin_receipts_path(payments: true) %>
+          </li>
+
+          <li class="<%= 'active' if params['controller'] == 'admin/receipts' && !params['payments'].present?%>">
+          <%= link_to 'Recibos de locales', admin_receipts_path %>
+          </li>
+
+          <li class="<%= 'active' if params['controller'] == 'admin/debts'%>">
+          <%= link_to 'Deudas especiales', admin_debts_path %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
