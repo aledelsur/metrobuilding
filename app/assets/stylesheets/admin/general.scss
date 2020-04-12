@@ -17,3 +17,32 @@
   font-size: 9px;
   margin-bottom: 5px;
 }
+
+.container {
+  margin-bottom: 50px;
+}
+
+.navbar-brand {
+  padding: 3px 12px;
+}
+
+.btn-default, .btn-danger {
+  font-size: 0.75em;
+  text-transform: uppercase;
+}
+table {
+  thead {
+    tr {
+      th {
+        text-align: center;
+      }
+    }
+  }
+  tbody {
+    tr {
+      td {
+        text-align: center;
+      }
+    }
+  }
+}

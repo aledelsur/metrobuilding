@@ -22,7 +22,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  sign_in_count          :integer          default(0), not null
+#  sign_in_count          :integer          default("0"), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -56,6 +56,10 @@ class User < ApplicationRecord
 
   def name
     "#{last_name}, #{first_name}"
+  end
+
+  def friendly_name
+    "#{first_name} #{last_name}"
   end
 
   def phones

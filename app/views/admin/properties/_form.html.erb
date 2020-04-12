@@ -12,21 +12,19 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :property_category_id, 'ID de la categoria de la propiedad' %>
-    <%= form.number_field :property_category_id, class: 'form-control' %>
+    <%= form.label :property_category_id, 'Categoria de la propiedad' %>
+    <br>
+    <%= form.select :property_category_id, PropertyCategory.all.map { |c| [c.name, c.id] }, {}, class: 'select2' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :user_id, 'ID del propietario' %>
+    <%= form.label :user_id, 'Nombre del propietario' %>
+    <br>
     <%= form.select :user_id, User.all.map { |u| [u.name, u.id]}, {}, class: 'select2' %>
   </div>
 
-   <div class="form-group">
-    <%= form.label :garage, 'Nº de cochera' %>
-    <%= form.text_field :garage, class: 'form-control' %>
-  </div>
-
   <div class="actions">
-    <%= form.submit 'Actualizar propiedad', class: 'btn btn-info' %>
+    <%= form.submit 'Guardar propiedad', class: 'btn btn-primary mb-2' %>
+    <%= link_to 'Atrás', admin_properties_path, class: 'btn btn-secondary mb-2' %>
   </div>
 <% end %>

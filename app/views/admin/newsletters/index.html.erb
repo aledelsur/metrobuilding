@@ -1,0 +1,39 @@
+<% content_for(:body_attributes) do %>
+   data-turbolinks="false"
+ <% end %>
+
+
+<p id="notice"><%= notice %></p>
+
+<h1>Circulares</h1>
+<table class="table table-bordered datatable newsletters">
+  <thead>
+    <tr>
+      <th>Titulo</th>
+      <th>Fecha de creación</th>
+      <th>Estado</th>
+      <th>Editar Circular</th>
+      <th>Eliminar Circular</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @newsletters.each do |newsletter| %>
+      <tr>
+        <td class="title"><%= link_to newsletter.title, admin_newsletter_path(newsletter), target: "_blank" %></td>
+        <td><%= newsletter.created_at.strftime("%d-%m-%Y a las %H:%M hs.") %></td>
+        <% if newsletter.sent == false %>
+          <td><%= link_to 'Enviar circular', admin_newsletter_send_newsletter_path(newsletter), data: { confirm: 'Estás seguro que deseas enviar esta circular?' }, class: 'btn btn-default' %></td>
+        <% else %>
+          <td>Enviada</td>
+        <% end %>
+        <td><%= link_to 'Editar', edit_admin_newsletter_path(newsletter), class: 'btn btn-default' %></td>
+        <td><%= link_to 'Eliminar', [:admin, newsletter], method: :delete, data: { confirm: 'Estás seguro que deseas eliminar esta circular?' }, class: 'btn btn-danger' %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nueva Circular', new_admin_newsletter_path, class: 'btn btn-primary' %>

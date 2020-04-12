@@ -3,8 +3,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'acts_as_list'
+gem 'active_model_serializers'
 gem 'annotate'
 gem 'airbrake'
+gem 'configatron'
+gem 'ckeditor', '~> 4.2', '>= 4.2.4'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
 # Use db as the database for Active Record
@@ -29,9 +33,12 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+# Amazon S3 Service
+gem "aws-sdk-s3", require: false
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
+
+gem 'sidekiq'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -43,12 +50,15 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
 gem 'rails-i18n', '~> 5.1'
 gem 'jquery-datatables-rails', '~> 3.4.0'
+gem 'jquery-ui-rails'
 gem 'devise'
 gem 'devise-i18n'
 gem 'zip-zip'
 gem 'rubyzip'
 gem 'axlsx', '~> 2.0'
 gem 'axlsx_rails'
+gem 'webpacker', '~> 4.x'
+gem 'faraday'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

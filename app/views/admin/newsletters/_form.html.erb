@@ -1,0 +1,64 @@
+<%= form_with model: [:admin, @newsletter], local: true, html: { id: 'newsletter_form' } do |newsletter_form| %>
+  </br>
+  </br>
+  <div class="form-group">
+    <%= newsletter_form.label :title, 'TÍTULO DE LA CIRCULAR' %>
+    <%= newsletter_form.text_field :title, class: 'form-control' %>
+
+    <% if @newsletter.errors.messages[:title].present? %>
+      <div class= "red-info">El título es obligatorio</div>
+    <% end %>
+  </div>
+  </br>
+  </br>
+
+  <div id="newsletter_sections" data-url="<%= @newsletter.persisted? ? admin_newsletter_sort_sections_path(@newsletter) : ''%>">
+    <%= newsletter_form.fields_for :newsletter_sections do |sections_form| %>
+      <div class="panel panel-default newsletter-section" data-id="<%= sections_form.object.id %>" id="<%= dom_id(sections_form.object) %>">
+        <div class="panel-heading">
+          Sección <%= sections_form.options[:child_index] + 1 %>
+          <span><%= sections_form.object.title.present? ? " - #{sections_form.object.title}" : ""%></span>
+          <% if sections_form.object.persisted? %>
+            <span class="remove-section"><%= link_to 'Eliminar', admin_newsletter_remove_section_path(newsletter_id: @newsletter, id: sections_form.object.id), method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %></span>
+          <% elsif newsletter_form.object.persisted? %>
+            <span class="remove-section"><%= link_to 'Eliminar', edit_admin_newsletter_path(@newsletter), data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %></span>
+          <% end %>
+        </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <%= sections_form.label :title, 'Titulo de la sección' %>
+            <%= sections_form.text_field :title, class: 'form-control' %>
+            <% if sections_form.object.errors.messages[:title].present? %>
+              <div class= "red-info">El título es obligatorio</div>
+            <% end %>
+          </div>
+
+          <div class="form-group">
+            <%= sections_form.label :description, 'Descripción de la sección' %>
+            <%= sections_form.cktext_area :description, :ckeditor => {:toolbar => 'full'} %>
+            <% if sections_form.object.errors.messages[:description].present? %>
+              <div class= "red-info">La Descripción es obligatoria</div>
+            <% end %>
+          </div>
+
+          <div class="form-group">
+            <label class="custom-file-label">Agregar imágenes</label>
+            <%= sections_form.file_field :images, multiple: true %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="btn-group">
+    <%= newsletter_form.submit 'Agregar nueva sección', class: 'btn btn-primary mb-2' %>
+  </div>
+  <div class="form-actions">
+    <div class="btn-group actions" role="group">
+      <%= newsletter_form.submit 'Vista previa', name: 'preview', class: 'btn btn-info mb-2' %>
+    </div>
+    <div class="btn-group actions" role="group">
+      <%= newsletter_form.submit 'Guardar', name: 'save', class: 'btn btn-success mb-2' %>
+    </div>
+  </div>
+
+<% end %>

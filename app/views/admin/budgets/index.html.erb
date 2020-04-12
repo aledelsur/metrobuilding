@@ -2,12 +2,10 @@
 
 <h1>Presupuestos de obra</h1>
 
-<table class='table table-bordered datatable'>
+<table class='table table-bordered datatable budgets'>
   <thead>
     <tr>
       <th>Monto</th>
-      <th>Resta saldar</th>
-      <th>Porcentaje en blanco</th>
       <th>Fecha de creación</th>
       <th>Vencimiento</th>
       <th> </th>
@@ -18,11 +16,9 @@
     <% @budgets.each do |budget| %>
       <tr>
         <td>$<%= budget.value.round %></td>
-        <td>$<%= budget.debt %></td>
-        <td><%= budget.taxable_percentage %></td>
         <td><%= budget.created_at.to_s(:db) %></td>
         <td><%= budget.due_date.to_s(:db) %></td>
-        <td><%= link_to 'Eliminar', [:admin, budget], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %>
+        <td class="text-center"><%= link_to 'Eliminar', [:admin, budget], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +26,4 @@
 
 <br>
 
-<%= link_to 'Nuevo presupuesto de obra', new_admin_budget_path, class: 'btn btn-info' %>
+<%= link_to 'Nuevo presupuesto de obra', new_admin_budget_path, class: 'btn btn-primary' %>

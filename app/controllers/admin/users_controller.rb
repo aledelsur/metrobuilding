@@ -34,6 +34,9 @@ class Admin::UsersController < AdminController
 
     respond_to do |format|
       if @user.save
+
+        # Metromarketing::Users::Request.post(@user)
+
         format.html { redirect_to [:admin, @user], notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else

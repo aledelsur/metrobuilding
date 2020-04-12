@@ -15,7 +15,8 @@ function addRemoveIds(element){
 
 $(document).ready(function(){
   $(document).on('click', 'button, a', function(){
-    $(this).attr('disabled', true);
+    if(!$(this).data('disable') == false)
+      $(this).attr('disabled', true);
   })
 
   $(document).on('submit', 'form', function(){
@@ -72,4 +73,32 @@ $(document).ready(function(){
   })
 
   $('.btn').attr('disabled', false);
+
+  $('.datatable.users').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": [4,5] }
+    ]
+  });
+
+  $('.datatable.budgets').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": 3 }
+    ]
+  });
+
+  $('.datatable.properties').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": 4 }
+    ]
+  });
+
+  $('.datatable.newsletters').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": [2,3,4] }
+    ]
+  });
+
+  $(document).on('change', '#image-input', function(){
+    $('form').submit();
+  });
 });

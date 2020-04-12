@@ -1,0 +1,65 @@
+.image-gallery {
+  .all-images {
+    margin-bottom: 2%;
+    .one-image {
+      width: 30%;
+      margin: 5px;
+      img {
+        width: 100%;
+      }
+      .remove-image {
+        margin: 5px;
+        float: right;
+      }
+      .image-title {
+        margin-bottom: 2px;
+        text-decoration: underline;
+      }
+      .image-footer{
+        overflow: hidden;
+
+        .image-used-label {
+          margin-top: 3%;
+          float: left;
+        }
+        .remove-btn {
+          float: right;
+        }
+      }
+    }
+  }
+  .no-images {
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+  .image-upload > input
+  {
+     display: none;
+  }
+  .image-upload > label{
+    cursor:pointer;
+  }
+  .image-upload {
+    margin-bottom: 2%;
+
+    span.select-image {
+      text-decoration: underline;
+    }
+  }
+
+  table {
+    tr {
+      th {
+        text-align: center;
+      }
+      td {
+        text-align: center;
+        vertical-align: middle;
+        padding: 2px;
+        .label {
+          font-size: 0.9em;
+        }
+      }
+    }
+  }
+}

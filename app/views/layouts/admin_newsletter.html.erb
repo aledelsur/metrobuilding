@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Metrobuilding (Admin)</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag Ckeditor.cdn_url %>
+
+    <%= yield(:head) %>
+
+  </head>
+
+  <body <% if content_for?(:body_attributes) %>
+            <%= yield(:body_attributes) %>
+        <% end %>
+  >
+
+    <%= render partial: '/layouts/admin_navigation_bar' %>
+
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
+
+    <div class='footer'></div>
+  </body>
+</html>
