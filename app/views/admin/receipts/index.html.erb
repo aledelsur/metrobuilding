@@ -31,8 +31,8 @@
         <% if params[:payments].nil? %>
           <td><%= receipt.concept %></td>
         <% end %>
-        <td><%= link_to 'Ver', [:admin, receipt], class: 'btn btn-info' %></td>
-        <td><%= link_to 'Edit', edit_admin_receipt_path(receipt), class: 'btn btn-info' %></td>
+        <td><%= link_to 'Ver', [:admin, receipt], class: 'btn btn-default' %></td>
+        <td><%= link_to 'Edit', edit_admin_receipt_path(receipt), class: 'btn btn-default' %></td>
         <td><%= link_to 'Eliminar', [:admin, receipt], method: :delete, data: { confirm: 'Estas seguro?' }, class: 'btn btn-danger' %></td>
       </tr>
     <% end %>

@@ -26,7 +26,7 @@
         <td><%= payment.properties.map(&:name).join(', ') %></td>
         <td>
           <% unless payment.receipts.any? %>
-            <%= link_to 'Generar Recibo', new_admin_receipt_path(payment_id: payment.id), class: 'btn btn-info' %>
+            <%= link_to 'Generar Recibo', new_admin_receipt_path(payment_id: payment.id), class: 'btn btn-default' %>
           <% end %>
         </td>
         <td><%= link_to 'Eliminar', [:admin, payment], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %></td>
