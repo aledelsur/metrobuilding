@@ -74,31 +74,25 @@ $(document).ready(function(){
 
   $('.btn').attr('disabled', false);
 
-  $('.datatable.users').DataTable({
+  $('.datatable_users').DataTable({
     "columnDefs": [
       { "orderable": false, "targets": [4,5] }
     ]
   });
 
-  $('.datatable.budgets').DataTable({
+  $('.datatable_budgets').DataTable({
     "columnDefs": [
       { "orderable": false, "targets": 3 }
     ]
   });
 
-  $('.datatable.properties').DataTable({
+  $('.datatable_properties').DataTable({
     "columnDefs": [
       { "orderable": false, "targets": 4 }
     ]
   });
 
-  $('.datatable.newsletters').DataTable({
-    "columnDefs": [
-      { "orderable": false, "targets": [2,3,4] }
-    ]
-  });
-
-  $('.datatable.newsletters').DataTable({
+  $('.datatable_newsletters').DataTable({
     "columnDefs": [
       { "orderable": false, "targets": [2,3,4] }
     ]
