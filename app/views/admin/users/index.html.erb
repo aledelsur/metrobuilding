@@ -10,7 +10,7 @@
       <th>Teléfonos</th>
       <th>Listado de propiedades</th>
 
-      <% if configatron.features.payment %>
+      <% if configatron.features.payments %>
         <th></th>
         <th></th>
         <th></th>
@@ -28,7 +28,7 @@
         <td>$<%= user.debt(@budget).round(0) %></td>
         <td><%= user.phones %></td>
         <td><%= property_list(user.properties) %></td>
-        <% if configatron.features.payment %>
+        <% if configatron.features.payments %>
             <td class="text-center"> <%= link_to 'Nuevo Pago Cuota', new_admin_payment_path(user_id: user.id, payment_type: 'cuota'), class: 'btn btn-default' %></td>
             <td class="text-center"><%= link_to 'Nuevo Pago Deuda USD', new_admin_payment_path(user_id: user.id, payment_type: 'deuda_dolares'), class: 'btn btn-default' %></td>
             <td class="text-center"><%= link_to 'Nuevo Pago Deuda Pesos', new_admin_payment_path(user_id: user.id, payment_type: 'deuda_pesos'), class: 'btn btn-default' %> </td>
