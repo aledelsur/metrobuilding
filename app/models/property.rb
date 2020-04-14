@@ -29,7 +29,11 @@ class Property < ApplicationRecord
   delegate :percentage, to: :property_category
 
   def name
-    "#{floor_name}#{apartment} - BLOQUE#{section}"
+    if configatron.project_name == 'metrobuilding'
+      "#{section} - #{apartment}"
+    else
+      "#{floor_name}#{apartment} - BLOQUE#{section}"
+    end
   end
 
   def formal_name

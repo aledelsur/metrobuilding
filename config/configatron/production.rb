@@ -3,6 +3,7 @@
 # Example:
 #   configatron.file.storage = :s3
 
+configatron.project_name = ENV['PROJECT_NAME']
 
 configatron.admin_user = ENV['ADMIN_USER']
 configatron.admin_password = ENV['ADMIN_PASSWORD']
