@@ -1,4 +1,10 @@
 <div class="container image-gallery">
+  <% flash.each do |key, value| %>
+    <div class="<%= flash_class(key) %>">
+      <%= value %>
+    </div>
+  <% end %>
+
   <h1>Galería de imágenes</h1>
   <br>
   <div class="alert alert-info" role="alert"><b>IMPORTANTE:</b> Al eliminar las imágenes que contengan la etiqueta <span class="label label-info">Imagen utilizada en circular</span>, las mismas serán eliminadas de sus respectivas circulares.

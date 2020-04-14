@@ -13,6 +13,7 @@ class Admin::MediaAssetsController < AdminController
 
   def create
     @media_asset = MediaAsset.create(media_asset_parms)
+    flash[:success] = "Imagen agregada correctamente."
     redirect_to admin_media_assets_path
   end
 
@@ -20,6 +21,7 @@ class Admin::MediaAssetsController < AdminController
     @media_asset = MediaAsset.find(params[:id])
 
     if @media_asset.present?
+      flash[:success] = "Imagen eliminada correctamente."
       @media_asset.destroy
     end
     redirect_to admin_media_assets_path
