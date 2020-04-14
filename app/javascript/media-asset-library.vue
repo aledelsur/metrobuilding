@@ -76,14 +76,17 @@ export default {
     overflow-y: auto;
   }
   .modal-dialog {
-    margin-top: 25%;
+    margin-top: 17%;
     overflow-y: initial !important;
-    width: 85%;
+    width: 75%;
   }
   .modal-dialog img {
     width: 200px;
     height: 200px;
     margin: 5px;
+  }
+  .modal-dialog .modal-content {
+    min-height: 700px;
   }
   .add-button, .delete-button{
     display: block;
