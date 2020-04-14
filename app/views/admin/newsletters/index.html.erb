@@ -3,9 +3,14 @@
  <% end %>
 
 
-<p id="notice"><%= notice %></p>
+<% flash.each do |key, value| %>
+  <div class="<%= flash_class(key) %>">
+    <%= value %>
+  </div>
+<% end %>
 
 <h1>Circulares</h1>
+<br>
 <table class="table table-bordered datatable_newsletters">
   <thead>
     <tr>

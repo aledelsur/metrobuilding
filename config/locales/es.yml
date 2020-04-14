@@ -1,0 +1,9 @@
+es:
+  activerecord:
+    attributes:
+      user:
+        first_name: 'Nombre'
+        last_name: 'Apellido'
+      budget:
+        value: 'Monto'
+        dollar_against_peso_value: 'Valor del dolar'

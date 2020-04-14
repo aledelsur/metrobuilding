@@ -1,7 +1,11 @@
-<p id="notice"><%= notice %></p>
+<% flash.each do |key, value| %>
+  <div class="<%= flash_class(key) %>">
+    <%= value %>
+  </div>
+<% end %>
 
 <h1>Categoria de Propiedades</h1>
-
+<br>
 <table class='table table-bordered datatable'>
   <thead>
     <tr>

@@ -1,0 +1,10 @@
+<% flash.each do |key, value| %>
+  <div class="<%= flash_class(key) %> error-messages">
+    <span class='title'> <%= value %> </span>
+    <ul>
+      <% model_name.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

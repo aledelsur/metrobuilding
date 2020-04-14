@@ -28,9 +28,11 @@ class Admin::PropertiesController < AdminController
 
     respond_to do |format|
       if @property.save
-        format.html { redirect_to [:admin, @property], notice: 'Propiedad creada correctamente.' }
+        flash[:success] = "Propiedad creada correctamente."
+        format.html { redirect_to [:admin, @property] }
         format.json { render :show, status: :created, location: @property }
       else
+        flash[:error] = "Los siguientes errores no permiten guardar la información:"
         format.html { render :new }
         format.json { render json: @property.errors, status: :unprocessable_entity }
       end
@@ -42,9 +44,11 @@ class Admin::PropertiesController < AdminController
   def update
     respond_to do |format|
       if @property.update(property_params)
-        format.html { redirect_to admin_properties_path, notice: 'Propiedad actualizada correctamente.' }
+        flash[:success] = "Propiedad actualizada correctamente."
+        format.html { redirect_to admin_properties_path }
         format.json { render :show, status: :ok, location: @property }
       else
+        flash[:error] = "Los siguientes errores no permiten guardar la información:"
         format.html { render :edit }
         format.json { render json: @property.errors, status: :unprocessable_entity }
       end
@@ -56,7 +60,8 @@ class Admin::PropertiesController < AdminController
   def destroy
     @property.destroy
     respond_to do |format|
-      format.html { redirect_to admin_properties_path, notice: 'Propiedad eliminada correctamente.' }
+      flash[:success] = "Propiedad eliminada correctamente."
+      format.html { redirect_to admin_properties_path }
       format.json { head :no_content }
     end
   end

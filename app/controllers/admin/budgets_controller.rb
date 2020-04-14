@@ -28,8 +28,10 @@ class Admin::BudgetsController < AdminController
 
     respond_to do |format|
       if @budget.save
-        format.html { redirect_to admin_budgets_path, notice: 'Budget was successfully created.' }
+        flash[:success] = "Presupuesto de Obra creado correctamente."
+        format.html { redirect_to admin_budgets_path }
       else
+        flash[:error] = "Los siguientes errores no permiten guardar la información:"
         format.html { render :new }
       end
     end
@@ -54,19 +56,19 @@ class Admin::BudgetsController < AdminController
   def destroy
     @budget.destroy
     respond_to do |format|
-      format.html { redirect_to admin_budgets_url, notice: 'Budget was successfully destroyed.' }
+      flash[:success] = "Presupuesto de Obra eliminado correctamente."
+      format.html { redirect_to admin_budgets_url }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_budget
-      @budget = Budget.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def budget_params
-      params.require(:budget).permit(:value, :due_date, :dollar_against_peso_value)
-    end
+  def set_budget
+    @budget = Budget.find(params[:id])
+  end
+
+  def budget_params
+    params.require(:budget).permit(:value, :due_date, :dollar_against_peso_value)
+  end
 end

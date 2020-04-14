@@ -37,9 +37,11 @@ class Admin::UsersController < AdminController
 
         # Metromarketing::Users::Request.post(@user)
 
-        format.html { redirect_to [:admin, @user], notice: 'User was successfully created.' }
+        flash[:success] = "Propietario creado correctamente."
+        format.html { redirect_to admin_users_path }
         format.json { render :show, status: :created, location: @user }
       else
+        flash[:error] = "Los siguientes errores no permiten guardar la información:"
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -56,9 +58,11 @@ class Admin::UsersController < AdminController
                  @user.update_without_password(user_params)
                end
       if result
-        format.html { redirect_to [:admin, @user], notice: 'User was successfully updated.' }
+        flash[:success] = "Propietario actualizado correctamente."
+        format.html { redirect_to admin_users_path }
         format.json { render :show, status: :ok, location: @user }
       else
+        flash[:error] = "Los siguientes errores no permiten guardar la información:"
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -70,19 +74,19 @@ class Admin::UsersController < AdminController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to admin_users_path, notice: 'User was successfully destroyed.' }
+      flash[:success] = "Propietario eliminado correctamente."
+      format.html { redirect_to admin_users_path }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :dni, :cuit, :phone_number, :mobile_number, :address_1, :address_2, :notes)
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :dni, :cuit, :phone_number, :mobile_number, :address_1, :address_2, :notes)
+  end
 end

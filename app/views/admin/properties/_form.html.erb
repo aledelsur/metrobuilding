@@ -1,26 +1,17 @@
 <%= form_with(model: [:admin, property], local: true) do |form| %>
-  <% if property.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
 
-      <ul>
-      <% property.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: 'admin/shared/error_messages', locals: { model_name: property } %>
 
-  <div class="form-group">
+  <div class="form-group property">
     <%= form.label :property_category_id, 'Categoria de la propiedad' %>
     <br>
-    <%= form.select :property_category_id, PropertyCategory.all.map { |c| [c.name, c.id] }, {}, class: 'select2' %>
+    <%= form.select :property_category_id, PropertyCategory.all.map { |c| [c.name, c.id] }, {}, class: 'select2 edit-property' %>
   </div>
 
-  <div class="form-group">
+  <div class="form-group property">
     <%= form.label :user_id, 'Nombre del propietario' %>
     <br>
-    <%= form.select :user_id, User.all.map { |u| [u.name, u.id]}, {}, class: 'select2' %>
+    <%= form.select :user_id, User.all.map { |u| [u.name, u.id]}, {}, class: 'select2 edit-property' %>
   </div>
 
   <div class="actions">

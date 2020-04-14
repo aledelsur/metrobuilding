@@ -44,8 +44,8 @@ class User < ApplicationRecord
 
   after_update :recalculate_budget_debt
 
-  # validates :first_name, presence: true
-  # validates :last_name, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
   # validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 
   # def generate_payment(value, due_date, id)

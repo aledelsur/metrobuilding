@@ -35,4 +35,12 @@ module ApplicationHelper
     variables.each { |key, value| text.gsub!(key, value) }
     raw(text)
   end
+
+  def flash_class(level)
+    case level
+      when 'notice' then "alert alert-info"
+      when 'success' then "alert alert-success"
+      when 'error' then "alert alert-danger"
+    end
+  end
 end
