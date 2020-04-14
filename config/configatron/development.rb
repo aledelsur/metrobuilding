@@ -4,6 +4,8 @@
 #   configatron.file.storage = :local
 
 
+configatron.project_name = 'metrobuilding'
+
 configatron.admin_user = '1234'
 configatron.admin_password = '1234'
 

@@ -1,5 +1,7 @@
 # README
 
+IMPORTANT: Each intranet that we build needs to have the name set in the `configatron/defaults.rb`. This is used in the API to MetroMarketing so that we know which intranet has the user has been created from.
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 

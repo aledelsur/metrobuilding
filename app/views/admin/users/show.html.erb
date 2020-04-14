@@ -10,15 +10,17 @@
   <%= @user.last_name %>
 </p>
 
-<p>
-  <strong>Dni:</strong>
-  <%= @user.dni %>
-</p>
+<% unless configatron.project_name == 'metrobuilding' %>
+  <p>
+    <strong>Dni:</strong>
+    <%= @user.dni %>
+  </p>
 
-<p>
-  <strong>Cuit:</strong>
-  <%= @user.cuit %>
-</p>
+  <p>
+    <strong>Cuit:</strong>
+    <%= @user.cuit %>
+  </p>
+<% end %>
 
 <p>
   <strong>Teléfono fijo:</strong>

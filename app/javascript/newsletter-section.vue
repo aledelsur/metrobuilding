@@ -105,4 +105,7 @@ export default {
     font-size: 25px;
     text-align: center;
   }
+  .newsletter-section .panel-heading {
+    height: 38px;
+  }
 </style>
