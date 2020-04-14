@@ -20,9 +20,9 @@
               v-model="description"
               :config="config" />
 
-              <div class="section-assets" style="overflow: hidden;">
-                <div v-for="asset in sectionAssets" style="float: left; width: 200px;">
-                  <b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded" style="width: 200px;"></b-img>
+              <div class="section-assets row">
+                <div v-for="asset in sectionAssets" class="col-md-2">
+                  <b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded"></b-img>
                 </div>
               </div>
 
@@ -107,5 +107,14 @@ export default {
   }
   .newsletter-section .panel-heading {
     height: 38px;
+  }
+  .section-assets {
+    overflow: hidden;
+    margin-top: 1%;
+  }
+  .section-assets img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 5px;
   }
 </style>

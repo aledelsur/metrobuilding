@@ -31,43 +31,46 @@ class Admin::NewslettersController < AdminController
     # end
   end
 
-  def create
-    @newsletter = Newsletter.new(newsletter_params)
+  # def create
+  #   @newsletter = Newsletter.new(newsletter_params)
 
-    if @newsletter.save
-      # @newsletter.images.attach(params[:newsletter][:images])
-      if params[:save].present?
-        redirect_to admin_newsletters_path # redirect to index view
-      elsif params[:preview].present?
-        redirect_to admin_newsletter_path(@newsletter) # redirect to preview
-      else
-        redirect_to edit_admin_newsletter_path(@newsletter, new_section: true) # redirect to edit view and build blank section
-      end
-    else
-      render :new
-    end
-  end
+  #   if @newsletter.save
+  #     # @newsletter.images.attach(params[:newsletter][:images])
+  #     if params[:save].present?
+  #       redirect_to admin_newsletters_path # redirect to index view
+  #     elsif params[:preview].present?
+  #       redirect_to admin_newsletter_path(@newsletter) # redirect to preview
+  #     else
+  #       redirect_to edit_admin_newsletter_path(@newsletter, new_section: true) # redirect to edit view and build blank section
+  #     end
+  #   else
+  #     render :new
+  #   end
+  # end
 
   def update
-    if @newsletter.update(newsletter_params)
-      if params[:save].present?
-        redirect_to admin_newsletters_path # redirect to index view
-      elsif params[:preview].present?
-        redirect_to admin_newsletter_path(@newsletter) # redirect to preview
-      else
-        redirect_to edit_admin_newsletter_path(@newsletter, new_section: true) # redirect to edit view and build blank section
-      end
-    else
-      render :edit
-    end
+    byebug
+    # if @newsletter.update(newsletter_params)
+    #   if params[:save].present?
+    #     redirect_to admin_newsletters_path # redirect to index view
+    #   elsif params[:preview].present?
+    #     redirect_to admin_newsletter_path(@newsletter) # redirect to preview
+    #   else
+    #     redirect_to edit_admin_newsletter_path(@newsletter, new_section: true) # redirect to edit view and build blank section
+    #   end
+    # else
+    #   render :edit
+    # end
+    redirect_to admin_newsletters_path # redirect to index view
   end
 
   def destroy
     @newsletter = Newsletter.find(params[:id])
     if @newsletter.present?
       @newsletter.destroy
+      flash[:success] = "Circular eliminada correctamente."
     end
-    redirect_to admin_newsletters_path, notice: 'Circular eliminada correctamente.'
+    redirect_to admin_newsletters_path
   end
 
   def sort_sections

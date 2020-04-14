@@ -1,3 +1,5 @@
+<h1>Datos del Propietario</h1>
+<br>
 <p>
   <strong>Nombre:</strong>
   <%= @user.first_name %>
@@ -45,5 +47,5 @@
   <%= @user.notes %>
 </p>
 
-<%= link_to 'Edit', edit_admin_user_path(@user) %> |
-<%= link_to 'Back', admin_users_path %>
+<br>
+<%= link_to 'Atrás', admin_users_path, class: 'btn btn-primary' %>
