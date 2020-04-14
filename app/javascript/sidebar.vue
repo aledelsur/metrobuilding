@@ -62,9 +62,9 @@ export default {
       padding: 15px;
       background-color: #fff;
       height: 25vh;
-      color: #fff;
-      background-color: #222;
-      border: 1px solid #090909;
+      color: #000;
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
       border-radius: 4px;
       margin-right: 15px;
       text-transform: uppercase;
