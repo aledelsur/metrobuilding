@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       end
       put '/sort_sections', to: 'newsletters#sort_sections', as: 'sort_sections'
       get '/send_newsletter', to: 'newsletters#send_newsletter', as:'send_newsletter'
+      get '/preview', to: 'newsletters#preview', as: 'newsletter_preview'
     end
   end
 end

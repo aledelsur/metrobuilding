@@ -29,7 +29,7 @@
 
           <div class="form-actions">
             <div class="btn-group actions" role="group">
-              <input type="submit" name="preview" value="Vista previa" class="btn btn-info mb-2" data-disable-with="Vista previa">
+              <b-button @click="resetPreview()" v-b-modal.modal-tall class="btn btn-info mb-2">Vista previa</b-button>
             </div>
 
             <div class="btn-group actions" role="group">
@@ -44,6 +44,7 @@
       </div>
 
       <sidebar></sidebar>
+      <newsletter-preview :key="newsletterPreviewId"></newsletter-preview>
 
     </div>
 
@@ -52,19 +53,24 @@
 
 <script>
 import NewsletterSection from './newsletter-section.vue'
+import NewsletterPreview from './newsletter-preview.vue'
 import Sidebar from './sidebar.vue'
 import axios from 'axios';
 import draggable from 'vuedraggable'
+import { ModalPlugin } from 'bootstrap-vue'
+Vue.use(ModalPlugin)
+import Vue from 'vue'
 
 export default {
   data: function () {
     return {
       id: null,
       title: "Newsletter 1",
-      sections: []
+      sections: [],
+      newsletterPreviewId: 0
     }
   },
-  components: { NewsletterSection, draggable, Sidebar},
+  components: { NewsletterSection, draggable, Sidebar, ModalPlugin, NewsletterPreview },
   mounted: function() {
     axios({ method: 'get',
             url: '/admin/newsletters/' + this.$root.newsletterId + '.json'
@@ -116,6 +122,9 @@ export default {
           text: 'Posicionamiento cambiado correctamente'
         });
       })
+    },
+    resetPreview() {
+      this.newsletterPreviewId += 1
     }
 
   }

@@ -14,7 +14,6 @@ class Admin::NewslettersController < AdminController
       format.json { render json: @newsletter }
       format.html { render :show, layout: 'newsletter_show' }
     end
-
   end
 
   def new
@@ -31,22 +30,23 @@ class Admin::NewslettersController < AdminController
     # end
   end
 
-  # def create
-  #   @newsletter = Newsletter.new(newsletter_params)
+  def create
+    # @newsletter = Newsletter.new(newsletter_params)
 
-  #   if @newsletter.save
-  #     # @newsletter.images.attach(params[:newsletter][:images])
-  #     if params[:save].present?
-  #       redirect_to admin_newsletters_path # redirect to index view
-  #     elsif params[:preview].present?
-  #       redirect_to admin_newsletter_path(@newsletter) # redirect to preview
-  #     else
-  #       redirect_to edit_admin_newsletter_path(@newsletter, new_section: true) # redirect to edit view and build blank section
-  #     end
-  #   else
-  #     render :new
-  #   end
-  # end
+    # if @newsletter.save
+    #   # @newsletter.images.attach(params[:newsletter][:images])
+    #   if params[:save].present?
+    #     redirect_to admin_newsletters_path # redirect to index view
+    #   elsif params[:preview].present?
+    #     redirect_to admin_newsletter_path(@newsletter) # redirect to preview
+    #   else
+    #     redirect_to edit_admin_newsletter_path(@newsletter, new_section: true) # redirect to edit view and build blank section
+    #   end
+    # else
+    #   render :new
+    # end
+    redirect_to admin_newsletters_path
+  end
 
   def update
     byebug
@@ -87,6 +87,11 @@ class Admin::NewslettersController < AdminController
     SendNewsletterJob.perform_later(newsletter)
     newsletter.update_attribute(:sent, true)
     redirect_to admin_newsletters_path, notice: 'Circular enviada correctamente.'
+  end
+
+  def preview
+    newsletter = Newsletter.includes(:newsletter_sections).find(params[:newsletter_id])
+    render json: newsletter, serializer: ::Admin::NewsletterPreviewSerializer
   end
 
   private
