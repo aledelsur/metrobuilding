@@ -55,7 +55,7 @@ export default {
       title: null,
       description: '<p>Rich-text editor content.</p>',
       sectionAssets: [],
-      visible: false,
+      visible: true,
       config: {
         toolbar: [
           // { name: 'document', items: [ '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates' ] },

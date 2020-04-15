@@ -12,10 +12,10 @@ class Admin::NewsletterPreviewSerializer < ActiveModel::Serializer
   has_many :newsletter_sections
 
   def logo_url
-    ActionController::Base.helpers.asset_path("/images/logo-metro.png")
+    ActionController::Base.helpers.asset_path("logo-metro.png")
   end
 
   def main_image
-    ActionController::Base.helpers.asset_path("/images/metrobuilding-portada-photo.jpg")
+    ActionController::Base.helpers.asset_path("metrobuilding-portada-photo.jpg")
   end
 end
