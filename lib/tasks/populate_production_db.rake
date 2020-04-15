@@ -23,5 +23,17 @@ task :populate_production_db_for_demo => :environment do
 
   Budget.destroy_all
   Budget.create(value: 1000000, dollar_against_peso_value: 66, due_date: DateTime.now + 7.days)
-  puts "1 Budget created"  
+  puts "1 Budget created"
+
+  Newsletter.destroy_all
+  news1 = Newsletter.create(title: 'CIRCULAR INFORMATIVA Nº 3 | MARZO 2020')
+  news1.newsletter_sections.create(title: 'AVANCE DE TAREAS', description: 'Con bases, tabiques submurales y losa sobre subsuelo ya terminados, podemos decir que la obra “salió Del Pozo”, superando de esta manera, la etapa más complicada del proceso, cuyo avance se ve afectado directamente por los días de lluvia.<br><br>Como se puede apreciar en la imagen, el edificio ha comenzado a emerger con el armado de la losa sobre la Planta Baja sobre la línea de edificación, por lo que ya se hace visible desde la calle.<br>A continuación, el avance de las tareas.<br><br>- Losa sobre subsuelo hormigonada al 100%<br>- Losa sobre planta Baja hormigonada al 60%<br>- Encofrado de losa sobre Planta Baja sector frente, en ejecución.<br>- Escalera de planta Baja a 1º  Piso, hormigonada al 100%.<br>- Rampa de acceso a Subsuelo, en ejecución.')
+  news1.newsletter_sections.create(title: 'HIGIENE Y SEGURIDAD', description: '- Se cumple con la normativa vigente en materia de Higiene y Seguridad.<br>- La vereda permanece en buenas condiciones de transitabilidad.<br>- Se aplica en forma permanente seguimiento sobre el Contratista Principal, para adecuar situaciones de desvíos o incumplimientos.')
+  news1.newsletter_sections.create(title: 'GALERIA DE IMÁGENES', description: '')
+
+  news2 = Newsletter.create(title: 'CIRCULAR INFORMATIVA Nº 4 | ABRIL 2020')
+  news2.newsletter_sections.create(title: 'AVANCE DE TAREAS', description: 'Con bases, tabiques submurales y losa sobre subsuelo ya terminados, podemos decir que la obra “salió Del Pozo”, superando de esta manera, la etapa más complicada del proceso, cuyo avance se ve afectado directamente por los días de lluvia.<br><br>Como se puede apreciar en la imagen, el edificio ha comenzado a emerger con el armado de la losa sobre la Planta Baja sobre la línea de edificación, por lo que ya se hace visible desde la calle.<br>A continuación, el avance de las tareas.<br><br>- Losa sobre subsuelo hormigonada al 100%<br>- Losa sobre planta Baja hormigonada al 60%<br>- Encofrado de losa sobre Planta Baja sector frente, en ejecución.<br>- Escalera de planta Baja a 1º  Piso, hormigonada al 100%.<br>- Rampa de acceso a Subsuelo, en ejecución.')
+  news2.newsletter_sections.create(title: 'HIGIENE Y SEGURIDAD', description: '- Se cumple con la normativa vigente en materia de Higiene y Seguridad.<br>- La vereda permanece en buenas condiciones de transitabilidad.<br>- Se aplica en forma permanente seguimiento sobre el Contratista Principal, para adecuar situaciones de desvíos o incumplimientos.')
+  news2.newsletter_sections.create(title: 'GALERIA DE IMÁGENES', description: '')
+  puts "2 Newsletters created"
 end
