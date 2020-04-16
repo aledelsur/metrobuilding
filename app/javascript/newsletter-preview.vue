@@ -84,7 +84,6 @@ export default {
       this.sections = response.data.newsletter_sections
       this.logo_url = response.data.logo_url
       this.main_image = response.data.main_image
-      debugger
     })
   }
 }
