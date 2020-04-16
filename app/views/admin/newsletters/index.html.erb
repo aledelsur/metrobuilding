@@ -24,7 +24,7 @@
   <tbody>
     <% @newsletters.each do |newsletter| %>
       <tr>
-        <td class="title"><%= link_to newsletter.title, admin_newsletter_path(newsletter), target: "_blank" %></td>
+        <td class="title"><%= newsletter.title %></td>
         <td><%= newsletter.created_at.strftime("%d-%m-%Y a las %H:%M hs.") %></td>
         <% if newsletter.sent == false %>
           <td><%= link_to 'Enviar circular', admin_newsletter_send_newsletter_path(newsletter), data: { confirm: 'Estás seguro que deseas enviar esta circular?' }, class: 'btn btn-default' %></td>

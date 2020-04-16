@@ -38,8 +38,15 @@
                     {{section.title}}
                   </div>
                   <div class="description">
-                    {{section.description}}
+                    <div v-html="section.description"></div>
                   </div>
+
+                  <div class="row">
+                    <div v-for="asset in section.media_assets" :key="asset.id" class="col-md-4 col-sm-6 col-xs-12">
+                      <b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded"></b-img>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
