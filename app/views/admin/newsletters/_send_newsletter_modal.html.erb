@@ -1,0 +1,56 @@
+<!-- Modal -->
+<div class="modal fade send_newsletter_modal" id="send_newsletter_modal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <%= form_with(id: 'send_newsletter_form', method: "put", local: true) do |form| %>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title text-center">Enviar Circular</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body text-center">
+          <h4>¿Quiénes recibirán la Circular?</h4>
+
+          <div class="radios">
+            <div class="check-all">
+              <input type="radio" name="selected_option" id="all_users" value="all_users" checked>
+              <label for="all_users">
+                Todos los propietarios
+              </label>
+            </div>
+            <div class="check-some">
+              <input type="radio" name="selected_option" id="some_users" value="some_users">
+              <label for="some_users">
+                Algunos propietarios
+              </label>
+            </div>
+          </div>
+
+          <div class="select-users-as-recipients">
+            <div class=form-inputs>
+              <div class="form-lbl text-left">
+                <%= form.label :user_id, 'Seleccionar propietarios:' %>
+              </div>
+
+              <div class="form-input">
+                <%= form.select :user_id, User.all.map { |u| [u.name, u.id]}, { include_blank: true }, class: 'select2' %>
+              </div>
+            </div>
+
+            <div class="users-selected">
+              <input type="text" name="user_ids[]" data-role="tagsinput" id="selected_users">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary" id="send-btn" data-confirm="Estás seguro que deseas enviar?">Enviar</button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

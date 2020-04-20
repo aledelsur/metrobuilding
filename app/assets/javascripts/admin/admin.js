@@ -121,4 +121,43 @@ $(document).ready(function(){
   $(document).on('change', '#image-input', function(){
     $('form').submit();
   });
+
+  $(document).on('change', '#some_users', function(){
+    $('.select-users-as-recipients').show();
+  });
+
+  $(document).on('change', '#all_users', function(){
+    $('.select-users-as-recipients').hide();
+  });
+
+ $('#selected_users').tagsinput({
+    itemValue: 'id',
+    itemText: 'text',
+  });
+
+  /* Sets the id of the newsletter to the modal so that when submitting the form we can add the id to the url in the form */
+  $(document).on('click', '.send-newsletter-btn-index', function(){
+    var newsletter_id = $(this).data('newsletter-id');
+    $('#send_newsletter_modal').attr('data-newsletter-id', newsletter_id);
+  });
+
+  $('#user_id').on("select2:select", function(event) {
+    var selected_option = $(event.currentTarget).find("option:selected");
+    var user_name = selected_option.text();
+    var user_id = selected_option.val();
+
+    $('#selected_users').tagsinput('add', {id: user_id, text: user_name});
+    $('.users-selected').show();
+  });
+
+  $(document).on('click', '#send_newsletter_modal #send-btn', function(e){
+    e.preventDefault();
+    var newsletter_id = $('#send_newsletter_modal').data('newsletter-id');
+    $('#send_newsletter_form').attr('action', "/admin/newsletters/" + newsletter_id + "/send_newsletter").submit();
+  });
+
+  // Refresh page when modal is closed so that we don't we make sure the estate of the modal is initialized next time it's opened.
+  $(document).on('hide.bs.modal', function(e) {
+    location.reload();
+  })
 });

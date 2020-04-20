@@ -24,32 +24,9 @@ class Admin::NewslettersController < AdminController
 
   def edit
     @newsletter = Newsletter.find(params[:id])
-
-    # if params[:new_section].present?
-    #   @newsletter.newsletter_sections.build
-    # end
-  end
-
-  def create
-    # @newsletter = Newsletter.new(newsletter_params)
-
-    # if @newsletter.save
-    #   # @newsletter.images.attach(params[:newsletter][:images])
-    #   if params[:save].present?
-    #     redirect_to admin_newsletters_path # redirect to index view
-    #   elsif params[:preview].present?
-    #     redirect_to admin_newsletter_path(@newsletter) # redirect to preview
-    #   else
-    #     redirect_to edit_admin_newsletter_path(@newsletter, new_section: true) # redirect to edit view and build blank section
-    #   end
-    # else
-    #   render :new
-    # end
-    redirect_to admin_newsletters_path
   end
 
   def update
-    byebug
     # if @newsletter.update(newsletter_params)
     #   if params[:save].present?
     #     redirect_to admin_newsletters_path # redirect to index view
@@ -83,10 +60,12 @@ class Admin::NewslettersController < AdminController
   end
 
   def send_newsletter
-    newsletter= Newsletter.find(params[:newsletter_id])
-    SendNewsletterJob.perform_later(newsletter)
-    newsletter.update_attribute(:sent, true)
-    redirect_to admin_newsletters_path, notice: 'Circular enviada correctamente.'
+    newsletter = Newsletter.find(params[:newsletter_id])
+
+    SendNewsletterJob.perform_later(newsletter, params[:selected_option], params[:user_ids])
+    newsletter.update_attribute(:sent_at, DateTime.now)
+    flash[:success] = "Circular enviada correctamente."
+    redirect_to admin_newsletters_path
   end
 
   def preview

@@ -180,3 +180,75 @@ table.newsletters {
     text-transform: uppercase;
   }
 }
+/* Modal to select users that will receive the newsletter */
+.send_newsletter_modal {
+  .modal-header {
+    display: flex;
+    .modal-title {
+      margin-left: 40%;
+    }
+    .close {
+      padding: 1rem 1rem;
+      margin: -1rem -1rem -1rem auto;
+    }
+  }
+  .modal-body {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    .radios {
+      overflow: hidden;
+      margin-top: 6%;
+      label {
+        font-weight: normal;
+        margin-left: 5px;
+      }
+      .check-all {
+        float: left;
+        margin-left: 20%;
+      }
+      .check-some {
+        float: right;
+        margin-right: 20%;
+      }
+    }
+    .select-users-as-recipients {
+      display: none;
+      margin-top: 4%;
+      margin-left: 15%;
+      margin-right: 15%;
+      .form-inputs {
+        overflow: hidden;
+        .form-lbl {
+          float: left;
+          width: 40%;
+          margin-top: 7px;
+        }
+        .form-input {
+          float: right;
+          width: 60%;
+        }
+      }
+      .users-selected {
+        margin-top: 2%;
+        display: none;
+        .bootstrap-tagsinput {
+          width: 100%;
+          min-height: 41px;
+          span.tag {
+            float: left;
+            height: 31px;
+            padding-top: 8px;
+            font-size: 1em;
+            background-color: #fff;
+            color: #555555;
+            border: 1px solid #ccc;
+            font-weight: normal;
+            margin-right: 3px;
+            margin-bottom: 2px;
+            margin-top: 1px;
+          }
+        }
+      }
+    }
+  }
+}
