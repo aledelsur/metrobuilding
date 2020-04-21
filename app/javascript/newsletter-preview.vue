@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-modal id="modal-tall" scrollable title="Vista Previa">
+    <!-- <b-modal id="modal-tall" scrollable title="Vista Previa"> -->
 
       <div class="admin-newsletter-view">
 
@@ -63,7 +63,7 @@
         </div>
       </div>
 
-    </b-modal>
+    <!-- </b-modal> -->
   </div>
 </template>
 
@@ -81,8 +81,9 @@ export default {
     }
   },
   mounted: function() {
+
     axios({ method: 'get',
-            url: '/admin/newsletters/' + this.$root.newsletterId+ '/preview.json'
+            url: '/admin/newsletters/' + this.$root.newsletterId + '/preview.json'
           })
     .then(response => {
       console.log(response.data)
@@ -95,6 +96,108 @@ export default {
   }
 }
 </script>
-<style>
+
+<style scoped>
+
+.admin-newsletter-view {
+  background: url('./images/bg_footer.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'brown';
+}
+
+.admin-newsletter-view header {
+	 background-image: url('./images/masterhead.jpg');
+	 background-repeat: no-repeat;
+	 background-attachment: scroll;
+	 background-position: center center;
+	 background-size: cover;
+	 height: 500px;
+}
+
+.admin-newsletter-view header .title-newsletter-container {
+	 color: white;
+	 margin-top: 175px;
+	 background: rgba(46, 49, 49, 0.5);
+	 padding: 10px;
+}
+
+.admin-newsletter-view header .title-newsletter-container .main-title {
+	 font-size: 70px;
+	 font-weight: bold;
+}
+
+.admin-newsletter-view header .title-newsletter-container .subtitle {
+	 font-size: 17px;
+	 text-transform: uppercase;
+}
+
+.admin-newsletter-view .newsletter-small-title {
+	 font-size: 12px;
+	 text-align: left;
+	 text-transform: uppercase;
+}
+
+.admin-newsletter-view .triangle {
+	 height: 200px;
+}
+
+.admin-newsletter-view .logo-img {
+	 width: 230px;
+	 display: block;
+	 margin: auto;
+}
+
+.admin-newsletter-view .cover-image {
+	 max-width: 50%;
+	 margin: 15px auto 15px auto;
+	 display: block;
+}
+
+.admin-newsletter-view .container {
+	 width: 95%;
+}
+
+.admin-newsletter-view .title-newsletter {
+	 font-size: 50px;
+	 color: #333;
+}
+
+.admin-newsletter-view .dividing-bar {
+	 height: 15px;
+	 border-radius: 0.25rem;
+	 background-color: #00c9fc;
+	 color: white;
+}
+
+.admin-newsletter-view .sections {
+	 margin-bottom: 150px;
+	 background-size: cover;
+}
+
+.admin-newsletter-view .sections .section .title {
+	 background-color: #00c9fc;
+	 color: white;
+	 border: 2px solid #00c9fc;
+	 border-radius: 0.25rem;
+	 text-transform: uppercase;
+	 margin-bottom: inherit;
+	 margin-top: 40px;
+	 font-weight: bolder;
+	 font-size: 20px;
+}
+ .admin-newsletter-view .sections .section .description {
+	 margin-top: 2%;
+	 margin-bottom: 2%;
+}
+ .admin-newsletter-view .footer-newsletter {
+	 height: 52px;
+	 background-color: #333;
+	 border-top: 1px solid #333;
+	 color: white;
+}
+ .admin-newsletter-view .footer-newsletter p {
+	 padding-top: 12px;
+}
 
 </style>

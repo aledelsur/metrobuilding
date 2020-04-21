@@ -1,60 +1,8 @@
-<div class="admin-newsletter-view">
-    <!-- Header -->
-  <div class="container">
-    <div class="row">
+<%= content_for :head do %>
+  <%= javascript_pack_tag 'newsletter-preview-app' %>
+<% end %>
 
-      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-        <a href="https://www.metrobuilding.com.ar/" target="_blank">
-          <%= image_tag configatron.logo class:'logo-img'%>
-        </a>
-      </div>
 
-      <div class="col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
-        <h1 class="text-center"><%=@newsletter.title%></h1>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col text-center">
-        <h1 class="title-newsletter">METRO 19</h1>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col text-center dividing-bar">
-      </div>
-    </div>
-  </div>
-    <!-- Cover Image -->
-    <div class="container">
-      <%= image_tag "metrobuilding-portada-photo.jpg", class: "cover-image img-rounded center-block img-responsive" %>
-    </div>
-
-    <!-- Newsletter Sections -->
-    <div class="container-fluid">
-      <div class="container">
-        <% @newsletter.newsletter_sections.each do |newsletter_section| %>
-        <div class="title-sections text-center">
-          <%= replace_variables(newsletter_section.title) %>
-        </div>
-          <%= replace_variables(newsletter_section.description) %>
-          <% newsletter_section.media_assets.each do |media_asset| %>
-            <%= image_tag media_asset.image, class: "img-responsive cover-image img-rounded" %>
-          <% end %>
-        <% end %>
-      </div>
-      <br>
-      <div>
-        <%= link_to 'Atrás', admin_newsletters_path, class: 'btn btn-success' %>
-      </div>
-      <br>
-    </div>
-
-    <!-- Footer -->
-    <div class='footer-newsletter text-center'>
-      <p>FIDEICOMISO METRO 19 - INFORMACIÓN PRODUCIDA POR METRO BUILDING S.A.</p>
-    </div>
+<div id="newsletter-preview-app" newsletter_id="<%=@newsletter.id%>">
+<!-- VUEJS -->
 </div>

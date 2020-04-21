@@ -3,7 +3,7 @@ class Admin::NewsletterPreviewSerializer < ActiveModel::Serializer
 
   attributes  :id,
               :title,
-              :sent,
+              :sent_at,
               :created_at,
               :updated_at,
               :logo_url,
