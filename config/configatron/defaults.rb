@@ -6,6 +6,7 @@
 #
 #   configatron.file.storage = :s3
 
+configatron.app_url = ENV['APP_URL']
 configatron.logo = ENV['LOGO']
 configatron.features.newsletters = (ENV['NEWSLETTERS'] == 'true' || !ENV['NEWSLETTERS'].present?)
 configatron.features.payments = (ENV['PAYMENTS'] == 'true' || !ENV['PAYMENTS'].present?)

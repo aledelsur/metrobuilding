@@ -16,8 +16,10 @@ class SendNewsletterJob < ApplicationJob
     users = User.all
 
     users.each do |user|
+      sent_newsletter = SentNewsletter.create(investor_name: user.name, current_debt: user.debt, user: user, newsletter: newsletter)
+
       # Sends email to investor with a link to the newsletter.
-      InvestorMailer.send_newsletter(newsletter, user).deliver
+      InvestorMailer.send_newsletter(sent_newsletter).deliver
     end
   end
 
@@ -26,8 +28,10 @@ class SendNewsletterJob < ApplicationJob
     users = User.where(id: ids)
 
     users.each do |user|
+      sent_newsletter = SentNewsletter.create(investor_name: user.name, current_debt: user.debt, user: user, newsletter: newsletter)
+
       # Sends email to investor with a link to the newsletter.
-      InvestorMailer.send_newsletter(newsletter, user).deliver
+      InvestorMailer.send_newsletter(sent_newsletter).deliver
     end
   end
 end

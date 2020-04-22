@@ -5,6 +5,7 @@
 
 
 configatron.project_name = 'metrobuilding'
+configatron.app_url = 'localhost:3000'
 
 configatron.admin_user = '1234'
 configatron.admin_password = '1234'

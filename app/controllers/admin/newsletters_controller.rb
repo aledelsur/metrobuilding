@@ -9,6 +9,7 @@ class Admin::NewslettersController < AdminController
 
   def show
     @user = User.first
+
     @budgets = Budget.where('due_date > ?', DateTime.now).all
     respond_to do |format|
       format.json { render json: @newsletter }
@@ -72,6 +73,14 @@ class Admin::NewslettersController < AdminController
     newsletter = Newsletter.includes(:newsletter_sections).find(params[:newsletter_id])
     render json: newsletter, serializer: ::Admin::NewsletterPreviewSerializer
   end
+
+  # Cuando el inversor abre una newsletter desde el mail
+  # def view_newsletter
+  #   sent_newsletter = SentNewsletter.find_by(guid: params[:guid])
+  #   newsletter = sent_newsletter.newsletter
+  #   byebug
+  #   render json: newsletter, serializer: ::Admin::NewsletterPreviewSerializer
+  # end
 
   private
 
