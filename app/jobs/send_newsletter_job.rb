@@ -1,7 +1,9 @@
 class SendNewsletterJob < ApplicationJob
   queue_as :default
 
-  def perform(newsletter, selected_option, user_ids)
+  def perform(newsletter_id, selected_option, user_ids)
+    newsletter = Newsletter.find(newsletter_id)
+
     case selected_option
     when 'all_users'
       send_email_to_all_users_in_system(newsletter)

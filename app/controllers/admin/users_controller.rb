@@ -58,6 +58,9 @@ class Admin::UsersController < AdminController
                  @user.update_without_password(user_params)
                end
       if result
+
+        # Metromarketing::Users::Request.put(@user)
+
         flash[:success] = "Propietario actualizado correctamente."
         format.html { redirect_to admin_users_path }
         format.json { render :show, status: :ok, location: @user }

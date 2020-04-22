@@ -10,4 +10,4 @@ configatron.logo = ENV['LOGO']
 configatron.features.newsletters = (ENV['NEWSLETTERS'] == 'true' || !ENV['NEWSLETTERS'].present?)
 configatron.features.payments = (ENV['PAYMENTS'] == 'true' || !ENV['PAYMENTS'].present?)
 configatron.features.client_portal = (ENV['PORTAL'] == 'true' || !ENV['PORTAL'].present?)
-configatron.intranet_name = 'intranet_name' # i.e: "metro_19"
+configatron.intranet_name = 'Metro 19' # i.e: "metro_19"

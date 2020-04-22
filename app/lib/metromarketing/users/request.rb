@@ -16,6 +16,19 @@ module Metromarketing
         end
       end
 
+      def self.put(user)
+        response = Metromarketing::Connection.api.put("users/#{user.id}") do |req|
+          req.headers['Content-Type'] = 'application/json'
+          req.body = user.attributes.merge(extra_information(user)).to_json
+        end
+
+        if response.success?
+          JSON.parse(response.body)
+        else
+          {status: response.status, message: response.body}
+        end
+      end
+
       def self.extra_information(user)
         {
           intranet_coming_from: configatron.intranet_name,
