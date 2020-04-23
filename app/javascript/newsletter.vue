@@ -44,8 +44,9 @@
       </div>
 
       <sidebar></sidebar>
-      <newsletter-preview :key="newsletterPreviewId"></newsletter-preview>
-
+      <b-modal id="modal-tall" scrollable title="Vista Previa">
+        <newsletter-preview :key="newsletterPreviewId"></newsletter-preview>
+      </b-modal>
     </div>
 
   </div>

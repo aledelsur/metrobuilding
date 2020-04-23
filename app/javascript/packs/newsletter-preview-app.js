@@ -22,11 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
     render: h => h(NewsletterPreview),
     el: '#newsletter-preview-app',
     data: {
-      newsletterId: null
+      newsletterId: null,
+      viewType: 'admin',
+      sentNewsletterToken: null
     },
     components: { NewsletterPreview, BootstrapVue, Notifications },
     beforeMount: function () {
       this.newsletterId = this.$el.attributes['newsletter_id'].value;
+      this.viewType = this.$el.attributes['view_type'].value;
+      this.sentNewsletterToken = this.$el.attributes['sent_newsletter_token'].value;
     }
   })
   document.body.appendChild(app.$el)

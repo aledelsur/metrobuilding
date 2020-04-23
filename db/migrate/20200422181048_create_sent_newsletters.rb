@@ -3,7 +3,7 @@ class CreateSentNewsletters < ActiveRecord::Migration[5.2]
     create_table :sent_newsletters do |t|
       t.string :investor_name
       t.integer :current_debt
-      t.string :guid
+      t.string :sent_newsletters, index: true
       t.belongs_to :user
       t.belongs_to :newsletter
 

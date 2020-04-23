@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :payments, only: [:index]
     resources :receipts, only: [:index, :show]
     resources :properties, only: [:index, :show]
-    resources :newsletters
+    resources :sent_newsletters, only: [:show]
   end
 
   get '/newsletter/:id' => 'shortener/shortened_urls#show'
@@ -40,7 +40,6 @@ Rails.application.routes.draw do
       end
       put '/sort_sections', to: 'newsletters#sort_sections', as: 'sort_sections'
       put '/send_newsletter', to: 'newsletters#send_newsletter', as:'send_newsletter'
-      get '/preview', to: 'newsletters#preview', as: 'newsletter_preview'
       get '/view_newsletter', to: 'newsletters#view_newsletter', as: 'view_newsletter'
     end
   end

@@ -69,11 +69,6 @@ class Admin::NewslettersController < AdminController
     redirect_to admin_newsletters_path
   end
 
-  def preview
-    newsletter = Newsletter.includes(:newsletter_sections).find(params[:newsletter_id])
-    render json: newsletter, serializer: ::Admin::NewsletterPreviewSerializer
-  end
-
   # Cuando el inversor abre una newsletter desde el mail
   # def view_newsletter
   #   sent_newsletter = SentNewsletter.find_by(guid: params[:guid])

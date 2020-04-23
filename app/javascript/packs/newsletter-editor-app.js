@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     render: h => h(Newsletter),
     data: {
-      newsletterId: null
+      newsletterId: null,
+      viewType: 'admin'
     },
     components: { Newsletter, BootstrapVue, Notifications },
     beforeMount: function () {

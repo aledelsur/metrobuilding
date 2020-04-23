@@ -1,7 +1,5 @@
 <template>
   <div>
-    <!-- <b-modal id="modal-tall" scrollable title="Vista Previa"> -->
-
       <div class="admin-newsletter-view">
 
         <!-- Header -->
@@ -62,8 +60,6 @@
           <p>FIDEICOMISO METRO 19 - INFORMACIÓN PRODUCIDA POR METRO BUILDING S.A.</p>
         </div>
       </div>
-
-    <!-- </b-modal> -->
   </div>
 </template>
 
@@ -81,9 +77,16 @@ export default {
     }
   },
   mounted: function() {
+    var url;
+
+    if(this.$root.viewType == 'admin') {
+      url = '/admin/newsletters/' + this.$root.newsletterId + '.json';
+    } else {
+      url = '/sent_newsletters/' + this.$root.sent_newsletter_token + '.json'
+    }
 
     axios({ method: 'get',
-            url: '/admin/newsletters/' + this.$root.newsletterId + '/preview.json'
+            url: url
           })
     .then(response => {
       console.log(response.data)
