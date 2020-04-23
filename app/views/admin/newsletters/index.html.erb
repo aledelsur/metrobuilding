@@ -15,7 +15,8 @@
     <tr>
       <th>Titulo</th>
       <th>Fecha de creación</th>
-      <th>Estado</th>
+      <th>Última vez enviada</th>
+      <th>Enviar Circular</th>
       <th>Editar Circular</th>
       <th>Eliminar Circular</th>
     </tr>
@@ -26,16 +27,12 @@
       <tr>
         <td class="title"><%= newsletter.title %></td>
         <td><%= newsletter.created_at.strftime("%d-%m-%Y a las %H:%M hs.") %></td>
-        <% if newsletter.sent_at.nil? %>
-          <td>
-            <button type="button" class="btn btn-default send-newsletter-btn-index" data-toggle="modal" data-target="#send_newsletter_modal" data-newsletter-id="<%=newsletter.id%>">
-              Enviar circular
-            </button>
-          </td>
-
-        <% else %>
-          <td>Enviada el <%= newsletter.sent_at.strftime("%d-%m-%Y a las %H:%M hs.") %></td>
-        <% end %>
+        <td><%= index_newsletter_sent(newsletter) %></td>
+        <td>
+          <button type="button" class="btn btn-default send-newsletter-btn-index" data-toggle="modal" data-target="#send_newsletter_modal" data-newsletter-id="<%=newsletter.id%>">
+            Enviar circular
+          </button>
+        </td>
         <td><%= link_to 'Editar', edit_admin_newsletter_path(newsletter), class: 'btn btn-default' %></td>
         <td><%= link_to 'Eliminar', [:admin, newsletter], method: :delete, data: { confirm: 'Estás seguro que deseas eliminar esta circular?' }, class: 'btn btn-danger' %> </td>
       </tr>
