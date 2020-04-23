@@ -8,19 +8,13 @@ class Site::NewsletterSerializer < ActiveModel::Serializer
               :updated_at,
               :logo_url,
               :main_image,
-              :investor_name,
-              :current_debt
+              :variables_to_replace
 
   has_many :newsletter_sections
 
-  def investor_name
+  def variables_to_replace
     sent_newsletter = SentNewsletter.find(scope[:sent_newsletter_id])
-    sent_newsletter.investor_name
-  end
-
-  def current_debt
-    sent_newsletter = SentNewsletter.find(scope[:sent_newsletter_id])
-    sent_newsletter.current_debt
+    sent_newsletter.newsletter_variables
   end
 
   def logo_url

@@ -15,20 +15,22 @@ class SendNewsletterJob < ApplicationJob
   def send_email_to_all_users_in_system(newsletter)
     users = User.all
 
-    users.each do |user|
-      sent_newsletter = SentNewsletter.create(investor_name: user.name, current_debt: user.debt, user: user, newsletter: newsletter)
-
-      # Sends email to investor with a link to the newsletter.
-      InvestorMailer.send_newsletter(sent_newsletter).deliver
-    end
+    send_newsletters(newsletter, users)
   end
 
   def send_email_to_specific_users(newsletter, user_ids)
     ids = user_ids.first.split(',') # from ["72,73"] to ["72", "73"]
     users = User.where(id: ids)
 
+    send_newsletters(newsletter, users)
+  end
+
+  def send_newsletters(newsletter, users)
     users.each do |user|
-      sent_newsletter = SentNewsletter.create(investor_name: user.name, current_debt: user.debt, user: user, newsletter: newsletter)
+      newsletter_variable = NewsletterVariable.new(user, newsletter)
+
+      sent_newsletter = user.sent_newsletters.create(newsletter: newsletter,
+                                                     newsletter_variables: newsletter_variable.variables_to_replace)
 
       # Sends email to investor with a link to the newsletter.
       InvestorMailer.send_newsletter(sent_newsletter).deliver

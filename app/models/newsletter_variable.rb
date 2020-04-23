@@ -8,6 +8,21 @@ class NewsletterVariable
     ['Nombre del Inversor', '{{NOMBRE_INVERSOR}}']
   ]
 
+  def initialize(user, newsletter)
+    @user = user
+    @newsletter = newsletter
+  end
+
+  def variables_to_replace
+    current_budget = Budget.last
+    {
+      "{{NOMBRE_INVERSOR}}" => @user.first_name,
+      "{{TOTAL_A_PAGAR}}" => @user.debt([current_budget])
+      #"{{CAC_ACTUAL}}" => current_budget.current_cac
+      #"{{TOTAL_ADEUDADO}}" => @user.debt
+    }
+  end
+
   def self.list
     LIST
   end

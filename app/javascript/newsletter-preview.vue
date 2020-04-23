@@ -73,7 +73,8 @@ export default {
       newsletter_title: null,
       sections: [],
       logo_url: null,
-      main_image: null
+      main_image: null,
+      variablesToReplace: null
     }
   },
   mounted: function() {
@@ -89,13 +90,27 @@ export default {
             url: url
           })
     .then(response => {
-      console.log(response.data)
       this.newsletter_title = response.data.title
       this.newsletter_id = response.data.id
       this.sections = response.data.newsletter_sections
       this.logo_url = response.data.logo_url
       this.main_image = response.data.main_image
+      if(response.data.variables_to_replace) {
+        this.variablesToReplace = response.data.variables_to_replace
+        this.replaceVariables();
+      }
     })
+  },
+  methods: {
+    replaceVariables () {
+      for(var i = 0; i < this.sections.length; i++) {
+        var section = this.sections[i];
+
+        for(var key in this.variablesToReplace) {
+          section.description = section.description.replace(key, this.variablesToReplace[key]);
+        }
+      }
+    }
   }
 }
 </script>

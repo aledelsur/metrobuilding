@@ -1,8 +1,6 @@
 class CreateSentNewsletters < ActiveRecord::Migration[5.2]
   def change
     create_table :sent_newsletters do |t|
-      t.string :investor_name
-      t.integer :current_debt
       t.string :sent_newsletter_token, index: true
       t.belongs_to :user
       t.belongs_to :newsletter
