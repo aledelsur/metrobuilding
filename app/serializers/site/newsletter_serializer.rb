@@ -14,7 +14,6 @@ class Site::NewsletterSerializer < ActiveModel::Serializer
   has_many :newsletter_sections
 
   def investor_name
-    byebug
     sent_newsletter = SentNewsletter.find(scope[:sent_newsletter_id])
     sent_newsletter.investor_name
   end

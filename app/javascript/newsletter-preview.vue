@@ -189,18 +189,24 @@ export default {
 	 font-weight: bolder;
 	 font-size: 20px;
 }
- .admin-newsletter-view .sections .section .description {
+
+.admin-newsletter-view .sections .section .description {
 	 margin-top: 2%;
 	 margin-bottom: 2%;
 }
- .admin-newsletter-view .footer-newsletter {
+
+.admin-newsletter-view .footer-newsletter {
 	 height: 52px;
 	 background-color: #333;
 	 border-top: 1px solid #333;
 	 color: white;
 }
- .admin-newsletter-view .footer-newsletter p {
+
+.admin-newsletter-view .footer-newsletter p {
 	 padding-top: 12px;
 }
 
+.description {
+  font-size: 19px;
+}
 </style>
