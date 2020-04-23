@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SentNewsletterControllerTest < ActionDispatch::IntegrationTest
+class SentNewslettersControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

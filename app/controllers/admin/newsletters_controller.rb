@@ -69,14 +69,6 @@ class Admin::NewslettersController < AdminController
     redirect_to admin_newsletters_path
   end
 
-  # Cuando el inversor abre una newsletter desde el mail
-  # def view_newsletter
-  #   sent_newsletter = SentNewsletter.find_by(guid: params[:guid])
-  #   newsletter = sent_newsletter.newsletter
-  #   byebug
-  #   render json: newsletter, serializer: ::Admin::NewsletterPreviewSerializer
-  # end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.

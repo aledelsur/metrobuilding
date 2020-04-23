@@ -1,4 +1,4 @@
-class Site::SentNewsletterController < ApplicationController
+class Site::SentNewslettersController < ApplicationController
   def show
     @sent_newsletter = SentNewsletter.find_by(sent_newsletter_token: params[:sent_newsletter_token])
   end
