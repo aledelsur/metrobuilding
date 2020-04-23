@@ -146,13 +146,13 @@ ActiveRecord::Schema.define(version: 2020_04_22_185726) do
   create_table "sent_newsletters", force: :cascade do |t|
     t.string "investor_name"
     t.integer "current_debt"
-    t.string "sent_newsletters"
+    t.string "sent_newsletter_token"
     t.bigint "user_id"
     t.bigint "newsletter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["newsletter_id"], name: "index_sent_newsletters_on_newsletter_id"
-    t.index ["sent_newsletters"], name: "index_sent_newsletters_on_sent_newsletters"
+    t.index ["sent_newsletter_token"], name: "index_sent_newsletters_on_sent_newsletter_token"
     t.index ["user_id"], name: "index_sent_newsletters_on_user_id"
   end
 

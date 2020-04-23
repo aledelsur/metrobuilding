@@ -82,7 +82,7 @@ export default {
     if(this.$root.viewType == 'admin') {
       url = '/admin/newsletters/' + this.$root.newsletterId + '.json';
     } else {
-      url = '/sent_newsletters/' + this.$root.sent_newsletter_token + '.json'
+      url = '/site/sent_newsletters/' + this.$root.sentNewsletterToken + '.json'
     }
 
     axios({ method: 'get',
