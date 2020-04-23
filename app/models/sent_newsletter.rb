@@ -5,6 +5,7 @@
 #  id                    :bigint           not null, primary key
 #  current_debt          :integer
 #  investor_name         :string
+#  newsletter_variables  :json
 #  sent_newsletter_token :string
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null

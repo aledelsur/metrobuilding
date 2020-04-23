@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_22_185726) do
+ActiveRecord::Schema.define(version: 2020_04_23_205534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -151,6 +151,7 @@ ActiveRecord::Schema.define(version: 2020_04_22_185726) do
     t.bigint "newsletter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "newsletter_variables", default: {}
     t.index ["newsletter_id"], name: "index_sent_newsletters_on_newsletter_id"
     t.index ["sent_newsletter_token"], name: "index_sent_newsletters_on_sent_newsletter_token"
     t.index ["user_id"], name: "index_sent_newsletters_on_user_id"
