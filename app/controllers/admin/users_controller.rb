@@ -83,6 +83,11 @@ class Admin::UsersController < AdminController
     end
   end
 
+  def newsletters_history
+    @user = User.find(params[:user_id])
+    @sent_newsletters = @user.sent_newsletters
+  end
+
   private
 
   def set_user

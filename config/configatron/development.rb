@@ -18,5 +18,6 @@ configatron.s3_secret_access_key = 'zOpsqPWrbPoPAlwxzgVvE3hr0/U+cALi+u8ielNG'
 
 configatron.logo = 'logo-metro.png'
 configatron.features.newsletters = true
+configatron.features.newsletters_history = true
 configatron.features.payments = false
 configatron.features.client_portal = false

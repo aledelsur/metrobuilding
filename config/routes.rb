@@ -26,7 +26,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :budgets, only: [:new, :create, :index, :destroy]
     resources :debts
-    resources :users
+    resources :users do
+      get 'newsletters_history', to: 'users#newsletters_history', as: 'newsletters_history'
+    end
     resources :properties
     resources :property_categories
     resources :payments

@@ -110,6 +110,15 @@ $(document).ready(function(){
     }
   });
 
+  $('.datatable_newsletters_history').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": [3] }
+    ],
+    "oLanguage": {
+      "sSearch": "Buscar:"
+    }
+  });
+
   $('.datatable').DataTable({
     "oLanguage": {
       "sSearch": "Buscar:"
