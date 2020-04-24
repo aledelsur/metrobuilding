@@ -4,26 +4,29 @@
   </div>
 <% end %>
 
-<h1>Categoria de Propiedades</h1>
+<h1>Categoría de Propiedades</h1>
 <br>
-<table class='table table-bordered datatable'>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Porcentaje</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @property_categories.each do |property_category| %>
+<% if @property_categories.empty? %>
+  <div class='no-property-categories'>No hay Categorías de propiedades para mostrar.</div>
+<% else %>
+  <table class='table table-bordered datatable'>
+    <thead>
       <tr>
-        <td><%= property_category.name %></td>
-        <td><%= property_category.percentage %></td>
+        <th>Nombre</th>
+        <th>Porcentaje</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
+    <tbody>
+      <% @property_categories.each do |property_category| %>
+        <tr>
+          <td><%= property_category.name %></td>
+          <td><%= property_category.percentage %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 <br>
 
-<%# link_to 'Nueva categoria de propiedad', new_admin_property_category_path %>
+<%# link_to 'Nueva categoría de propiedad', new_admin_property_category_path %>

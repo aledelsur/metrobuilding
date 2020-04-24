@@ -16,7 +16,7 @@
 
         <li class="<%= 'active' if params['controller'] == 'admin/budgets'%>"> <%= link_to 'Bases de cálculo', admin_budgets_path %> </li>
         <li class="<%= 'active' if params['controller'] == 'admin/properties'%>"> <%= link_to 'Propiedades', admin_properties_path %> </li>
-        <li class="<%= 'active' if params['controller'] == 'admin/property_categories'%>"> <%= link_to 'Categorias', admin_property_categories_path %> </li>
+        <li class="<%= 'active' if params['controller'] == 'admin/property_categories'%>"> <%= link_to 'Categorías', admin_property_categories_path %> </li>
 
         <% if configatron.features.newsletters %>
           <li class="<%= 'active' if params['controller'] == 'admin/newsletters'%>"> <%= link_to 'Circulares', admin_newsletters_path %> </li>

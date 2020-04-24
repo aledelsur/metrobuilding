@@ -6,28 +6,34 @@
 
 <h1>Bases de Cálculo</h1>
 <br>
-<table class='table table-bordered datatable_budgets'>
-  <thead>
-    <tr>
-      <th>Monto</th>
-      <th>Fecha de creación</th>
-      <th>Vencimiento</th>
-      <th> </th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @budgets.each do |budget| %>
+<% if @budgets.empty? %>
+  <div class='no-budgets'>No hay Bases de cálculo para mostrar.</div>
+<% else %>
+
+  <table class='table table-bordered datatable_budgets'>
+    <thead>
       <tr>
-        <td>$<%= budget.value.round %></td>
-        <td><%= budget.created_at.to_s(:db) %></td>
-        <td><%= budget.due_date.to_s(:db) %></td>
-        <td class="text-center"><%= link_to 'Eliminar', [:admin, budget], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %>
+        <th>Monto</th>
+        <th>Fecha de creación</th>
+        <th>Vencimiento</th>
+        <th> </th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
+    <tbody>
+      <% @budgets.each do |budget| %>
+        <tr>
+          <td>$<%= budget.value.round %></td>
+          <td><%= budget.created_at.to_s(:db) %></td>
+          <td><%= budget.due_date.to_s(:db) %></td>
+          <td class="text-center"><%= link_to 'Eliminar', [:admin, budget], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% end %>
 <br>
 
 <%= link_to 'Nueva base de cálculo', new_admin_budget_path, class: 'btn btn-primary' %>

@@ -3,7 +3,7 @@
   <%= render partial: 'admin/shared/error_messages', locals: { model_name: property } %>
 
   <div class="form-group property">
-    <%= form.label :property_category_id, 'Categoria de la propiedad' %>
+    <%= form.label :property_category_id, 'Categoría de la propiedad' %>
     <br>
     <%= form.select :property_category_id, PropertyCategory.all.map { |c| [c.name, c.id] }, {}, class: 'select2 edit-property' %>
   </div>

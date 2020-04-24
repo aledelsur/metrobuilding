@@ -6,32 +6,36 @@
 
 <h1>Propiedades</h1>
 <br>
-<table class="table table-bordered datatable_properties">
-  <thead>
-    <tr>
-      <th>Categoría</th>
-      <th>Propietario</th>
-      <th>Porcentaje</th>
-      <th>Departamento</th>
-      <th>Modificar datos de propiedad</th>
-    </tr>
-  </thead>
+<% if @properties.empty? %>
+  <div class='no-properties'>No hay Propiedades para mostrar.</div>
+<% else %>
 
-  <tbody>
-    <% @properties.each do |property| %>
+  <table class="table table-bordered datatable_properties">
+    <thead>
       <tr>
-        <td><%= property.property_category.name %></td>
-        <td><%= property.user&.first_name %> <%= property.user&.last_name %></td>
-        <td><%= property.property_category.percentage %>%</td>
-        <td><%= property.name %></td>
-        <!-- <td><%# link_to 'Ver', [:admin, property] %></td> -->
-        <td><%= link_to 'Editar', edit_admin_property_path(property), class: 'btn btn-default' %></td>
-        <!-- <td><%# link_to 'Eliminar Propiedad', [:admin, property], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %></td> -->
+        <th>Categoría</th>
+        <th>Propietario</th>
+        <th>Porcentaje</th>
+        <th>Departamento</th>
+        <th>Modificar datos de propiedad</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
+    <tbody>
+      <% @properties.each do |property| %>
+        <tr>
+          <td><%= property.property_category.name %></td>
+          <td><%= property.user&.first_name %> <%= property.user&.last_name %></td>
+          <td><%= property.property_category.percentage %>%</td>
+          <td><%= property.name %></td>
+          <!-- <td><%# link_to 'Ver', [:admin, property] %></td> -->
+          <td><%= link_to 'Editar', edit_admin_property_path(property), class: 'btn btn-default' %></td>
+          <!-- <td><%# link_to 'Eliminar Propiedad', [:admin, property], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %></td> -->
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 <br>
 
 <%#= link_to 'New Property', new_admin_property_path %>

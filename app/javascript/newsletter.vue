@@ -146,4 +146,7 @@ export default {
   .ghost {
     visibility: hidden;
   }
+  #app{
+    margin-bottom: 20px;
+  }
 </style>
