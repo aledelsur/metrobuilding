@@ -16,7 +16,6 @@
         <th>Cuota actual</th>
         <th>Teléfonos</th>
         <th>Listado de propiedades</th>
-
         <% if configatron.features.payments %>
           <th></th>
           <th></th>
@@ -31,7 +30,6 @@
         <th></th>
       </tr>
     </thead>
-
     <tbody>
       <% @users.each do |user| %>
         <tr>
@@ -44,6 +42,7 @@
               <td class="text-center"><%= link_to 'Nuevo Pago Deuda USD', new_admin_payment_path(user_id: user.id, payment_type: 'deuda_dolares'), class: 'btn btn-default' %></td>
               <td class="text-center"><%= link_to 'Nuevo Pago Deuda Pesos', new_admin_payment_path(user_id: user.id, payment_type: 'deuda_pesos'), class: 'btn btn-default' %> </td>
           <% end %>
+
           <% if configatron.features.newsletters_history %>
             <td><%= link_to 'Newsletters enviadas', admin_user_newsletters_history_path(user), class: 'btn btn-default' %></td>
           <% end %>
