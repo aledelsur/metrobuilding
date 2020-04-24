@@ -144,8 +144,6 @@ ActiveRecord::Schema.define(version: 2020_04_23_205534) do
   end
 
   create_table "sent_newsletters", force: :cascade do |t|
-    t.string "investor_name"
-    t.integer "current_debt"
     t.string "sent_newsletter_token"
     t.bigint "user_id"
     t.bigint "newsletter_id"
