@@ -28,12 +28,12 @@
                 </div>
 
                 <div class="row">
-                  <div v-for="asset in section.media_assets" :key="asset.id" class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="city">
+                  <div v-for="asset in section.media_assets" :key="asset.id" class="col-md-6 col-sm-12 text-center">
+                    <div class="image">
                       <div class="text">
                         {{asset.description}}
                       </div>
-                      <b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded"></b-img>
+                      <b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded section-img"></b-img>
                     </div>
                     
                   </div>
@@ -201,7 +201,7 @@ export default {
 
 .admin-newsletter-view .sections .section .description {
 	 margin-top: 2%;
-	 margin-bottom: 2%;
+	 margin-bottom: 3%;
 }
 
 .admin-newsletter-view .footer-newsletter {
@@ -216,27 +216,40 @@ export default {
 }
 
 .description {
-  font-size: 19px;
+  font-size: 17px;
 }
 
-.section .city {
+.section .image {
   display: inline-block;
   color: white;
   font-size: 14px;
 }
 
-.section .city .text{
-  text-transform: uppercase;
+.section .image .text{
+    text-transform: uppercase;
+    position: absolute;
+    top: 49%;
+    z-index: 1;
+    text-align: center;
+    width: 360px;
+    letter-spacing: 0.5px;
+/*  text-transform: uppercase;
   position: absolute;
   top: 49%;
   z-index: 1;
   text-align: center;
-  width: 77%;
+  width: 88%;
   letter-spacing: 0.5px;
-  padding: 0 3% 0 3%;
+  padding: 0 3% 0 3%;*/
 }
 
-.section .city img{
+.section .image img{
   filter: brightness(80%);
+}
+
+img.section-img{
+  width: 350px;
+  height: 350px;
+  margin: 5px;
 }
 </style>
