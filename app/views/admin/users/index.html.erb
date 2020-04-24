@@ -20,7 +20,10 @@
         <th></th>
       <% end %>
 
-      <th></th>
+      <% if configatron.features.newsletters_history %>
+        <th></th>
+      <% end %>
+
       <th></th>
       <th></th>
     </tr>
@@ -38,7 +41,9 @@
             <td class="text-center"><%= link_to 'Nuevo Pago Deuda USD', new_admin_payment_path(user_id: user.id, payment_type: 'deuda_dolares'), class: 'btn btn-default' %></td>
             <td class="text-center"><%= link_to 'Nuevo Pago Deuda Pesos', new_admin_payment_path(user_id: user.id, payment_type: 'deuda_pesos'), class: 'btn btn-default' %> </td>
         <% end %>
-        <td><%= link_to 'Newsletters enviadas', admin_user_newsletters_history_path(user), class: 'btn btn-default' %></td>
+        <% if configatron.features.newsletters_history %>
+          <td><%= link_to 'Newsletters enviadas', admin_user_newsletters_history_path(user), class: 'btn btn-default' %></td>
+        <% end %>
         <td><%= link_to 'Editar', edit_admin_user_path(user), class: 'btn btn-default' %></td>
         <td><%= link_to 'Eliminar', [:admin, user], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %></td>
       </tr>
