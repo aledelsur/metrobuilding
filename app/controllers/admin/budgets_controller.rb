@@ -28,7 +28,7 @@ class Admin::BudgetsController < AdminController
 
     respond_to do |format|
       if @budget.save
-        flash[:success] = "Presupuesto de Obra creado correctamente."
+        flash[:success] = "Base de cálculo creada correctamente."
         format.html { redirect_to admin_budgets_path }
       else
         flash[:error] = "Los siguientes errores no permiten guardar la información:"
@@ -56,7 +56,7 @@ class Admin::BudgetsController < AdminController
   def destroy
     @budget.destroy
     respond_to do |format|
-      flash[:success] = "Presupuesto de Obra eliminado correctamente."
+      flash[:success] = "Base de cálculo eliminada correctamente."
       format.html { redirect_to admin_budgets_url }
       format.json { head :no_content }
     end

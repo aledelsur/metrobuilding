@@ -118,10 +118,6 @@ $(document).ready(function(){
 
   $(".dataTables_empty").text("No hay información para mostrar.")
 
-  $(document).on('change', '#image-input', function(){
-    $('form').submit();
-  });
-
   $(document).on('change', '#some_users', function(){
     $('.select-users-as-recipients').show();
   });

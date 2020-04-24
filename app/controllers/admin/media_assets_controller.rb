@@ -1,5 +1,5 @@
 class Admin::MediaAssetsController < AdminController
-  before_action :set_media_asset, only: [:destroy]
+  before_action :set_media_asset, only: [:destroy, :edit, :update]
 
   def index
     @media_assets = MediaAsset.all
@@ -11,10 +11,30 @@ class Admin::MediaAssetsController < AdminController
     end
   end
 
+  def new
+    @media_asset = MediaAsset.new
+  end
+
   def create
-    @media_asset = MediaAsset.create(media_asset_parms)
-    flash[:success] = "Imagen agregada correctamente."
-    redirect_to admin_media_assets_path
+    @media_asset = MediaAsset.new(media_asset_parms)
+
+    if @media_asset.save
+      flash[:success] = "Imagen agregada correctamente."
+      redirect_to admin_media_assets_path
+    else
+      flash[:error] = "Los siguientes errores no permiten guardar la información:"
+      render :edit
+    end
+  end
+
+  def update
+    if @media_asset.update(media_asset_parms)
+      flash[:success] = "Imagen actualizada correctamente."
+      redirect_to admin_media_assets_path
+    else
+      flash[:error] = "Los siguientes errores no permiten guardar la información:"
+      render :edit
+    end
   end
 
   def destroy
@@ -34,6 +54,6 @@ class Admin::MediaAssetsController < AdminController
   end
 
   def media_asset_parms
-    params.require(:media_asset).permit(:image)
+    params.require(:media_asset).permit(:image, :description)
   end
 end

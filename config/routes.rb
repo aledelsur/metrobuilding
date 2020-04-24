@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     resources :properties
     resources :property_categories
     resources :payments
-    resources :media_assets, only: [:index, :create, :destroy]
+    resources :media_assets
     resources :newsletter_variables, only: [:index]
     resources :newsletters do
       resources :newsletter_sections do

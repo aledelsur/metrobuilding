@@ -1,65 +1,59 @@
 <template>
   <div>
-      <div class="admin-newsletter-view">
+    <div class="admin-newsletter-view">
 
-        <!-- Header -->
+      <!-- Header -->
 
-        <header>
-          <div class='container'>
+      <header>
+        <div class='container'>
+          <div class="title-newsletter-container text-center">
+            <span class='main-title'>METRO 19</span>
+            <br />
+            <span class="subtitle">{{newsletter_title}}</span>
+          </div>
+        </div>
+      </header>
 
-                <div class="title-newsletter-container text-center">
-                  <span class='main-title'>METRO 19</span>
-                  <br />
-                  <span class="subtitle">{{newsletter_title}}</span>
+      <!-- Newsletter Sections -->
+      <div class='container'>
+        <div class="sections">
+          <div class="sections-container">
+            <div v-for="section in sections" :key="section.id">
+              <div class="section">
+                <div class="title text-center">
+                  {{section.title}}
+                </div>
+                <div class="description">
+                  <div v-html="section.description"></div>
                 </div>
 
-          </div>
-
-        </header>
-
-
-
-        <!-- <div class="container">
-          <div class="row">
-            <div class="col text-center dividing-bar">
-            </div>
-          </div>
-        </div> -->
-
-        <!-- Newsletter Sections -->
-        <div class='container'>
-          <div class="sections">
-            <div class="sections-container">
-              <div v-for="section in sections" :key="section.id">
-                <div class="section">
-                  <div class="title text-center">
-                    {{section.title}}
-                  </div>
-                  <div class="description">
-                    <div v-html="section.description"></div>
-                  </div>
-
-                  <div class="row">
-                    <div v-for="asset in section.media_assets" :key="asset.id" class="col-md-4 col-sm-6 col-xs-12">
+                <div class="row">
+                  <div v-for="asset in section.media_assets" :key="asset.id" class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="city">
+                      <div class="text">
+                        {{asset.description}}
+                      </div>
                       <b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded"></b-img>
                     </div>
+                    
                   </div>
-
                 </div>
+
               </div>
             </div>
           </div>
-
-          <div class='triangle'>
-
-          </div>
         </div>
 
-        <!-- Footer -->
-        <div class='footer-newsletter text-center'>
-          <p>FIDEICOMISO METRO 19 - INFORMACIÓN PRODUCIDA POR METRO BUILDING S.A.</p>
+        <div class='triangle'>
+
         </div>
       </div>
+
+      <!-- Footer -->
+      <div class='footer-newsletter text-center'>
+        <p>FIDEICOMISO METRO 19 - INFORMACIÓN PRODUCIDA POR METRO BUILDING S.A.</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -223,5 +217,26 @@ export default {
 
 .description {
   font-size: 19px;
+}
+
+.section .city {
+  display: inline-block;
+  color: white;
+  font-size: 14px;
+}
+
+.section .city .text{
+  text-transform: uppercase;
+  position: absolute;
+  top: 49%;
+  z-index: 1;
+  text-align: center;
+  width: 77%;
+  letter-spacing: 0.5px;
+  padding: 0 3% 0 3%;
+}
+
+.section .city img{
+  filter: brightness(80%);
 }
 </style>

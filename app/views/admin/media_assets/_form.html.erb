@@ -1,0 +1,20 @@
+<%= form_with(model: [:admin, media_asset], local: true) do |form| %>
+
+  <%= render partial: 'admin/shared/error_messages', locals: { model_name: media_asset } %>
+
+  <div class="form-group image-gallery-description">
+    <%= form.label :description, 'Descripción' %>
+    <%= form.text_field :description, placeholder: 'E.j.: Hall del edificio', class: 'form-control' %>
+  </div>
+
+  <% unless media_asset.persisted? %>
+    <div class="form-group">
+      <%= form.file_field :image %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit 'Guardar', class: 'btn btn-primary mb-2' %>
+    <%= link_to 'Atrás', admin_media_assets_path, class: 'btn btn-secondary mb-2' %>
+  </div>
+<% end %>

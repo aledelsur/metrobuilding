@@ -21,8 +21,9 @@
               :config="config" />
 
               <div class="section-assets row">
-                <div v-for="asset in sectionAssets" class="col-md-2">
+                <div v-for="asset in sectionAssets" class="col-md-2 text-center single-asset">
                   <b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded"></b-img>
+                  <span class="text-center">{{asset.description}}</span>
                 </div>
               </div>
 
@@ -116,5 +117,8 @@ export default {
     width: 150px;
     height: 150px;
     margin-bottom: 5px;
+  }
+  .section-assets .single-asset {
+    height: 220px;
   }
 </style>

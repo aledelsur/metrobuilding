@@ -3,6 +3,7 @@ class Admin::MediaAssetSerializer < ActiveModel::Serializer
 
   attributes  :id,
               :image,
+              :description,
               :is_added
 
   def image

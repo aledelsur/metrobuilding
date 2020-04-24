@@ -7,3 +7,5 @@ es:
       budget:
         value: 'Monto'
         dollar_against_peso_value: 'Valor del dolar'
+      media_asset:
+        image: 'La imagen'

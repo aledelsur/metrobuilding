@@ -1,50 +1,7 @@
 .image-gallery {
-  .all-images {
-    margin-bottom: 2%;
-    .one-image {
-      width: 30%;
-      margin: 5px;
-      img {
-        width: 100%;
-      }
-      .remove-image {
-        margin: 5px;
-        float: right;
-      }
-      .image-title {
-        margin-bottom: 2px;
-        text-decoration: underline;
-      }
-      .image-footer{
-        overflow: hidden;
-
-        .image-used-label {
-          margin-top: 3%;
-          float: left;
-        }
-        .remove-btn {
-          float: right;
-        }
-      }
-    }
-  }
   .no-images {
     margin-top: 2%;
     margin-bottom: 2%;
-  }
-  .image-upload > input
-  {
-     display: none;
-  }
-  .image-upload > label{
-    cursor:pointer;
-  }
-  .image-upload {
-    margin-bottom: 2%;
-
-    span.select-image {
-      text-decoration: underline;
-    }
   }
 
   table {
@@ -61,5 +18,10 @@
         }
       }
     }
+  }
+}
+.form-group.image-gallery-description {
+  .form-control {
+    width: 489px;
   }
 }
