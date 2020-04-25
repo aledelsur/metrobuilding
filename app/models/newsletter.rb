@@ -11,7 +11,8 @@
 
 class Newsletter < ApplicationRecord
   has_many :newsletter_sections, dependent: :destroy
-  accepts_nested_attributes_for :newsletter_sections, allow_destroy: true
+
+  accepts_nested_attributes_for :newsletter_sections
 
   validates :title, presence: true, on: :update
 end

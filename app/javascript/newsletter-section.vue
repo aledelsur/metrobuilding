@@ -2,7 +2,7 @@
   <div>
     <div class="panel panel-default newsletter-section">
       <div class="panel-heading grabbable" @click='visible = !visible'>
-        {{ title }}
+        {{ section.title }}
         <a class="btn btn-danger remove-section pull-right" data-confirm="Estás seguro que deseas eliminar esta sección?" v-on:click="removeSection">Eliminar</a>
       </div>
       <b-collapse v-model="visible" class="mt-2">
@@ -10,14 +10,14 @@
           <div class="panel-body">
             <div class="form-group">
               <label for="newsletter_newsletter_sections_attributes_0_title"> Tītulo de la sección </label>
-              <input class="form-control" type="text" v-model="title">
+              <input class="form-control" type="text" v-model="section.title">
             </div>
 
             <div class="form-group">
               <label for="newsletter_newsletter_sections_attributes_0_description">Descripción de la sección</label>
 
               <vue-ckeditor
-              v-model="description"
+              v-model="section.description"
               :config="config" />
 
               <div class="section-assets row">
@@ -39,22 +39,15 @@
 <script>
 import axios from 'axios';
 import VueCkeditor from 'vue-ckeditor2';
-// Vue.use(IconsPlugin)
-import { ModalPlugin } from 'bootstrap-vue'
-Vue.use(ModalPlugin)
 import MediaAssetLibrary from './media-asset-library.vue'
-import Vue from 'vue'
 
 export default {
   props: ['section'],
   name: 'newsletter-section',
-  components: {VueCkeditor, ModalPlugin, MediaAssetLibrary},
+  components: { VueCkeditor, MediaAssetLibrary },
   data: function () {
     return {
-      id: 0,
       position: 1,
-      title: null,
-      description: '<p>Rich-text editor content.</p>',
       sectionAssets: [],
       visible: true,
       config: {
@@ -79,18 +72,26 @@ export default {
     }
   },
   mounted: function() {
-    this.id = this.section.id
-    this.title = this.section.title
-    this.description = this.section.description
+    // this.section.id = this.section.id
+    // this.section.title = this.section.title
+    // this.section.description = this.section.description
+
     this.position = this.section.position
     this.sectionAssets = this.section.media_assets
   },
   methods:  {
     removeSection() {
       axios({ method: 'delete',
-              url:'/admin/newsletters/' + this.section.newsletter_id + '/newsletter_sections/' + this.id })
+              url:'/admin/newsletters/' + this.$root.newsletterId + '/newsletter_sections/' + this.section.id })
       .then(response => {
-        this.$parent.$parent.sections = response.data;
+        this.$root.notify({
+          group: 'alerts',
+          type: 'success',
+          title: 'Sección eliminada',
+          text: 'Sección eliminada correctamente.'
+        })
+        this.$parent.$parent.newsletter.newsletter_sections = response.data;
+        this.$destroy();
       })
     },
 

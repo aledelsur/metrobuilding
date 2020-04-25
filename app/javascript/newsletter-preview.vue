@@ -35,7 +35,7 @@
                       </div>
                       <b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded section-img"></b-img>
                     </div>
-                    
+
                   </div>
                 </div>
 
@@ -114,6 +114,8 @@ export default {
 .admin-newsletter-view {
   background: url('./images/bg_footer.png');
   background-size: cover;
+  background-position: right;
+  /* background-size: 1420px; */
   background-repeat: no-repeat;
   font-family: 'brown';
 }

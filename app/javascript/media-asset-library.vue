@@ -41,7 +41,7 @@ export default {
 
     addAssetToSection(assetId) {
       axios({ method: 'put',
-              url: '/admin/newsletters/' + this.section.newsletter_id + '/newsletter_sections/' + this.section.id + '/add_media_asset',
+              url: this.baseURL() + '/add_media_asset',
               params: { id: assetId }})
       .then(response => {
         this.mediaAssets = response.data
@@ -51,20 +51,22 @@ export default {
 
     removeAssetFromSection(assetId) {
       axios({ method: 'delete',
-              url: '/admin/newsletters/' + this.section.newsletter_id + '/newsletter_sections/' + this.section.id + '/remove_media_asset',
+              url: this.baseURL() + '/remove_media_asset',
               params: { id: assetId }})
       .then(response => {
         this.mediaAssets = response.data
         this.reloadMediaAssets();
       })
     },
-
     reloadMediaAssets() {
       axios({ method: 'get',
-              url: '/admin/newsletters/' + this.section.newsletter_id + '/newsletter_sections/' + this.section.id + '/media_assets' })
+              url: this.baseURL() + '/media_assets' })
       .then(response => {
         this.$parent.$parent.sectionAssets = response.data
       })
+    },
+    baseURL() {
+      return '/admin/newsletters/' + this.$root.newsletterId + '/newsletter_sections/' + this.section.id
     }
   }
 }

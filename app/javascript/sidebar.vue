@@ -44,7 +44,7 @@ export default {
       document.execCommand("copy")
       document.body.removeChild(dummy)
 
-      this.$notify({
+      this.$root.notify({
         group: 'alerts',
         type: 'info',
         title: 'Copiar',

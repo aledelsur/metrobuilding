@@ -5,22 +5,18 @@
 
     <div class="row wrapper">
       <div class='col-xs-12 col-sm-12 col-md-10 main'>
-        <form id="newsletter_form" enctype="multipart/form-data" action="/admin/newsletters" accept-charset="UTF-8" method="post">
-
-
-          <!-- <input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="iNgPk+X9Wfgf/ej7PVM+9P749aAK9XKJyDqENG2ucOPLiKjJCrl0VEOaQJcHAX8gde1oP7Y9ds1V/FsQLJJKZw==">
-           -->
+        <form id="newsletter_form">
           <br>
           <br>
           <div class="form-group">
             <label for="newsletter_title"> TÍTULO DE LA CIRCULAR </label>
-            <input class="form-control" type="text" name="newsletter[title]" :value="title" id="newsletter_title">
+            <input class="form-control" type="text" name="newsletter[title]" v-model="newsletter.title" id="newsletter_title">
           </div>
           <br>
           <br>
 
-          <draggable v-model="sections" group="sections" @start="drag=true" @end="onDrop" ghost-class="ghost">
-              <div v-for="section in sections" :key="section.id">
+          <draggable v-model="newsletter.newsletter_sections" group="sections" @start="drag=true" @end="onDrop" ghost-class="ghost">
+              <div v-for="section in newsletter.newsletter_sections" :key="section.id">
                 <newsletter-section :section="section"></newsletter-section>
               </div>
           </draggable>
@@ -29,12 +25,12 @@
 
           <div class="form-actions">
             <div class="btn-group actions" role="group">
-              <b-button @click="resetPreview()" v-b-modal.modal-tall class="btn btn-info mb-2">Vista previa</b-button>
+              <b-button @click="saveNewsletter()" class="btn btn-info mb-2">Guardar</b-button>
             </div>
-
+<!--
             <div class="btn-group actions" role="group">
               <input type="submit" name="save" value="Guardar" class="btn btn-success mb-2" data-disable-with="Guardar">
-            </div>
+            </div> -->
           </div>
 
         </form>
@@ -44,7 +40,7 @@
       </div>
 
       <sidebar></sidebar>
-      <b-modal id="modal-tall" scrollable title="Vista Previa">
+      <b-modal id="previewModal" scrollable title="Vista Previa">
         <newsletter-preview :key="newsletterPreviewId"></newsletter-preview>
       </b-modal>
     </div>
@@ -58,41 +54,39 @@ import NewsletterPreview from './newsletter-preview.vue'
 import Sidebar from './sidebar.vue'
 import axios from 'axios';
 import draggable from 'vuedraggable'
-import { ModalPlugin } from 'bootstrap-vue'
-Vue.use(ModalPlugin)
-import Vue from 'vue'
+
+
+import {_} from 'vue-underscore';
 
 export default {
   data: function () {
     return {
-      id: null,
-      title: "Newsletter 1",
-      sections: [],
+      newsletter: {
+        id: null,
+        title: "Newsletter 1",
+        newsletter_sections: [],
+      },
       newsletterPreviewId: 0
     }
   },
-  components: { NewsletterSection, draggable, Sidebar, ModalPlugin, NewsletterPreview },
+  components: { NewsletterSection, draggable, Sidebar, NewsletterPreview },
   mounted: function() {
     axios({ method: 'get',
             url: '/admin/newsletters/' + this.$root.newsletterId + '.json'
           })
     .then(response => {
       console.log(response.data)
-      this.title = response.data.title
-      this.id = response.data.id
-      this.sections = response.data.newsletter_sections
+      this.newsletter.title = response.data.title
+      this.newsletter.id = response.data.id
+      this.newsletter.newsletter_sections = response.data.newsletter_sections
     })
   },
   methods: {
     addSection() {
       axios.post('/admin/newsletters/' + this.$root.newsletterId + '/newsletter_sections.json')
       .then(response => {
-        console.log('Response from new section: ');
-        console.log(response);
-        this.sections.push(response.data);
-        console.log('Sections: ');
-        console.log(this.sections);
-        this.$notify({
+        this.newsletter.newsletter_sections.push(response.data);
+        this.$root.notify({
           group: 'alerts',
           type: 'success',
           title: 'Nueva sección',
@@ -101,7 +95,7 @@ export default {
       })
       .catch(error => {
         console.log(error);
-        this.$notify({
+        this.$root.notify({
           group: 'alerts',
           type: 'error',
           title: 'Nueva sección',
@@ -111,17 +105,32 @@ export default {
     },
     onDrop() {
       this.drag = false;
-      var newsletterIds = this.sections.map(function(section) { return section.id })
+      var newsletterIds = this.newsletter.newsletter_sections.map(function(section) { return section.id })
       console.log(newsletterIds)
       axios.put('/admin/newsletters/' + this.$root.newsletterId + '/sort_sections', {
         newsletter_section_ids: newsletterIds
       }).then(response => {
-        this.$notify({
+        this.$root.notify({
           group: 'alerts',
           type: 'success',
           title: 'Circular guardada',
           text: 'Posicionamiento cambiado correctamente'
         });
+      })
+    },
+    saveNewsletter() {
+      axios.put('/admin/newsletters/' + this.$root.newsletterId, {
+        newsletter: this.newsletter
+      }).then(response => {
+        this.$root.notify({
+          group: 'alerts',
+          type: 'success',
+          title: 'Circular Guardada',
+          text: 'La circular ha sido actualizada correctamente'
+        });
+
+        this.$bvModal.show('previewModal')
+        this.resetPreview()
       })
     },
     resetPreview() {

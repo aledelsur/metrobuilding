@@ -17,6 +17,9 @@ Vue.use(BootstrapVue)
 import Notifications from 'vue-notification'
 Vue.use(Notifications)
 
+import { ModalPlugin } from 'bootstrap-vue'
+Vue.use(ModalPlugin)
+
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     render: h => h(NewsletterPreview),
@@ -26,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
       viewType: 'admin',
       sentNewsletterToken: null
     },
-    components: { NewsletterPreview, BootstrapVue, Notifications },
+    components: { NewsletterPreview, BootstrapVue, Notifications, ModalPlugin },
     beforeMount: function () {
       this.newsletterId = this.$el.attributes['newsletter_id'].value;
       this.viewType = this.$el.attributes['view_type'].value;

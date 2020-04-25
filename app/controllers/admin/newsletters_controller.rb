@@ -28,18 +28,11 @@ class Admin::NewslettersController < AdminController
   end
 
   def update
-    # if @newsletter.update(newsletter_params)
-    #   if params[:save].present?
-    #     redirect_to admin_newsletters_path # redirect to index view
-    #   elsif params[:preview].present?
-    #     redirect_to admin_newsletter_path(@newsletter) # redirect to preview
-    #   else
-    #     redirect_to edit_admin_newsletter_path(@newsletter, new_section: true) # redirect to edit view and build blank section
-    #   end
-    # else
-    #   render :edit
-    # end
-    redirect_to admin_newsletters_path # redirect to index view
+    if @newsletter.update(newsletter_params)
+      render plain: 'ok'
+    else
+      render plain 'Error'
+    end
   end
 
   def destroy
@@ -77,6 +70,7 @@ class Admin::NewslettersController < AdminController
   end
   # Never trust parameters from the scary internet, only allow the white list through.
   def newsletter_params
+    params[:newsletter][:newsletter_sections_attributes] = params[:newsletter][:newsletter_sections]
     params.require(:newsletter).permit(:title, newsletter_sections_attributes: [:id, :title, :description])
   end
 
