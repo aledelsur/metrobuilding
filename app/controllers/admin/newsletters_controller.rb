@@ -31,7 +31,7 @@ class Admin::NewslettersController < AdminController
     if @newsletter.update(newsletter_params)
       render plain: 'ok'
     else
-      render plain 'Error'
+      render plain: 'Error'
     end
   end
 

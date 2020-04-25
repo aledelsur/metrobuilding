@@ -15,9 +15,9 @@
           <br>
           <br>
 
-          <draggable v-model="newsletter.newsletter_sections" group="sections" @start="drag=true" @end="onDrop" ghost-class="ghost">
+          <draggable v-model="newsletter.newsletter_sections" group="sections" @start="onStartSorting" @end="onDrop" ghost-class="ghost">
               <div v-for="section in newsletter.newsletter_sections" :key="section.id">
-                <newsletter-section :section="section"></newsletter-section>
+                <newsletter-section :section="section" :key="sectionCount"></newsletter-section>
               </div>
           </draggable>
 
@@ -25,7 +25,7 @@
 
           <div class="form-actions">
             <div class="btn-group actions" role="group">
-              <b-button @click="saveNewsletter()" class="btn btn-info mb-2">Guardar</b-button>
+              <b-button @click="saveNewsletter(true)" class="btn btn-info mb-2">Guardar</b-button>
             </div>
 <!--
             <div class="btn-group actions" role="group">
@@ -61,6 +61,7 @@ import {_} from 'vue-underscore';
 export default {
   data: function () {
     return {
+      sectionCount: 0,
       newsletter: {
         id: null,
         title: "Newsletter 1",
@@ -103,8 +104,12 @@ export default {
         });
       })
     },
+    onStartSorting(){
+      this.saveNewsletter(false)
+      this.drag = true
+    },
     onDrop() {
-      this.drag = false;
+      this.drag = false
       var newsletterIds = this.newsletter.newsletter_sections.map(function(section) { return section.id })
       console.log(newsletterIds)
       axios.put('/admin/newsletters/' + this.$root.newsletterId + '/sort_sections', {
@@ -116,25 +121,33 @@ export default {
           title: 'Circular guardada',
           text: 'Posicionamiento cambiado correctamente'
         });
+
+        this.resetSections();
       })
     },
-    saveNewsletter() {
+    saveNewsletter(withPreview) {
       axios.put('/admin/newsletters/' + this.$root.newsletterId, {
         newsletter: this.newsletter
       }).then(response => {
-        this.$root.notify({
-          group: 'alerts',
-          type: 'success',
-          title: 'Circular Guardada',
-          text: 'La circular ha sido actualizada correctamente'
-        });
+        if(withPreview) {
+          this.$root.notify({
+            group: 'alerts',
+            type: 'success',
+            title: 'Circular Guardada',
+            text: 'La circular ha sido actualizada correctamente'
+          });
 
-        this.$bvModal.show('previewModal')
+          this.$bvModal.show('previewModal')
+        }
+
         this.resetPreview()
       })
     },
     resetPreview() {
       this.newsletterPreviewId += 1
+    },
+    resetSections(){
+      this.sectionCount += 1;
     }
 
   }
