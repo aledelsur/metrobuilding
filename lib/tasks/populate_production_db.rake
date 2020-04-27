@@ -1,10 +1,10 @@
 desc "This task is temporary. It creates data in Production for demo purposes"
 task :populate_production_db_for_demo => :environment do
   User.destroy_all
-  user1 = User.create(email: 'carlosferreira@gmail.com', first_name: 'Carlos', last_name: 'Ferreira', phone_number: '4964-7321', address_1: 'Av. Santa Fe 2847, 10 A', password: '123456789')
-  user2 = User.create(email: 'vivianaperez@gmail.com', first_name: 'Viviana', last_name: 'Perez', phone_number: '4627-8172', address_1: 'Av. Del Libertador 4757, PB C', password: '123456789')
-  user3 = User.create(email: 'mauriciorivas@gmail.com', first_name: 'Mauricio', last_name: 'Rivas', phone_number: '4625-9382', address_1: 'Av. Federico Lacroze 2453, 14 A', password: '123456789')
-  user4 = User.create(email: 'marceladominguez@gmail.com', first_name: 'Marcela', last_name: 'Dominguez', phone_number: '4972-1422', address_1: 'Báez 756, 12 B', password: '123456789')
+  user1 = User.create(email: 'example1@example.com', first_name: 'Carlos', last_name: 'Ferreira', phone_number: '4964-7321', address_1: 'Av. Santa Fe 2847, 10 A', password: '123456789')
+  user2 = User.create(email: 'example2@example.com', first_name: 'Viviana', last_name: 'Perez', phone_number: '4627-8172', address_1: 'Av. Del Libertador 4757, PB C', password: '123456789')
+  user3 = User.create(email: 'example3@example.com', first_name: 'Mauricio', last_name: 'Rivas', phone_number: '4625-9382', address_1: 'Av. Federico Lacroze 2453, 14 A', password: '123456789')
+  user4 = User.create(email: 'example4@example.com', first_name: 'Marcela', last_name: 'Dominguez', phone_number: '4972-1422', address_1: 'Báez 756, 12 B', password: '123456789')
   puts "4 users created"
 
   PropertyCategory.destroy_all
@@ -22,7 +22,7 @@ task :populate_production_db_for_demo => :environment do
   puts "4 Properties created"
 
   Budget.destroy_all
-  Budget.create(value: 1000000, dollar_against_peso_value: 66, due_date: DateTime.now + 7.days)
+  Budget.create(value: 1000000, dollar_against_peso_value: 66, start_date: DateTime.now, due_date: DateTime.now + 7.days)
   puts "1 Budget created"
 
   Newsletter.destroy_all

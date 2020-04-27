@@ -66,11 +66,17 @@ table {
 
 .budgets {
   .alert {
-    width: 489px;
+    width: 580px;
   }
   .form-group {
     .form-control {
-      width: 489px;
+      width: 580px;
+    }
+  }
+  .form-inline {
+    margin-bottom: 10px;
+    label {
+      width: 258px;
     }
   }
 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_24_110739) do
+ActiveRecord::Schema.define(version: 2020_04_27_182829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_110739) do
     t.datetime "updated_at", null: false
     t.float "dollar_against_peso_value"
     t.integer "debt"
+    t.datetime "start_date"
   end
 
   create_table "debts", force: :cascade do |t|
@@ -145,8 +146,6 @@ ActiveRecord::Schema.define(version: 2020_04_24_110739) do
   end
 
   create_table "sent_newsletters", force: :cascade do |t|
-    t.string "investor_name"
-    t.integer "current_debt"
     t.string "sent_newsletter_token"
     t.bigint "user_id"
     t.bigint "newsletter_id"

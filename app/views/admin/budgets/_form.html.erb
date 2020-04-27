@@ -1,28 +1,39 @@
-<%= form_with(model: [:admin, budget], local: true) do |form| %>
-
-  <%= render partial: 'admin/shared/error_messages', locals: { model_name: budget } %>
-
-  </br>
-  <div class="form-group">
-    <%= form.label :value, 'Monto' %>
-    <%= form.text_field :value, class: 'form-control' %>
+<div class='budgets'>
+  <div class="alert alert-info">
+    <b>IMPORTANTE:</b> Una Base de cálculo sólo podrá eliminarse antes de su fecha de inicio.
   </div>
 
-  <div class="form-group">
-    <%= form.label :dollar_against_peso_value, 'Valor del dolar' %>
-    <em>Ejemplo (65.50)</em>
-    <%= form.number_field :dollar_against_peso_value, step: 0.01, class: 'form-control' %>
-  </div>
+  <%= form_with(model: [:admin, budget], local: true, class: 'budgets-form') do |form| %>
 
-  <div class="form-inline">
-    <%= form.label :due_date, 'Fecha límite para el pago' %>
-    <%= form.datetime_select :due_date, {}, { class: "form-control" }  %>
-  </div>
+    <%= render partial: 'admin/shared/error_messages', locals: { model_name: budget } %>
 
-  </br>
+    </br>
+    <div class="form-group">
+      <%= form.label :value, 'Monto' %>
+      <%= form.text_field :value, class: 'form-control' %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit 'Crear Base de cálculo', class: 'btn btn-primary mb-2' %>
-    <%= link_to 'Atrás', admin_budgets_path, class: 'btn btn-secondary mb-2' %>
-  </div>
-<% end %>
+    <div class="form-group">
+      <%= form.label :dollar_against_peso_value, 'Valor del dolar' %>
+      <em>Ejemplo (65.50)</em>
+      <%= form.number_field :dollar_against_peso_value, step: 0.01, class: 'form-control' %>
+    </div>
+
+    <div class="form-inline">
+      <%= form.label :start_date, 'Fecha de inicio' %>
+      <%= form.datetime_select :start_date, { default: calculate_default_budget_start_date(budget) }, { class: "form-control" }  %>
+    </div>
+
+    <div class="form-inline">
+      <%= form.label :due_date, 'Fecha límite para el pago' %>
+      <%= form.datetime_select :due_date, {}, { class: "form-control" }  %>
+    </div>
+
+    </br>
+
+    <div class="actions">
+      <%= form.submit 'Crear Base de cálculo', class: 'btn btn-primary mb-2' %>
+      <%= link_to 'Atrás', admin_budgets_path, class: 'btn btn-secondary mb-2' %>
+    </div>
+  <% end %>
+</div>

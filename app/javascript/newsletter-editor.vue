@@ -25,12 +25,8 @@
 
           <div class="form-actions">
             <div class="btn-group actions" role="group">
-              <b-button @click="saveNewsletter(true)" class="btn btn-info mb-2">Guardar</b-button>
+              <b-button @click="saveNewsletter(true)" class="btn btn-success mb-2">Guardar</b-button>
             </div>
-<!--
-            <div class="btn-group actions" role="group">
-              <input type="submit" name="save" value="Guardar" class="btn btn-success mb-2" data-disable-with="Guardar">
-            </div> -->
           </div>
 
         </form>
@@ -40,7 +36,7 @@
       </div>
 
       <sidebar></sidebar>
-      <b-modal id="previewModal" scrollable title="Vista Previa">
+      <b-modal id="previewModal" scrollable title="Vista Previa" ok-only ok-title="Cerrar">
         <newsletter-preview :key="newsletterPreviewId"></newsletter-preview>
       </b-modal>
     </div>

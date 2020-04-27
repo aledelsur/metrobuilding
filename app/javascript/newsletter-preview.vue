@@ -45,7 +45,6 @@
         </div>
 
         <div class='triangle'>
-
         </div>
       </div>
 

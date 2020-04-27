@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   get '/admin', to: 'admin/users#index'
   namespace :admin do
-    resources :budgets, only: [:new, :create, :index, :destroy]
+    resources :budgets
     resources :debts
     resources :users do
       get 'newsletters_history', to: 'users#newsletters_history', as: 'newsletters_history'

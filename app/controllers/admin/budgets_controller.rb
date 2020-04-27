@@ -18,8 +18,8 @@ class Admin::BudgetsController < AdminController
   end
 
   # # GET /budgets/1/edit
-  # def edit
-  # end
+  def edit
+  end
 
   # POST /budgets
   # POST /budgets.json
@@ -36,21 +36,23 @@ class Admin::BudgetsController < AdminController
       end
     end
   end
-  #
+
   # # PATCH/PUT /budgets/1
   # # PATCH/PUT /budgets/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @budget.update(budget_params)
-  #       format.html { redirect_to @budget, notice: 'Budget was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @budget }
-  #     else
-  #       format.html { render :edit }
-  #       format.json { render json: @budget.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-  #
+  def update
+    respond_to do |format|
+      if @budget.update(budget_params)
+        flash[:success] = "Base de cálculo actualizada correctamente."
+        format.html { redirect_to admin_budgets_path }
+        format.json { render :show, status: :ok, location: @budget }
+      else
+        flash[:error] = "Los siguientes errores no permiten guardar la información:"
+        format.html { render :edit }
+        format.json { render json: @budget.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # DELETE /budgets/1
   # DELETE /budgets/1.json
   def destroy
@@ -69,6 +71,6 @@ class Admin::BudgetsController < AdminController
   end
 
   def budget_params
-    params.require(:budget).permit(:value, :due_date, :dollar_against_peso_value)
+    params.require(:budget).permit(:value, :start_date, :due_date, :dollar_against_peso_value)
   end
 end

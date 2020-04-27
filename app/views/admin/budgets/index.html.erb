@@ -15,9 +15,10 @@
     <thead>
       <tr>
         <th>Monto</th>
-        <th>Fecha de creación</th>
+        <th>Fecha de inicio</th>
         <th>Vencimiento</th>
-        <th> </th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
 
@@ -25,9 +26,19 @@
       <% @budgets.each do |budget| %>
         <tr>
           <td>$<%= budget.value.round %></td>
-          <td><%= budget.created_at.to_s(:db) %></td>
-          <td><%= budget.due_date.to_s(:db) %></td>
-          <td class="text-center"><%= link_to 'Eliminar', [:admin, budget], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %>
+          <td><%= budget.start_date.strftime("%d-%m-%Y a las %H:%M hs.") %></td>
+          <td><%= budget.due_date.strftime("%d-%m-%Y a las %H:%M hs.") %></td>
+
+          <td class="text-center">
+            <% if budget_not_active_yet?(budget) %>
+              <%= link_to 'Editar', edit_admin_budget_path(budget), class: 'btn btn-default' %>
+            <% end %>
+          </td>
+          <td class="text-center">
+            <% if budget_not_active_yet?(budget) %>
+              <%= link_to 'Eliminar', [:admin, budget], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

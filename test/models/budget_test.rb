@@ -6,6 +6,7 @@
 #  debt                      :integer
 #  dollar_against_peso_value :float
 #  due_date                  :datetime
+#  start_date                :datetime
 #  taxable_percentage        :float
 #  value                     :float
 #  created_at                :datetime         not null

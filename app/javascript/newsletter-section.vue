@@ -3,7 +3,7 @@
     <div class="panel panel-default newsletter-section">
       <div class="panel-heading grabbable" @click='visible = !visible'>
         {{ section.title }}
-        <a class="btn btn-danger remove-section pull-right" data-confirm="Estás seguro que deseas eliminar esta sección?" v-on:click="removeSection">Eliminar</a>
+        <a class="btn btn-danger remove-section pull-right" v-on:click="removeSection">Eliminar</a>
       </div>
       <b-collapse v-model="visible" class="mt-2">
         <b-card>
@@ -23,7 +23,7 @@
               <div class="section-assets row">
                 <div v-for="asset in sectionAssets" class="col-md-2 text-center single-asset">
                   <b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded"></b-img>
-                  <span class="text-center">{{asset.description}}</span>
+                  <div class="text-center">{{asset.description}}</div>
                 </div>
               </div>
 
@@ -81,18 +81,21 @@ export default {
   },
   methods:  {
     removeSection() {
-      axios({ method: 'delete',
-              url:'/admin/newsletters/' + this.$root.newsletterId + '/newsletter_sections/' + this.section.id })
-      .then(response => {
-        this.$root.notify({
-          group: 'alerts',
-          type: 'success',
-          title: 'Sección eliminada',
-          text: 'Sección eliminada correctamente.'
+      var result = confirm("Estás seguro que querés eliminar esta sección?");
+      if (result) {
+        axios({ method: 'delete',
+                url:'/admin/newsletters/' + this.$root.newsletterId + '/newsletter_sections/' + this.section.id })
+        .then(response => {
+          this.$root.notify({
+            group: 'alerts',
+            type: 'success',
+            title: 'Sección eliminada',
+            text: 'Sección eliminada correctamente.'
+          })
+          this.$parent.$parent.newsletter.newsletter_sections = response.data;
+          this.$destroy();
         })
-        this.$parent.$parent.newsletter.newsletter_sections = response.data;
-        this.$destroy();
-      })
+      }
     },
 
   }
