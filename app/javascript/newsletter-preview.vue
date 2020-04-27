@@ -227,21 +227,13 @@ export default {
 }
 
 .section .image .text{
-    text-transform: uppercase;
-    position: absolute;
-    top: 49%;
-    z-index: 1;
-    text-align: center;
-    width: 360px;
-    letter-spacing: 0.5px;
-/*  text-transform: uppercase;
+  text-transform: uppercase;
   position: absolute;
   top: 49%;
   z-index: 1;
   text-align: center;
-  width: 88%;
+  width: 360px;
   letter-spacing: 0.5px;
-  padding: 0 3% 0 3%;*/
 }
 
 .section .image img{
