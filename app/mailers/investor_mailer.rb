@@ -5,7 +5,7 @@ class InvestorMailer < ApplicationMailer
 
     mail(
       to: @user.email,
-      subject: 'Tu nueva Circular de Metrobuilding'
+      subject: 'Tu nueva Newsletter de Metrobuilding'
     )
   end
 end
