@@ -2,11 +2,12 @@
 #
 # Table name: newsletters
 #
-#  id         :bigint           not null, primary key
-#  sent_at    :datetime
-#  title      :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id            :bigint           not null, primary key
+#  email_content :text
+#  sent_at       :datetime
+#  title         :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

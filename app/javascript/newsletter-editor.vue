@@ -23,6 +23,14 @@
 
           <a class="btn btn-primary" v-on:click="addSection()">Agregar Sección</a>
 
+          <div class="email-content">
+            <div></div>
+            <label> CONTENIDO DEL EMAIL A LOS INVERSORES </label>
+            <vue-ckeditor
+            v-model="newsletter.email_content"
+            :config="config" />
+          </div>
+
           <div class="form-actions">
             <div class="btn-group actions" role="group">
               <b-button @click="saveNewsletter(true)" class="btn btn-success mb-2">Guardar</b-button>
@@ -50,6 +58,7 @@ import NewsletterPreview from './newsletter-preview.vue'
 import Sidebar from './sidebar.vue'
 import axios from 'axios';
 import draggable from 'vuedraggable'
+import VueCkeditor from 'vue-ckeditor2';
 
 
 import {_} from 'vue-underscore';
@@ -62,11 +71,18 @@ export default {
         id: null,
         title: "Newsletter 1",
         newsletter_sections: [],
+        email_content: null
       },
-      newsletterPreviewId: 0
+      newsletterPreviewId: 0,
+      config: {
+        toolbar: [
+          { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline' ] }
+        ],
+        height: 200
+      }
     }
   },
-  components: { NewsletterSection, draggable, Sidebar, NewsletterPreview },
+  components: { NewsletterSection, draggable, Sidebar, NewsletterPreview, VueCkeditor },
   mounted: function() {
     axios({ method: 'get',
             url: '/admin/newsletters/' + this.$root.newsletterId + '.json'
@@ -75,6 +91,7 @@ export default {
       console.log(response.data)
       this.newsletter.title = response.data.title
       this.newsletter.id = response.data.id
+      this.newsletter.email_content = response.data.email_content
       this.newsletter.newsletter_sections = response.data.newsletter_sections
     })
   },
@@ -166,5 +183,9 @@ export default {
   }
   #app{
     margin-bottom: 20px;
+  }
+  .email-content {
+    margin-top: 3%;
+    margin-bottom: 1%;
   }
 </style>
