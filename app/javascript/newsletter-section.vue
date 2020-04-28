@@ -110,6 +110,12 @@ export default {
     font-size: 25px;
     text-align: center;
   }
+  .modal-header{
+    height: 70px;
+  }
+  .modal-title{
+    height: 10px;
+  }
   .newsletter-section .panel-heading {
     height: 38px;
   }
