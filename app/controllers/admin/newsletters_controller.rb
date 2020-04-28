@@ -18,7 +18,7 @@ class Admin::NewslettersController < AdminController
   end
 
   def new
-    @newsletter = Newsletter.create(title: "Circular #{Newsletter.count + 1}")
+    @newsletter = Newsletter.create(title: "Newsletter #{Newsletter.count + 1}")
     @newsletter.newsletter_sections.create(title: "Sección 1", description: "Escriba la descripción aquí")
     redirect_to edit_admin_newsletter_path(@newsletter), turbolinks: false
   end
@@ -39,7 +39,7 @@ class Admin::NewslettersController < AdminController
     @newsletter = Newsletter.find(params[:id])
     if @newsletter.present?
       @newsletter.destroy
-      flash[:success] = "Circular eliminada correctamente."
+      flash[:success] = "Newsletter eliminada correctamente."
     end
     redirect_to admin_newsletters_path
   end
@@ -58,7 +58,7 @@ class Admin::NewslettersController < AdminController
 
     SendNewsletterJob.perform_later(newsletter.id, params[:selected_option], params[:user_ids])
     newsletter.update_attribute(:sent_at, DateTime.now)
-    flash[:success] = 'Circular enviada correctamente.'
+    flash[:success] = 'Newsletter enviada correctamente.'
     redirect_to admin_newsletters_path
   end
 
@@ -71,7 +71,7 @@ class Admin::NewslettersController < AdminController
   # Never trust parameters from the scary internet, only allow the white list through.
   def newsletter_params
     params[:newsletter][:newsletter_sections_attributes] = params[:newsletter][:newsletter_sections]
-    params.require(:newsletter).permit(:title, newsletter_sections_attributes: [:id, :title, :description])
+    params.require(:newsletter).permit(:title, :email_content, newsletter_sections_attributes: [:id, :title, :description])
   end
 
 end

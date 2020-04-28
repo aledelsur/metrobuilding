@@ -19,7 +19,7 @@
         <li class="<%= 'active' if params['controller'] == 'admin/property_categories'%>"> <%= link_to 'Categorías', admin_property_categories_path %> </li>
 
         <% if configatron.features.newsletters %>
-          <li class="<%= 'active' if params['controller'] == 'admin/newsletters'%>"> <%= link_to 'Circulares', admin_newsletters_path %> </li>
+          <li class="<%= 'active' if params['controller'] == 'admin/newsletters'%>"> <%= link_to 'Newsletters', admin_newsletters_path %> </li>
           <li class="<%= 'active' if params['controller'] == 'admin/media_assets'%>"> <%= link_to 'Galería de imágenes', admin_media_assets_path %> </li>
         <% end %>
 

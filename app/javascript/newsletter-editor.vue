@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container-fluid">
 
-    <h1>Nueva Circular</h1>
+    <h1>Nueva Newsletter</h1>
 
     <div class="row wrapper">
       <div class='col-xs-12 col-sm-12 col-md-10 main'>
@@ -9,7 +9,7 @@
           <br>
           <br>
           <div class="form-group">
-            <label for="newsletter_title"> TÍTULO DE LA CIRCULAR </label>
+            <label for="newsletter_title"> TÍTULO DE LA NEWSLETTER </label>
             <input class="form-control" type="text" name="newsletter[title]" v-model="newsletter.title" id="newsletter_title">
           </div>
           <br>
@@ -22,6 +22,14 @@
           </draggable>
 
           <a class="btn btn-primary" v-on:click="addSection()">Agregar Sección</a>
+
+          <div class="email-content">
+            <div></div>
+            <label> CONTENIDO DEL EMAIL A LOS INVERSORES </label>
+            <vue-ckeditor
+            v-model="newsletter.email_content"
+            :config="config" />
+          </div>
 
           <div class="form-actions">
             <div class="btn-group actions" role="group">
@@ -50,6 +58,7 @@ import NewsletterPreview from './newsletter-preview.vue'
 import Sidebar from './sidebar.vue'
 import axios from 'axios';
 import draggable from 'vuedraggable'
+import VueCkeditor from 'vue-ckeditor2';
 
 
 import {_} from 'vue-underscore';
@@ -62,11 +71,18 @@ export default {
         id: null,
         title: "Newsletter 1",
         newsletter_sections: [],
+        email_content: null
       },
-      newsletterPreviewId: 0
+      newsletterPreviewId: 0,
+      config: {
+        toolbar: [
+          { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline' ] }
+        ],
+        height: 200
+      }
     }
   },
-  components: { NewsletterSection, draggable, Sidebar, NewsletterPreview },
+  components: { NewsletterSection, draggable, Sidebar, NewsletterPreview, VueCkeditor },
   mounted: function() {
     axios({ method: 'get',
             url: '/admin/newsletters/' + this.$root.newsletterId + '.json'
@@ -75,6 +91,7 @@ export default {
       console.log(response.data)
       this.newsletter.title = response.data.title
       this.newsletter.id = response.data.id
+      this.newsletter.email_content = response.data.email_content
       this.newsletter.newsletter_sections = response.data.newsletter_sections
     })
   },
@@ -114,7 +131,7 @@ export default {
         this.$root.notify({
           group: 'alerts',
           type: 'success',
-          title: 'Circular guardada',
+          title: 'Newsletter guardada',
           text: 'Posicionamiento cambiado correctamente'
         });
 
@@ -129,8 +146,8 @@ export default {
           this.$root.notify({
             group: 'alerts',
             type: 'success',
-            title: 'Circular Guardada',
-            text: 'La circular ha sido actualizada correctamente'
+            title: 'Newsletter Guardada',
+            text: 'La Newsletter ha sido actualizada correctamente'
           });
 
           this.$bvModal.show('previewModal')
@@ -166,5 +183,9 @@ export default {
   }
   #app{
     margin-bottom: 20px;
+  }
+  .email-content {
+    margin-top: 3%;
+    margin-bottom: 1%;
   }
 </style>

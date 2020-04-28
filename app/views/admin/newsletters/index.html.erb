@@ -8,10 +8,10 @@
   </div>
 <% end %>
 
-<h1>Circulares</h1>
+<h1>Newsletters</h1>
 <br>
 <% if @newsletters.empty? %>
-  <div class='no-elements-in-table'>No hay Circulares para mostrar.</div>
+  <div class='no-elements-in-table'>No hay Newsletters para mostrar.</div>
 <% else %>
   <table class="table table-bordered datatable_newsletters">
     <thead>
@@ -19,9 +19,9 @@
         <th>Titulo</th>
         <th>Fecha de creación</th>
         <th>Última vez enviada</th>
-        <th>Enviar Circular</th>
-        <th>Editar Circular</th>
-        <th>Eliminar Circular</th>
+        <th>Enviar Newsletter</th>
+        <th>Editar Newsletter</th>
+        <th>Eliminar Newsletter</th>
       </tr>
     </thead>
 
@@ -33,11 +33,11 @@
           <td><%= index_newsletter_sent(newsletter) %></td>
           <td>
             <button type="button" class="btn btn-default send-newsletter-btn-index" data-toggle="modal" data-target="#send_newsletter_modal" data-newsletter-id="<%=newsletter.id%>">
-              Enviar circular
+              Enviar newsletter
             </button>
           </td>
           <td><%= link_to 'Editar', edit_admin_newsletter_path(newsletter), class: 'btn btn-default' %></td>
-          <td><%= link_to 'Eliminar', [:admin, newsletter], method: :delete, data: { confirm: 'Estás seguro que deseas eliminar esta circular?' }, class: 'btn btn-danger' %> </td>
+          <td><%= link_to 'Eliminar', [:admin, newsletter], method: :delete, data: { confirm: 'Estás seguro que deseas eliminar esta newsletter?' }, class: 'btn btn-danger' %> </td>
         </tr>
       <% end %>
     </tbody>
@@ -45,6 +45,6 @@
 <% end %>
 <br>
 
-<%= link_to 'Nueva Circular', new_admin_newsletter_path, class: 'btn btn-primary' %>
+<%= link_to 'Nueva Newsletter', new_admin_newsletter_path, class: 'btn btn-primary' %>
 
 <%= render partial: 'send_newsletter_modal' %>

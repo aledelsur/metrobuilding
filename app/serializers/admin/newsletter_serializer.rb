@@ -7,7 +7,8 @@ class Admin::NewsletterSerializer < ActiveModel::Serializer
               :created_at,
               :updated_at,
               :logo_url,
-              :main_image
+              :main_image,
+              :email_content
 
   has_many :newsletter_sections
 

@@ -1,6 +1,1 @@
-Estimado <%= @user.first_name %>,
-
-Ya se encuentra disponible la nueva Circular. Para verla haga click aquí: <%= link_to 'Ver Circular', site_sent_newsletter_url(@sent_newsletter.sent_newsletter_token), target: :blank %>.
-
-Saludos,
-Metrobuilding.
+<%= @sent_newsletter.newsletter.email_content.gsub("{{NOMBRE_INVERSOR}}", @user.first_name).gsub("{{NEWSLETTER_URL}}", site_sent_newsletter_url(@sent_newsletter.sent_newsletter_token)) %>
