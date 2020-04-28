@@ -8,9 +8,9 @@
 
 configatron.app_url = ENV['APP_URL']
 configatron.logo = ENV['LOGO']
-configatron.features.newsletters = (ENV['NEWSLETTERS'] == 'true')
-configatron.features.newsletters_history = (ENV['NEWSLETTERS_HISTORY'] == 'true')
-configatron.features.payments = (ENV['PAYMENTS'] == 'true')
-configatron.features.client_portal = (ENV['PORTAL'] == 'true')
-
-configatron.intranet_name = 'Metro 19' # i.e: "metro_19"
+configatron.features.newsletters = ENV['NEWSLETTERS']
+configatron.features.newsletters_history = ENV['NEWSLETTERS_HISTORY']
+configatron.features.payments = ENV['PAYMENTS']
+configatron.features.client_portal = ENV['PORTAL']
+configatron.features.budget_rates = ENV['BUDGET_RATES']
+configatron.intranet_name = ENV['INTRANET_NAME'] || 'Intranet' # i.e: "metro_19"

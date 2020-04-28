@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_28_162813) do
+ActiveRecord::Schema.define(version: 2020_04_28_214842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 2020_04_28_162813) do
     t.float "dollar_against_peso_value"
     t.integer "debt"
     t.datetime "start_date"
+    t.float "rate_1", default: 1.0
+    t.float "rate_2", default: 1.0
   end
 
   create_table "debts", force: :cascade do |t|
