@@ -1,5 +1,6 @@
 desc "This task is temporary. It creates data in Production for demo purposes"
-task :populate_production_db_for_demo => :environment do
+task :populate_db_with_fake_data => :environment do
+  raise "RAILS_ENV is not development. This task can only be run in development environment." unless Rails.env.development?
   User.destroy_all
   user1 = User.create(email: 'example1@example.com', first_name: 'Carlos', last_name: 'Ferreira', phone_number: '4964-7321', address_1: 'Av. Santa Fe 2847, 10 A', password: '123456789')
   user2 = User.create(email: 'example2@example.com', first_name: 'Viviana', last_name: 'Perez', phone_number: '4627-8172', address_1: 'Av. Del Libertador 4757, PB C', password: '123456789')
