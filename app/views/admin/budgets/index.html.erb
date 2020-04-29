@@ -17,6 +17,10 @@
         <th>Monto</th>
         <th>Fecha de inicio</th>
         <th>Vencimiento</th>
+        <% if configatron.features.budget_rates %>
+          <th>Índice CAC Base</th>
+          <th>Índice CAC Cuota NN</th>
+        <% end %>
         <th></th>
         <th></th>
       </tr>
@@ -28,6 +32,11 @@
           <td>$<%= budget.value.round %></td>
           <td><%= budget.start_date.strftime("%d-%m-%Y a las %H:%M hs.") %></td>
           <td><%= budget.due_date.strftime("%d-%m-%Y a las %H:%M hs.") %></td>
+
+          <% if configatron.features.budget_rates %>
+            <td><%= budget.rate_1 %></td>
+            <td><%= budget.rate_2 %></td>
+          <% end %>
 
           <td class="text-center">
             <% if budget_not_active_yet?(budget) %>

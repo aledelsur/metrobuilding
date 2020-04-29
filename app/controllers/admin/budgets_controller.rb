@@ -71,6 +71,6 @@ class Admin::BudgetsController < AdminController
   end
 
   def budget_params
-    params.require(:budget).permit(:value, :start_date, :due_date, :dollar_against_peso_value)
+    params.require(:budget).permit(:value, :rate_1, :rate_2, :start_date, :due_date, :dollar_against_peso_value)
   end
 end

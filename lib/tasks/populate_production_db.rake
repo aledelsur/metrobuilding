@@ -22,7 +22,12 @@ task :populate_production_db_for_demo => :environment do
   puts "4 Properties created"
 
   Budget.destroy_all
-  Budget.create(value: 1000000, dollar_against_peso_value: 66, start_date: DateTime.now, due_date: DateTime.now + 7.days)
+  if configatron.features.budget_rates
+    Budget.create(value: 1000000, dollar_against_peso_value: 66, start_date: DateTime.now, due_date: DateTime.now + 7.days, rate_1: 101.5632, rate_2: 252.12836)
+  else
+    Budget.create(value: 1000000, dollar_against_peso_value: 66, start_date: DateTime.now, due_date: DateTime.now + 7.days)
+  end
+
   puts "1 Budget created"
 
   Newsletter.destroy_all

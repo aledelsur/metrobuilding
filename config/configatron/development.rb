@@ -21,3 +21,4 @@ configatron.features.newsletters = true
 configatron.features.newsletters_history = true
 configatron.features.payments = false
 configatron.features.client_portal = false
+configatron.features.budget_rates = 'true'

@@ -14,7 +14,7 @@ class NewsletterVariable
   end
 
   def variables_to_replace
-    current_budget = Budget.last
+    current_budget = Budget.current
     {
       "{{NOMBRE_INVERSOR}}" => @user.first_name,
       "{{TOTAL_A_PAGAR}}" => @user.debt([current_budget])

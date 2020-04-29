@@ -72,7 +72,7 @@ class User < ApplicationRecord
     total_to_pay = 0
     budgets.each do |budget|
       total_percentage = properties.sum { |property| property.percentage }
-      total_to_pay += budget.value * (total_percentage / 100)
+      total_to_pay += budget.calculate_due_amount(total_percentage)  # [A * (rate_2/rate_1) * D]
     end
     total_to_pay - paid_in_total
   end
