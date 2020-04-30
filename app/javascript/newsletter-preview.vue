@@ -67,7 +67,8 @@ export default {
       sections: [],
       logo_url: null,
       main_image: null,
-      variablesToReplace: null
+      variablesToReplace: null,
+      viewType: null
     }
   },
   mounted: function() {
@@ -88,6 +89,7 @@ export default {
       this.sections = response.data.newsletter_sections
       this.logo_url = response.data.logo_url
       this.main_image = response.data.main_image
+      this.viewType = this.$root.viewType
       if(response.data.variables_to_replace) {
         this.variablesToReplace = response.data.variables_to_replace
         this.replaceVariables();
