@@ -33,7 +33,7 @@
                       <div class="text">
                         {{asset.description}}
                       </div>
-                      <b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded section-img"></b-img>
+                      <a :href="asset.image" target="_blank"><b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded section-img"></b-img></a>
                     </div>
 
                   </div>
@@ -227,6 +227,8 @@ export default {
 }
 
 .section .image .text{
+  font-weight: bold;
+  text-shadow: 1px 1px 1px black;
   text-transform: uppercase;
   position: absolute;
   top: 49%;

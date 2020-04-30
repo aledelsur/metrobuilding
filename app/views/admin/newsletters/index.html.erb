@@ -37,7 +37,11 @@
             </button>
           </td>
           <td><%= link_to 'Editar', edit_admin_newsletter_path(newsletter), class: 'btn btn-default' %></td>
-          <td><%= link_to 'Eliminar', [:admin, newsletter], method: :delete, data: { confirm: 'Estás seguro que deseas eliminar esta newsletter?' }, class: 'btn btn-danger' %> </td>
+          <td>
+            <% unless has_been_sent?(newsletter) %>
+              <%= link_to 'Eliminar', [:admin, newsletter], method: :delete, data: { confirm: 'Estás seguro que deseas eliminar esta newsletter?' }, class: 'btn btn-danger' %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
