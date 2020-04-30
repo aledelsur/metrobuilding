@@ -14,15 +14,17 @@
     <div class='no-elements-in-table'>No hay imágenes en la galería.</div>
   <% else %>
 
-    <table class='table table-bordered datatable'>
+    <table class='table table-bordered <%= add_datatable_class_to_media_assets(current_admin_user) %>'>
       <thead>
         <tr>
           <th></th>
           <th>Nombre</th>
           <th>Descripción</th>
           <th>¿Está siendo utilizada?</th>
-          <th></th>
-          <th></th>
+          <% unless current_admin_user.is_readonly? %>
+            <th></th>
+            <th></th>
+          <% end %>
         </tr>
       </thead>
 
@@ -33,8 +35,10 @@
             <td><u><%= asset.image.filename %></u></td>
             <td><%= asset.description %></td>
             <td><%= used_in_newsletter?(asset) %></td>
-            <td><%= link_to 'Editar', edit_admin_media_asset_path(asset), class: 'btn btn-default' %></td>
-            <td><%= link_to 'Eliminar', admin_media_asset_path(asset), data: { confirm: 'Estás seguro?' }, method: :delete, class: 'btn btn-danger remove-image' %></td>
+            <% unless current_admin_user.is_readonly? %>
+              <td><%= link_to 'Editar', edit_admin_media_asset_path(asset), class: 'btn btn-default' %></td>
+              <td><%= link_to 'Eliminar', admin_media_asset_path(asset), data: { confirm: 'Estás seguro?' }, method: :delete, class: 'btn btn-danger remove-image' %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>

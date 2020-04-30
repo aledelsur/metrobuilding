@@ -11,7 +11,7 @@
   <div class='no-elements-in-table'>No hay Bases de cálculo para mostrar.</div>
 <% else %>
 
-  <table class='table table-bordered datatable_budgets'>
+  <table class='table table-bordered <%= add_datatable_class_to_budgets(current_admin_user) %>'>
     <thead>
       <tr>
         <th>Monto</th>
@@ -21,8 +21,10 @@
           <th>Índice CAC Base</th>
           <th>Índice CAC Cuota NN</th>
         <% end %>
-        <th></th>
-        <th></th>
+        <% unless current_admin_user.is_readonly? %>
+          <th></th>
+          <th></th>
+        <% end %>
       </tr>
     </thead>
 
@@ -38,16 +40,18 @@
             <td><%= budget.rate_2 %></td>
           <% end %>
 
-          <td class="text-center">
-            <% if budget_not_active_yet?(budget) %>
-              <%= link_to 'Editar', edit_admin_budget_path(budget), class: 'btn btn-default' %>
-            <% end %>
-          </td>
-          <td class="text-center">
-            <% if budget_not_active_yet?(budget) %>
-              <%= link_to 'Eliminar', [:admin, budget], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %>
-            <% end %>
-          </td>
+          <% unless current_admin_user.is_readonly? %>
+            <td class="text-center">
+              <% if budget_not_active_yet?(budget) %>
+                <%= link_to 'Editar', edit_admin_budget_path(budget), class: 'btn btn-default' %>
+              <% end %>
+            </td>
+            <td class="text-center">
+              <% if budget_not_active_yet?(budget) %>
+                <%= link_to 'Eliminar', [:admin, budget], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %>
+              <% end %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

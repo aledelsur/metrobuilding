@@ -76,7 +76,16 @@ $(document).ready(function(){
 
   $('.datatable_users').DataTable({
     "columnDefs": [
-      { "orderable": false, "targets": [4,5] }
+      { "orderable": false, "targets": [4,5,6] }
+    ],
+    "oLanguage": {
+      "sSearch": "Buscar:"
+    }
+  });
+
+  $('.datatable_users_readonly').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": [4] }
     ],
     "oLanguage": {
       "sSearch": "Buscar:"
@@ -85,8 +94,14 @@ $(document).ready(function(){
 
   $('.datatable_budgets').DataTable({
     "columnDefs": [
-      { "orderable": false, "targets": 3 }
+      { "orderable": false, "targets": [5,6] }
     ],
+    "oLanguage": {
+      "sSearch": "Buscar:"
+    }
+  });
+
+  $('.datatable_budgets_readonly').DataTable({
     "oLanguage": {
       "sSearch": "Buscar:"
     }
@@ -101,10 +116,40 @@ $(document).ready(function(){
     }
   });
 
+  $('.datatable_properties_readonly').DataTable({
+    "oLanguage": {
+      "sSearch": "Buscar:"
+    }
+  });
+
   $('.datatable_newsletters').DataTable({
     "columnDefs": [
-      { "orderable": false, "targets": [2,3,4] }
+      { "orderable": false, "targets": [3,4,5] }
     ],
+    "oLanguage": {
+      "sSearch": "Buscar:"
+    }
+  });
+
+  $('.datatable_newsletters_readonly').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": [3] }
+    ],
+    "oLanguage": {
+      "sSearch": "Buscar:"
+    }
+  });
+
+  $('.datatable_media_assets').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": [4,5] }
+    ],
+    "oLanguage": {
+      "sSearch": "Buscar:"
+    }
+  });
+
+  $('.datatable_media_assets_readonly').DataTable({
     "oLanguage": {
       "sSearch": "Buscar:"
     }

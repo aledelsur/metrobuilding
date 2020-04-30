@@ -43,4 +43,24 @@ module ApplicationHelper
       when 'error' then "alert alert-danger"
     end
   end
+
+  def add_datatable_class_to_users(admin_user)
+    admin_user.is_readonly? ? 'datatable_users_readonly' : 'datatable_users'
+  end
+
+  def add_datatable_class_to_budgets(admin_user)
+    admin_user.is_readonly? ? 'datatable_budgets_readonly' : 'datatable_budgets'
+  end
+
+  def add_datatable_class_to_properties(admin_user)
+    admin_user.is_readonly? ? 'datatable_properties_readonly' : 'datatable_properties'
+  end
+
+  def add_datatable_class_to_newsletters(admin_user)
+    admin_user.is_readonly? ? 'datatable_newsletters_readonly' : 'datatable_newsletters'
+  end
+
+  def add_datatable_class_to_media_assets(admin_user)
+    admin_user.is_readonly? ? 'datatable_media_assets_readonly' : 'datatable_media_assets'
+  end
 end

@@ -10,14 +10,16 @@
   <div class='no-elements-in-table'>No hay Propiedades para mostrar.</div>
 <% else %>
 
-  <table class="table table-bordered datatable_properties">
+  <table class="table table-bordered <%= add_datatable_class_to_properties(current_admin_user) %>">
     <thead>
       <tr>
         <th>Categoría</th>
         <th>Propietario</th>
         <th>Porcentaje</th>
         <th>Departamento</th>
-        <th>Modificar datos de propiedad</th>
+        <% unless current_admin_user.is_readonly? %>
+          <th></th>
+        <% end %>
       </tr>
     </thead>
 
@@ -29,7 +31,9 @@
           <td><%= property.property_category.percentage %>%</td>
           <td><%= property.name %></td>
           <!-- <td><%# link_to 'Ver', [:admin, property] %></td> -->
-          <td><%= link_to 'Editar', edit_admin_property_path(property), class: 'btn btn-default' %></td>
+          <% unless current_admin_user.is_readonly? %>
+            <td><%= link_to 'Editar', edit_admin_property_path(property), class: 'btn btn-default' %></td>
+          <% end %>
           <!-- <td><%# link_to 'Eliminar Propiedad', [:admin, property], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %></td> -->
         </tr>
       <% end %>

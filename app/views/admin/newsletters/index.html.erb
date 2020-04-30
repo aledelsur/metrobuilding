@@ -13,15 +13,19 @@
 <% if @newsletters.empty? %>
   <div class='no-elements-in-table'>No hay Newsletters para mostrar.</div>
 <% else %>
-  <table class="table table-bordered datatable_newsletters">
+  <table class="table table-bordered <%= add_datatable_class_to_newsletters(current_admin_user) %>">
     <thead>
       <tr>
         <th>Titulo</th>
         <th>Fecha de creación</th>
         <th>Última vez enviada</th>
-        <th>Enviar Newsletter</th>
-        <th>Editar Newsletter</th>
-        <th>Eliminar Newsletter</th>
+        <% if current_admin_user.is_readonly? %>
+          <th></th>
+        <% else %>
+          <th></th>
+          <th></th>
+          <th></th>
+        <% end %>
       </tr>
     </thead>
 
@@ -31,17 +35,22 @@
           <td class="title"><%= newsletter.title %></td>
           <td><%= newsletter.created_at.strftime("%d-%m-%Y a las %H:%M hs.") %></td>
           <td><%= index_newsletter_sent(newsletter) %></td>
-          <td>
-            <button type="button" class="btn btn-default send-newsletter-btn-index" data-toggle="modal" data-target="#send_newsletter_modal" data-newsletter-id="<%=newsletter.id%>">
-              Enviar newsletter
-            </button>
-          </td>
-          <td><%= link_to 'Editar', edit_admin_newsletter_path(newsletter), class: 'btn btn-default' %></td>
-          <td>
-            <% unless has_been_sent?(newsletter) %>
-              <%= link_to 'Eliminar', [:admin, newsletter], method: :delete, data: { confirm: 'Estás seguro que deseas eliminar esta newsletter?' }, class: 'btn btn-danger' %>
-            <% end %>
-          </td>
+
+          <% if current_admin_user.is_readonly? %>
+            <td><%= link_to 'Ver Newsletter', admin_newsletter_path(newsletter), class: 'btn btn-default', target: :blank %></td>
+          <% else %>
+            <td>
+              <button type="button" class="btn btn-default send-newsletter-btn-index" data-toggle="modal" data-target="#send_newsletter_modal" data-newsletter-id="<%=newsletter.id%>">
+                Enviar newsletter
+              </button>
+            </td>
+            <td><%= link_to 'Editar', edit_admin_newsletter_path(newsletter), class: 'btn btn-default' %></td>
+            <td>
+              <% unless has_been_sent?(newsletter) %>
+                <%= link_to 'Eliminar', [:admin, newsletter], method: :delete, data: { confirm: 'Estás seguro que deseas eliminar esta newsletter?' }, class: 'btn btn-danger' %>
+              <% end %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

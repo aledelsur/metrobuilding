@@ -9,7 +9,7 @@
 <% if @users.empty? %>
   <div class='no-elements-in-table'>No hay Propietarios para mostrar.</div>
 <% else %>
-  <table class='table table-bordered datatable_users'>
+  <table class="table table-bordered <%= add_datatable_class_to_users(current_admin_user) %>">
     <thead>
       <tr>
         <th>Nombre</th>
@@ -26,8 +26,10 @@
           <th></th>
         <% end %>
 
-        <th></th>
-        <th></th>
+        <% unless current_admin_user.is_readonly? %>
+          <th></th>
+          <th></th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -46,8 +48,11 @@
           <% if configatron.features.newsletters_history %>
             <td><%= link_to 'Newsletters enviadas', admin_user_newsletters_history_path(user), class: 'btn btn-default' %></td>
           <% end %>
-          <td><%= link_to 'Editar', edit_admin_user_path(user), class: 'btn btn-default' %></td>
-          <td><%= link_to 'Eliminar', [:admin, user], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %></td>
+
+          <% unless current_admin_user.is_readonly? %>
+            <td><%= link_to 'Editar', edit_admin_user_path(user), class: 'btn btn-default' %></td>
+            <td><%= link_to 'Eliminar', [:admin, user], method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
