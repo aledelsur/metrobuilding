@@ -4,7 +4,7 @@ class Admin::NewsletterSectionsController < AdminController
 
   def create
     section_number = @newsletter.newsletter_sections.size + 1
-    newsletter_section = @newsletter.newsletter_sections.create(title: "Sección #{section_number}", description: "Escriba la descripción aquí")
+    newsletter_section = @newsletter.newsletter_sections.create(title: "Sección #{section_number}", description: "Escriba la descripción aquí", position: section_number)
     render json: newsletter_section
   end
 

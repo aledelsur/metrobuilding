@@ -18,7 +18,7 @@ class Admin::NewslettersController < AdminController
 
   def new
     @newsletter = Newsletter.create(title: "Newsletter #{Newsletter.count + 1}")
-    @newsletter.newsletter_sections.create(title: "Sección 1", description: "Escriba la descripción aquí")
+    @newsletter.newsletter_sections.create(title: "Sección 1", description: "Escriba la descripción aquí", position: 1)
     redirect_to edit_admin_newsletter_path(@newsletter), turbolinks: false
   end
 
