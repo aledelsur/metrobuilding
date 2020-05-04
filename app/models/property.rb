@@ -52,7 +52,7 @@ class Property < ApplicationRecord
   end
 
   def budget_debt
-    Budget.all.sum do |budget|
+    Budget.active.sum do |budget|
       budget.calculate_due_amount(percentage)
     end
   end

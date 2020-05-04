@@ -43,17 +43,8 @@ class User < ApplicationRecord
 
   has_many :debts, through: :properties
 
-  after_update :recalculate_budget_debt
-
   validates :first_name, presence: true
   validates :last_name, presence: true
-  # validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
-
-  # def generate_payment(value, due_date, id)
-  #   total_percentage = properties.sum { |property| property.percentage }
-  #   amount_to_pay = value * (total_percentage / 100)
-  #   payments.create(value: amount_to_pay, due_date: due_date, budget_id: id)
-  # end
 
   def name
     "#{last_name}, #{first_name}"
@@ -68,7 +59,7 @@ class User < ApplicationRecord
   end
 
   def debt(budgets = nil)
-    budgets = Budget.all if budgets.nil?
+    budgets = Budget.active if budgets.nil?
     total_to_pay = 0
     budgets.each do |budget|
       total_percentage = properties.sum { |property| property.percentage }
@@ -80,18 +71,11 @@ class User < ApplicationRecord
   def special_debt(currency)
     payment_type = (currency == :pesos ? "deuda_pesos" : "deuda_dolares")
     initial_amount = debts.select { |debt| debt.currency.to_sym == currency.to_sym }.map(&:amount).sum
-    initial_amount - self.payments.where(payment_type: payment_type).map(&:value).sum.round
+    initial_amount - payments.where(payment_type: payment_type).map(&:value).sum.round
   end
 
   def paid_in_total
     payments.cuota.sum { |p| p.value.present? ? p.value : 0 }
-  end
-
-  def recalculate_budget_debt
-    if saved_change_to_current_debt?
-      budget = Budget.last
-      budget.recalculate_debt
-    end
   end
 
   def self.to_csv
@@ -101,7 +85,7 @@ class User < ApplicationRecord
       csv << attributes
 
       all.each do |user|
-        csv << attributes.map{ |attr| user.send(attr) }
+        csv << attributes.map { |attr| user.send(attr) }
       end
     end
   end
