@@ -36,7 +36,7 @@
       <% @users.each do |user| %>
         <tr>
           <td><%= link_to user.name, admin_user_path(user) %></td>
-          <td>$<%= user.debt(@budget).round(0) %></td>
+          <td>$<%= user.debt(@budgets).round(0) %></td>
           <td><%= user.phones %></td>
           <td><%= property_list(user.properties) %></td>
           <% if configatron.features.payments %>

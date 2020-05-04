@@ -4,7 +4,8 @@ class Admin::UsersController < AdminController
   # GET /users
   # GET /users.json
   def index
-    @budget = Budget.all
+    @budgets = [Budget.current] unless configatron.features.payments
+
     @users = User.includes(:payments, properties: [:property_category, :debts])
 
     respond_to do |format|

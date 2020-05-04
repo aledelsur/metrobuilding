@@ -1,5 +1,7 @@
 module Admin::BudgetsHelper
   def budget_not_active_yet?(budget)
+    return true unless budget.start_date
+
     DateTime.now < budget.start_date
   end
 
@@ -8,7 +10,7 @@ module Admin::BudgetsHelper
       last_budget = Budget.last
 
       if last_budget.present?
-        last_budget.due_date  
+        last_budget.due_date
       end
     end
   end
