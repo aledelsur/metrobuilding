@@ -8,8 +8,6 @@
 #  updated_at :datetime         not null
 #
 class Company < ApplicationRecord
-  include Concerns::Feature
-
   has_many :projects
   has_many :users
   has_many :company_features
@@ -45,11 +43,11 @@ class Company < ApplicationRecord
   private
 
   def create_company_features
-    FEATURES_DATA.each do |feature_key, feature_value|
+    CompanyFeature::FEATURES_DATA.each do |feature_key, feature_value|
       company_features.create(
           feature: feature_key,
-          boolean_value: (feature_value_type(feature_key) == 'Boolean' ? feature_default_value(feature_key) : nil),
-          string_value: (feature_value_type(feature_key) == 'String' ? feature_default_value(feature_key) : nil)
+          boolean_value: (CompanyFeature.feature_value_type(feature_key) == 'Boolean' ? CompanyFeature.feature_default_value(feature_key) : nil),
+          string_value: (CompanyFeature.feature_value_type(feature_key) == 'String' ? CompanyFeature.feature_default_value(feature_key) : nil)
       )
     end
   end
