@@ -21,13 +21,13 @@ class Budget < ApplicationRecord
   validates :value, numericality: true
   validates :dollar_against_peso_value, numericality: true, if: :payments_activated?
 
-  # after_create :recalculate_debt
+  after_create :recalculate_debt
 
-  # def recalculate_debt
-  #   current_debts = User.where('current_debt > ?', 0).pluck(:current_debt)
-  #   self.debt = current_debts.sum
-  #   save
-  # end
+  def recalculate_debt
+    current_debts = User.where('current_debt > ?', 0).pluck(:current_debt)
+    self.debt = current_debts.sum
+    save
+  end
 
   # [A * (C / B ) * D]
   def calculate_due_amount(percentage)

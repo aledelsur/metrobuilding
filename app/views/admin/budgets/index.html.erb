@@ -32,7 +32,7 @@
       <% @budgets.each do |budget| %>
         <tr>
           <td>$<%= budget.value.round %></td>
-          <td><%= budget.start_date.strftime("%d-%m-%Y a las %H:%M hs.") %></td>
+          <td><%= budget.start_date&.strftime("%d-%m-%Y a las %H:%M hs.") %></td>
           <td><%= budget.due_date.strftime("%d-%m-%Y a las %H:%M hs.") %></td>
 
           <% if configatron.features.budget_rates %>
