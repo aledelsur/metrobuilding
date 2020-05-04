@@ -59,7 +59,7 @@ class User < ApplicationRecord
   end
 
   def debt(budgets = nil)
-    budgets = Budget.active if budgets.nil?
+    budgets = Budget.active.all if budgets.nil?
     total_to_pay = 0
     budgets.each do |budget|
       total_percentage = properties.sum { |property| property.percentage }

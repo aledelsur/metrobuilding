@@ -20,7 +20,7 @@ class Budget < ApplicationRecord
 
   validates :value, numericality: true
   validates :dollar_against_peso_value, numericality: true, if: :payments_activated?
-  scope :active, -> { where('start_date = ? OR start_date > ?', nil, DateTime.now) }
+  scope :active, -> { where('start_date IS NULL OR start_date > ?', DateTime.now) }
 
   after_create :recalculate_debt
 
