@@ -8,6 +8,8 @@
 #  title         :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  company_id    :bigint
+#  project_id    :bigint
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

@@ -7,7 +7,9 @@
 #  sent_newsletter_token :string
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  company_id            :bigint
 #  newsletter_id         :bigint
+#  project_id            :bigint
 #  user_id               :bigint
 #
 # Indexes
@@ -18,8 +20,15 @@
 #
 
 class SentNewsletter < ApplicationRecord
+  include Concerns::SetCompanyIdFromProject
+
   belongs_to :user
   belongs_to :newsletter
+
+  belongs_to :project
+  belongs_to :company
+
+  validates :project_id, :company_id, presence: true
 
   after_save :generate_token_and_newsletter_url
 

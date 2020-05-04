@@ -25,6 +25,7 @@
 #  sign_in_count          :integer          default("0"), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  company_id             :bigint
 #
 # Indexes
 #

@@ -60,9 +60,6 @@ import axios from 'axios';
 import draggable from 'vuedraggable'
 import VueCkeditor from 'vue-ckeditor2';
 
-
-import {_} from 'vue-underscore';
-
 export default {
   data: function () {
     return {

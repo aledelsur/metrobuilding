@@ -10,11 +10,17 @@
 #  section              :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
+#  company_id           :bigint
+#  project_id           :bigint
 #  property_category_id :integer
 #  user_id              :integer
 #
 
 class Property < ApplicationRecord
+  include Concerns::SetCompanyIdFromProject
+
+  validates :project_id, :company_id, presence: true
+
   belongs_to :user
   belongs_to :property_category
 
@@ -23,6 +29,9 @@ class Property < ApplicationRecord
 
   has_many :property_debts
   has_many :debts, through: :property_debts
+
+  belongs_to :project
+  belongs_to :company
 
   after_update :transfer_payments
 

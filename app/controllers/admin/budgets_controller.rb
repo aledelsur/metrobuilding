@@ -4,7 +4,7 @@ class Admin::BudgetsController < AdminController
   # GET /budgets
   # GET /budgets.json
   def index
-    @budgets = Budget.all.order('id desc')
+    @budgets = @project.budgets.order('id desc')
   end
 
   # # GET /budgets/1
@@ -14,7 +14,7 @@ class Admin::BudgetsController < AdminController
 
   # GET /budgets/new
   def new
-    @budget = Budget.new
+    @budget = @project.budgets.new
   end
 
   # # GET /budgets/1/edit
@@ -24,7 +24,7 @@ class Admin::BudgetsController < AdminController
   # POST /budgets
   # POST /budgets.json
   def create
-    @budget = Budget.new(budget_params)
+    @budget = @project.budgets.new(budget_params)
 
     respond_to do |format|
       if @budget.save
@@ -67,7 +67,7 @@ class Admin::BudgetsController < AdminController
   private
 
   def set_budget
-    @budget = Budget.find(params[:id])
+    @budget = @project.budgets.find(params[:id])
   end
 
   def budget_params

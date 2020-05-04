@@ -7,7 +7,9 @@
 #  sent_newsletter_token :string
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  company_id            :bigint
 #  newsletter_id         :bigint
+#  project_id            :bigint
 #  user_id               :bigint
 #
 # Indexes

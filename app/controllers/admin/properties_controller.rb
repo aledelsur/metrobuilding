@@ -4,7 +4,7 @@ class Admin::PropertiesController < AdminController
   # GET /properties
   # GET /properties.json
   def index
-    @properties = Property.all
+    @properties = @project.properties
   end
 
   # GET /properties/1
@@ -14,7 +14,7 @@ class Admin::PropertiesController < AdminController
 
   # GET /properties/new
   def new
-    @property = Property.new
+    @property = @project.properties.new
   end
 
   # GET /properties/1/edit
@@ -24,7 +24,7 @@ class Admin::PropertiesController < AdminController
   # POST /properties
   # POST /properties.json
   def create
-    @property = Property.new(property_params)
+    @property = @project.properties.new(property_params)
 
     respond_to do |format|
       if @property.save
@@ -69,7 +69,7 @@ class Admin::PropertiesController < AdminController
   private
 
   def set_property
-    @property = Property.find(params[:id])
+    @property = @project.properties.find(params[:id])
   end
 
   def property_params

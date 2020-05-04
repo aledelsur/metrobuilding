@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_30_195926) do
+ActiveRecord::Schema.define(version: 2020_05_04_163145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 2020_04_30_195926) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_readonly", default: false
+    t.bigint "project_id"
+    t.bigint "company_id"
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
@@ -60,6 +62,14 @@ ActiveRecord::Schema.define(version: 2020_04_30_195926) do
     t.datetime "start_date"
     t.float "rate_1", default: 1.0
     t.float "rate_2", default: 1.0
+    t.bigint "project_id"
+    t.bigint "company_id"
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "debts", force: :cascade do |t|
@@ -69,12 +79,16 @@ ActiveRecord::Schema.define(version: 2020_04_30_195926) do
     t.datetime "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "project_id"
+    t.bigint "company_id"
   end
 
   create_table "media_assets", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "description"
+    t.bigint "project_id"
+    t.bigint "company_id"
   end
 
   create_table "media_assets_newsletter_sections", force: :cascade do |t|
@@ -99,6 +113,8 @@ ActiveRecord::Schema.define(version: 2020_04_30_195926) do
     t.string "title"
     t.datetime "sent_at"
     t.text "email_content"
+    t.bigint "project_id"
+    t.bigint "company_id"
   end
 
   create_table "payment_properties", force: :cascade do |t|
@@ -119,7 +135,17 @@ ActiveRecord::Schema.define(version: 2020_04_30_195926) do
     t.float "dollar_value"
     t.integer "payment_type"
     t.string "check_number"
+    t.bigint "project_id"
+    t.bigint "company_id"
     t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_projects_on_company_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -132,6 +158,8 @@ ActiveRecord::Schema.define(version: 2020_04_30_195926) do
     t.string "floor"
     t.string "rooms"
     t.string "garage"
+    t.bigint "project_id"
+    t.bigint "company_id"
   end
 
   create_table "property_categories", force: :cascade do |t|
@@ -139,6 +167,8 @@ ActiveRecord::Schema.define(version: 2020_04_30_195926) do
     t.float "percentage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "project_id"
+    t.bigint "company_id"
   end
 
   create_table "property_debts", force: :cascade do |t|
@@ -159,6 +189,8 @@ ActiveRecord::Schema.define(version: 2020_04_30_195926) do
     t.integer "payment_id"
     t.string "name"
     t.string "concept"
+    t.bigint "project_id"
+    t.bigint "company_id"
   end
 
   create_table "sent_newsletters", force: :cascade do |t|
@@ -168,6 +200,8 @@ ActiveRecord::Schema.define(version: 2020_04_30_195926) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.json "newsletter_variables", default: {}
+    t.bigint "project_id"
+    t.bigint "company_id"
     t.index ["newsletter_id"], name: "index_sent_newsletters_on_newsletter_id"
     t.index ["sent_newsletter_token"], name: "index_sent_newsletters_on_sent_newsletter_token"
     t.index ["user_id"], name: "index_sent_newsletters_on_user_id"
@@ -187,6 +221,26 @@ ActiveRecord::Schema.define(version: 2020_04_30_195926) do
     t.index ["owner_id", "owner_type"], name: "index_shortened_urls_on_owner_id_and_owner_type"
     t.index ["unique_key"], name: "index_shortened_urls_on_unique_key", unique: true
     t.index ["url"], name: "index_shortened_urls_on_url"
+  end
+
+  create_table "user_debts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "debt_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["debt_id"], name: "index_user_debts_on_debt_id"
+    t.index ["user_id"], name: "index_user_debts_on_user_id"
+  end
+
+  create_table "user_projects", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "project_id"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_user_projects_on_company_id"
+    t.index ["project_id"], name: "index_user_projects_on_project_id"
+    t.index ["user_id"], name: "index_user_projects_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -212,6 +266,7 @@ ActiveRecord::Schema.define(version: 2020_04_30_195926) do
     t.inet "last_sign_in_ip"
     t.integer "current_debt"
     t.text "notes"
+    t.bigint "company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

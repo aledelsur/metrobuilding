@@ -10,6 +10,8 @@
 #  section              :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
+#  company_id           :bigint
+#  project_id           :bigint
 #  property_category_id :integer
 #  user_id              :integer
 #

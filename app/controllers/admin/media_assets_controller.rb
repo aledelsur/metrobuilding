@@ -2,7 +2,7 @@ class Admin::MediaAssetsController < AdminController
   before_action :set_media_asset, only: [:destroy, :edit, :update]
 
   def index
-    @media_assets = MediaAsset.all
+    @media_assets = @project.media_assets
     @media_asset = MediaAsset.new
 
     respond_to do |format|
@@ -12,11 +12,11 @@ class Admin::MediaAssetsController < AdminController
   end
 
   def new
-    @media_asset = MediaAsset.new
+    @media_asset = @project.media_assets.new
   end
 
   def create
-    @media_asset = MediaAsset.new(media_asset_parms)
+    @media_asset = @project.media_assets.new(media_asset_parms)
 
     if @media_asset.save
       flash[:success] = "Imagen agregada correctamente."
@@ -38,7 +38,7 @@ class Admin::MediaAssetsController < AdminController
   end
 
   def destroy
-    @media_asset = MediaAsset.find(params[:id])
+    @media_asset = @project.media_assets.find(params[:id])
 
     if @media_asset.present?
       flash[:success] = "Imagen eliminada correctamente."
@@ -50,7 +50,7 @@ class Admin::MediaAssetsController < AdminController
   private
 
   def set_media_asset
-    @media_asset = MediaAsset.find(params[:id])
+    @media_asset = @project.media_assets.find(params[:id])
   end
 
   def media_asset_parms

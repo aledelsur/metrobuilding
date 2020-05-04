@@ -9,11 +9,20 @@
 #  due_date    :datetime
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  company_id  :bigint
+#  project_id  :bigint
 #
 
 class Debt < ApplicationRecord
+  include Concerns::SetCompanyIdFromProject
+
   has_many :property_debts
   has_many :properties, through: :property_debts
+
+  belongs_to :project
+  belongs_to :company
+
+  validates :project_id, :company_id, presence: true
 
   enum currency: ['pesos', 'dolares']
 

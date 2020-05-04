@@ -13,6 +13,8 @@
 #  value                     :float
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
+#  company_id                :bigint
+#  project_id                :bigint
 #
 
 require 'test_helper'

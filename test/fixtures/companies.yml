@@ -1,13 +1,11 @@
 # == Schema Information
 #
-# Table name: media_assets
+# Table name: companies
 #
-#  id          :bigint           not null, primary key
-#  description :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  company_id  :bigint
-#  project_id  :bigint
+#  id         :bigint           not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 # This model initially had no columns defined. If you add columns to the

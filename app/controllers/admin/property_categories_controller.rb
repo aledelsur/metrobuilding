@@ -4,7 +4,7 @@ class Admin::PropertyCategoriesController < AdminController
   # GET /property_categories
   # GET /property_categories.json
   def index
-    @property_categories = PropertyCategory.all
+    @property_categories = @project.property_categories
   end
 
   # GET /property_categories/1
@@ -14,7 +14,7 @@ class Admin::PropertyCategoriesController < AdminController
 
   # GET /property_categories/new
   def new
-    @property_category = PropertyCategory.new
+    @property_category = @project.property_categories.new
   end
 
   # GET /property_categories/1/edit
@@ -24,7 +24,7 @@ class Admin::PropertyCategoriesController < AdminController
   # POST /property_categories
   # POST /property_categories.json
   def create
-    @property_category = PropertyCategory.new(property_category_params)
+    @property_category = @project.property_categories.new(property_category_params)
 
     respond_to do |format|
       if @property_category.save
@@ -64,7 +64,7 @@ class Admin::PropertyCategoriesController < AdminController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_property_category
-      @property_category = PropertyCategory.find(params[:id])
+      @property_category = @project.property_categories.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -25,6 +25,7 @@
 #  sign_in_count          :integer          default("0"), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  company_id             :bigint
 #
 # Indexes
 #
@@ -36,15 +37,23 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
+
   has_many :properties
   has_many :payments
   has_many :receipts, through: :payments
   has_many :sent_newsletters
 
+  has_many :user_projects
+  has_many :projects, through: :user_projects
+
   has_many :debts, through: :properties
+
+  belongs_to :company
 
   validates :first_name, presence: true
   validates :last_name, presence: true
+  validates :company_id, presence: true
+  validates :email, uniqueness: { scope: :company_id, message: "ya existe otro usuario con ese mail dentro de la empresa" }
 
   def name
     "#{last_name}, #{first_name}"
@@ -59,7 +68,7 @@ class User < ApplicationRecord
   end
 
   def debt(budgets = nil)
-    budgets = Budget.active if budgets.nil?
+    budgets = User.current_project.budgets.active if budgets.nil?
     total_to_pay = 0
     budgets.each do |budget|
       total_percentage = properties.sum { |property| property.percentage }
@@ -89,5 +98,4 @@ class User < ApplicationRecord
       end
     end
   end
-
 end

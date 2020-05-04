@@ -4,9 +4,9 @@ class Admin::UsersController < AdminController
   # GET /users
   # GET /users.json
   def index
-    @budgets = [Budget.current] unless configatron.features.payments
+    @budgets = [@project.budgets.current.last].compact unless configatron.features.payments
 
-    @users = User.includes(:payments, properties: [:property_category, :debts])
+    @users = @project.users.includes(:payments, properties: [:property_category, :debts])
 
     respond_to do |format|
       format.html
@@ -21,7 +21,7 @@ class Admin::UsersController < AdminController
 
   # GET /users/new
   def new
-    @user = User.new
+    @user = @project.users.new
   end
 
   # GET /users/1/edit
@@ -31,11 +31,11 @@ class Admin::UsersController < AdminController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    @user = @project.company.users.new(user_params)
 
     respond_to do |format|
       if @user.save
-
+        @project.users << @user
         # Metromarketing::Users::Request.post(@user)
 
         flash[:success] = "Propietario creado correctamente."
@@ -76,7 +76,10 @@ class Admin::UsersController < AdminController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
+    user_project = UserProject.find_by(user_id: params[:id], project_id: @project.id)
+
+    user_project.destroy
+
     respond_to do |format|
       flash[:success] = "Propietario eliminado correctamente."
       format.html { redirect_to admin_users_path }
@@ -85,14 +88,14 @@ class Admin::UsersController < AdminController
   end
 
   def newsletters_history
-    @user = User.find(params[:user_id])
+    @user = @project.users.find(params[:user_id])
     @sent_newsletters = @user.sent_newsletters
   end
 
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = @project.users.find(params[:id])
   end
 
   def user_params
