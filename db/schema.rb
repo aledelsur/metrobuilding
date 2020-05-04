@@ -223,15 +223,6 @@ ActiveRecord::Schema.define(version: 2020_05_04_163145) do
     t.index ["url"], name: "index_shortened_urls_on_url"
   end
 
-  create_table "user_debts", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "debt_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["debt_id"], name: "index_user_debts_on_debt_id"
-    t.index ["user_id"], name: "index_user_debts_on_user_id"
-  end
-
   create_table "user_projects", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "project_id"
