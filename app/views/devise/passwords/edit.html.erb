@@ -1,5 +1,5 @@
 <div class='login-container'>
-  <div class='logo'> <%= image_tag configatron.logo%> </div>
+  <div class='logo'> <%= image_tag @company.feature_string_value(:logo)%> </div>
   <h2>Cambiar contraseña</h2>
 
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>

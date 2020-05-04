@@ -4,7 +4,7 @@ class Admin::UsersController < AdminController
   # GET /users
   # GET /users.json
   def index
-    @budgets = [@project.budgets.current.last].compact unless configatron.features.payments
+    @budgets = [@project.budgets.current.last].compact unless @company.has_feature?(:payments)
 
     @users = @project.users.includes(:payments, properties: [:property_category, :debts])
 

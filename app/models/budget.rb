@@ -52,7 +52,7 @@ class Budget < ApplicationRecord
   private
 
   def payments_activated?
-    configatron.features.payments
+    @company.has_feature?(:payments)
   end
 end
 

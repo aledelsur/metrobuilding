@@ -7,7 +7,7 @@
       <%= form.text_field :value, class: 'form-control' %>
     </div>
 
-    <% if configatron.features.payments %>
+    <% if @company.has_feature?(:payments) %>
       <div class="form-group">
         <%= form.label :dollar_against_peso_value, 'Valor del dolar' %>
         <em>Ejemplo (65.50)</em>
@@ -15,7 +15,7 @@
       </div>
     <% end %>
 
-    <% if configatron.features.budget_rates %>
+    <% if @company.has_feature?(:budget_rates) %>
       <div class="form-group">
         <%= form.label :rate_1, 'Indice CAC Base.' %>
         <em>Ejemplo (101,56)</em>

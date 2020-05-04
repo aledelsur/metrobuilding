@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
 
     render_doesnt_exist_page and return false unless @project
 
+    @company = @project.company
+
     if current_user && current_user.company_id != @project.company_id
       redirect_to root_path, status: :forbidden and return
     end

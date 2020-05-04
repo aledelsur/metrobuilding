@@ -16,13 +16,13 @@
         <th>Cuota actual</th>
         <th>Teléfonos</th>
         <th>Listado de propiedades</th>
-        <% if configatron.features.payments %>
+        <% if @company.has_feature?(:payments) %>
           <th></th>
           <th></th>
           <th></th>
         <% end %>
 
-        <% if configatron.features.newsletters_history %>
+        <% if @company.has_feature?(:newsletters_history) %>
           <th></th>
         <% end %>
 
@@ -39,13 +39,13 @@
           <td>$<%= user.debt(@budgets).round(0) %></td>
           <td><%= user.phones %></td>
           <td><%= property_list(user.properties) %></td>
-          <% if configatron.features.payments %>
+          <% if @company.has_feature?(:payments) %>
               <td class="text-center"> <%= link_to 'Nuevo Pago Cuota', new_admin_payment_path(user_id: user.id, payment_type: 'cuota'), class: 'btn btn-default' %></td>
               <td class="text-center"><%= link_to 'Nuevo Pago Deuda USD', new_admin_payment_path(user_id: user.id, payment_type: 'deuda_dolares'), class: 'btn btn-default' %></td>
               <td class="text-center"><%= link_to 'Nuevo Pago Deuda Pesos', new_admin_payment_path(user_id: user.id, payment_type: 'deuda_pesos'), class: 'btn btn-default' %> </td>
           <% end %>
 
-          <% if configatron.features.newsletters_history %>
+          <% if @company.has_feature?(:newsletters_history) %>
             <td><%= link_to 'Newsletters enviadas', admin_user_newsletters_history_path(user), class: 'btn btn-default' %></td>
           <% end %>
 

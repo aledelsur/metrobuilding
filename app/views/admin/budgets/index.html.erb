@@ -17,7 +17,7 @@
         <th>Monto</th>
         <th>Fecha de inicio</th>
         <th>Vencimiento</th>
-        <% if configatron.features.budget_rates %>
+        <% if @company.has_feature?(:budget_rates) %>
           <th>Índice CAC Base</th>
           <th>Índice CAC Cuota NN</th>
         <% end %>
@@ -35,7 +35,7 @@
           <td><%= budget.start_date&.strftime("%d-%m-%Y a las %H:%M hs.") %></td>
           <td><%= budget.due_date.strftime("%d-%m-%Y a las %H:%M hs.") %></td>
 
-          <% if configatron.features.budget_rates %>
+          <% if @company.has_feature?(:budget_rates) %>
             <td><%= budget.rate_1 %></td>
             <td><%= budget.rate_2 %></td>
           <% end %>
