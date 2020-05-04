@@ -6,17 +6,17 @@
 #
 development:
   adapter: postgresql
-  database: metrobuilding_development
+  database: ayres_de_canning_deveopment
   pool: 5
   timeout: 5000
 test:
   adapter: postgresql
-  database: metrobuilding_test
+  database: ayres_de_canning_test
   pool: 5
   timeout: 5000
 
 production:
   adapter: postgresql
-  database: metrobuilding_production
+  database: ayres_de_canning_production
   pool: 5
   timeout: 5000
