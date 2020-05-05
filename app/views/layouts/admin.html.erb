@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> <%= configatron.intranet_name %> (Admin)</title>
+    <title> <%= @company.feature_string_value(:intranet_name) %> (Admin)</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
