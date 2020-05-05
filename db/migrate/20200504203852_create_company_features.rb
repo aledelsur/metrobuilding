@@ -2,29 +2,29 @@ class CreateCompanyFeatures < ActiveRecord::Migration[5.2]
   FEATURES = [:logo, :payments, :newsletters, :newsletters_history, :client_portal, :budget_rates, :intranet_name].freeze
 
   def change
-    create_table :company_features do |t|
-      t.belongs_to :company, index: true
-      t.boolean  :boolean_value, default: true
-      t.integer  :integer_value
-      t.datetime :datetime_value
-      t.string   :string_value
-      t.integer  :feature
-      t.timestamps
-    end
+    # create_table :company_features do |t|
+    #   t.belongs_to :company, index: true
+    #   t.boolean  :boolean_value, default: true
+    #   t.integer  :integer_value
+    #   t.datetime :datetime_value
+    #   t.string   :string_value
+    #   t.integer  :feature
+    #   t.timestamps
+    # end
 
     populate_existing_company
 
-    Company.all.each do |company|
-      FEATURES.each do |feature_key|
-        next if company.company_features.find_by(feature: feature_key)
-
-        company.company_features.create(
-          feature: feature_key,
-          boolean_value: (CompanyFeature.feature_value_type(feature_key) == 'Boolean' ? CompanyFeature.feature_default_value(feature_key) : nil),
-          string_value: (CompanyFeature.feature_value_type(feature_key) == 'String' ? CompanyFeature.feature_default_value(feature_key) : nil)
-        )
-      end
-    end
+    # Company.all.each do |company|
+    #   FEATURES.each do |feature_key|
+    #     next if company.company_features.find_by(feature: feature_key)
+    #
+    #     company.company_features.create(
+    #       feature: feature_key,
+    #       boolean_value: (CompanyFeature.feature_value_type(feature_key) == 'Boolean' ? CompanyFeature.feature_default_value(feature_key) : nil),
+    #       string_value: (CompanyFeature.feature_value_type(feature_key) == 'String' ? CompanyFeature.feature_default_value(feature_key) : nil)
+    #     )
+    #   end
+    # end
   end
 
   def populate_existing_company
