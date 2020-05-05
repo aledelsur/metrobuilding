@@ -5,9 +5,9 @@ class Admin::ReceiptsController < AdminController
   # GET /admin/receipts.json
   def index
     if params[:payments]
-      @receipts = Receipt.where.not(payment_id: nil)
+      @receipts = @project.receipts.where.not(payment_id: nil)
     else
-      @receipts = Receipt.where(payment_id: nil)
+      @receipts = @project.receipts.where(payment_id: nil)
     end
     @receipts = @receipts.includes(payment: [:properties])
 
@@ -25,10 +25,10 @@ class Admin::ReceiptsController < AdminController
   # GET /admin/receipts/new
   def new
     if params[:payment_id].present?
-      @payment = Payment.find(params[:payment_id])
+      @payment = @project.receipts.find(params[:payment_id])
       @receipt = @payment.receipts.new
     else
-      @receipt = Receipt.new
+      @receipt = @project.receipts.new
     end
   end
 
@@ -39,7 +39,7 @@ class Admin::ReceiptsController < AdminController
   # POST /admin/receipts
   # POST /admin/receipts.json
   def create
-    @receipt = Receipt.new(receipt_params)
+    @receipt = @project.receipts.new(receipt_params)
 
     respond_to do |format|
       if @receipt.save
@@ -79,7 +79,7 @@ class Admin::ReceiptsController < AdminController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_receipt
-      @receipt = Receipt.find(params[:id])
+      @receipt = @project.receipts.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

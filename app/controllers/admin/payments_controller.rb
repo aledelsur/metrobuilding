@@ -4,7 +4,7 @@ class Admin::PaymentsController < AdminController
   # GET /payments
   # GET /payments.json
   def index
-    @payments = @project.payments.includes(:properties, :user, :receipts).all
+    @payments = @project.payments.includes(:properties, :user, :receipts)
   end
 
   # GET /payments/1
