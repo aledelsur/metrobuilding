@@ -20,6 +20,9 @@ class CreateCompanyFeatures < ActiveRecord::Migration[5.2]
     add_column :receipts, :project_id, :bigint
     add_column :receipts, :company_id, :bigint
 
+    add_column :budgets, :project_id, :bigint
+    add_column :budgets, :company_id, :bigint
+
     populate_existing_company
 
     # Company.all.each do |company|
