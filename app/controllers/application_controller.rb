@@ -8,6 +8,9 @@ class ApplicationController < ActionController::Base
     subdomain
     @project ||= Project.find_by(name: @subdomain)
 
+    puts "##### THE SUBDOMAIN IS "
+    puts @subdomain
+
     render_doesnt_exist_page and return false unless @project
 
     @company = @project.company
