@@ -11,8 +11,6 @@ class ApplicationController < ActionController::Base
     puts "##### THE SUBDOMAIN IS "
     puts @subdomain
 
-    byebug
-
     render_doesnt_exist_page and return false unless @project
 
     @company = @project.company
