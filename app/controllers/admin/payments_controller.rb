@@ -4,7 +4,7 @@ class Admin::PaymentsController < AdminController
   # GET /payments
   # GET /payments.json
   def index
-    @payments = Payment.includes(:properties, :user, :receipts).all
+    @payments = @project.payments.includes(:properties, :user, :receipts).all
   end
 
   # GET /payments/1
@@ -14,7 +14,7 @@ class Admin::PaymentsController < AdminController
 
   # GET /payments/new
   def new
-    @user = User.find(params[:user_id])
+    @user = @project.users.find(params[:user_id])
     @payment = @user.payments.new
     @properties = @user.properties
   end
@@ -26,7 +26,7 @@ class Admin::PaymentsController < AdminController
   # POST /payments
   # POST /payments.json
   def create
-    @payment = Payment.new(payment_params)
+    @payment = @project.payments.new(payment_params)
 
     respond_to do |format|
       if @payment.save
@@ -70,7 +70,7 @@ class Admin::PaymentsController < AdminController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_payment
-      @payment = Payment.find(params[:id])
+      @payment = @project.payments.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
