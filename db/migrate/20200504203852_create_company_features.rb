@@ -12,6 +12,7 @@ class CreateCompanyFeatures < ActiveRecord::Migration[5.2]
     #   t.timestamps
     # end
 
+    add_column :users, :company_id, :bigint
     populate_existing_company
 
     # Company.all.each do |company|
