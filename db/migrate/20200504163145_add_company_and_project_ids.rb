@@ -29,7 +29,7 @@ class AddCompanyAndProjectIds < ActiveRecord::Migration[5.2]
     # add_column :sent_newsletters, :project_id, :bigint
     # add_column :sent_newsletters, :company_id, :bigint
 
-    add_column :admin_users, :project_id, :bigint
-    add_column :admin_users, :company_id, :bigint
+    # add_column :admin_users, :project_id, :bigint
+    # add_column :admin_users, :company_id, :bigint
   end
 end
