@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action  :get_project, :set_project
 
-
   private
 
   def get_project
@@ -15,7 +14,7 @@ class ApplicationController < ActionController::Base
 
     @company = @project.company
 
-    if current_user && current_user.company_id != @project.company_id
+    if (current_user && current_user.company_id != @project.company_id) || (current_admin_user && current_admin_user.company_id != @project.company_id)
       redirect_to root_path, status: :forbidden and return
     end
   end

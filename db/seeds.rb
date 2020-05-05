@@ -24,9 +24,9 @@ puts "Created Company for Ayres de Canning"
 company_metrobuilding = Company.where(name: 'metrobuilding').first_or_create!
 puts "Created Company for Metrobuilding"
 
-project_ayres_de_canning = Project.where(name: 'ayres-de-canning').first_or_create!
+project_ayres_de_canning = Project.where(name: 'ayres-de-canning', company_id: company_ayres_de_canning.id).first_or_create!
 puts "Created Project for Ayres de Canning"
-project_metro19 = Project.where(name: 'metro19').first_or_create!
+project_metro19 = Project.where(name: 'metro19', company_id: company_metrobuilding.id).first_or_create!
 puts "Created Project for Metro19"
 
 

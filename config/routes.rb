@@ -19,8 +19,6 @@ Rails.application.routes.draw do
     resources :sent_newsletters, only: [:show]
   end
 
-  get '/newsletter/:id' => 'shortener/shortened_urls#show'
-
   devise_for :users, skip: :registration
 
   get '/admin', to: 'admin/users#index'

@@ -19,6 +19,6 @@ module PaymentTracker
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.active_job.queue_adapter = :sidekiq
-    config.action_dispatch.tld_length = Integer(ENV['TLD_LENGTH'] || 2)
+    config.action_dispatch.tld_length = Integer(ENV['TLD_LENGTH'] || 1) # will take 1 when ENV is development and 2 in Production.
   end
 end
