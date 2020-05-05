@@ -28,4 +28,5 @@ class Project < ApplicationRecord
   has_many :payments
   has_many :receipts
   has_many :sent_newsletters
+  has_many :debts
 end
