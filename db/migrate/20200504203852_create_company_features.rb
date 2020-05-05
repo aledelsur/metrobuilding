@@ -13,6 +13,13 @@ class CreateCompanyFeatures < ActiveRecord::Migration[5.2]
     # end
 
     add_column :users, :company_id, :bigint
+
+    add_column :debts, :project_id, :bigint
+    add_column :debts, :company_id, :bigint
+
+    add_column :receipts, :project_id, :bigint
+    add_column :receipts, :company_id, :bigint
+
     populate_existing_company
 
     # Company.all.each do |company|
