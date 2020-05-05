@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_203852) do
+ActiveRecord::Schema.define(version: 2020_05_05_211914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -157,6 +157,11 @@ ActiveRecord::Schema.define(version: 2020_05_04_203852) do
     t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "smtp_settings_address", default: "smtp.gmail.com"
+    t.integer "smtp_settings_port", default: 587
+    t.string "smtp_settings_domain"
+    t.string "smtp_settings_user_name"
+    t.string "smtp_settings_password"
     t.index ["company_id"], name: "index_projects_on_company_id"
   end
 
