@@ -20,8 +20,8 @@ class CreateCompanyFeatures < ActiveRecord::Migration[5.2]
 
         company.company_features.create(
           feature: feature_key,
-          boolean_value: (Company.feature_value_type(feature_key) == 'Boolean' ? Company.feature_default_value(feature_key) : nil),
-          string_value: (Company.feature_value_type(feature_key) == 'String' ? Company.feature_default_value(feature_key) : nil)
+          boolean_value: (CompanyFeature.feature_value_type(feature_key) == 'Boolean' ? CompanyFeature.feature_default_value(feature_key) : nil),
+          string_value: (CompanyFeature.feature_value_type(feature_key) == 'String' ? CompanyFeature.feature_default_value(feature_key) : nil)
         )
       end
     end
