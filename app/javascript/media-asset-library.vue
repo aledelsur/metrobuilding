@@ -82,6 +82,9 @@ export default {
     overflow-y: initial !important;
     width: 75%;
   }
+  .modal-dialog .single-image{
+    height: 250px;
+  }
   .modal-dialog img.section-img{
     width: 200px;
     height: 200px;
