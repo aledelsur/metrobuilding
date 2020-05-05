@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   private
 
   def get_project
-    @subdomain = request.subdomain
+    subdomain
     @project ||= Project.find_by(name: @subdomain)
 
     puts "##### THE SUBDOMAIN IS "
@@ -22,6 +22,12 @@ class ApplicationController < ActionController::Base
 
   def set_project
     User.current_project = @project
+  end
+
+  def subdomain
+    sub = self.request.subdomain
+    sub.split('.').first
+    @subdomain = sub.split('.').first
   end
 
   def http_host
