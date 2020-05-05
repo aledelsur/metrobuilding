@@ -1,8 +1,11 @@
 class CreateNewsletters < ActiveRecord::Migration[5.2]
   def change
-    create_table :newsletters do |t|
+    begin
+      create_table :newsletters do |t|
 
-      t.timestamps
+        t.timestamps
+      end
+    rescue
     end
   end
 end

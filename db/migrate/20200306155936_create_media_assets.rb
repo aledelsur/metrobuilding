@@ -1,8 +1,11 @@
 class CreateMediaAssets < ActiveRecord::Migration[5.2]
   def change
-    create_table :media_assets do |t|
+    begin
+      create_table :media_assets do |t|
 
-      t.timestamps
+        t.timestamps
+      end
+    rescue
     end
   end
 end
