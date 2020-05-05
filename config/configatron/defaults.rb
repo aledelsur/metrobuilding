@@ -14,4 +14,4 @@ configatron.features.payments = ENV['PAYMENTS']
 configatron.features.client_portal = ENV['PORTAL']
 configatron.features.budget_rates = ENV['BUDGET_RATES']
 configatron.intranet_name = ENV['INTRANET_NAME'] || 'Intranet' # i.e: "metro_19"
-configatron.http_domain = '.building.herokuapp.com'
+configatron.http_domain = '.buildit.com.ar'

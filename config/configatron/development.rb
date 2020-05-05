@@ -23,4 +23,4 @@ configatron.features.payments = false
 configatron.features.client_portal = true
 configatron.features.budget_rates = 'true'
 
-configatron.http_domain = '.localhost:3000'
+configatron.http_domain = '.lvh.me:3000'

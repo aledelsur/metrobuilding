@@ -5,11 +5,13 @@ class ApplicationController < ActionController::Base
   private
 
   def get_project
-    subdomain
+    @subdomain = request.subdomain
     @project ||= Project.find_by(name: @subdomain)
 
     puts "##### THE SUBDOMAIN IS "
     puts @subdomain
+
+    byebug
 
     render_doesnt_exist_page and return false unless @project
 
@@ -22,11 +24,6 @@ class ApplicationController < ActionController::Base
 
   def set_project
     User.current_project = @project
-  end
-
-  def subdomain
-    sub = self.request.subdomains
-    @subdomain = sub.one? && sub.first || nil
   end
 
   def http_host
