@@ -43,9 +43,11 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <div class='triangle'>
-        </div>
+      <!-- <img src="./images/newsletter_footer_triangle.png" class='triangle'/> -->
+      <div class='triangle'>
+
       </div>
 
       <!-- Footer -->
@@ -113,11 +115,6 @@ export default {
 <style scoped>
 
 .admin-newsletter-view {
-  background: url('./images/bg_footer.png');
-  background-size: cover;
-  background-position: right;
-  /* background-size: 1420px; */
-  background-repeat: no-repeat;
   font-family: 'brown';
 }
 
@@ -154,9 +151,16 @@ export default {
 	 text-transform: uppercase;
 }
 
-.admin-newsletter-view .triangle {
-	 height: 200px;
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 1272px 370px 0px;
+  border-color: transparent transparent #1c7363 transparent;
+  margin-top: 20px;
 }
+
 
 .admin-newsletter-view .logo-img {
 	 width: 230px;
