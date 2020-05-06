@@ -186,7 +186,7 @@ export default {
 .admin-newsletter-view .dividing-bar {
 	 height: 15px;
 	 border-radius: 0.25rem;
-	 background-color: rgba(15, 138, 130);
+	 background-color: #1c7363;
 	 color: white;
 }
 
@@ -196,9 +196,9 @@ export default {
 }
 
 .admin-newsletter-view .sections .section .title {
-	 background-color: rgba(15, 138, 130);
+	 background-color: #1c7363;
 	 color: white;
-	 border: 2px solid rgba(15, 138, 130);
+	 border: 2px solid #1c7363;
 	 border-radius: 0.25rem;
 	 text-transform: uppercase;
 	 margin-bottom: inherit;
