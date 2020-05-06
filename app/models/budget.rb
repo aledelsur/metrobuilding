@@ -52,7 +52,7 @@ class Budget < ApplicationRecord
   private
 
   def payments_activated?
-    @company.has_feature?(:payments)
+    company.has_feature?(:payments)
   end
 end
 

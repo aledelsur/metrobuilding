@@ -30,7 +30,9 @@ class SendNewsletterJob < ApplicationJob
       newsletter_variable = NewsletterVariable.new(user, newsletter)
 
       sent_newsletter = user.sent_newsletters.create(newsletter: newsletter,
-                                                     newsletter_variables: newsletter_variable.variables_to_replace)
+                                                     newsletter_variables: newsletter_variable.variables_to_replace,
+                                                     company_id: newsletter.company_id,
+                                                     project_id: newsletter.project_id)
 
       # Sends email to investor with a link to the newsletter.
       InvestorMailer.send_newsletter(sent_newsletter).deliver

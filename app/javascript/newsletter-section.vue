@@ -130,5 +130,6 @@ export default {
   }
   .section-assets .single-asset {
     height: 220px;
+    font-weight: bold;
   }
 </style>

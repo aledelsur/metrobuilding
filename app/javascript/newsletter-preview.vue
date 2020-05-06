@@ -133,7 +133,8 @@ export default {
 .admin-newsletter-view header .title-newsletter-container {
 	 color: white;
 	 margin-top: 175px;
-	 background: rgba(46, 49, 49, 0.5);
+	 /*background: rgba(46, 49, 49, 0.5);*/
+   background: rgba(18, 105, 99, 0.6);
 	 padding: 10px;
 }
 
@@ -181,7 +182,7 @@ export default {
 .admin-newsletter-view .dividing-bar {
 	 height: 15px;
 	 border-radius: 0.25rem;
-	 background-color: #00c9fc;
+	 background-color: rgba(15, 138, 130);
 	 color: white;
 }
 
@@ -191,9 +192,9 @@ export default {
 }
 
 .admin-newsletter-view .sections .section .title {
-	 background-color: #00c9fc;
+	 background-color: rgba(15, 138, 130);
 	 color: white;
-	 border: 2px solid #00c9fc;
+	 border: 2px solid rgba(15, 138, 130);
 	 border-radius: 0.25rem;
 	 text-transform: uppercase;
 	 margin-bottom: inherit;
