@@ -17,7 +17,7 @@ class NewsletterVariable
     current_budget = Budget.current
     {
       "{{NOMBRE_INVERSOR}}" => @user.first_name,
-      "{{TOTAL_A_PAGAR}}" => @user.debt([current_budget])
+      "{{TOTAL_A_PAGAR}}" => @user.debt(current_budget)
       #"{{CAC_ACTUAL}}" => current_budget.current_cac
       #"{{TOTAL_ADEUDADO}}" => @user.debt
     }

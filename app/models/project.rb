@@ -33,4 +33,14 @@ class Project < ApplicationRecord
   has_many :payments
   has_many :receipts
   has_many :sent_newsletters
+
+  def smtp_settings
+    {
+      address:      smtp_settings_address,
+      port:         smtp_settings_port,
+      domain:       smtp_settings_domain,
+      user_name:    smtp_settings_user_name,
+      password:     smtp_settings_password,
+    }
+  end
 end
