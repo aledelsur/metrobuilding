@@ -28,14 +28,21 @@
                 </div>
 
                 <div class="row">
-                  <div v-for="asset in section.media_assets" :key="asset.id" class="col-md-6 col-sm-12 text-center">
+                  <div v-if="section.media_assets.length == 1" v-for="asset in section.media_assets" :key="asset.id" class="col-md-12 text-center">
                     <div class="image">
                       <div class="text">
                         {{asset.description}}
                       </div>
                       <a :href="asset.image" target="_blank"><b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded section-img"></b-img></a>
                     </div>
-
+                  </div>
+                  <div v-if="section.media_assets.length > 1" v-for="asset in section.media_assets" :key="asset.id" class="col-md-6 col-sm-12 text-center">
+                    <div class="image">
+                      <div class="text">
+                        {{asset.description}}
+                      </div>
+                      <a :href="asset.image" target="_blank"><b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded section-img"></b-img></a>
+                    </div>
                   </div>
                 </div>
 
@@ -253,5 +260,8 @@ img.section-img{
   width: 350px;
   height: 350px;
   margin: 5px;
+}
+.one-image{
+  width: 100%;
 }
 </style>
