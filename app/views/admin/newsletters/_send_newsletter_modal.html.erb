@@ -35,7 +35,7 @@
               </div>
 
               <div class="form-input">
-                <%= form.select :user_id, User.all.map { |u| [u.name, u.id]}, { include_blank: true }, class: 'select2' %>
+                <%= form.select :user_id, @project.users.map { |u| [u.name, u.id]}, { include_blank: true }, class: 'select2' %>
               </div>
             </div>
 
