@@ -2,13 +2,28 @@
   <div class="show-btn">
     <b-button id="show-btn " variant="info" v-on:click="showMediaAssets">Administrar imágenes</b-button>
 
-    <b-modal ref="my-modal" title="Imágenes" ok-only ok-title="Cerrar">
-      <div v-for="asset in mediaAssets">
-        <div class='single-image text-center col-md-4'>
-          <b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded section-img"></b-img>
-          <button class="btn btn-success add-button" v-on:click="addAssetToSection(asset.id)" v-if="!asset.is_added">Agregar</button>
-          <button class="btn btn-danger delete-button" v-on:click="removeAssetFromSection(asset.id)" v-else>Eliminar</button>
+    <b-modal ref="my-modal" :title="modalTitle" ok-only ok-title="Cerrar">
+      <div class="library">
+        <div v-for="asset in mediaAssets">
+          <div class='single-image col-md-4'>
+            <div class='image-container'>
+              <b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded section-img"></b-img>
+            </div>
+            <button class="btn btn-success add-button" v-on:click="addAssetToSection(asset.id)" v-if="!asset.is_added">Agregar</button>
+            <button class="btn btn-danger delete-button" v-on:click="removeAssetFromSection(asset.id)" v-else>Eliminar</button>
+          </div>
         </div>
+      </div>
+      <div class='clear'></div>
+      <div class='container'>
+        <pagination
+            v-if="showPagination"
+           :total-pages="totalPages"
+           :total="total"
+           :per-page="perPage"
+           :current-page="currentPage"
+           @pagechanged="onPageChange"
+         />
       </div>
     </b-modal>
   </div>
@@ -16,27 +31,33 @@
 
 <script>
 import axios from 'axios';
+import Pagination from './pagination.vue'
 
 export default {
   props: ['section'],
   data: function(){
     return {
       newsletter_id: null,
-      mediaAssets: []
+      mediaAssets: [],
+      currentPage: 1,
+      totalPages: null,
+      total: null,
+      perPage: 6,
+      showPagination: false,
+      modalTitle: 'Imágenes'
     }
   },
+  components: {
+    Pagination
+  },
   methods: {
+    onPageChange(page) {
+      this.fetchMediaAssets(page)
+    },
     showMediaAssets(){
       this.$refs['my-modal'].show();
 
-      axios({ method: 'get',
-              url: '/admin/media_assets.json',
-              params: { newsletter_section_id: this.section.id }})
-      .then(response => {
-        console.log('assets: ')
-        console.log(response.data)
-        this.mediaAssets = response.data
-      })
+      this.fetchMediaAssets(1)
     },
 
     addAssetToSection(assetId) {
@@ -44,8 +65,8 @@ export default {
               url: this.baseURL() + '/add_media_asset',
               params: { id: assetId }})
       .then(response => {
-        this.mediaAssets = response.data
-        this.reloadMediaAssets();
+        this.$parent.$parent.reloadSectionAssets();
+        this.fetchMediaAssets(this.currentPage)
       })
     },
 
@@ -54,15 +75,25 @@ export default {
               url: this.baseURL() + '/remove_media_asset',
               params: { id: assetId }})
       .then(response => {
-        this.mediaAssets = response.data
-        this.reloadMediaAssets();
+        this.$parent.$parent.reloadSectionAssets();
+        this.fetchMediaAssets(this.currentPage)
       })
     },
-    reloadMediaAssets() {
+    fetchMediaAssets(page) {
       axios({ method: 'get',
-              url: this.baseURL() + '/media_assets' })
+              url: '/admin/media_assets.json',
+              params: { newsletter_section_id: this.section.id,
+                        pagination: true, per_page: this.perPage,
+                        current_page: page}
+            })
       .then(response => {
-        this.$parent.$parent.sectionAssets = response.data
+        this.mediaAssets = response.data.serialized_records
+        console.log(response.data)
+        this.total = response.data.total
+        this.totalPages = response.data.total_pages
+        this.currentPage = response.data.current_page
+        this.showPagination = true
+        this.modalTitle = "Imágenes (" + this.total + " imágenes disponibles)"
       })
     },
     baseURL() {
@@ -72,31 +103,51 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+  .library {
+    margin-top: 20px;
+  }
+
+  .clear {
+    clear: both;
+  }
+
   .modal-body{
     height: 85%;
     overflow-y: auto;
   }
+
   .modal-dialog {
     margin-top: 17%;
     overflow-y: initial !important;
     width: 75%;
   }
+
   .modal-dialog .single-image{
     height: 250px;
   }
-  .modal-dialog img.section-img{
-    width: 200px;
+
+  .image-container {
     height: 200px;
-    margin: 5px;
+    margin-bottom: 5px;
   }
+  .modal-dialog img.section-img{
+    max-height: 200px;
+    width: 100%;
+  }
+
+  .thumbnail {
+    max-width: 150px;
+    max-height: 150px;
+  }
+
   .modal-dialog .modal-content {
     min-height: 700px;
   }
   .add-button, .delete-button{
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%
   }
   .show-btn{
     margin-top: 10px;

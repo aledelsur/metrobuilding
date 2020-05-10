@@ -11,7 +11,9 @@ class Admin::MediaAssetSerializer < ActiveModel::Serializer
   end
 
   def is_added
-    record = MediaAssetsNewsletterSection.where(media_asset_id: object.id, newsletter_section_id: scope[:section_id]).first
+    record = MediaAssetsNewsletterSection.where(media_asset_id: object.id,
+                                                newsletter_section_id: scope[:section_id])
+                                         .first
     record.present? ? true : false
   end
 end

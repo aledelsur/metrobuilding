@@ -97,7 +97,15 @@ export default {
         })
       }
     },
-
+    reloadSectionAssets() {
+      axios.get(this.baseURL() + '/media_assets.json')
+      .then(response => {
+        this.sectionAssets = response.data
+      })
+    },
+    baseURL() {
+      return '/admin/newsletters/' + this.$root.newsletterId + '/newsletter_sections/' + this.section.id
+    }
   }
 }
 </script>

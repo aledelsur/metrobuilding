@@ -2,11 +2,24 @@ class Admin::MediaAssetsController < AdminController
   before_action :set_media_asset, only: [:destroy, :edit, :update]
 
   def index
-    @media_assets = @project.media_assets
+    @per_page = params[:per_page].to_i || 10
+    @current_page = params[:current_page].to_i || 1
+    @total = @project.media_assets.count
+
+    offset = (@current_page * @per_page) - @per_page
+    @media_assets = @project.media_assets.includes(image_attachment: :blob)
+                            .offset(offset).limit(@per_page).order(:created_at)
+
     @media_asset = MediaAsset.new
 
     respond_to do |format|
-      format.json { render json: @media_assets, each_serializer: ::Admin::MediaAssetSerializer, scope: { section_id: params[:newsletter_section_id] } }
+      if params[:pagination]
+        format.json { render(json: pagination_settings, serializer: ::Admin::PaginatorSerializer) }
+      else
+        format.json { render(json: @media_assets, each_serializer: ::Admin::MediaAssetSerializer,
+                                                  scope: { section_id: params[:newsletter_section_id] }) }
+      end
+
       format.html
     end
   end
@@ -55,5 +68,14 @@ class Admin::MediaAssetsController < AdminController
 
   def media_asset_parms
     params.require(:media_asset).permit(:image, :description)
+  end
+
+  def pagination_settings
+    PaginationSetting.new(@per_page,
+                          @current_page,
+                          @media_assets,
+                          @total,
+                          ::Admin::MediaAssetSerializer,
+                          section_id: params[:newsletter_section_id])
   end
 end
