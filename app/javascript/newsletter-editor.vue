@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container-fluid">
 
-    <h1>Nueva Newsletter</h1>
+    <h1>Nueva Circular informativa</h1>
 
     <div class="row wrapper">
       <div class='col-xs-12 col-sm-12 col-md-10 main'>
@@ -9,7 +9,7 @@
           <br>
           <br>
           <div class="form-group">
-            <label for="newsletter_title"> TÍTULO DE LA NEWSLETTER </label>
+            <label for="newsletter_title"> TÍTULO DE LA CIRCULAR INFORMATIVA </label>
             <input class="form-control" type="text" name="newsletter[title]" v-model="newsletter.title" id="newsletter_title">
           </div>
           <br>

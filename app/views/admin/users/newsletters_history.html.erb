@@ -1,14 +1,14 @@
-<h1>Historial de Newsletters</h1>
+<h1>Historial de Circulares informativas</h1>
 <br>
 
 <% if @sent_newsletters.empty? %>
-  <div class='no-elements-in-table'>Todavía no se han enviado Newsletters a <b><%= @user.name%></b>.</div>
+  <div class='no-elements-in-table'>Todavía no se han enviado Circulares informativas a <b><%= @user.name%></b>.</div>
 <% else %>
   <table class='table table-bordered datatable_newsletters_history'>
     <thead>
       <tr>
         <th>Propietario</th>
-        <th>Nombre de la Newsletter</th>
+        <th>Nombre de la Circular informativa</th>
         <th>Fecha de envío</th>
         <th></th>
       </tr>
@@ -20,7 +20,7 @@
           <td><%= sent_newsletter.user.name %></td>
           <td><%= sent_newsletter.newsletter.title %></td>
           <td><%= sent_newsletter.created_at.strftime("%d-%m-%Y a las %H:%M hs.") %></td>
-          <td><%= link_to 'Ver newsletter', site_sent_newsletter_url(sent_newsletter.sent_newsletter_token), target: "_blank", class: 'btn btn-default' %></td>
+          <td><%= link_to 'Ver Circular informativa', site_sent_newsletter_url(sent_newsletter.sent_newsletter_token), target: "_blank", class: 'btn btn-default' %></td>
         </tr>
       <% end %>
     </tbody>
