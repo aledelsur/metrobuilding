@@ -26,6 +26,7 @@
           <div class="email-content">
             <div></div>
             <label> CONTENIDO DEL EMAIL A LOS INVERSORES </label>
+            <p>Este campo de texto deberá contenter en alguna parte la expresión <span v-html="newsletter_url_html"></span> que luego se reemplazará por la URL que utilizará el inversor para ver la Newsletter.</p>
             <vue-ckeditor
             v-model="newsletter.email_content"
             :config="config" />
@@ -76,7 +77,8 @@ export default {
           { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline' ] }
         ],
         height: 200
-      }
+      },
+      newsletter_url_html: '{{NEWSLETTER_URL}}'
     }
   },
   components: { NewsletterSection, draggable, Sidebar, NewsletterPreview, VueCkeditor },
