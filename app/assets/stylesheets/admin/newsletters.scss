@@ -56,9 +56,14 @@ table.newsletters {
     }
   }
 }
-
+#administrate-section-images-modal .modal-dialog {
+  width: 65% !important;
+}
+#send_newsletter_modal .modal-dialog {
+  width: 65% !important;
+}
 .modal-dialog {
-  width: 60% !important;
+  width: 88% !important;
 }
 .modal-body{
   padding: 0;

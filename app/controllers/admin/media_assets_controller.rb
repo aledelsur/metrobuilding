@@ -2,13 +2,17 @@ class Admin::MediaAssetsController < AdminController
   before_action :set_media_asset, only: [:destroy, :edit, :update]
 
   def index
-    @per_page = params[:per_page].to_i || 10
-    @current_page = params[:current_page].to_i || 1
-    @total = @project.media_assets.count
+    if params[:pagination]
+      @per_page = params[:per_page].to_i || 10
+      @current_page = params[:current_page].to_i || 1
+      @total = MediaAsset.count
 
-    offset = (@current_page * @per_page) - @per_page
-    @media_assets = @project.media_assets.includes(image_attachment: :blob)
-                            .offset(offset).limit(@per_page).order(:created_at)
+      offset = (@current_page * @per_page) - @per_page
+      @media_assets = MediaAsset.all.includes(image_attachment: :blob)
+                              .offset(offset).limit(@per_page).order(:created_at)
+    else
+      @media_assets = MediaAsset.all
+    end
 
     @media_asset = MediaAsset.new
 
