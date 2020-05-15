@@ -53,8 +53,10 @@
       </div>
 
       <!-- <img src="./images/newsletter_footer_triangle.png" class='triangle'/> -->
-      <div class='triangle'>
-
+      <div id='container'>
+        <div id="triangle-box">
+          <div id="triangle"></div>
+        </div>
       </div>
 
       <!-- Footer -->
@@ -158,13 +160,20 @@ export default {
 }
 
 
-.triangle {
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 1272px 370px 0px;
-  border-color: transparent transparent #00c9fc transparent;
-  margin-top: 20px;
+#container {
+  display: flex;
+}
+
+#triangle-box {
+  flex: 1;
+}
+
+#triangle {
+  background-image: linear-gradient(to right top, #00c9fc 0%, #00c9fc 50%, transparent 50%);
+  width: 100%;
+  height: 350px;
+  top: 0;
+  left: 0;
 }
 
 
