@@ -80,7 +80,8 @@ $(document).ready(function(){
     ],
     "oLanguage": {
       "sSearch": "Buscar:"
-    }
+    },
+    "pageLength": 15
   });
 
   $('.datatable_users_readonly').DataTable({
@@ -89,7 +90,8 @@ $(document).ready(function(){
     ],
     "oLanguage": {
       "sSearch": "Buscar:"
-    }
+    },
+    "pageLength": 15
   });
 
   $('.datatable_budgets').DataTable({
@@ -167,7 +169,8 @@ $(document).ready(function(){
   $('.datatable').DataTable({
     "oLanguage": {
       "sSearch": "Buscar:"
-    }
+    },
+    "pageLength": 15
   });
 
   $(".dataTables_empty").text("No hay información para mostrar.")

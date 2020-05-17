@@ -6,6 +6,8 @@ module ApplicationHelper
 
   def property_list(properties)
     return '' if properties.nil? || properties.empty?
+    return properties.map { |a| a.apartment }.join(', ') if @project.name == 'metro19'
+
     properties = properties.map(&:formal_name)
     count = properties.count
     output = ''

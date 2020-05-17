@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container-fluid">
 
-    <h1>Nueva Newsletter</h1>
+    <h1>Nueva Circular informativa</h1>
 
     <div class="row wrapper">
       <div class='col-xs-12 col-sm-12 col-md-10 main'>
@@ -9,7 +9,7 @@
           <br>
           <br>
           <div class="form-group">
-            <label for="newsletter_title"> TÍTULO DE LA NEWSLETTER </label>
+            <label for="newsletter_title"> TÍTULO DE LA CIRCULAR INFORMATIVA </label>
             <input class="form-control" type="text" name="newsletter[title]" v-model="newsletter.title" id="newsletter_title">
           </div>
           <br>
@@ -26,6 +26,7 @@
           <div class="email-content">
             <div></div>
             <label> CONTENIDO DEL EMAIL A LOS INVERSORES </label>
+            <p>Este campo de texto deberá contenter en alguna parte la expresión <span v-html="newsletter_url_html"></span> que luego se reemplazará por la URL que utilizará el inversor para ver la Newsletter.</p>
             <vue-ckeditor
             v-model="newsletter.email_content"
             :config="config" />
@@ -76,7 +77,8 @@ export default {
           { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline' ] }
         ],
         height: 200
-      }
+      },
+      newsletter_url_html: '{{NEWSLETTER_URL}}'
     }
   },
   components: { NewsletterSection, draggable, Sidebar, NewsletterPreview, VueCkeditor },

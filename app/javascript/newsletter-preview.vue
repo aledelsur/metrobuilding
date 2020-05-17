@@ -53,8 +53,10 @@
       </div>
 
       <!-- <img src="./images/newsletter_footer_triangle.png" class='triangle'/> -->
-      <div class='triangle'>
-
+      <div id='container'>
+        <div id="triangle-box">
+          <div id="triangle"></div>
+        </div>
       </div>
 
       <!-- Footer -->
@@ -137,8 +139,7 @@ export default {
 .admin-newsletter-view header .title-newsletter-container {
 	 color: white;
 	 margin-top: 175px;
-	 /*background: rgba(46, 49, 49, 0.5);*/
-   background: rgba(18, 105, 99, 0.6);
+	 background: rgba(46, 49, 49, 0.5);
 	 padding: 10px;
 }
 
@@ -159,13 +160,20 @@ export default {
 }
 
 
-.triangle {
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 1272px 370px 0px;
-  border-color: transparent transparent #1c7363 transparent;
-  margin-top: 20px;
+#container {
+  display: flex;
+}
+
+#triangle-box {
+  flex: 1;
+}
+
+#triangle {
+  background-image: linear-gradient(to right top, #00c9fc 0%, #00c9fc 50%, transparent 50%);
+  width: 100%;
+  height: 350px;
+  top: 0;
+  left: 0;
 }
 
 
@@ -203,9 +211,9 @@ export default {
 }
 
 .admin-newsletter-view .sections .section .title {
-	 background-color: #1c7363;
+	 background-color: #00c9fc;
 	 color: white;
-	 border: 2px solid #1c7363;
+	 border: 2px solid #00c9fc;
 	 border-radius: 0.25rem;
 	 text-transform: uppercase;
 	 margin-bottom: inherit;

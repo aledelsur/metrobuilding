@@ -8,10 +8,10 @@
   </div>
 <% end %>
 
-<h1>Newsletters</h1>
+<h1>Circular informativa</h1>
 <br>
 <% if @newsletters.empty? %>
-  <div class='no-elements-in-table'>No hay Newsletters para mostrar.</div>
+  <div class='no-elements-in-table'>No hay Circulares informativas para mostrar.</div>
 <% else %>
   <table class="table table-bordered <%= add_datatable_class_to_newsletters(current_admin_user) %>">
     <thead>
@@ -41,7 +41,7 @@
           <% else %>
             <td>
               <button type="button" class="btn btn-default send-newsletter-btn-index" data-toggle="modal" data-target="#send_newsletter_modal" data-newsletter-id="<%=newsletter.id%>">
-                Enviar newsletter
+                Enviar Circular informativa
               </button>
             </td>
             <td><%= link_to 'Editar', edit_admin_newsletter_path(newsletter), class: 'btn btn-default' %></td>
@@ -58,6 +58,6 @@
 <% end %>
 <br>
 
-<%= link_to 'Nueva Newsletter', new_admin_newsletter_path, class: 'btn btn-primary' %>
+<%= link_to 'Nueva Circular informativa', new_admin_newsletter_path, class: 'btn btn-primary' %>
 
 <%= render partial: 'send_newsletter_modal' %>

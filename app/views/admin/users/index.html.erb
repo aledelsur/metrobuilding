@@ -46,7 +46,7 @@
           <% end %>
 
           <% if @company.has_feature?(:newsletters_history) %>
-            <td><%= link_to 'Newsletters enviadas', admin_user_newsletters_history_path(user), class: 'btn btn-default' %></td>
+            <td><%= link_to 'Circulares informativas enviadas', admin_user_newsletters_history_path(user), class: 'btn btn-default' %></td>
           <% end %>
 
           <% unless current_admin_user.is_readonly? %>

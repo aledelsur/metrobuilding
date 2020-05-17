@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => "/sidekiq"
 
-  default_url_options :host => "localhost:3000"
-
   namespace :admin do
     resources :receipts
   end

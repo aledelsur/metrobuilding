@@ -2,7 +2,7 @@
   <div class="show-btn">
     <b-button id="show-btn " variant="info" v-on:click="showMediaAssets">Administrar imágenes</b-button>
 
-    <b-modal ref="my-modal" :title="modalTitle" ok-only ok-title="Cerrar">
+    <b-modal ref="my-modal" :title="modalTitle" ok-only ok-title="Cerrar" id="administrate-section-images-modal">
       <div class="library">
         <div v-for="asset in mediaAssets">
           <div class='single-image col-md-4'>
