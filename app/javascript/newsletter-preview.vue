@@ -216,7 +216,7 @@ export default {
 	 border: 2px solid #00c9fc;
 	 border-radius: 0.25rem;
 	 text-transform: uppercase;
-	 margin-bottom: inherit;
+	 margin-bottom: 30px;
 	 margin-top: 40px;
 	 font-weight: bolder;
 	 font-size: 20px;
