@@ -2,8 +2,17 @@ desc "This task populates production database for Metro 19"
 task :populate_metro19_production_data => :environment do
   # raise "RAILS_ENV is not development. This task can only be run in development environment." unless Rails.env.development?
 
-  company = Company.find_by(name: 'metrobuilding')
-  project = Project.find_by(name: 'metro19')
+  company = Company.create(name: 'metrobuilding')
+  project = Project.create(name: 'metro19', company_id: company.id)
+
+  return if company.nil? || project.nil?
+
+  # Set up email settings for this project
+  project.smtp_settings_address = 'smtp.gmail.com'
+  project.smtp_settings_domain = 'gmail.com'
+  project.smtp_settings_user_name = 'metrobuildingenvios@gmail.com'
+  project.smtp_settings_password = 'sooaeeghkrujmivo'
+  project.save!
 
   company.users.destroy_all
   user1 = company.users.create(email: 'mbinetti@metrobuilding.com.ar', first_name: 'Fideicomiso', last_name: 'M19', password: 'metroProp')
