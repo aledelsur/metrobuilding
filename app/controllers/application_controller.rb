@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   before_action  :get_project, :set_project
 
+  def default_url_options
+    { host: request.host_with_port }
+  end
+
   private
 
   def get_project
