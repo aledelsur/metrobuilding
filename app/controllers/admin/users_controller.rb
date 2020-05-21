@@ -37,7 +37,7 @@ class Admin::UsersController < AdminController
       if @user.save
         @project.users << @user
         
-        Metromarketing::Users::Request.post(@user) if @company.name == 'metrobuilding'
+        Metromarketing::Users::Request.post(@user, @project) if @company.name == 'metrobuilding'
 
         flash[:success] = "Propietario creado correctamente."
         format.html { redirect_to admin_users_path }
@@ -61,7 +61,7 @@ class Admin::UsersController < AdminController
                end
       if result
 
-        Metromarketing::Users::Request.put(@user) if @company.name == 'metrobuilding'
+        Metromarketing::Users::Request.put(@user, @project) if @company.name == 'metrobuilding'
 
         flash[:success] = "Propietario actualizado correctamente."
         format.html { redirect_to admin_users_path }
