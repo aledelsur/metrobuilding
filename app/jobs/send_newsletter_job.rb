@@ -1,26 +1,29 @@
 class SendNewsletterJob < ApplicationJob
   queue_as :default
 
-  def perform(newsletter_id, selected_option, user_ids)
+  def perform(newsletter_id, selected_option, user_ids, company_id)
     newsletter = Newsletter.find(newsletter_id)
 
     case selected_option
     when 'all_users'
-      send_email_to_all_users_in_system(newsletter)
+      send_email_to_all_users_in_system(newsletter, company_id)
     when 'some_users'
-      send_email_to_specific_users(newsletter, user_ids)
+      send_email_to_specific_users(newsletter, user_ids, company_id)
     end
   end
 
-  def send_email_to_all_users_in_system(newsletter)
-    users = User.all
+  def send_email_to_all_users_in_system(newsletter, company_id)
+    company = Company.find(company_id)
+    users   = company.users
 
     send_newsletters(newsletter, users)
   end
 
-  def send_email_to_specific_users(newsletter, user_ids)
+  def send_email_to_specific_users(newsletter, user_ids, company_id)
+    company = Company.find(company_id)
+
     ids = user_ids.first.split(',') # from ["72,73"] to ["72", "73"]
-    users = User.where(id: ids)
+    users = company.users.where(id: ids)
 
     send_newsletters(newsletter, users)
   end

@@ -37,7 +37,7 @@ class Admin::NewslettersController < AdminController
   def destroy
     if @newsletter.present?
       @newsletter.destroy
-      flash[:success] = "Newsletter eliminada correctamente."
+      flash[:success] = "Circular Informativa eliminada correctamente."
     end
     redirect_to admin_newsletters_path
   end
@@ -54,9 +54,9 @@ class Admin::NewslettersController < AdminController
   def send_newsletter
     newsletter = @project.newsletters.find(params[:newsletter_id])
 
-    SendNewsletterJob.perform_later(newsletter.id, params[:selected_option], params[:user_ids])
+    SendNewsletterJob.perform_later(newsletter.id, params[:selected_option], params[:user_ids], @company.id)
     newsletter.update_attribute(:sent_at, DateTime.now)
-    flash[:success] = 'Newsletter enviada correctamente.'
+    flash[:success] = 'Circular Informativa enviada correctamente.'
     redirect_to admin_newsletters_path
   end
 

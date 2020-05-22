@@ -13,10 +13,10 @@
   <table class="table table-bordered <%= add_datatable_class_to_properties(current_admin_user) %>">
     <thead>
       <tr>
+        <th>Departamento/Cochera</th>
         <th>Categoría</th>
         <th>Propietario</th>
         <th>Porcentaje</th>
-        <th>Departamento/Cochera</th>
         <% unless current_admin_user.is_readonly? %>
           <th></th>
         <% end %>
@@ -26,10 +26,10 @@
     <tbody>
       <% @properties.each do |property| %>
         <tr>
+          <td><%= property.name %></td>
           <td><%= property.property_category.name %></td>
           <td><%= property.user&.first_name %> <%= property.user&.last_name %></td>
           <td><%= property.property_category.percentage %>%</td>
-          <td><%= property.name %></td>
           <!-- <td><%# link_to 'Ver', [:admin, property] %></td> -->
           <% unless current_admin_user.is_readonly? %>
             <td><%= link_to 'Editar', edit_admin_property_path(property), class: 'btn btn-default' %></td>
