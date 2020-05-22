@@ -60,4 +60,6 @@
 <% end %>
 <br>
 
-<%= link_to 'Nuevo Propietario', new_admin_user_path, class: 'btn btn-primary' %>
+<% unless current_admin_user.is_readonly? %>
+  <%= link_to 'Nuevo Propietario', new_admin_user_path, class: 'btn btn-primary' %>
+<% end %>
