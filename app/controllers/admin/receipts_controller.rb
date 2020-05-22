@@ -25,7 +25,7 @@ class Admin::ReceiptsController < AdminController
   # GET /admin/receipts/new
   def new
     if params[:payment_id].present?
-      @payment = @project.receipts.find(params[:payment_id])
+      @payment = @project.payments.find(params[:payment_id])
       @receipt = @payment.receipts.new
     else
       @receipt = @project.receipts.new
