@@ -4,6 +4,8 @@ class Admin::NewslettersController < AdminController
   layout 'admin_newsletter'
 
   def index
+    raise 'Usuarios con permiso de solo lectura no pueden acceder a esta sección.' if current_admin_user.is_readonly?
+
     @newsletters = @project.newsletters
   end
 

@@ -46,5 +46,7 @@
 
   <% end %>
   <br>
-  <%= link_to 'Agregar imagen', new_admin_media_asset_path, class: 'btn btn-primary' %>
+  <% unless current_admin_user.is_readonly? %>
+    <%= link_to 'Agregar imagen', new_admin_media_asset_path, class: 'btn btn-primary' %>
+  <% end %>
 </div>

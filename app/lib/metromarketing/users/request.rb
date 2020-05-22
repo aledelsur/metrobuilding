@@ -3,10 +3,10 @@
 module Metromarketing
   module Users
     class Request
-      def self.post(user)
+      def self.post(user, project)
         response = Metromarketing::Connection.api.post('users') do |req|
           req.headers['Content-Type'] = 'application/json'
-          req.body = user.attributes.merge(extra_information(user)).to_json
+          req.body = user.attributes.merge(extra_information(user, project)).to_json
         end
 
         if response.success?
@@ -16,10 +16,10 @@ module Metromarketing
         end
       end
 
-      def self.put(user)
+      def self.put(user, project)
         response = Metromarketing::Connection.api.put("users/#{user.id}") do |req|
           req.headers['Content-Type'] = 'application/json'
-          req.body = user.attributes.merge(extra_information(user)).to_json
+          req.body = user.attributes.merge(extra_information(user, project)).to_json
         end
 
         if response.success?
@@ -29,9 +29,9 @@ module Metromarketing
         end
       end
 
-      def self.extra_information(user)
+      def self.extra_information(user, project)
         {
-          intranet_coming_from: configatron.intranet_name,
+          intranet_coming_from: project.name,
           amount_of_properties: user.properties.count
         }
       end

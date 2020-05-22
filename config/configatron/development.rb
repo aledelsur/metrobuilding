@@ -24,3 +24,5 @@ configatron.features.client_portal = true
 configatron.features.budget_rates = 'true'
 
 configatron.http_domain = '.lvh.me:3000'
+
+configatron.metromarketing_api_url = 'http://localhost:3001/api/v1/'

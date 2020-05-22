@@ -35,7 +35,6 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  host = 'localhost:3000'
   config.action_mailer.default_url_options = { :host => 'localhost:3000', protocol: 'http' }
 
   # Print deprecation notices to the Rails logger.
@@ -61,5 +60,4 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-  Rails.application.routes.default_url_options[:host] = "localhost:3000"
 end

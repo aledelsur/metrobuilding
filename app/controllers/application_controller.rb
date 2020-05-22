@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action  :get_project, :set_project
+  before_action  :set_default_url_options
 
   private
 
@@ -35,5 +36,9 @@ class ApplicationController < ActionController::Base
 
   def render_doesnt_exist_page
     render template: 'signup/doesnt_exist'
+  end
+
+  def set_default_url_options
+    Rails.application.routes.default_url_options[:host] = self.request.host_with_port
   end
 end

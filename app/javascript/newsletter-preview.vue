@@ -228,14 +228,14 @@ export default {
 }
 
 .admin-newsletter-view .footer-newsletter {
-	 height: 52px;
+	 height: 65px;
 	 background-color: #333;
 	 border-top: 1px solid #333;
 	 color: white;
 }
 
 .admin-newsletter-view .footer-newsletter p {
-	 padding-top: 12px;
+	 padding-top: 20px;
 }
 
 .description {
@@ -262,6 +262,7 @@ export default {
 
 .section .image img{
   filter: brightness(80%);
+  max-width: 100%;
 }
 
 img.section-img{

@@ -19,7 +19,9 @@
         <li class="<%= 'active' if params['controller'] == 'admin/property_categories'%>"> <%= link_to 'Categorías', admin_property_categories_path %> </li>
 
         <% if @company.has_feature?(:newsletters) %>
-          <li class="<%= 'active' if params['controller'] == 'admin/newsletters'%>"> <%= link_to 'Circular informativa', admin_newsletters_path %> </li>
+          <% unless current_admin_user.is_readonly? %>
+            <li class="<%= 'active' if params['controller'] == 'admin/newsletters'%>"> <%= link_to 'Circular informativa', admin_newsletters_path %> </li>
+          <% end %>
           <li class="<%= 'active' if params['controller'] == 'admin/media_assets'%>"> <%= link_to 'Galería de imágenes', admin_media_assets_path %> </li>
         <% end %>
 

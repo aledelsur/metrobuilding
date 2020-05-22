@@ -133,7 +133,7 @@ export default {
     margin-bottom: 5px;
   }
   .modal-dialog img.section-img{
-    max-height: 200px;
+    height: 200px;
     width: 100%;
   }
 
