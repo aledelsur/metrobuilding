@@ -9,7 +9,9 @@
 
   <% unless media_asset.persisted? %>
     <div class="form-group">
-      <%= form.file_field :image %>
+      <%= form.file_field :image,
+      accept: 'image/jpeg,
+      image/png' %>
     </div>
   <% end %>
   <br>
