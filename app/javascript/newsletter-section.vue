@@ -9,6 +9,19 @@
         <b-card>
           <div class="panel-body">
             <div class="form-group">
+              <label for="">Seleccionar Layout</label>
+              <br>
+              <input type="radio" id="uno" value="Uno" v-model="picked">
+              <label for="uno">Default</label>
+              <br>
+              <input type="radio" id="dos" value="Imagen a la derecha" v-model="picked">
+              <label for="dos">Imagen a la derecha</label>
+              <br>
+              <input type="radio" id="tres" value="Imagen a la izquierda" v-model="picked">
+              <label for="tres">Imagen a la izquierda</label>
+              <br>
+            </div>
+            <div class="form-group">
               <label for="newsletter_newsletter_sections_attributes_0_title"> Tītulo de la sección </label>
               <input class="form-control" type="text" v-model="section.title">
             </div>

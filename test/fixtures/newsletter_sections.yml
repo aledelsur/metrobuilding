@@ -5,6 +5,7 @@
 #  id            :bigint           not null, primary key
 #  description   :text
 #  position      :integer
+#  template_type :integer
 #  title         :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
