@@ -11,14 +11,14 @@
             <div class="form-group">
               <label for="">Seleccionar Layout</label>
               <br>
-              <input type="radio" id="uno" value="Uno" v-model="picked">
-              <label for="uno">Default</label>
+              <input type="radio" :id="'default'+section.id" v-model="section.template_type" value="default">
+              <label :for="'default'+section.id">Default</label>
               <br>
-              <input type="radio" id="dos" value="Imagen a la derecha" v-model="picked">
-              <label for="dos">Imagen a la derecha</label>
+              <input type="radio" :id="'image_right'+section.id" v-model="section.template_type" value="image_right">
+              <label :for="'image_right'+section.id">Imagen a la derecha</label>
               <br>
-              <input type="radio" id="tres" value="Imagen a la izquierda" v-model="picked">
-              <label for="tres">Imagen a la izquierda</label>
+              <input type="radio" :id="'image_left'+section.id" v-model="section.template_type" value="image_left">
+              <label :for="'image_left'+section.id">Imagen a la izquierda</label>
               <br>
             </div>
             <div class="form-group">

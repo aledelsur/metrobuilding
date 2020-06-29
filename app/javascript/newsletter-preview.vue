@@ -19,7 +19,9 @@
         <div class="sections">
           <div class="sections-container">
             <div v-for="section in sections" :key="section.id">
-              <div class="section">
+
+              <!-- START Layout DEFAULT -->
+              <div v-if="section.template_type == 'default'" class="section">
                 <div class="title text-center">
                   {{section.title}}
                 </div>
@@ -45,8 +47,31 @@
                     </div>
                   </div>
                 </div>
-
               </div>
+              <!-- END Layout DEFAULT -->
+
+              <!-- START Layout IMAGE RIGHT -->
+              <div v-if="section.template_type == 'image_right'" class="section">
+                <div class="title text-center">
+                  {{section.title}}
+                </div>
+              
+                <div class="row">
+                  <div class="description col-md-6">
+                    <div v-html="section.description"></div>
+                  </div>
+                  <div v-for="asset in section.media_assets" :key="asset.id" class="col-md-6 text-center">
+                    <div class="image">
+                      <div class="text">
+                        {{asset.description}}
+                      </div>
+                      <a :href="asset.image" target="_blank"><b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded section-img"></b-img></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- END Layout IMAGE RIGHT -->
+
             </div>
           </div>
         </div>

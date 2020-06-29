@@ -5,7 +5,8 @@ class Admin::NewsletterSectionSerializer < ActiveModel::Serializer
               :title,
               :description,
               :position,
-              :media_assets
+              :media_assets,
+              :template_type
               #:created_at,
               #:updated_at
 
