@@ -6,6 +6,7 @@ class Site::NewsletterSectionSerializer < ActiveModel::Serializer
               :title,
               :description,
               :position,
+              :template_type,
               :media_assets,
               :created_at,
               :updated_at
