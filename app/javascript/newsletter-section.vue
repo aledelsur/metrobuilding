@@ -9,16 +9,16 @@
         <b-card>
           <div class="panel-body">
             <div class="form-group">
-              <label for="">Seleccionar Layout</label>
+              <label>Seleccionar Layout</label>
               <br>
               <input type="radio" :id="'default'+section.id" v-model="section.template_type" value="default">
-              <label :for="'default'+section.id">Default</label>
+              <label :for="'default'+section.id" class="layout-lbl">Default</label>
               <br>
               <input type="radio" :id="'image_right'+section.id" v-model="section.template_type" value="image_right">
-              <label :for="'image_right'+section.id">Imagen a la derecha</label>
+              <label :for="'image_right'+section.id" class="layout-lbl">Imagen a la derecha | texto a la izquierda</label>
               <br>
               <input type="radio" :id="'image_left'+section.id" v-model="section.template_type" value="image_left">
-              <label :for="'image_left'+section.id">Imagen a la izquierda</label>
+              <label :for="'image_left'+section.id" class="layout-lbl">Imagen a la izquierda | texto a la derecha</label>
               <br>
             </div>
             <div class="form-group">
@@ -152,5 +152,8 @@ export default {
   .section-assets .single-asset {
     height: 220px;
     font-weight: bold;
+  }
+  .newsletter-section .panel-body .layout-lbl {
+    font-weight: normal;
   }
 </style>

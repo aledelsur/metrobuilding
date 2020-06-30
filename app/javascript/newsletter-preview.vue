@@ -57,15 +57,19 @@
                 </div>
 
                 <div class="row">
-                  <div class="description col-md-5 col-sm-12 col-xs-12">
-                    <div v-html="section.description"></div>
+                  <div class="pull-left col-md-6">
+                    <div class="description">
+                      <div v-html="section.description"></div>
+                    </div>
                   </div>
-                  <div v-for="asset in section.media_assets" :key="asset.id" class="image-in-description-r text-center col-md-6 col-sm-12 col-xs-12">
-                    <div class="image">
-                      <div class="text">
-                        {{asset.description}}
+                  <div class="pull-right col-md-6 col-sm-12">
+                    <div v-for="asset in section.media_assets" :key="asset.id" class="text-center col-md-12 col-xs-12">
+                      <div class="image">
+                        <div class="text">
+                          {{asset.description}}
+                        </div>
+                        <a :href="asset.image" target="_blank"><b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded section-img"></b-img></a>
                       </div>
-                      <a :href="asset.image" target="_blank"><b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded section-img"></b-img></a>
                     </div>
                   </div>
                 </div>
@@ -79,16 +83,20 @@
                 </div>
 
                 <div class="row">
-                  <div v-for="asset in section.media_assets" :key="asset.id" class="image-in-description-l text-center col-md-6">
-                    <div class="image">
-                      <div class="text">
-                        {{asset.description}}
+                  <div class="pull-left col-md-6 col-sm-12">
+                    <div v-for="asset in section.media_assets" :key="asset.id" class="text-center col-md-12 col-xs-12">
+                      <div class="image">
+                        <div class="text">
+                          {{asset.description}}
+                        </div>
+                        <a :href="asset.image" target="_blank"><b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded section-img"></b-img></a>
                       </div>
-                      <a :href="asset.image" target="_blank"><b-img :src="asset.image" fluid alt="Responsive image" class="img-rounded section-img"></b-img></a>
                     </div>
                   </div>
-                  <div class="description col-md-5">
-                    <div v-html="section.description"></div>
+                  <div class="pull-right col-md-6">
+                    <div class="description">
+                      <div v-html="section.description"></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -318,13 +326,5 @@ img.section-img{
 }
 .one-image{
   width: 100%;
-}
-.image-in-description-r{
-  float: right;
-  margin: 0px 0px 10px 10px
-}
-.image-in-description-l{
-  float: left;
-  margin: 1px
 }
 </style>
