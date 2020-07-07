@@ -34,6 +34,37 @@ class Admin::NewslettersController < AdminController
     end
   end
 
+  def header_image
+    newsletter = Newsletter.find(params[:newsletter_id])
+
+    image_url = if newsletter.has_header_image?
+                  url_for(newsletter.media_assets.first.image)
+                else
+                  ''
+                end
+
+    render json: image_url
+  end
+
+  def add_header_image
+    newsletter = Newsletter.find(params[:newsletter_id])
+    asset = MediaAsset.find(params[:id])
+
+    newsletter.media_assets.destroy_all
+    newsletter.media_assets << asset
+
+    render json: MediaAsset.all, each_serializer: ::Admin::NewsletterHeaderMediaAssetSerializer, scope: { newsletter_id: params[:newsletter_id] }
+  end
+
+  def remove_header_image
+    newsletter = Newsletter.find(params[:newsletter_id])
+    asset = MediaAsset.find(params[:id])
+
+    newsletter.media_assets.destroy_all
+
+    render json: MediaAsset.all, each_serializer: ::Admin::NewsletterHeaderMediaAssetSerializer, scope: { newsletter_id: params[:newsletter_id] }
+  end
+
   def destroy
     if @newsletter.present?
       @newsletter.destroy

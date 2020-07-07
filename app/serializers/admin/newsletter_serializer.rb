@@ -17,6 +17,10 @@ class Admin::NewsletterSerializer < ActiveModel::Serializer
   end
 
   def main_image
-    ActionController::Base.helpers.asset_path("metrobuilding-portada-photo.jpg")
+    if object.has_header_image?
+      url_for(object.media_assets.first.image)
+    else
+      ActionController::Base.helpers.asset_path("metrobuilding-portada-photo.jpg")
+    end
   end
 end

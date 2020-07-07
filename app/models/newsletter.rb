@@ -17,6 +17,8 @@ class Newsletter < ApplicationRecord
 
   has_many :newsletter_sections, dependent: :destroy
 
+  has_and_belongs_to_many :media_assets
+
   accepts_nested_attributes_for :newsletter_sections
 
   validates :title, presence: true, on: :update
@@ -27,6 +29,10 @@ class Newsletter < ApplicationRecord
   belongs_to :project
   belongs_to :company
 
+  def has_header_image?
+    media_assets.any?
+  end
+  
   private
 
   def set_email_content

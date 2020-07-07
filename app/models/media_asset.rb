@@ -14,6 +14,7 @@ class MediaAsset < ApplicationRecord
 
   belongs_to :newsletter_section, optional: true
   has_and_belongs_to_many :newsletter_sections
+  has_and_belongs_to_many :newsletters
   has_one_attached :image
   has_one_attached :document
 

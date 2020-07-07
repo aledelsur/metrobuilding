@@ -4,7 +4,7 @@
 
       <!-- Header -->
 
-      <header>
+      <header v-bind:style="styleObject">
         <div class='container'>
           <div class="title-newsletter-container text-center">
             <span class='main-title'>METRO 19</span>
@@ -132,9 +132,9 @@ export default {
       newsletter_title: null,
       sections: [],
       logo_url: null,
-      main_image: null,
       variablesToReplace: null,
-      viewType: null
+      viewType: null,
+      styleObject: {},
     }
   },
   mounted: function() {
@@ -154,7 +154,7 @@ export default {
       this.newsletter_id = response.data.id
       this.sections = response.data.newsletter_sections
       this.logo_url = response.data.logo_url
-      this.main_image = response.data.main_image
+      this.styleObject.backgroundImage = "url(" + response.data.main_image + ")"
       this.viewType = this.$root.viewType
       if(response.data.variables_to_replace) {
         this.variablesToReplace = response.data.variables_to_replace
@@ -183,12 +183,13 @@ export default {
 }
 
 .admin-newsletter-view header {
-	 background-image: url('./images/masterhead.jpg');
+	 /* background-image: url('metrobuilding-portada-photo.jpg'); */
 	 background-repeat: no-repeat;
 	 background-attachment: scroll;
 	 background-position: center center;
 	 background-size: cover;
 	 height: 500px;
+   max-width: 100%;
 }
 
 .admin-newsletter-view header .title-newsletter-container {

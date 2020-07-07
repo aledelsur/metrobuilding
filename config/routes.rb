@@ -41,6 +41,10 @@ Rails.application.routes.draw do
     resources :media_assets
     resources :newsletter_variables, only: [:index]
     resources :newsletters do
+      get 'header_image', to: 'newsletters#header_image'
+      put 'add_header_image', to: 'newsletters#add_header_image'
+      delete 'remove_header_image', to: 'newsletters#remove_header_image'
+      
       resources :newsletter_sections do
         get 'media_assets', to: 'newsletter_sections#media_assets'
         put 'add_media_asset', to: 'newsletter_sections#add_media_asset'

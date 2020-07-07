@@ -19,7 +19,7 @@ class Admin::MediaAssetsController < AdminController
     respond_to do |format|
       if params[:pagination]
         format.json { render(json: pagination_settings, serializer: ::Admin::PaginatorSerializer) }
-      else
+      elsif params[:newsletter_section_id]
         format.json { render(json: @media_assets, each_serializer: ::Admin::MediaAssetSerializer,
                                                   scope: { section_id: params[:newsletter_section_id] }) }
       end
@@ -75,11 +75,21 @@ class Admin::MediaAssetsController < AdminController
   end
 
   def pagination_settings
-    PaginationSetting.new(@per_page,
-                          @current_page,
-                          @media_assets,
-                          @total,
-                          ::Admin::MediaAssetSerializer,
-                          section_id: params[:newsletter_section_id])
+
+    if params[:newsletter_id] # used when user is changing Header Image of the Newsletter
+      PaginationSetting.new(@per_page,
+                            @current_page,
+                            @media_assets,
+                            @total,
+                            ::Admin::NewsletterHeaderMediaAssetSerializer,
+                            newsletter_id: params[:newsletter_id])
+    elsif params[:newsletter_section_id] # used when user is changing an image within a section of the Newsletter
+      PaginationSetting.new(@per_page,
+                            @current_page,
+                            @media_assets,
+                            @total,
+                            ::Admin::MediaAssetSerializer,
+                            section_id: params[:newsletter_section_id])
+    end
   end
 end

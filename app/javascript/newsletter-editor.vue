@@ -15,6 +15,8 @@
           <br>
           <br>
 
+          <header-image :newsletter="newsletter"></header-image>
+
           <draggable v-model="newsletter.newsletter_sections" group="sections" @start="onStartSorting" @end="onDrop" ghost-class="ghost">
               <div v-for="section in newsletter.newsletter_sections" :key="section.id">
                 <newsletter-section :section="section" :key="sectionCount"></newsletter-section>
@@ -57,6 +59,7 @@
 import NewsletterSection from './newsletter-section.vue'
 import NewsletterPreview from './newsletter-preview.vue'
 import Sidebar from './sidebar.vue'
+import HeaderImage from './header-image.vue'
 import axios from 'axios';
 import draggable from 'vuedraggable'
 import VueCkeditor from 'vue-ckeditor2';
@@ -81,7 +84,7 @@ export default {
       newsletter_url_html: '{{NEWSLETTER_URL}}'
     }
   },
-  components: { NewsletterSection, draggable, Sidebar, NewsletterPreview, VueCkeditor },
+  components: { NewsletterSection, draggable, Sidebar, NewsletterPreview, VueCkeditor, HeaderImage },
   mounted: function() {
     axios({ method: 'get',
             url: '/admin/newsletters/' + this.$root.newsletterId + '.json'
