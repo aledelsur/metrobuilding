@@ -20,7 +20,7 @@ class Admin::NewsletterSerializer < ActiveModel::Serializer
     if object.has_header_image?
       url_for(object.media_assets.first.image)
     else
-      ActionController::Base.helpers.asset_path("metrobuilding-portada-photo.jpg")
+      ActionController::Base.helpers.asset_path("quesada1540.jpg")
     end
   end
 end

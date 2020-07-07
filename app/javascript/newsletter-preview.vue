@@ -183,7 +183,7 @@ export default {
 }
 
 .admin-newsletter-view header {
-	 /* background-image: url('metrobuilding-portada-photo.jpg'); */
+	 /* background-image: url('./images/masterhead.jpg'); */
 	 background-repeat: no-repeat;
 	 background-attachment: scroll;
 	 background-position: center center;
