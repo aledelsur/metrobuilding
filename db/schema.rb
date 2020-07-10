@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_07_173121) do
+ActiveRecord::Schema.define(version: 2020_07_10_183656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(version: 2020_07_07_173121) do
     t.text "email_content"
     t.bigint "project_id"
     t.bigint "company_id"
+    t.string "main_color", default: "#1c7363"
   end
 
   create_table "payment_properties", force: :cascade do |t|

@@ -1,9 +1,16 @@
 <template>
   <div class="form-group">
-    <label> FOTO DE PORTADA </label>
-    <br>
-    <b-img v-if="selectedAssetUrl" :src="selectedAssetUrl" fluid alt="Responsive image" class="img-rounded thumbnail"></b-img>
-    <b-button v-on:click="showMediaAssets" class="btn btn-info mb-2">Administrar foto de portada</b-button>
+    <div class="panel panel-default">
+      <div class="text-center panel-heading"> FOTO DE PORTADA </div>
+      <div class="text-center panel-body">
+        <div class="col-sm-12 col-md-12">
+          <b-img v-if="selectedAssetUrl" :src="selectedAssetUrl" fluid alt="Responsive image" class="header-img-thumbnail img-rounded"></b-img>
+        </div>
+        <div class="col-sm-12 col-md-12">
+          <b-button v-on:click="showMediaAssets" class="btn btn-info mb-2">Administrar foto de portada</b-button>
+        </div>
+      </div>
+    </div>
 
     <b-modal ref="my-modal-header-image" :title="modalTitle" ok-only ok-title="Cerrar" id="administrate-section-images-modal">
       <div class="library">
@@ -157,5 +164,15 @@ export default {
   }
   .modal-footer {
     margin-top: 20px;
+  }
+  .header-img-thumbnail {
+    max-width: 200px;
+    max-height: 150px;
+    padding: 4px;
+    margin-bottom: 20px;
+    line-height: 1.428571429;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px
   }
 </style>

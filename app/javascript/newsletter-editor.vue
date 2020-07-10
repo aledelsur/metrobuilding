@@ -15,7 +15,10 @@
           <br>
           <br>
 
-          <header-image :newsletter="newsletter"></header-image>
+          <div class="row">
+            <header-image class="col-md-6 col-sm-6" :newsletter="newsletter"></header-image>
+            <color-picker class="col-md-6 col-sm-6" v-model="newsletter.main_color" >Seleccionar color</color-picker>
+          </div>
 
           <draggable v-model="newsletter.newsletter_sections" group="sections" @start="onStartSorting" @end="onDrop" ghost-class="ghost">
               <div v-for="section in newsletter.newsletter_sections" :key="section.id">
@@ -63,6 +66,7 @@ import HeaderImage from './header-image.vue'
 import axios from 'axios';
 import draggable from 'vuedraggable'
 import VueCkeditor from 'vue-ckeditor2';
+import ColorPicker from './color-picker.vue'
 
 export default {
   data: function () {
@@ -72,7 +76,8 @@ export default {
         id: null,
         title: "Newsletter 1",
         newsletter_sections: [],
-        email_content: null
+        email_content: null,
+        main_color: '#1c7363'
       },
       newsletterPreviewId: 0,
       config: {
@@ -84,7 +89,7 @@ export default {
       newsletter_url_html: '{{NEWSLETTER_URL}}'
     }
   },
-  components: { NewsletterSection, draggable, Sidebar, NewsletterPreview, VueCkeditor, HeaderImage },
+  components: { NewsletterSection, draggable, Sidebar, NewsletterPreview, VueCkeditor, HeaderImage, ColorPicker },
   mounted: function() {
     axios({ method: 'get',
             url: '/admin/newsletters/' + this.$root.newsletterId + '.json'
@@ -92,6 +97,7 @@ export default {
     .then(response => {
       console.log(response.data)
       this.newsletter.title = response.data.title
+      this.newsletter.main_color = response.data.main_color
       this.newsletter.id = response.data.id
       this.newsletter.email_content = response.data.email_content
       this.newsletter.newsletter_sections = response.data.newsletter_sections
@@ -163,6 +169,9 @@ export default {
     },
     resetSections(){
       this.sectionCount += 1;
+    },
+    changeColor: function (color) {
+      this.newsletter.main_color = color
     }
 
   }

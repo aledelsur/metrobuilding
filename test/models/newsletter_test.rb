@@ -4,6 +4,7 @@
 #
 #  id            :bigint           not null, primary key
 #  email_content :text
+#  main_color    :string           default("#1c7363")
 #  sent_at       :datetime
 #  title         :string
 #  created_at    :datetime         not null

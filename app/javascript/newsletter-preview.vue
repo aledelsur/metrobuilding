@@ -22,7 +22,7 @@
 
               <!-- START Layout DEFAULT -->
               <div v-if="section.template_type == 'default'" class="section">
-                <div class="title text-center">
+                <div class="title text-center" v-bind:style="{ backgroundColor: main_color, border: main_color }">
                   {{section.title}}
                 </div>
                 <div class="description">
@@ -52,7 +52,7 @@
 
               <!-- START Layout IMAGE RIGHT -->
               <div v-if="section.template_type == 'image_right'" class="section">
-                <div class="title text-center">
+                <div class="title text-center" v-bind:style="{ backgroundColor: main_color, border: main_color }">
                   {{section.title}}
                 </div>
 
@@ -78,7 +78,7 @@
 
               <!-- START Layout IMAGE LEFT -->
               <div v-if="section.template_type == 'image_left'" class="section">
-                <div class="title text-center">
+                <div class="title text-center" v-bind:style="{ backgroundColor: main_color, border: main_color }">
                   {{section.title}}
                 </div>
 
@@ -110,7 +110,7 @@
       <!-- <img src="./images/newsletter_footer_triangle.png" class='triangle'/> -->
       <div id='container'>
         <div id="triangle-box">
-          <div id="triangle"></div>
+          <div id="triangle" v-bind:style= "{ backgroundImage: triangle }"></div>
         </div>
       </div>
 
@@ -135,6 +135,8 @@ export default {
       variablesToReplace: null,
       viewType: null,
       styleObject: {},
+      main_color: '#1c7363',
+      triangle: null,
     }
   },
   mounted: function() {
@@ -154,6 +156,8 @@ export default {
       this.newsletter_id = response.data.id
       this.sections = response.data.newsletter_sections
       this.logo_url = response.data.logo_url
+      this.main_color = response.data.main_color
+      this.triangle = 'linear-gradient(to right top, ' + this.main_color + ' 0%, ' + this.main_color + ' 50%, transparent 50%)';
       this.styleObject.backgroundImage = "url(" + response.data.main_image + ")"
       this.viewType = this.$root.viewType
       if(response.data.variables_to_replace) {
@@ -225,7 +229,7 @@ export default {
 }
 
 #triangle {
-  background-image: linear-gradient(to right top, #00c9fc 0%, #00c9fc 50%, transparent 50%);
+  /* background-image: linear-gradient(to right top, #00c9fc 0%, #00c9fc 50%, transparent 50%); */
   width: 100%;
   height: 350px;
   top: 0;

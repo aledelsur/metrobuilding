@@ -8,7 +8,8 @@ class Site::NewsletterSerializer < ActiveModel::Serializer
               :updated_at,
               :logo_url,
               :main_image,
-              :variables_to_replace
+              :variables_to_replace,
+              :main_color
 
   has_many :newsletter_sections
 

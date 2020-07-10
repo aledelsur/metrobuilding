@@ -100,7 +100,7 @@ class Admin::NewslettersController < AdminController
   # Never trust parameters from the scary internet, only allow the white list through.
   def newsletter_params
     params[:newsletter][:newsletter_sections_attributes] = params[:newsletter][:newsletter_sections]
-    params.require(:newsletter).permit(:title, :email_content, newsletter_sections_attributes: [:id, :title, :description, :template_type])
+    params.require(:newsletter).permit(:title, :email_content, :main_color, newsletter_sections_attributes: [:id, :title, :description, :template_type])
   end
 
 end
