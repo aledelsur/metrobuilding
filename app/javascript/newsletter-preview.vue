@@ -135,7 +135,7 @@ export default {
       variablesToReplace: null,
       viewType: null,
       styleObject: {},
-      main_color: '#1c7363',
+      main_color: '#00c9fc',
       triangle: null,
     }
   },

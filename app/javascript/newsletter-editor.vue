@@ -77,7 +77,7 @@ export default {
         title: "Newsletter 1",
         newsletter_sections: [],
         email_content: null,
-        main_color: '#1c7363'
+        main_color: '#00c9fc'
       },
       newsletterPreviewId: 0,
       config: {
