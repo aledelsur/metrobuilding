@@ -42,7 +42,9 @@ class User < ApplicationRecord
   has_many :payments
   has_many :receipts, through: :payments
   has_many :sent_newsletters
-
+  has_many :user_groups
+  has_many :groups, through: :user_groups
+  
   has_many :user_projects
   has_many :projects, through: :user_projects
 

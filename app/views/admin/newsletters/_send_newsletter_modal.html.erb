@@ -26,6 +26,12 @@
                 Algunos propietarios
               </label>
             </div>
+            <div class="check-some-groups">
+              <input type="radio" name="selected_option" id="some_groups" value="some_groups">
+              <label for="some_groups">
+                Enviar a un grupo
+              </label>
+            </div>
           </div>
 
           <div class="select-users-as-recipients">
@@ -41,6 +47,22 @@
 
             <div class="users-selected">
               <input type="text" name="user_ids[]" data-role="tagsinput" id="selected_users">
+            </div>
+          </div>
+
+          <div class="select-groups-as-recipients">
+            <div class=form-inputs>
+              <div class="form-lbl text-left">
+                <%= form.label :group_id, 'Seleccionar grupo:' %>
+              </div>
+
+              <div class="form-input">
+                <%= form.select :group_id, @project.groups.all.map { |g| [g.name, g.id]}, { include_blank: true }, class: 'select2' %>
+              </div>
+            </div>
+
+            <div class="groups-selected">
+              <input type="text" name="group_ids[]" data-role="tagsinput" id="selected_groups">
             </div>
           </div>
 

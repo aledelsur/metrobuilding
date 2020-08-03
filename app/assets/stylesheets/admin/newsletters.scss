@@ -107,11 +107,15 @@ table.newsletters {
       }
       .check-all {
         float: left;
-        margin-left: 20%;
+        margin-left: 10%;
       }
       .check-some {
+        margin-right: 26%;
+      }
+      .check-some-groups {
         float: right;
-        margin-right: 20%;
+        margin-right: 10%;
+        margin-top: -25px;
       }
     }
     .select-users-as-recipients {
@@ -135,6 +139,49 @@ table.newsletters {
         width: 325px !important;
       }
       .users-selected {
+        margin-top: 2%;
+        display: none;
+        .bootstrap-tagsinput {
+          width: 100%;
+          min-height: 41px;
+          span.tag {
+            float: left;
+            height: 31px;
+            padding-top: 8px;
+            font-size: 1em;
+            background-color: #fff;
+            color: #555555;
+            border: 1px solid #ccc;
+            font-weight: normal;
+            margin-right: 3px;
+            margin-bottom: 2px;
+            margin-top: 1px;
+          }
+        }
+      }
+    }
+    
+    .select-groups-as-recipients {
+      display: none;
+      margin-top: 4%;
+      margin-left: 15%;
+      margin-right: 15%;
+      .form-inputs {
+        overflow: hidden;
+        .form-lbl {
+          float: left;
+          width: 40%;
+          margin-top: 7px;
+        }
+        .form-input {
+          float: right;
+          width: 60%;
+        }
+      }
+      span.select2.select2-container {
+        width: 325px !important;
+      }
+      .groups-selected {
         margin-top: 2%;
         display: none;
         .bootstrap-tagsinput {

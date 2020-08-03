@@ -34,6 +34,7 @@ class Project < ApplicationRecord
   has_many :receipts
   has_many :sent_newsletters
   has_many :debts
+  has_many :groups
 
   def smtp_settings
     {

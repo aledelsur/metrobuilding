@@ -74,6 +74,46 @@ $(document).ready(function(){
 
   $('.btn').attr('disabled', false);
 
+  $('.datatable_users_in_groups').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": 2 }
+    ],
+    "oLanguage": {
+      "sSearch": "Buscar:"
+    },
+    "pageLength": 15
+  });
+
+  $('.datatable_users_in_groups_readonly').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": 1 }
+    ],
+    "oLanguage": {
+      "sSearch": "Buscar:"
+    },
+    "pageLength": 15
+  });
+
+  $('.datatable_groups').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": [1,2,3] }
+    ],
+    "oLanguage": {
+      "sSearch": "Buscar:"
+    },
+    "pageLength": 15
+  });
+
+  $('.datatable_groups_readonly').DataTable({
+    "columnDefs": [
+      { "orderable": false, "targets": 1 }
+    ],
+    "oLanguage": {
+      "sSearch": "Buscar:"
+    },
+    "pageLength": 15
+  });
+
   $('.datatable_users').DataTable({
     "columnDefs": [
       { "orderable": false, "targets": [4,5,6] }
@@ -183,10 +223,31 @@ $(document).ready(function(){
     $('.select-users-as-recipients').hide();
   });
 
+  $(document).on('change', '#some_groups', function(){
+    $('.select-users-as-recipients').hide();
+  });
+
+  $(document).on('change', '#some_groups', function(){
+    $('.select-groups-as-recipients').show();
+  });
+
+  $(document).on('change', '#all_users', function(){
+    $('.select-groups-as-recipients').hide();
+  });
+
+  $(document).on('change', '#some_users', function(){
+    $('.select-groups-as-recipients').hide();
+  });
+
  $('#selected_users').tagsinput({
     itemValue: 'id',
     itemText: 'text',
   });
+
+  $('#selected_groups').tagsinput({
+     itemValue: 'id',
+     itemText: 'text',
+   });
 
   /* Sets the id of the newsletter to the modal so that when submitting the form we can add the id to the url in the form */
   $(document).on('click', '.send-newsletter-btn-index', function(){
@@ -201,6 +262,15 @@ $(document).ready(function(){
 
     $('#selected_users').tagsinput('add', {id: user_id, text: user_name});
     $('.users-selected').show();
+  });
+
+  $('#group_id').on("select2:select", function(event) {
+   var selected_option = $(event.currentTarget).find("option:selected");
+   var group_name = selected_option.text();
+   var group_id = selected_option.val();
+
+   $('#selected_groups').tagsinput('add', {id: group_id, text: group_name});
+   $('.groups-selected').show();
   });
 
   $(document).on('click', '#send_newsletter_modal #send-btn', function(e){

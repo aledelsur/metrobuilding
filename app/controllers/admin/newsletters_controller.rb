@@ -85,7 +85,7 @@ class Admin::NewslettersController < AdminController
   def send_newsletter
     newsletter = @project.newsletters.find(params[:newsletter_id])
 
-    SendNewsletterJob.perform_later(newsletter.id, params[:selected_option], params[:user_ids], @company.id)
+    SendNewsletterJob.perform_later(newsletter.id, params[:selected_option], params[:user_ids], params[:group_ids], @company.id)
     newsletter.update_attribute(:sent_at, DateTime.now)
     flash[:success] = 'Circular Informativa enviada correctamente.'
     redirect_to admin_newsletters_path

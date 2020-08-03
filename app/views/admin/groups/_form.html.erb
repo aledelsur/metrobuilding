@@ -1,0 +1,14 @@
+<%= form_with(model: [:admin, group], local: true) do |form| %>
+
+  <%= render partial: 'admin/shared/error_messages', locals: { model_name: group } %>
+
+  <div class="form-group">
+    <%= form.label :name,'Nombre del grupo' %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Guardar', class: 'btn btn-primary mb-2' %>
+    <%= link_to 'Atrás', admin_groups_path, class: 'btn btn-secondary mb-2' %>
+  </div>
+<% end %>

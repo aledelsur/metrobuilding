@@ -46,6 +46,14 @@ module ApplicationHelper
     end
   end
 
+  def add_datatable_class_to_users_in_groups(admin_user)
+    admin_user.is_readonly? ? 'datatable_users_in_groups_readonly' : 'datatable_users_in_groups'
+  end
+
+  def add_datatable_class_to_groups(admin_user)
+    admin_user.is_readonly? ? 'datatable_groups_readonly' : 'datatable_groups'
+  end
+
   def add_datatable_class_to_users(admin_user)
     admin_user.is_readonly? ? 'datatable_users_readonly' : 'datatable_users'
   end

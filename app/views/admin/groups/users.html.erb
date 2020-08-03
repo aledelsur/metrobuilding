@@ -1,0 +1,68 @@
+<h1>Inversores en este grupo</h1>
+<br>
+
+<% if @group_users.empty? %>
+  <div>No hay inversores en este grupo.</div>
+<% else %>
+  <table class="table table-bordered <%= add_datatable_class_to_users_in_groups(current_admin_user) %>">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Teléfonos</th>
+        <% unless current_admin_user.is_readonly? %>
+          <th></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @group_users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.phones %></td>
+
+          <% unless current_admin_user.is_readonly? %>
+            <td><%= link_to 'Eliminar', admin_group_remove_user_path(id: user.id), method: :delete, data: { confirm: 'Estás seguro?' }, class: 'btn btn-danger' %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<br>
+
+<h1>Inversores para agregar</h1>
+<br>
+
+<% if @users_to_add.empty? %>
+  <div>Todos los inversores ya han sido agregados a este grupo.</div>
+<% else %>
+  <table class="table table-bordered <%= add_datatable_class_to_users_in_groups(current_admin_user) %>">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Teléfonos</th>
+        <% unless current_admin_user.is_readonly? %>
+          <th></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users_to_add.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.phones %></td>
+
+          <% unless current_admin_user.is_readonly? %>
+            <td><%= link_to 'Agregar', admin_group_add_user_path(id: user.id), method: :put, data: { confirm: 'Estás seguro?' }, class: 'btn btn-success' %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<br>
+
+<%= link_to 'Atrás', admin_groups_path, class: 'btn btn-primary' %>
