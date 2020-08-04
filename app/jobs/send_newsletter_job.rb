@@ -1,7 +1,7 @@
 class SendNewsletterJob < ApplicationJob
   queue_as :default
 
-  def perform(newsletter_id, selected_option, user_ids, company_id, group_ids)
+  def perform(newsletter_id, selected_option, user_ids, group_ids, company_id)
     newsletter = Newsletter.find(newsletter_id)
 
     case selected_option

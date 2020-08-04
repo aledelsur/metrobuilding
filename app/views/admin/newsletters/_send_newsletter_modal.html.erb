@@ -57,7 +57,7 @@
               </div>
 
               <div class="form-input">
-                <%= form.select :group_id, @project.groups.all.map { |g| [g.name, g.id]}, { include_blank: true }, class: 'select2' %>
+                <%= form.select :group_id, @project.groups.map { |g| [g.name, g.id]}, { include_blank: true }, class: 'select2' %>
               </div>
             </div>
 
