@@ -9,7 +9,6 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
       <ul class="nav navbar-nav navbar-left">
         <li class="<%= 'active' if params['controller'] == 'admin/users'%>"> <%= link_to 'Propietarios', admin_users_path %> </li>
-        <li class="<%= 'active' if params['controller'] == 'admin/groups'%>"> <%= link_to 'Grupos', admin_groups_path %> </li>
 
         <% if @company.has_feature?(:payments) %>
           <li class="<%= 'active' if params['controller'] == 'admin/payments' %>"> <%= link_to 'Pagos', admin_payments_path %> </li>
@@ -23,6 +22,7 @@
           <% unless current_admin_user.is_readonly? %>
             <li class="<%= 'active' if params['controller'] == 'admin/newsletters'%>"> <%= link_to 'Circular informativa', admin_newsletters_path %> </li>
           <% end %>
+          <li class="<%= 'active' if params['controller'] == 'admin/groups'%>"> <%= link_to 'Grupos', admin_groups_path %> </li>
           <li class="<%= 'active' if params['controller'] == 'admin/media_assets'%>"> <%= link_to 'Galería de imágenes', admin_media_assets_path %> </li>
         <% end %>
 
