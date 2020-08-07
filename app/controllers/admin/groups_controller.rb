@@ -36,7 +36,7 @@ class Admin::GroupsController < AdminController
     group = Group.find(params[:group_id])
     @group_users = group.users
 
-    @users_to_add = User.where.not(id: group.users.select(:id))
+    @users_to_add = @project.users.where.not(id: group.users.select(:id))
   end
 
   def add_user
