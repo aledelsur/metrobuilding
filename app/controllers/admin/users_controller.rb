@@ -78,8 +78,12 @@ class Admin::UsersController < AdminController
   # DELETE /users/1.json
   def destroy
     user_project = UserProject.find_by(user_id: params[:id], project_id: @project.id)
-
     user_project.destroy
+
+    # Iterate all the groups and remove that user form the groups he is part of
+    @project.groups.each do |group|
+      UserGroup.find_by(user_id: params[:id], group_id: group.id)&.destroy
+    end
 
     respond_to do |format|
       flash[:success] = "Propietario eliminado correctamente."
