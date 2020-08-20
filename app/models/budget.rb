@@ -29,7 +29,7 @@ class Budget < ApplicationRecord
 
   validates :project_id, :company_id, presence: true
 
-  scope :active, -> { where('start_date IS NULL OR start_date < ?', DateTime.now) }
+  scope :active, -> { where('start_date IS NULL OR start_date > ?', DateTime.now) }
   scope :current, -> { where("start_date <= ? AND due_date > ?", DateTime.now, DateTime.now ) }
 
   after_create :recalculate_debt
