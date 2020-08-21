@@ -29,10 +29,12 @@
       </div>
     <% end %>
 
-    <div class="form-inline">
-      <%= form.label :start_date, 'Fecha de inicio' %>
-      <%= form.datetime_select :start_date, { default: calculate_default_budget_start_date(budget) }, { class: "form-control" }  %>
-    </div>
+    <% if @project.name != 'ayres-de-canning' %>
+      <div class="form-inline">
+        <%= form.label :start_date, 'Fecha de inicio' %>
+        <%= form.datetime_select :start_date, { default: calculate_default_budget_start_date(budget) }, { class: "form-control" }  %>
+      </div>
+    <% end %>
 
     <div class="form-inline">
       <%= form.label :due_date, 'Fecha límite para el pago' %>
